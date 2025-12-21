@@ -1,0 +1,135 @@
+\documentclass{article}
+
+% PACKAGES for math, chemistry, layout, and graphics
+\usepackage[a4paper, margin=1in]{geometry} % Sets page margins
+\usepackage{amsmath}                      % For advanced math environments
+\usepackage[version=4]{mhchem}            % For typesetting chemical formulas (e.g., \ce{^{90}Sr})
+\usepackage{siunitx}                      % For typesetting units (e.g., \SI{1.00}{\micro\gram})
+
+% DOCUMENT TITLE
+\title{New Practice Problems in Radioactivity}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{New Practice Problems and Solutions}
+
+Here are three new problems designed to test the same core concepts of serial decay, branching decay, and activity/dilution analysis, complete with explanations and detailed solutions.
+
+\hrulefill
+\subsection*{Problem 1: Serial Decay in a Nuclear Reactor Byproduct}
+\textbf{Question:} \textit{Strontium-90 (\ce{^{90}Sr}) is a fission product with a half-life of 28.8 years. It decays via beta emission to Yttrium-90 (\ce{^{90}Y}), which is also radioactive with a half-life of 64.0 hours. \ce{^{90}Y} then decays to the stable Zirconium-90 (\ce{^{90}Zr}). If you start with a pure \SI{1.00}{\milli\gram} sample of \ce{^{90}Sr}, at what time will the mass of \ce{^{90}Y} be at its maximum? What is this maximum mass in micrograms (µg)?}
+
+\subsubsection*{Explanation}
+This is a classic "parent-daughter-granddaughter" decay chain: $\ce{^{90}Sr -> ^{90}Y -> ^{90}Zr}$. The amount of the intermediate daughter, \ce{^{90}Y}, is governed by two competing processes: its production from the decay of \ce{^{90}Sr} and its own decay into \ce{^{90}Zr}. The quantity of \ce{^{90}Y} will be at its maximum when its rate of formation equals its rate of decay. This allows us to calculate the time ($T_{max}$) for this peak to occur. We can then use this time in the serial decay equation to find the maximum amount.
+
+\subsubsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Convert Half-Lives and Calculate Decay Constants ($\lambda$)} \\
+    First, we need consistent units for the decay constants. Let's use hours.
+    \begin{itemize}
+        \item For Strontium-90 (Parent, A):
+        \begin{align*}
+            t_{1/2, A} &= 28.8 \text{ years} \times 365.25 \frac{\text{days}}{\text{year}} \times 24 \frac{\text{hours}}{\text{day}} = 252,460 \text{ hours} \\
+            \lambda_A &= \frac{\ln(2)}{t_{1/2, A}} = \frac{0.6931}{252,460 \text{ hr}} = 2.745 \times 10^{-6} \text{ hr}^{-1}
+        \end{align*}
+        \item For Yttrium-90 (Daughter, B):
+        \begin{align*}
+            t_{1/2, B} &= 64.0 \text{ hours} \\
+            \lambda_B &= \frac{\ln(2)}{t_{1/2, B}} = \frac{0.6931}{64.0 \text{ hr}} = 0.01083 \text{ hr}^{-1}
+        \end{align*}
+    \end{itemize}
+    
+    \item \textbf{Find the Time to Maximum Quantity ($T_{max}$)} \\
+    The time at which the quantity of the daughter nucleus is at a maximum is given by:
+    \begin{align*}
+        T_{max} &= \frac{\ln(\lambda_B / \lambda_A)}{\lambda_B - \lambda_A} \\
+        T_{max} &= \frac{\ln(0.01083 / 2.745 \times 10^{-6})}{0.01083 - 2.745 \times 10^{-6}} = \frac{\ln(3945)}{0.010827} = \frac{8.280}{0.010827} \approx \textbf{765 hours}
+    \end{align*}
+
+    \item \textbf{Calculate the Maximum Mass of Yttrium-90 ($m_B$)} \\
+    Since the atomic masses are virtually identical, we can use mass in the serial decay equation:
+    \begin{equation*}
+        m_B(t) = \frac{\lambda_A m_{A,0}}{\lambda_B - \lambda_A} (e^{-\lambda_A t} - e^{-\lambda_B t})
+    \end{equation*}
+    Substitute $t = T_{max} = 765$ hours and $m_{A,0} = \SI{1.00}{\milli\gram}$:
+    \begin{align*}
+        m_B(765) &= \frac{(2.745 \times 10^{-6}) \times (1.00 \text{ mg})}{0.01083 - 2.745 \times 10^{-6}} (e^{-(2.745 \times 10^{-6})(765)} - e^{-(0.01083)(765)}) \\
+        m_B(765) &= \frac{2.745 \times 10^{-6}}{0.010827} (e^{-0.0021} - e^{-8.285}) \\
+        m_B(765) &= (2.535 \times 10^{-4}) \times (0.9979 - 0.00025) \approx 2.529 \times 10^{-4} \text{ mg}
+    \end{align*}
+    Converting to micrograms: $2.529 \times 10^{-4} \text{ mg} \times 1000 \frac{\text{µg}}{\text{mg}} = \textbf{0.253 µg}$.
+\end{enumerate}
+\hrulefill
+
+\subsection*{Problem 2: Branching Decay and Geological Dating}
+\textbf{Question:} \textit{Potassium-40 (\ce{^{40}K}) is a naturally occurring radioactive isotope. It has two primary decay modes: to Argon-40 (\ce{^{40}Ar}) via electron capture (branching ratio 10.72\%), and to Calcium-40 (\ce{^{40}Ca}) via beta decay (branching ratio 89.28\%). A geologist finds a rock sample containing \SI{4.50}{\milli\gram} of \ce{^{40}K} and \SI{0.58}{\milli\gram} of \ce{^{40}Ar}. Assuming all the \ce{^{40}Ar} was produced from \ce{^{40}K} decay since the rock solidified, what is the age of the rock? (Half-life of \ce{^{40}K} is $1.251 \times 10^9$ years).}
+
+\subsubsection*{Explanation}
+The amount of \ce{^{40}Ar} tells us how much \ce{^{40}K} has decayed via that specific branch. From this, we can calculate the total amount of \ce{^{40}K} that must have existed when the rock first formed. With the initial amount, the current amount, and the known half-life, we can determine the age of the sample.
+
+\subsubsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Calculate the Total Mass of \ce{^{40}K} That Decayed} \\
+    The mass of \ce{^{40}K} that decayed to produce \SI{0.58}{mg} of \ce{^{40}Ar} accounts for only 10.72\% of the total decay.
+    \begin{equation*}
+        \text{Total mass of } \ce{^{40}K} \text{ decayed} = \frac{\text{Mass of } \ce{^{40}Ar} \text{ produced}}{\text{Branching Ratio for Ar}} = \frac{0.58 \text{ mg}}{0.1072} \approx 5.41 \text{ mg}
+    \end{equation*}
+
+    \item \textbf{Determine the Initial Mass of \ce{^{40}K} ($m_{K,0}$)} \\
+    The initial mass is the sum of the current mass and the total decayed mass.
+    \begin{equation*}
+        m_{K,0} = m_{K,current} + m_{K,decayed} = 4.50 \text{ mg} + 5.41 \text{ mg} = 9.91 \text{ mg}
+    \end{equation*}
+
+    \item \textbf{Calculate the Age of the Rock ($t$)} \\
+    Using the radioactive decay formula with mass: $m(t) = m_0 e^{-(\ln(2)/t_{1/2})t}$.
+    \begin{align*}
+        4.50 &= 9.91 \times e^{-(\ln(2)/(1.251 \times 10^9))t} \\
+        \ln\left(\frac{4.50}{9.91}\right) &= - \frac{\ln(2)}{1.251 \times 10^9} \times t \\
+        -0.789 &= - \frac{0.6931}{1.251 \times 10^9} \times t \\
+        t &= \frac{0.789 \times (1.251 \times 10^9)}{0.6931} \approx \mathbf{1.42 \times 10^9 \textbf{ years}}
+    \end{align*}
+\end{enumerate}
+\hrulefill
+
+\subsection*{Problem 3: Activity and Dilution in Medical Imaging}
+\textbf{Question:} \textit{Technetium-99m (\ce{^{99m}Tc}) is a medical radioisotope with a half-life of 6.01 hours. A dose with an initial activity of 555 MBq is prepared. Due to a delay, the dose is injected 90 minutes after preparation.
+(a) What is the activity of the dose at the moment of injection?
+(b) After injection, the \ce{^{99m}Tc} distributes uniformly in the patient's blood plasma. 4 hours after injection, a \SI{10.0}{\milli\liter} sample of plasma is drawn and its activity is measured to be 75.0 kBq. What is the total volume of blood plasma in the patient?}
+
+\subsubsection*{Explanation}
+(a) We account for the decay during the 90-minute delay. (b) We then account for the further decay in the 4 hours after injection to find the total activity in the body. By comparing the activity concentration in the sample to the total activity, we can find the total volume using the dilution principle.
+
+\subsubsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Calculate the Decay Constant ($\lambda$)} \\
+    \begin{equation*}
+        \lambda = \frac{\ln(2)}{t_{1/2}} = \frac{\ln(2)}{6.01 \text{ hr}} = 0.1153 \text{ hr}^{-1}
+    \end{equation*}
+
+    \item \textbf{(a) Activity at Injection ($A_{inj}$)} \\
+    The delay is $t_{delay} = 90 \text{ min} = 1.5 \text{ hours}$.
+    \begin{align*}
+        A_{inj} &= A_0 e^{-\lambda t_{delay}} = (555 \text{ MBq}) \times e^{-(0.1153)(1.5)} \\
+        A_{inj} &= 555 \times e^{-0.17295} \approx \textbf{467 MBq}
+    \end{align*}
+
+    \item \textbf{(b) Total Plasma Volume} \\
+    First, find the total activity in the body 4 hours after injection.
+    \begin{align*}
+        A_{body} &= A_{inj} \times e^{-\lambda t_{sample}} = (467 \text{ MBq}) \times e^{-(0.1153)(4)} \\
+        A_{body} &= 467 \times e^{-0.4612} \approx 294.4 \text{ MBq} = 294,400 \text{ kBq}
+    \end{align*}
+    Now, apply the dilution principle: $\frac{A_{body}}{V_{total}} = \frac{A_{sample}}{V_{sample}}$.
+    \begin{align*}
+        V_{total} &= V_{sample} \times \frac{A_{body}}{A_{sample}} \\
+        V_{total} &= 10.0 \text{ mL} \times \frac{294,400 \text{ kBq}}{75.0 \text{ kBq}} = 10.0 \times 3925 \approx 39,250 \text{ mL}
+    \end{align*}
+    Converting to Liters: $V_{total} = \textbf{39.3 L}$.
+\end{enumerate}
+
+\end{document}
