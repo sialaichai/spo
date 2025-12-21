@@ -1,0 +1,346 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Differential Equations in Physics: Course Notes}
+\author{Physics Department}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction: What is a Differential Equation?}
+
+A \textbf{differential equation (DE)} is a mathematical equation that relates a function with its derivatives. In physics, these equations are fundamental because the laws of nature are most often expressed as statements about \textit{rates of change}.
+
+\begin{itemize}
+    \item \textbf{Physical Meaning:} A DE describes the \textit{dynamics} of a system—how a system evolves in time or space.
+        \begin{itemize}
+            \item Newton's Second Law ($F=ma$) is a DE: $F = m \frac{d^2x}{dt^2}$.
+            \item The law of radioactive decay ($dN/dt = -\lambda N$) is a DE.
+        \end{itemize}
+    \item \textbf{Key Concepts:}
+        \begin{itemize}
+            \item \textbf{Ordinary Differential Equation (ODE):} Involves derivatives with respect to only \textit{one} independent variable (usually time, $t$).
+            \item \textbf{Partial Differential Equation (PDE):} Involves partial derivatives with respect to \textit{multiple} independent variables (e.g., $t$ and $x$).
+            \item \textbf{Order:} The order of the highest derivative present (e.g., $dy/dt$ is first-order, $d^2y/dt^2$ is second-order).
+            \item \textbf{Linearity:} A DE is linear if the dependent variable (e.g., $y$) and its derivatives appear only to the first power. $\ddot{x} + 2\dot{x} + x = 0$ is linear, while $\ddot{x} + x^2 = 0$ is non-linear.
+        \end{itemize}
+\end{itemize}
+
+\hrule
+
+\section{First-Order ODEs}
+
+These equations involve only the first derivative, $dy/dt$. They often describe systems that "settle" towards an equilibrium or decay over time. The general form is $\frac{dy}{dt} = f(y, t)$.
+
+\subsection{Worked Example 1: Radioactivity}
+\begin{itemize}
+    \item \textbf{Concept:} The rate at which a radioactive sample decays is proportional to the number of unstable nuclei, $N$, present.
+    \item \textbf{Equation:}
+    $$ \frac{dN}{dt} = -\lambda N $$
+    \item \textbf{Physical Meaning:} $\frac{dN}{dt}$ is the \textit{activity} (rate of decay). $\lambda$ is the \textbf{decay constant}, representing the probability of a single nucleus decaying per unit time. The minus sign indicates that $N$ is \textit{decreasing}.
+    \item \textbf{Solution (Separation of Variables):}
+    \begin{enumerate}
+        \item Rearrange the equation: $\frac{1}{N} dN = -\lambda dt$
+        \item Integrate both sides: $\int \frac{1}{N} dN = \int -\lambda dt \implies \ln(N) = -\lambda t + C$
+        \item Solve for $N$ by exponentiating: $N(t) = e^{-\lambda t + C} = e^C e^{-\lambda t}$
+        \item At $t=0$, $N(0) = N_0$. So, $N_0 = e^C$.
+        \item \textbf{Final Solution:} $N(t) = N_0 e^{-\lambda t}$
+    \end{enumerate}
+    \item \textbf{Key Idea:} This is the law of \textbf{exponential decay}. The \textbf{half-life} ($T_{1/2}$) is the time it takes for half the sample to decay: $N_0/2 = N_0 e^{-\lambda T_{1/2}} \implies T_{1/2} = \frac{\ln(2)}{\lambda}$.
+\end{itemize}
+
+\subsection{Worked Example 2: Motion with Resistance (Terminal Velocity)}
+\begin{itemize}
+    \item \textbf{Concept:} A falling object (mass $m$) experiences gravity ($F_g = mg$) and linear air resistance, or "drag" ($F_d = -bv$, where $b$ is the drag coefficient).
+    \item \textbf{Equation (Newton's 2nd Law):} $F_{net} = ma$
+    $$ m\frac{dv}{dt} = mg - bv $$
+    \item \textbf{Physical Meaning:} The acceleration $\frac{dv}{dt}$ is the result of the constant gravitational force minus the velocity-dependent drag force.
+    \item \textbf{Solution (Separation of Variables):}
+    \begin{enumerate}
+        \item Rearrange: $m\frac{dv}{mg - bv} = dt \implies \int \frac{dv}{g - (b/m)v} = \int dt$
+        \item Integrate (using u-substitution $u = g - (b/m)v$):
+        $$ -\frac{m}{b} \ln\left(g - \frac{b}{m}v\right) = t + C $$
+        \item Assume the object is dropped from rest, $v(0) = 0$.
+        $$ -\frac{m}{b} \ln(g) = C $$
+        \item Substitute $C$ back and solve for $v(t)$:
+        $$ \ln\left(g - \frac{b}{m}v\right) - \ln(g) = -\frac{b}{m}t $$
+        $$ \ln\left(\frac{g - (b/m)v}{g}\right) = -\frac{b}{m}t $$
+        $$ 1 - \frac{b}{mg}v = e^{-(b/m)t} $$
+        \item \textbf{Final Solution:} $v(t) = \frac{mg}{b} \left(1 - e^{-(b/m)t}\right)$
+    \end{enumerate}
+    \item \textbf{Key Idea:} As $t \to \infty$, the exponential term $e^{-(b/m)t} \to 0$. The velocity approaches a constant value $v_T = \frac{mg}{b}$. This is the \textbf{terminal velocity}, where the drag force perfectly balances the gravitational force ($mg = bv_T$) and acceleration becomes zero.
+\end{itemize}
+
+\subsection{Worked Example 3: Newton's Law of Cooling}
+\begin{itemize}
+    \item \textbf{Concept:} The rate of change of an object's temperature $T$ is proportional to the difference between its temperature and the ambient temperature $T_a$.
+    \item \textbf{Equation:} $\frac{dT}{dt} = -k(T - T_a)$
+    \item \textbf{Physical Meaning:} $k$ is a positive constant related to the object's surface area and material. The equation states that if the object is hotter than its surroundings ($T > T_a$), $dT/dt$ is negative (it cools). If it's cooler ($T < T_a$), $dT/dt$ is positive (it warms).
+    \item \textbf{Solution:} Let $y(t) = T(t) - T_a$. Then $\frac{dy}{dt} = \frac{dT}{dt}$.
+    \begin{itemize}
+        \item $\frac{dy}{dt} = -ky \implies y(t) = y_0 e^{-kt}$
+        \item Substitute back: $T(t) - T_a = (T(0) - T_a)e^{-kt}$
+        \item \textbf{Final Solution:} $T(t) = T_a + (T_0 - T_a)e^{-kt}$
+    \end{itemize}
+    \item \textbf{Key Idea:} The object's temperature exponentially approaches the ambient temperature.
+\end{itemize}
+
+\subsection{Worked Example 4: Variation of Air Pressure with Height}
+\begin{itemize}
+    \item \textbf{Concept:} The pressure $P$ at a height $h$ is due to the weight of the air above it. Consider a thin slice of air $dh$. The pressure difference $dP$ between $h$ and $h+dh$ is $dP = -\rho g dh$.
+    \item \textbf{Physics:} We need a link between $P$ and $\rho$. Using the Ideal Gas Law ($PV=nRT$), $P = \frac{\rho M}{RT}$, where $M$ is the molar mass of air. So, $\rho = \frac{PM}{RT}$.
+    \item \textbf{Equation (assuming constant $T$):}
+    $$ \frac{dP}{dh} = -\rho g = -\left(\frac{PM}{RT}\right)g $$
+    \item \textbf{Solution (Separation of Variables):}
+    \begin{enumerate}
+        \item $\frac{dP}{P} = -\left(\frac{Mg}{RT}\right) dh$
+        \item $\int \frac{dP}{P} = \int -\left(\frac{Mg}{RT}\right) dh$
+        \item $\ln(P) = -\left(\frac{Mg}{RT}\right)h + C$
+        \item Let $P(0) = P_0$ (pressure at sea level). Then $C = \ln(P_0)$.
+        \item \textbf{Final Solution:} $P(h) = P_0 e^{-(Mg/RT)h}$
+    \end{enumerate}
+    \item \textbf{Key Idea:} This is the \textbf{Barometric Formula}. It shows that atmospheric pressure decreases exponentially with altitude.
+\end{itemize}
+
+\subsection{Worked Example 5: Radioactive Decay Chain (A $\to$ B $\to$ C)}
+\begin{itemize}
+    \item \textbf{Concept:} A "parent" nucleus (A) decays with constant $\lambda_A$ into a "daughter" nucleus (B). This daughter (B) is \textit{also} radioactive and decays with constant $\lambda_B$ into a stable "granddaughter" nucleus (C). This is a \textbf{system of coupled first-order ODEs}.
+    \item \textbf{Equations:}
+    \begin{align}
+        \frac{dN_A}{dt} &= -\lambda_A N_A \label{eq:A} \\
+        \frac{dN_B}{dt} &= +\lambda_A N_A - \lambda_B N_B \label{eq:B} \\
+        \frac{dN_C}{dt} &= +\lambda_B N_B \label{eq:C}
+    \end{align}
+    \item \textbf{Physical Meaning:} The rate of change of B, $\frac{dN_B}{dt}$, is the \textit{rate of creation} ($\lambda_A N_A$) minus the \textit{rate of decay} ($\lambda_B N_B$).
+    \item \textbf{Solution:} Assume at $t=0$, we have $N_A(0) = N_0$, and $N_B(0) = N_C(0) = 0$.
+    \begin{enumerate}
+        \item \textbf{Solve for $N_A$:} This is standard exponential decay.
+        $$ N_A(t) = N_0 e^{-\lambda_A t} $$
+        \item \textbf{Solve for $N_B$:} Substitute the solution for $N_A$ into Eq. (\ref{eq:B}):
+        $$ \frac{dN_B}{dt} + \lambda_B N_B = \lambda_A N_0 e^{-\lambda_A t} $$
+        This is a first-order linear ODE. Solved using an \textbf{integrating factor} $I(t) = e^{\int \lambda_B dt} = e^{\lambda_B t}$.
+        \begin{itemize}
+            \item Multiply by $I(t)$: $e^{\lambda_B t} \frac{dN_B}{dt} + \lambda_B e^{\lambda_B t} N_B = \lambda_A N_0 e^{(\lambda_B - \lambda_A)t}$
+            \item The left side is a product rule: $\frac{d}{dt} \left( N_B e^{\lambda_B t} \right) = \lambda_A N_0 e^{(\lambda_B - \lambda_A)t}$
+            \item Integrate: $N_B e^{\lambda_B t} = \frac{\lambda_A N_0}{\lambda_B - \lambda_A} e^{(\lambda_B - \lambda_A)t} + K$
+            \item Apply $N_B(0) = 0$: $0 = \frac{\lambda_A N_0}{\lambda_B - \lambda_A} + K \implies K = -\frac{\lambda_A N_0}{\lambda_B - \lambda_A}$
+            \item \textbf{Final Solution for $N_B$:} (assuming $\lambda_A \neq \lambda_B$)
+            $$ N_B(t) = \frac{\lambda_A N_0}{\lambda_B - \lambda_A} \left( e^{-\lambda_A t} - e^{-\lambda_B t} \right) $$
+        \end{itemize}
+        \item \textbf{Solve for $N_C$:} Use conservation: $N_A(t) + N_B(t) + N_C(t) = N_0$.
+        \begin{itemize}
+            \item \textbf{Final Solution for $N_C$:} $N_C(t) = N_0 - N_A(t) - N_B(t)$
+            $$ N_C(t) = N_0 \left( 1 - \frac{\lambda_B}{\lambda_B - \lambda_A} e^{-\lambda_A t} + \frac{\lambda_A}{\lambda_B - \lambda_A} e^{-\lambda_B t} \right) $$
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Key Idea (Secular Equilibrium):} If A decays much slower than B ($\lambda_A \ll \lambda_B$), then $\frac{dN_B}{dt} \approx 0$ after some time. This means $\lambda_A N_A \approx \lambda_B N_B$. The activities become equal.
+\end{itemize}
+
+\hrule
+\hrule
+
+\section{Second-Order Linear ODEs}
+
+These are the most important equations for describing oscillations and waves. The general form is $a\ddot{x} + b\dot{x} + cx = F(t)$, where $\dot{x} = dx/dt$ and $\ddot{x} = d^2x/dt^2$.
+
+\textbf{Physical Meaning (Mechanical System):}
+$m\ddot{x} + b\dot{x} + kx = F(t)$
+\begin{itemize}
+    \item $m\ddot{x}$: \textbf{Inertial term} (mass $\times$ acceleration)
+    \item $b\dot{x}$: \textbf{Damping term} (drag, friction, proportional to velocity)
+    \item $kx$: \textbf{Restoring term} (spring force, proportional to displacement)
+    \item $F(t)$: \textbf{Driving term} (an external, time-dependent force)
+\end{itemize}
+We will first study the \textbf{homogeneous} case, where $F(t) = 0$.
+
+\subsection{Worked Example 1: Simple Harmonic Oscillator (SHO)}
+\begin{itemize}
+    \item \textbf{Concept:} A system with \textit{no damping} ($b=0$) and a linear restoring force (like a mass $m$ on an ideal spring with constant $k$).
+    \item \textbf{Equation (Mechanical):} $m\ddot{x} + kx = 0 \implies \ddot{x} + \frac{k}{m}x = 0$
+    \begin{itemize}
+        \item We define the \textbf{natural angular frequency} $\omega_0 = \sqrt{k/m}$.
+        \item The standard form is $\ddot{x} + \omega_0^2 x = 0$.
+    \end{itemize}
+    \item \textbf{Illustration (Electrical): The LC Circuit}
+    \begin{itemize}
+        \item An inductor ($L$) and capacitor ($C$) in a closed loop.
+        \item Kirchhoff's Loop Law: $V_L + V_C = 0 \implies L\frac{dI}{dt} + \frac{Q}{C} = 0$
+        \item Since $I = \frac{dQ}{dt}$, we have $L\ddot{Q} + \frac{1}{C}Q = 0 \implies \ddot{Q} + \frac{1}{LC}Q = 0$.
+        \item This is the \textit{exact same equation!} $\omega_0 = 1/\sqrt{LC}$.
+        \item \textbf{Analogy:} $L \leftrightarrow m$ (inertia), $1/C \leftrightarrow k$ (stiffness).
+    \end{itemize}
+    \item \textbf{Solution:}
+    \begin{enumerate}
+        \item We guess a solution (an "ansatz") of the form $x(t) = e^{rt}$.
+        \item Substitute: $r^2 e^{rt} + \omega_0^2 e^{rt} = 0 \implies r^2 + \omega_0^2 = 0$.
+        \item This is the \textbf{characteristic equation}. Its roots are $r = \pm \sqrt{-\omega_0^2} = \pm i\omega_0$.
+        \item The general solution: $x(t) = C_1 e^{i\omega_0 t} + C_2 e^{-i\omega_0 t}$.
+        \item Using Euler's Formula ($e^{i\theta} = \cos\theta + i\sin\theta$):
+        \item \textbf{Final Solution:} $x(t) = A \cos(\omega_0 t) + B \sin(\omega_0 t)$
+        \item This can also be written as $x(t) = C \cos(\omega_0 t + \phi)$, where $C$ is the \textbf{amplitude} and $\phi$ is the \textbf{phase}.
+    \end{enumerate}
+    \item \textbf{Key Idea:} The system oscillates sinusoidally forever with a constant period $T = 2\pi/\omega_0$.
+\end{itemize}
+
+\subsection{Worked Example 2: Damped Oscillations}
+\begin{itemize}
+    \item \textbf{Concept:} A realistic oscillator that includes friction/damping ($b > 0$).
+    \item \textbf{Equation (Mechanical):} $m\ddot{x} + b\dot{x} + kx = 0$
+    \item \textbf{Equation (Electrical - RLC Circuit):} $L\ddot{Q} + R\dot{Q} + \frac{1}{C}Q = 0$
+    \item \textbf{Analogy:} $m \leftrightarrow L$, $b \leftrightarrow R$, $k \leftrightarrow 1/C$.
+    \item \textbf{Solution:}
+    \begin{enumerate}
+        \item Divide by $m$: $\ddot{x} + \frac{b}{m}\dot{x} + \frac{k}{m}x = 0 \implies \ddot{x} + \gamma \dot{x} + \omega_0^2 x = 0$ (where $\gamma = b/m$).
+        \item Use the ansatz $x(t) = e^{rt}$.
+        \item Characteristic Equation: $r^2 + \gamma r + \omega_0^2 = 0$.
+        \item Roots (quadratic formula): $r = \frac{-\gamma \pm \sqrt{\gamma^2 - 4\omega_0^2}}{2}$.
+    \end{enumerate}
+    \item \textbf{Key Idea:} The behavior depends on the discriminant $\Delta = \gamma^2 - 4\omega_0^2$.
+    \begin{itemize}
+        \item \textbf{Case 1: Underdamped ($\Delta < 0 \implies \gamma^2 < 4\omega_0^2$)}
+        \begin{itemize}
+            \item \textbf{Physical Meaning:} Damping is weak.
+            \item Roots are complex: $r = -\frac{\gamma}{2} \pm i\omega_d$, where $\omega_d = \sqrt{\omega_0^2 - (\gamma/2)^2}$.
+            \item \textbf{Solution:} $x(t) = A e^{-\gamma t/2} \cos(\omega_d t + \phi)$
+            \item \textbf{Behavior:} The system \textbf{oscillates} with a decaying amplitude $A e^{-\gamma t/2}$. The "damped frequency" $\omega_d$ is \textit{less} than $\omega_0$.
+        \end{itemize}
+        
+        \item \textbf{Case 2: Overdamped ($\Delta > 0 \implies \gamma^2 > 4\omega_0^2$)}
+        \begin{itemize}
+            \item \textbf{Physical Meaning:} Damping is very strong.
+            \item Roots are two distinct, real, negative numbers: $r_1$ and $r_2$.
+            \item \textbf{Solution:} $x(t) = C_1 e^{r_1 t} + C_2 e^{r_2 t}$
+            \item \textbf{Behavior:} The system \textbf{does not oscillate}. It slowly decays back to equilibrium.
+        \end{itemize}
+        
+        \item \textbf{Case 3: Critically Damped ($\Delta = 0 \implies \gamma^2 = 4\omega_0^2$)}
+        \begin{itemize}
+            \item \textbf{Physical Meaning:} The "sweet spot" of damping.
+            \item One repeated, real, negative root: $r = -\gamma/2$.
+            \item \textbf{Solution:} $x(t) = (C_1 + C_2 t) e^{-\gamma t/2}$
+            \item \textbf{Behavior:} The system returns to equilibrium as \textbf{fast as possible without oscillating}.
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Worked Example 3: Forced \& Damped Oscillations (Resonance)}
+\begin{itemize}
+    \item \textbf{Concept:} A damped oscillator is now pushed by an external, periodic force, $F(t) = F_0 \cos(\omega_D t)$. $\omega_D$ is the \textbf{driving frequency}.
+    \item \textbf{Equation (Mechanical):} $m\ddot{x} + b\dot{x} + kx = F_0 \cos(\omega_D t)$
+    \item \textbf{Equation (Electrical - AC RLC Circuit):} $L\ddot{Q} + R\dot{Q} + \frac{1}{C}Q = V_0 \cos(\omega_D t)$
+    \item \textbf{Solution:} The general solution is $x(t) = x_h(t) + x_p(t)$.
+    \begin{itemize}
+        \item $x_h(t)$ is the \textbf{homogeneous (transient) solution}. This is the damped oscillation from Example 2. This part \textit{decays to zero}.
+        \item $x_p(t)$ is the \textbf{particular (steady-state) solution}. This describes the long-term behavior.
+    \end{itemize}
+    \item \textbf{Finding the Steady-State Solution $x_p(t)$:}
+    \begin{enumerate}
+        \item We look for $x_p(t) = A \cos(\omega_D t - \phi)$. $A$ is the amplitude, $\phi$ is the phase lag.
+        \item Use complex numbers: $F(t) = F_0 e^{i\omega_D t}$ and $x_p(t) = \tilde{A} e^{i\omega_D t}$.
+        \item Divide the DE by $m$: $\ddot{x} + \gamma \dot{x} + \omega_0^2 x = (F_0/m) e^{i\omega_D t}$ (where $\gamma=b/m$, $\omega_0^2=k/m$)
+        \item Substitute $x_p$: $(-\omega_D^2)\tilde{A} + (i\omega_D \gamma)\tilde{A} + \omega_0^2 \tilde{A} = F_0/m$
+        \item Solve for the complex amplitude $\tilde{A}$:
+        $$ \tilde{A} \left[ (\omega_0^2 - \omega_D^2) + i(\gamma \omega_D) \right] = F_0/m $$
+        $$ \tilde{A} = \frac{F_0/m}{(\omega_0^2 - \omega_D^2) + i(\gamma \omega_D)} $$
+        \item The real amplitude is the magnitude $A = |\tilde{A}|$.
+        \item \textbf{Final Solution (Amplitude):}
+        $$ A(\omega_D) = \frac{F_0/m}{\sqrt{(\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_D)^2}} $$
+    \end{enumerate}
+    \item \textbf{Key Idea (Resonance):}
+    \begin{itemize}
+        \item The amplitude $A$ depends *strongly* on the driving frequency $\omega_D$.
+        \item \textbf{Resonance} occurs when $A$ is maximized. This happens when $\omega_D$ is close to $\omega_0$.
+        \item The peak resonance frequency is $\omega_R = \sqrt{\omega_0^2 - \gamma^2/2}$.
+        \item If damping is small ($\gamma \to 0$), $\omega_R \approx \omega_0$, and the amplitude at resonance becomes extremely large.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Worked Example 4: Rocket Motion (Variable Mass)}
+\begin{itemize}
+    \item \textbf{Concept:} A 1st-order DE where the \textit{mass} $m(t)$ is changing. We must use $F_{ext} = \frac{dp}{dt}$.
+    \item \textbf{Equation:} For a rocket, $p = m(t)v(t)$.
+    $$ F_{ext} = \frac{d}{dt}(mv) = m\frac{dv}{dt} + v\frac{dm}{dt} $$
+    \begin{itemize}
+        \item $F_{ext}$ is the external force (e.g., gravity, $-mg$).
+        \item The \textbf{thrust} is $F_{thrust} = -v_{ex} \frac{dm}{dt}$, where $v_{ex}$ is the exhaust velocity \textit{relative to the rocket}.
+        \item Total equation: $F_{ext} + F_{thrust} = m\frac{dv}{dt}$
+        \item In deep space ($F_{ext}=0$): $-v_{ex} \frac{dm}{dt} = m\frac{dv}{dt}$
+    \end{itemize}
+    \item \textbf{Solution (in free space):}
+    \begin{enumerate}
+        \item Rearrange: $dv = -v_{ex} \frac{dm}{m}$
+        \item Integrate from ($v_0, m_0$) to ($v_f, m_f$):
+        $$ \int_{v_0}^{v_f} dv = -v_{ex} \int_{m_0}^{m_f} \frac{dm}{m} $$
+        $$ v_f - v_0 = -v_{ex} [\ln(m_f) - \ln(m_0)] $$
+        \item \textbf{Final Solution:} $\Delta v = v_{ex} \ln\left(\frac{m_0}{m_f}\right)$
+    \end{enumerate}
+    \item \textbf{Key Idea:} This is the \textbf{Tsiolkovsky Rocket Equation}. It shows that $\Delta v$ depends logarithmically on the mass ratio $m_0/m_f$.
+\end{itemize}
+
+\hrule
+
+\section{Problem Set (Updated)}
+
+\begin{enumerate}
+    \item \textbf{Radioactivity:} Cobalt-60 (half-life 5.27 years) starts at 1000 GBq. What is its activity after 3 years?
+    
+    \item \textbf{Decay Chain:} Strontium-90 ($\lambda_A \approx 0.0241~\text{yr}^{-1}$) decays to Yttrium-90 ($\lambda_B \approx 10.1~\text{yr}^{-1}$). If you start with pure Sr-90, find the time $t$ when the amount of Y-90 is maximum. (Hint: Find $t$ such that $dN_B/dt = 0$).
+
+    \item \textbf{Terminal Velocity:} An 80 kg skydiver has $v_T = 60$ m/s. Find the linear drag coefficient $b$.
+
+    \item \textbf{SHO:} A 0.5 kg mass on a spring has a period of 1.5 s. Find the spring constant $k$.
+
+    \item \textbf{RLC Circuit:} An RLC circuit has $L = 2$ H, $C = 0.1$ F, and $R = 10~\Omega$.
+    \begin{enumerate}
+        \item Is the \textit{un-driven} circuit underdamped, overdamped, or critically damped?
+        \item The circuit is now driven by $V(t) = 10 \cos(\omega_D t)$. What is the resonance frequency $\omega_R$?
+        \item What is the steady-state amplitude of the \textit{charge} $Q$ when driven at this resonance frequency?
+    \end{enumerate}
+\end{enumerate}
+
+\hrule
+
+\section{Solutions (Updated)}
+
+\begin{enumerate}
+    \item \textbf{Cobalt-60:}
+    $\lambda = \frac{\ln(2)}{5.27} \approx 0.1315$. $A(3) = 1000 e^{-(0.1315)(3)} \approx 674~\text{GBq}$.
+
+    \item \textbf{Decay Chain (Max $N_B$):}
+    \begin{itemize}
+        \item Set $\frac{dN_B}{dt} = \lambda_A N_A - \lambda_B N_B = 0 \implies \lambda_A N_A(t) = \lambda_B N_B(t)$.
+        \item $\lambda_A (N_0 e^{-\lambda_A t}) = \lambda_B \left( \frac{\lambda_A N_0}{\lambda_B - \lambda_A} (e^{-\lambda_A t} - e^{-\lambda_B t}) \right)$
+        \item $e^{-\lambda_A t} = \frac{\lambda_B}{\lambda_B - \lambda_A} (e^{-\lambda_A t} - e^{-\lambda_B t})$
+        \item $(\lambda_B - \lambda_A) e^{-\lambda_A t} = \lambda_B e^{-\lambda_A t} - \lambda_B e^{-\lambda_B t}$
+        \item $\lambda_A e^{-\lambda_A t} = \lambda_B e^{-\lambda_B t} \implies \frac{\lambda_B}{\lambda_A} = e^{(\lambda_B - \lambda_A)t}$
+        \item \textbf{$t_{max} = \frac{\ln(\lambda_B / \lambda_A)}{\lambda_B - \lambda_A}$}
+        \item $t_{max} = \frac{\ln(10.1 / 0.0241)}{10.1 - 0.0241} = \frac{\ln(419.1)}{10.076} \approx 0.599~\text{years}$.
+    \end{itemize}
+
+    \item \textbf{Terminal Velocity:}
+    $b = \frac{mg}{v_T} = \frac{(80)(9.8)}{60} \approx 13.07~\text{N}\cdot\text{s/m}$.
+
+    \item \textbf{SHO:}
+    $\omega_0 = 2\pi/1.5 \approx 4.189$. $k = m\omega_0^2 = (0.5)(4.189)^2 \approx 8.77~\text{N/m}$.
+
+    \item \textbf{RLC Circuit:}
+    \begin{itemize}
+        \item[a)] Eq: $2\ddot{Q} + 10\dot{Q} + 10Q = 0 \implies \ddot{Q} + 5\dot{Q} + 5Q = 0$.
+        \item $\gamma = 5$, $\omega_0^2 = 5$.
+        \item $\Delta = \gamma^2 - 4\omega_0^2 = 25 - 20 = 5 > 0$. The system is \textbf{overdamped}.
+        \item[b)] $\omega_R = \sqrt{\omega_0^2 - \gamma^2/2} = \sqrt{5 - 5^2/2} = \sqrt{-7.5}$.
+        \item This is imaginary. The damping is too large for a resonance peak. The amplitude $A(\omega_D)$ is maximum at $\omega_D = 0$.
+        \item[c)] We find the amplitude at the peak, $\omega_D = 0$.
+        \item The amplitude formula is $A(\omega_D) = \frac{V_0/L}{\sqrt{(\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_D)^2}}$.
+        \item $V_0/L = 10/2 = 5$.
+        \item $A(0) = \frac{5}{\sqrt{(5 - 0)^2 + 0}} = \frac{5}{5} = 1~\text{C}$.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}

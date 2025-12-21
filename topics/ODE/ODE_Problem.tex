@@ -1,0 +1,193 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=black}
+
+\begin{document}
+
+\section*{\ Advanced Problem Set (II)}
+
+\subsection*{Problem 1: Coupled Oscillators \& Normal Modes}
+
+Two identical masses $m$ are constrained to move in one dimension. Mass 1 is connected to a fixed wall by a spring of constant $k$. Mass 2 is connected to another fixed wall by an identical spring $k$. The masses are connected to each other by a "coupling" spring of constant $k_c$. Let $x_1(t)$ and $x_2(t)$ be their displacements from their equilibrium positions.
+
+\begin{itemize}
+    \item[a)] Write the system of coupled second-order ODEs for $x_1(t)$ and $x_2(t)$.
+    \item[b)] Assume an oscillatory solution (a "normal mode") of the form $x_j(t) = A_j e^{i\omega t}$. Convert the system of DEs into a matrix (eigenvalue) problem.
+    \item[c)] Find the two "normal mode" angular frequencies, $\omega_1$ and $\omega_2$.
+    \item[d)] For each mode, find the ratio of the amplitudes $A_1/A_2$ and describe the physical motion.
+\end{itemize}
+
+\hrule
+
+\subsection*{Problem 2: The Non-Linear Pendulum Period}
+
+The equation for a simple pendulum of length $L$ released from rest at a large angle $\theta_0$ is given by the non-linear DE:
+$$ \ddot{\theta} + \omega_0^2 \sin(\theta) = 0 \quad \text{where} \quad \omega_0^2 = g/L $$
+The small-angle approximation $\sin(\theta) \approx \theta$ gives the simple period $T_0 = 2\pi / \omega_0$. We want to find a better approximation.
+
+\begin{itemize}
+    \item[a)] Use conservation of energy $E = \frac{1}{2}mL^2\dot{\theta}^2 + mgL(1-\cos\theta)$ to find an exact integral expression for the period $T$.
+    \item[b)] By approximating $\cos\theta \approx 1 - \theta^2/2 + \theta^4/24$, show that the period $T$ for a moderate amplitude $\theta_0$ is approximately:
+    $$ T \approx T_0 \left( 1 + \frac{\theta_0^2}{16} \right) $$
+    \textbf{Hint:} You will need the binomial approximation $(1-x)^{-1/2} \approx 1 + x/2$.
+\end{itemize}
+
+\hrule
+
+\subsection*{Problem 3: Resonance Width and Quality Factor (Q)}
+
+The mechanical energy $E$ of a driven, damped oscillator is proportional to the square of its steady-state amplitude, $E \propto A^2$. This is given by:
+$$ E(\omega_D) \propto A^2(\omega_D) = \frac{(F_0/m)^2}{(\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_D)^2} $$
+where $\omega_D$ is the driving frequency and $\gamma = b/m$. We are interested in the "high-Q" (low damping) limit, where $\gamma \ll \omega_0$. The Quality Factor is defined as $Q = \omega_0 / \gamma$.
+
+\begin{itemize}
+    \item[a)] Show that the maximum energy $E_{max}$ occurs at $\omega_D \approx \omega_0$, and find an expression for $E_{max}$ (in terms of $A^2_{max}$).
+    \item[b)] The "Full Width at Half Maximum" (FWHM), $\Delta \omega$, is the difference between the two frequencies $\omega_1$ and $\omega_2$ at which the energy is half its maximum, $E(\omega_1) = E(\omega_2) = E_{max}/2$.
+    \item[c)] By solving $E(\omega_D) = E_{max}/2$, show that in the high-Q limit, $\Delta \omega \approx \gamma$.
+    \textbf{Hint:} Use the approximation $\omega_0^2 - \omega_D^2 = (\omega_0-\omega_D)(\omega_0+\omega_D) \approx 2\omega_0(\omega_0-\omega_D)$.
+\end{itemize}
+
+\hrule
+
+\subsection*{Problem 4: PDE - The 1D Heat Equation}
+
+A thin, uniform rod of length $L=1$ m has its ends fixed at $T=0^\circ$C (i.e., $T(0, t) = T(1, t) = 0$). The rod has a thermal diffusivity $\alpha = 0.1$ m$^2$/s. At $t=0$, it has a uniform initial temperature $T(x, 0) = 100^\circ$C for $0 < x < 1$. The heat equation is:
+$$ \frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2} $$
+\begin{itemize}
+    \item[a)] Using the method of separation of variables, $T(x, t) = X(x) \Theta(t)$, find the general solution for $T(x,t)$ that satisfies the boundary conditions.
+    \item[b)] Using a Fourier sine series, apply the initial condition $T(x, 0) = 100$ to find the specific solution for $T(x,t)$.
+\end{itemize}
+
+\newpage
+
+\section*{\ Solutions to Advanced Problem Set (II)}
+
+\subsection*{Solution 1: Coupled Oscillators}
+
+a) Apply Newton's second law $F=ma$ to each mass:
+\begin{align*}
+    \sum F_1 &= -kx_1 - k_c(x_1 - x_2) = m\ddot{x}_1 \\
+    \sum F_2 &= -kx_2 - k_c(x_2 - x_1) = m\ddot{x}_2
+\end{align*}
+Rearranging gives the system of ODEs:
+\begin{align*}
+    m\ddot{x}_1 + (k+k_c)x_1 - k_c x_2 &= 0 \\
+    m\ddot{x}_2 - k_c x_1 + (k+k_c)x_2 &= 0
+\end{align*}
+
+b) Substitute $x_j(t) = A_j e^{i\omega t}$, so $\ddot{x}_j = -\omega^2 x_j$.
+\begin{align*}
+    -m\omega^2 A_1 + (k+k_c)A_1 - k_c A_2 &= 0 \\
+    -m\omega^2 A_2 - k_c A_1 + (k+k_c)A_2 &= 0
+\end{align*}
+In matrix form:
+$$ \begin{pmatrix}
+(k+k_c) - m\omega^2 & -k_c \\
+-k_c & (k+k_c) - m\omega^2
+\end{pmatrix}
+\begin{pmatrix} A_1 \\ A_2 \end{pmatrix}
+= \begin{pmatrix} 0 \\ 0 \end{pmatrix} $$
+
+c) For a non-trivial solution, the determinant must be zero. Let $\lambda = m\omega^2$.
+$$ (k+k_c - \lambda)^2 - (-k_c)^2 = 0 \implies (k+k_c - \lambda) = \pm k_c $$
+This gives two eigenvalues (and two modes):
+\begin{itemize}
+    \item \textbf{Mode 1:} $k+k_c - \lambda_1 = +k_c \implies \lambda_1 = k \implies \omega_1 = \sqrt{k/m}$.
+    \item \textbf{Mode 2:} $k+k_c - \lambda_2 = -k_c \implies \lambda_2 = k+2k_c \implies \omega_2 = \sqrt{(k+2k_c)/m}$.
+\end{itemize}
+
+d)
+\begin{itemize}
+    \item \textbf{Mode 1 ($\omega_1$):} Plug $\lambda_1=k$ into the first row of the matrix equation:
+    $$ (k+k_c - k)A_1 - k_c A_2 = 0 \implies k_c A_1 - k_c A_2 = 0 \implies \mathbf{A_1 = A_2} $$
+    \textbf{Physical Motion:} The masses oscillate in-phase. The central spring $k_c$ is never compressed.
+    
+    \item \textbf{Mode 2 ($\omega_2$):} Plug $\lambda_2=k+2k_c$ into the first row:
+    $$ (k+k_c - (k+2k_c))A_1 - k_c A_2 = 0 \implies -k_c A_1 - k_c A_2 = 0 \implies \mathbf{A_1 = -A_2} $$
+    \textbf{Physical Motion:} The masses oscillate 180° out-of-phase (anti-phase).
+\end{itemize}
+
+\hrule
+
+\subsection*{Solution 2: Non-Linear Pendulum}
+
+a) Total energy $E = \frac{1}{2}mL^2\dot{\theta}^2 + mgL(1-\cos\theta)$.
+At release, $E_{total} = mgL(1-\cos\theta_0)$.
+$$ \frac{1}{2}mL^2\dot{\theta}^2 + mgL(1-\cos\theta) = mgL(1-\cos\theta_0) $$
+$$ \dot{\theta} = \frac{d\theta}{dt} = \sqrt{\frac{2g}{L}(\cos\theta - \cos\theta_0)} $$
+The period $T$ is 4 times the time to go from $\theta=0$ to $\theta=\theta_0$:
+$$ T = 4 \int_0^{T/4} dt = 4 \int_0^{\theta_0} \frac{dt}{d\theta} d\theta = 4 \sqrt{\frac{L}{2g}} \int_0^{\theta_0} \frac{d\theta}{\sqrt{\cos\theta - \cos\theta_0}} $$
+
+b) Approximate $\cos x \approx 1 - x^2/2 + x^4/24$.
+$$ \cos\theta - \cos\theta_0 \approx \frac{1}{2}(\theta_0^2 - \theta^2) - \frac{1}{24}(\theta_0^4 - \theta^4) $$
+$$ = \frac{1}{2}(\theta_0^2 - \theta^2) \left[ 1 - \frac{\theta_0^2 + \theta^2}{12} \right] $$
+Plug this into the integral for $T$:
+$$ T \approx 4 \sqrt{\frac{L}{g}} \int_0^{\theta_0} \frac{d\theta}{\sqrt{(\theta_0^2 - \theta^2)(1 - (\theta_0^2 + \theta^2)/12)}} $$
+Use binomial approximation $(1-x)^{-1/2} \approx 1 + x/2$:
+$$ T \approx 4 \sqrt{\frac{L}{g}} \int_0^{\theta_0} \frac{1}{\sqrt{\theta_0^2 - \theta^2}} \left(1 + \frac{\theta_0^2 + \theta^2}{24}\right) d\theta $$
+$$ T \approx 4 \sqrt{\frac{L}{g}} \left[ \int_0^{\theta_0} \frac{d\theta}{\sqrt{\theta_0^2 - \theta^2}} + \int_0^{\theta_0} \frac{\theta_0^2 + \theta^2}{24\sqrt{\theta_0^2 - \theta^2}} d\theta \right] $$
+The first integral is $T_0$: $\int_0^{\theta_0} \frac{d\theta}{\sqrt{\theta_0^2 - \theta^2}} = [\arcsin(\theta/\theta_0)]_0^{\theta_0} = \pi/2$. This gives $4\sqrt{L/g}(\pi/2) = T_0$.
+Let $\theta = \theta_0 \sin\phi$ in the second integral:
+$$ \int_0^{\pi/2} \frac{\theta_0^2(1 + \sin^2\phi)}{24 \theta_0 \cos\phi} (\theta_0 \cos\phi d\phi) = \frac{\theta_0^2}{24} \int_0^{\pi/2} (1 + \sin^2\phi) d\phi $$
+$$ = \frac{\theta_0^2}{24} \int_0^{\pi/2} \left(\frac{3}{2} - \frac{\cos 2\phi}{2}\right) d\phi = \frac{\theta_0^2}{24} \left[ \frac{3\phi}{2} - \frac{\sin 2\phi}{4} \right]_0^{\pi/2} = \frac{\theta_0^2}{24} \left( \frac{3\pi}{4} \right) = \frac{\pi \theta_0^2}{32} $$
+Combine:
+$$ T \approx 4 \sqrt{\frac{L}{g}} \left[ \frac{\pi}{2} + \frac{\pi \theta_0^2}{32} \right] = 2\pi\sqrt{\frac{L}{g}} \left( 1 + \frac{\theta_0^2}{16} \right) = T_0 \left( 1 + \frac{\theta_0^2}{16} \right) $$
+
+\hrule
+
+\subsection*{Solution 3: Resonance Width}
+
+a) $E \propto A^2 = \frac{(F_0/m)^2}{(\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_D)^2}$.
+For high-Q, $\gamma \ll \omega_0$, the denominator is minimized (and $E$ maximized) at $\omega_D \approx \omega_0$.
+$$ E_{max} \propto A^2_{max} \approx \frac{(F_0/m)^2}{(\omega_0^2 - \omega_0^2)^2 + (\gamma \omega_0)^2} = \frac{(F_0/m)^2}{\gamma^2 \omega_0^2} $$
+
+b) Set $E(\omega_D) = E_{max}/2$:
+$$ \frac{(F_0/m)^2}{(\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_D)^2} = \frac{1}{2} \frac{(F_0/m)^2}{\gamma^2 \omega_0^2} $$
+$$ (\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_D)^2 = 2 \gamma^2 \omega_0^2 $$
+
+c) In the high-Q limit, $\omega_D \approx \omega_0$. We can approximate $\gamma \omega_D \approx \gamma \omega_0$ in the damping term:
+$$ (\omega_0^2 - \omega_D^2)^2 + (\gamma \omega_0)^2 \approx 2 \gamma^2 \omega_0^2 $$
+$$ (\omega_0^2 - \omega_D^2)^2 \approx \gamma^2 \omega_0^2 $$
+Take the square root:
+$$ \omega_0^2 - \omega_D^2 \approx \pm \gamma \omega_0 $$
+Use the hint $\omega_0^2 - \omega_D^2 = (\omega_0 - \omega_D)(\omega_0 + \omega_D) \approx (\omega_0 - \omega_D)(2\omega_0)$:
+$$ (\omega_0 - \omega_D)(2\omega_0) \approx \pm \gamma \omega_0 $$
+$$ \omega_0 - \omega_D \approx \pm \frac{\gamma}{2} $$
+The two half-max frequencies are $\omega_1 = \omega_0 - \gamma/2$ and $\omega_2 = \omega_0 + \gamma/2$.
+The FWHM is $\Delta \omega = \omega_2 - \omega_1$:
+$$ \Delta \omega = (\omega_0 + \gamma/2) - (\omega_0 - \gamma/2) = \gamma $$
+
+\hrule
+
+\subsection*{Solution 4: Heat Equation}
+
+a) Let $T(x,t) = X(x)\Theta(t)$. Substitute into $\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}$:
+$$ X \Theta' = \alpha X'' \Theta \implies \frac{\Theta'}{\alpha \Theta} = \frac{X''}{X} = -k^2 $$
+\begin{itemize}
+    \item Time: $\Theta' = -k^2 \alpha \Theta \implies \Theta(t) = A e^{-k^2 \alpha t}$.
+    \item Space: $X'' + k^2 X = 0 \implies X(x) = B \sin(kx) + C \cos(kx)$.
+\end{itemize}
+Apply BCs to $X(x)$:
+\begin{enumerate}
+    \item $X(0) = 0 \implies C = 0$.
+    \item $X(1) = 0 \implies B \sin(k \cdot 1) = 0 \implies k = n\pi$ for $n = 1, 2, 3, \dots$
+\end{enumerate}
+The general solution is the superposition:
+$$ T(x,t) = \sum_{n=1}^\infty B_n e^{-(n\pi)^2 \alpha t} \sin(n\pi x) $$
+
+b) Apply IC: $T(x, 0) = 100$.
+$$ 100 = \sum_{n=1}^\infty B_n \sin(n\pi x) $$
+This is a Fourier sine series for $f(x)=100$ on $[0, 1]$. Find $B_n$ by orthogonality:
+$$ \int_0^1 100 \sin(m\pi x) dx = \sum_{n=1}^\infty B_n \int_0^1 \sin(n\pi x) \sin(m\pi x) dx = B_m \cdot \frac{1}{2} $$
+$$ B_n = 200 \int_0^1 \sin(n\pi x) dx = 200 \left[ -\frac{\cos(n\pi x)}{n\pi} \right]_0^1 $$
+$$ B_n = -\frac{200}{n\pi} (\cos(n\pi) - \cos(0)) = -\frac{200}{n\pi} ((-1)^n - 1) $$
+If $n$ is even, $B_n = 0$. If $n$ is odd, $B_n = -\frac{200}{n\pi}(-2) = \frac{400}{n\pi}$.
+Substitute $B_n$ and $\alpha=0.1$:
+$$ T(x,t) = \sum_{n=1, 3, 5,...}^\infty \frac{400}{n\pi} e^{-(n\pi)^2 (0.1) t} \sin(n\pi x) $$
+$$ T(x,t) = \frac{400}{\pi} \left( e^{-0.1\pi^2 t} \sin(\pi x) + \frac{1}{3}e^{-0.9\pi^2 t} \sin(3\pi x) + \dots \right) $$
+
+\end{document}
