@@ -1,0 +1,13 @@
+my_physics_app/
+├── app.py                  # The Streamlit script
+├── requirements.txt        # Python dependencies
+├── packages.txt            # System dependencies (for Linux/Cloud)
+└── topics/                 # Your main content folder
+    ├── Topic 1 - ODEs/
+    │   ├── ODE.tex
+    │   └── ODE_Problem.tex
+    ├── Topic 2 - Radioactivity/
+    │   ├── Radioactive_Problem.tex
+    │   └── Radioactivity_lesson.tex
+    └── Topic 3 - Mechanics/
+        └── Mechanics_Intro.tex
