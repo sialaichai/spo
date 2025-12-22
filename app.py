@@ -52,14 +52,12 @@ if not topics:
     st.sidebar.error("No topics found.")
     st.stop()
 
-# 1. TOPIC SELECTION (Dropdown)
-# This stays compact regardless of how many topics you have.
+# 1. Topic Selection (Dropdown)
 selected_topic = st.sidebar.selectbox("Select Topic", topics)
 
 st.sidebar.markdown("---") 
 
-# 2. DOCUMENT SELECTION (Radio List)
-# Once a topic is picked, files are shown openly for one-click access.
+# 2. Document Selection (Radio List)
 tex_files = get_tex_files(selected_topic)
 
 if not tex_files:
@@ -69,16 +67,16 @@ if not tex_files:
 selected_file = st.sidebar.radio(f"Documents in {selected_topic}", tex_files)
 
 
-# --- Auto-Compilation & Display Logic ---
+# --- Auto-Compilation & Logic ---
 source_path = os.path.join(TOPICS_DIR, selected_topic, selected_file)
 
-# Session State Initialization
+# Session State Init
 if "last_compiled_file" not in st.session_state:
     st.session_state.last_compiled_file = None
 if "compilation_error" not in st.session_state:
     st.session_state.compilation_error = None
 
-# Compilation Trigger
+# Compile Trigger
 if st.session_state.last_compiled_file != source_path:
     with st.spinner(f"Rendering {selected_file}..."):
         pdf_path, error_log = compile_latex(source_path)
@@ -91,21 +89,35 @@ if st.session_state.last_compiled_file != source_path:
             st.session_state.current_pdf_path = None
             st.session_state.compilation_error = error_log
 
-# Main View
+# --- Main View ---
 tab_view, tab_code = st.tabs(["📄 Document Viewer", "📝 Source Code"])
 
 with tab_view:
+    # SUCCESS: Show PDF
     if st.session_state.get("current_pdf_path") and os.path.exists(st.session_state.current_pdf_path):
-        pdf_viewer(st.session_state.current_pdf_path, width=800, height=1000)
         
-        st.markdown("---")
-        with open(st.session_state.current_pdf_path, "rb") as f:
-            st.download_button(
-                label="⬇️ Download PDF",
-                data=f,
-                file_name=selected_file.replace('.tex', '.pdf'),
-                mime="application/pdf"
-            )
+        # --- HEADER SECTION (Download Button Here) ---
+        col1, col2 = st.columns([6, 1]) # Split space: Text on left, Button on right
+        
+        with col1:
+            st.success(f"**{selected_file}** rendered successfully.")
+            
+        with col2:
+            with open(st.session_state.current_pdf_path, "rb") as f:
+                st.download_button(
+                    label="⬇️ Download PDF",
+                    data=f,
+                    file_name=selected_file.replace('.tex', '.pdf'),
+                    mime="application/pdf",
+                    type="primary"  # Makes the button stand out
+                )
+        
+        st.markdown("---") # Separator line
+        
+        # --- PDF VIEWER ---
+        pdf_viewer(st.session_state.current_pdf_path, width=800, height=1000)
+
+    # FAILURE: Show Error Log
     elif st.session_state.get("compilation_error"):
         st.error("⚠️ Compilation Failed")
         with st.expander("View Error Log", expanded=True):
