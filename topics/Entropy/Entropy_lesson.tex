@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{Entropy: A Quick Introduction and Problem Solving}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Entropy: A Quick Introduction}
+
+Entropy, denoted by $\textbf{S}$, is a fundamental concept in thermodynamics and statistical mechanics. Think of it in two main ways:
+
+\begin{enumerate}
+    \item \textbf{A Measure of Disorder or Randomness}: A system with high entropy is more disordered than a system with low entropy. A tidy room has low entropy; a messy room has high entropy. Nature tends to move from order to disorder.
+    \item \textbf{A Measure of Energy Spreading}: More accurately, entropy measures how spread out or dispersed energy is within a system. Energy naturally tends to spread out from concentrated forms (like a hot object) to more dispersed forms (warming up the surroundings).
+\end{enumerate}
+
+The \textbf{Second Law of Thermodynamics} is key: For any spontaneous (irreversible) process, the total entropy of an isolated system always increases. For a reversible process, it remains constant. It never decreases.
+
+$$ \Delta S_{total} = \Delta S_{system} + \Delta S_{surroundings} \ge 0 $$
+
+\hrulefill
+
+\section*{Key Formulas for Calculating Entropy Change ($\Delta S$)}
+
+\subsection*{1. For Heat Transfer at Constant Temperature}
+This is the foundational definition, often used for reservoirs or phase changes.
+
+$$ \Delta S = \frac{Q}{T} $$
+
+Where:
+\begin{itemize}
+    \item $Q$ is the heat added to the system. If heat is removed, $Q$ is negative.
+    \item $T$ is the absolute temperature (in \textbf{Kelvin}) at which the transfer occurs.
+\end{itemize}
+
+\subsection*{2. For Heating an Ideal Gas}
+When the temperature of a substance changes, we need to integrate. The most common formulas you'll need are:
+
+\begin{itemize}
+    \item \textbf{For an isobaric process (constant pressure):}
+    $$ \Delta S = nC_p \ln\left(\frac{T_f}{T_i}\right) $$
+    \item \textbf{For an isochoric process (constant volume):}
+    $$ \Delta S = nC_v \ln\left(\frac{T_f}{T_i}\right) $$
+\end{itemize}
+
+Where:
+\begin{itemize}
+    \item $n$ is the number of moles.
+    \item $T_i$ and $T_f$ are the initial and final absolute temperatures.
+    \item $C_p$ is the molar heat capacity at constant pressure.
+    \item $C_v$ is the molar heat capacity at constant volume.
+    \item For a \textbf{diatomic ideal gas} (like $O_2$ or $N_2$): $C_v = \frac{5}{2}R$ and $C_p = C_v + R = \frac{7}{2}R$. ($R \approx 8.314 \text{ J mol}^{-1}\text{K}^{-1}$).
+\end{itemize}
+
+\subsection*{3. For Heat Conduction (Rate of Change)}
+For a continuous process like heat flowing through a rod, we often talk about the \textit{rate} of entropy change.
+
+$$ \frac{dS}{dt} = \frac{1}{T} \frac{dQ}{dt} $$
+
+Where $\frac{dQ}{dt}$ is the rate of heat flow (power), calculated using the thermal conductivity formula:
+
+$$ \frac{dQ}{dt} = \frac{kA(T_{hot} - T_{cold})}{L} $$
+
+\hrulefill
+
+\section*{Problem Solutions}
+
+\subsection*{Problem 1: Heating an Ideal Gas}
+
+\textbf{Question:}
+\textit{1 mole of a diatomic ideal gas has a pressure of $10^{5}$ Pa and occupies a volume of 25 litres. It is heated at constant pressure so that its volume is doubled. What is the change in entropy of the gas during the process?}
+
+\textbf{Explanation:}
+This is an \textbf{isobaric (constant pressure)} process. We can use the formula $\Delta S = nC_p \ln(T_f/T_i)$. First, we need to find the initial and final temperatures using the Ideal Gas Law, $PV=nRT$. Since pressure is constant and the volume doubles, the absolute temperature must also double.
+
+\textbf{Step-by-Step Solution:}
+\begin{enumerate}
+    \item \textbf{Identify given values:}
+    \begin{itemize}
+        \item $n = 1$ mole
+        \item $P = 10^5$ Pa
+        \item $V_i = 25 \text{ litres} = 0.025 \text{ m}^3$
+        \item $V_f = 2 \times V_i = 0.050 \text{ m}^3$
+        \item The gas is diatomic, so its molar heat capacity at constant pressure is $C_p = \frac{7}{2}R$.
+    \end{itemize}
+
+    \item \textbf{Find the temperature ratio:}
+    From the Ideal Gas Law ($V/T = nR/P = \text{constant}$), we have:
+    $$ \frac{V_i}{T_i} = \frac{V_f}{T_f} \implies \frac{T_f}{T_i} = \frac{V_f}{V_i} = 2 $$
+
+    \item \textbf{Calculate the change in entropy ($\Delta S$):}
+    Using the formula for an isobaric process:
+    $$ \Delta S = nC_p \ln\left(\frac{T_f}{T_i}\right) $$
+    $$ \Delta S = (1 \text{ mol}) \times \left(\frac{7}{2} R\right) \times \ln(2) $$
+    $$ \Delta S = \frac{7}{2} \times (8.314 \text{ J mol}^{-1}\text{K}^{-1}) \times \ln(2) $$
+    $$ \Delta S \approx 29.099 \times 0.6931 $$
+    $$ \Delta S \approx 20.17 \text{ J K}^{-1} $$
+\end{enumerate}
+
+\textbf{The change in entropy of the gas is approximately 20.2 J/K.}
+
+\hrulefill
+
+\subsection*{Problem 2: Damped Oscillation}
+
+\textbf{Question:}
+\textit{A mass of 0.25 kg is attached to an unstretched spring that has a force constant of $20 \text{ Nm}^{-1}$. The mass is released and oscillates with ever decreasing amplitude and eventually comes to rest. The process is irreversible. Assume that the temperature of the surrounding remains constant at $27^{\circ}C$ calculate the entropy change of the surroundings.}
+
+\textbf{Explanation:}
+The mass is released, falls due to gravity, and eventually settles at a new, lower equilibrium position. The initial gravitational potential energy is converted into kinetic and spring energy, and then this mechanical energy is entirely dissipated as heat ($Q$) into the surroundings due to damping (air resistance, internal friction). The entropy change of the surroundings is this total dissipated heat divided by the constant temperature of the surroundings.
+
+\textbf{Step-by-Step Solution:}
+\begin{enumerate}
+    \item \textbf{Find the final equilibrium position:}
+    The mass comes to rest when the upward spring force equals the downward gravitational force.
+    $$ F_{spring} = F_{gravity} \implies kx_{eq} = mg $$
+    $$ x_{eq} = \frac{mg}{k} = \frac{(0.25 \text{ kg}) \times (9.81 \text{ m s}^{-2})}{20 \text{ N m}^{-1}} = 0.1226 \text{ m} $$
+
+    \item \textbf{Calculate the energy dissipated as heat ($Q$):}
+    The total energy dissipated is equal to the loss in gravitational potential energy as the mass moves from its initial position ($h=0$) to its final equilibrium position ($h = -x_{eq}$).
+    $$ Q = \Delta E_{GPE} = mgx_{eq} $$
+    $$ Q = (0.25 \text{ kg} \times 9.81 \text{ m s}^{-2}) \times 0.1226 \text{ m} \approx 0.3007 \text{ J} $$
+    This heat $Q$ is absorbed by the surroundings.
+
+    \item \textbf{Calculate the entropy change of the surroundings:}
+    The surroundings are at a constant temperature $T = 27^{\circ}C = 300.15 \text{ K}$.
+    $$ \Delta S_{surroundings} = \frac{Q}{T} $$
+    $$ \Delta S_{surroundings} = \frac{0.3007 \text{ J}}{300.15 \text{ K}} $$
+    $$ \Delta S_{surroundings} \approx 0.00100 \text{ J K}^{-1} $$
+\end{enumerate}
+
+\textbf{The entropy change of the surroundings is $1.0 \times 10^{-3}$ J/K.}
+
+\hrulefill
+
+\subsection*{Problem 3: Heat Conduction Through a Rod}
+
+\textbf{Question:}
+\textit{A well-lagged uniform cylindrical copper rod is 30.0 cm long and has a diameter of 2.00 cm. One end of it is in thermal contact with a hot reservoir maintained at a temperature of $200^{\circ}C$ while the other end is in thermal contact with a cold reservoir at temperature $0^{\circ}C$. Calculate the rate of change of entropy of the system comprising the hot and cold reservoirs and the copper rod. [Thermal conductivity of copper $=400 \text{ W m}^{-1}\text{K}^{-1}$]}
+
+\textbf{Explanation:}
+This is a steady-state heat conduction problem. Heat flows from the hot reservoir, through the rod, to the cold reservoir. The total rate of entropy change is the sum of the rates for the hot reservoir (which is losing heat, so its entropy decreases), the cold reservoir (which is gaining heat, so its entropy increases), and the rod itself. In a steady state, the rod's temperature at any given point is constant, so its entropy is not changing.
+
+\textbf{Step-by-Step Solution:}
+\begin{enumerate}
+    \item \textbf{Identify values and convert to SI units:}
+    \begin{itemize}
+        \item $L = 30.0 \text{ cm} = 0.30 \text{ m}$
+        \item Diameter = 2.00 cm, so radius $r = 1.00 \text{ cm} = 0.01 \text{ m}$
+        \item Area $A = \pi r^2 = \pi (0.01 \text{ m})^2 \approx 3.142 \times 10^{-4} \text{ m}^2$
+        \item $k = 400 \text{ W m}^{-1}\text{K}^{-1}$
+        \item $T_{hot} = 200^{\circ}C = 473.15 \text{ K}$
+        \item $T_{cold} = 0^{\circ}C = 273.15 \text{ K}$
+    \end{itemize}
+
+    \item \textbf{Calculate the rate of heat flow ($\frac{dQ}{dt}$):}
+    $$ \frac{dQ}{dt} = \frac{kA(T_{hot} - T_{cold})}{L} $$
+    $$ \frac{dQ}{dt} = \frac{(400) \times (3.142 \times 10^{-4}) \times (473.15 - 273.15)}{0.30} $$
+    $$ \frac{dQ}{dt} = \frac{(400) \times (3.142 \times 10^{-4}) \times (200)}{0.30} \approx 83.79 \text{ W (J/s)} $$
+
+    \item \textbf{Calculate the rate of entropy change for the total system:}
+    The rod is in steady state, so $\frac{dS_{rod}}{dt} = 0$.
+    $$ \frac{dS_{total}}{dt} = \frac{dS_{hot}}{dt} + \frac{dS_{cold}}{dt} + \frac{dS_{rod}}{dt} $$
+    The hot reservoir loses heat, so its entropy change is negative. The cold reservoir gains heat.
+    $$ \frac{dS_{total}}{dt} = \left(-\frac{1}{T_{hot}}\frac{dQ}{dt}\right) + \left(+\frac{1}{T_{cold}}\frac{dQ}{dt}\right) + 0 $$
+    $$ \frac{dS_{total}}{dt} = \frac{dQ}{dt} \left(\frac{1}{T_{cold}} - \frac{1}{T_{hot}}\right) $$
+    $$ \frac{dS_{total}}{dt} = 83.79 \left(\frac{1}{273.15} - \frac{1}{473.15}\right) $$
+    $$ \frac{dS_{total}}{dt} = 83.79 \left(0.003661 - 0.002113\right) $$
+    $$ \frac{dS_{total}}{dt} = 83.79 \times (0.001548) \approx 0.1297 \text{ W K}^{-1} $$
+\end{enumerate}
+
+\textbf{The rate of change of entropy of the system is approximately 0.130 W/K.}
+
+\end{document}

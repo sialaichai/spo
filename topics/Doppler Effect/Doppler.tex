@@ -1,0 +1,181 @@
+\documentclass[11pt]{article}
+
+% PACKAGES for math, layout, and formatting
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{framed}
+
+% DOCUMENT START
+\begin{document}
+
+\title{Mastery Challenge: Advanced Doppler \& Beat Frequency}
+\author{Physics Problem Set}
+\date{}
+\maketitle
+
+\hrule
+\section*{Question 1: The Accelerating Source}
+
+An ambulance, with a siren emitting a constant frequency of $f_s = 1000 \text{ Hz}$, starts from rest. It accelerates at a constant rate of $a = 4 \text{ m/s}^2$ directly towards a large, stationary cliff wall. A stationary observer stands on the line of motion, exactly between the ambulance's starting point and the cliff.
+
+What is the \textbf{rate of change of the beat frequency} ($df_{beat}/dt$) heard by the observer at the exact moment $t = 3$ seconds? (Assume the speed of sound in air is $v = 340 \text{ m/s}$).
+
+\begin{enumerate}[label=\Alph*)]
+    \item $23.5 \text{ Hz/s}$
+    \item $39.8 \text{ Hz/s}$
+    \item $47.1 \text{ Hz/s}$
+    \item $52.6 \text{ Hz/s}$
+\end{enumerate}
+
+\begin{framed}
+\noindent\textbf{Hint:} First, find the ambulance's velocity as a function of time, $v_s(t)$. Then, write the expressions for the frequency heard directly ($f_{\text{direct}}$) and the frequency of the echo ($f_{\text{echo}}$), both as functions of time. The beat frequency is $f_{\text{beat}}(t) = f_{\text{echo}}(t) - f_{\text{direct}}(t)$. Finally, differentiate this expression with respect to time and evaluate it at $t=3s$.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Velocity of the Source:} The ambulance's velocity at time $t$ is $v_s(t) = at = 4t$. At $t=3\text{s}$, $v_s = 12 \text{ m/s}$.
+
+    \item \textbf{Direct Frequency:} The observer hears the sound directly from the ambulance as it moves away from them.
+    $$f_{\text{direct}}(t) = f_s \left( \frac{v}{v + v_s(t)} \right) = 1000 \left( \frac{340}{340 + 4t} \right)$$
+
+    \item \textbf{Echo Frequency:} The sound travels towards the cliff, reflects, and comes back to the observer. The source is moving towards the cliff (and thus towards the reflected sound's path to the observer).
+    $$f_{\text{echo}}(t) = f_s \left( \frac{v}{v - v_s(t)} \right) = 1000 \left( \frac{340}{340 - 4t} \right)$$
+
+    \item \textbf{Beat Frequency Expression:}
+    $$f_{\text{beat}}(t) = f_{\text{echo}}(t) - f_{\text{direct}}(t) = 340000 \left[ (340 - 4t)^{-1} - (340 + 4t)^{-1} \right]$$
+
+    \item \textbf{Rate of Change (Calculus):} We differentiate $f_{\text{beat}}(t)$ with respect to time.
+    \begin{align*}
+        \frac{df_{\text{beat}}}{dt} &= 340000 \left[ -1(340 - 4t)^{-2}(-4) - (-1)(340 + 4t)^{-2}(4) \right] \\
+        &= 1360000 \left[ \frac{1}{(340 - 4t)^2} + \frac{1}{(340 + 4t)^2} \right]
+    \end{align*}
+
+    \item \textbf{Evaluate at t=3s:} At $t=3\text{s}$, the terms are $(340 - 12)$ and $(340 + 12)$.
+    \begin{align*}
+        \frac{df_{\text{beat}}}{dt} &= 1360000 \left[ \frac{1}{(328)^2} + \frac{1}{(352)^2} \right] \\
+        &= 1360000 \left[ 9.295 \times 10^{-6} + 8.073 \times 10^{-6} \right] \approx 23.62 \text{ Hz/s}
+    \end{align*}
+\end{enumerate}
+The closest answer is \textbf{A) 23.5 Hz/s}.
+\end{framed}
+
+\newpage
+\hrule
+\section*{Question 2: Angled Motion with Reflection}
+
+A speedboat with a horn emitting $f_s = 800 \text{ Hz}$ travels at a constant speed of $v_s = 40 \text{ m/s}$ on a path parallel to a straight shoreline. A stationary observer is on the shore, $d=100 \text{ m}$ away from the boat's path. A tall, flat cliff face runs parallel to the boat's path, but is $D=200 \text{ m}$ inland from the observer.
+
+Calculate the beat frequency heard by the observer at the exact moment the line connecting the observer to the boat makes an angle of $\theta = 30^\circ$ with the shoreline. (Assume the speed of sound is $v = 343 \text{ m/s}$).
+
+\begin{enumerate}[label=\Alph*)]
+    \item $37.1 \text{ Hz}$
+    \item $58.9 \text{ Hz}$
+    \item $73.3 \text{ Hz}$
+    \item $94.6 \text{ Hz}$
+\end{enumerate}
+
+\begin{framed}
+\noindent\textbf{Hint:} The Doppler effect only depends on the component of the source's velocity along the line-of-sight to the observer. You will need to calculate this component for both the direct path and the reflected path using trigonometry.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Direct Sound:} The component of the boat's velocity towards the observer is $v_{s,\text{direct}} = v_s \cos(\theta) = 40 \cos(30^\circ) \approx 34.64 \text{ m/s}$. The boat is approaching.
+    $$ f_{\text{direct}} = f_s \left( \frac{v}{v - v_{s,\text{direct}}} \right) = 800 \left( \frac{343}{343 - 34.64} \right) \approx 889.8 \text{ Hz} $$
+    
+    \item \textbf{Reflected Sound Geometry:} The horizontal distance from the boat to the observer along the shoreline is $x = d/\tan(\theta) = 100/\tan(30^\circ) \approx 173.2 \text{ m}$. For the reflected path, the total perpendicular distance is $d_{refl} = d + 2D = 100 + 400 = 500\text{ m}$. The angle of the reflected path, $\phi$, is given by $\tan(\phi) = d_{refl}/x = 500/173.2$. So, $\phi = \arctan(2.887) \approx 70.9^\circ$.
+    
+    \item \textbf{Reflected Sound Frequency:} The component of the boat's velocity along the reflected path is $v_{s,\text{reflected}} = v_s \cos(\phi) = 40 \cos(70.9^\circ) \approx 13.1 \text{ m/s}$.
+    $$ f_{\text{reflected}} = f_s \left( \frac{v}{v - v_{s,\text{reflected}}} \right) = 800 \left( \frac{343}{343 - 13.1} \right) \approx 831.8 \text{ Hz} $$
+
+    \item \textbf{Beat Frequency:}
+    $$ f_{\text{beat}} = |f_{\text{direct}} - f_{\text{reflected}}| = |889.8 - 831.8| \approx 58 \text{ Hz} $$
+\end{enumerate}
+The closest answer is \textbf{B) 58.9 Hz}.
+\end{framed}
+
+\newpage
+\hrule
+\section*{Question 3: The Moving Medium}
+
+A stationary source emits sound at $f_s = 2000 \text{ Hz}$. A stationary observer is positioned some distance away. A powerful, uniform wind blows at $v_w = 25 \text{ m/s}$ directly from the source towards the observer. Behind the source is a large stationary wall that reflects the sound.
+
+The observer detects beats between the sound coming directly from the source and the sound reflecting off the wall. What is the beat frequency? (Assume the speed of sound in still air is $v = 340 \text{ m/s}$).
+
+\begin{enumerate}[label=\Alph*)]
+    \item $0 \text{ Hz}$
+    \item $147 \text{ Hz}$
+    \item $294 \text{ Hz}$
+    \item $312 \text{ Hz}$
+\end{enumerate}
+
+\begin{framed}
+\noindent\textbf{Hint:} The Doppler effect arises from relative motion between the source/observer and the medium through which the sound propagates. A wind changes the speed of the medium itself. How does this affect the frequency from the perspective of a stationary observer when the source is also stationary?
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Direct Sound:} The Doppler shift in frequency is caused by the relative motion of the source and observer with respect to the medium. Here, both source and observer are stationary. The wind carries the sound waves faster (at speed $v+v_w$), but it does not change the number of wave crests passing the observer per second. The frequency is unchanged.
+    $$ f_{\text{direct}} = f_s = 2000 \text{ Hz} $$
+    
+    \item \textbf{Reflected Sound:} Similarly, the sound travels towards the wall against the wind (at speed $v-v_w$) and reflects back to the observer with the wind (at speed $v+v_w$). The source (the wall) and the observer are still not moving relative to each other. The frequency of the reflected sound is also unchanged.
+    $$ f_{\text{reflected}} = f_s = 2000 \text{ Hz} $$
+    
+    \item \textbf{Beat Frequency:}
+    $$ f_{\text{beat}} = |f_{\text{direct}} - f_{\text{reflected}}| = |2000 - 2000| = 0 \text{ Hz} $$
+\end{enumerate}
+The correct answer is \textbf{A) 0 Hz}.
+\end{framed}
+
+\newpage
+\hrule
+\section*{Question 4: General Formula Derivation}
+
+A source (e.g., a submarine) moving with speed $v_s$ emits a sonar ping of frequency $f_0$. It is moving directly towards a target which is moving towards the source with speed $v_r$. The ping reflects off the target and returns to the source.
+
+Derive a single, simplified expression for the beat frequency, $f_{\text{beat}}$, heard by the observer on the source submarine between its emitted ping and the returning echo. The speed of sound in the medium is $v$.
+
+\begin{enumerate}[label=\Alph*)]
+    \item $f_{\text{beat}} = f_0 \left( \frac{2v(v_s+v_r)}{(v-v_s)(v-v_r)} \right)$
+    \item $f_{\text{beat}} = f_0 \left( \frac{(v+v_r)(v+v_s)}{(v-v_r)(v-v_s)} - 1 \right)$
+    \item $f_{\text{beat}} = f_0 \left( \frac{2v_s v_r}{(v-v_s)(v-v_r)} \right)$
+    \item $f_{\text{beat}} = f_0 \left( \frac{2v_s}{v-v_r} \right)$
+\end{enumerate}
+
+\begin{framed}
+\noindent\textbf{Hint:}
+This is a two-step Doppler shift problem using only variables.
+1. Find the frequency ($f_1$) received by the target (a moving observer).
+2. The target now acts as a moving source, emitting at frequency $f_1$. Find the frequency ($f_2$) received back at the original source (a moving observer).
+3. The beat frequency is $f_{\text{beat}} = f_2 - f_0$.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Frequency Received by Target ($f_1$):} The source moves towards the target (observer), and the target moves towards the source.
+    $$ f_1 = f_0 \left( \frac{v + v_r}{v - v_s} \right) $$
+    
+    \item \textbf{Frequency of Echo Received by Source ($f_2$):} The target is now a source (emitting $f_1$) moving towards the original source (observer). The original source (observer) is moving towards the new source.
+    $$ f_2 = f_1 \left( \frac{v + v_s}{v - v_r} \right) $$
+    
+    \item \textbf{Substitute $f_1$ into the expression for $f_2$:}
+    $$ f_2 = \left[ f_0 \left( \frac{v + v_r}{v - v_s} \right) \right] \left( \frac{v + v_s}{v - v_r} \right) = f_0 \frac{(v + v_r)(v + v_s)}{(v - v_s)(v - v_r)} $$
+    
+    \item \textbf{Calculate Beat Frequency:} The beat is the difference between the received echo ($f_2$) and the original emitted frequency ($f_0$).
+    \begin{align*}
+        f_{\text{beat}} &= f_2 - f_0 \\
+        &= f_0 \frac{(v + v_r)(v + v_s)}{(v - v_s)(v - v_r)} - f_0 \\
+        &= f_0 \left( \frac{(v + v_r)(v + v_s)}{(v - v_s)(v - v_r)} - 1 \right)
+    \end{align*}
+\end{enumerate}
+This matches answer \textbf{B)}.
+\end{framed}
+
+% DOCUMENT END
+\end{document}

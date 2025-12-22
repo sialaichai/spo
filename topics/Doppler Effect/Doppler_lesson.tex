@@ -1,0 +1,165 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{Lesson Notes: Doppler Effect \& Beats}
+\author{A 1-Hour Teaching Guide}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{The Doppler Effect: What is it? \quad \Large }
+
+The \textbf{Doppler effect} is the change in the observed frequency of a wave when the \textbf{source} of the wave and the \textbf{observer} are moving relative to each other.
+
+Think about an ambulance siren. As it comes towards you, the pitch sounds higher. As it moves away, the pitch sounds lower. The siren itself isn't changing its sound; your perception of its frequency changes due to the relative motion.
+
+\begin{itemize}
+    \item \textbf{Approaching:} Wavefronts get compressed. This means a shorter wavelength ($\lambda$) and thus a \textbf{higher observed frequency} ($f_o$).
+    \item \textbf{Receding:} Wavefronts get stretched out. This means a longer wavelength ($\lambda$) and thus a \textbf{lower observed frequency} ($f_o$).
+\end{itemize}
+
+% To compile, you need an image file named 'doppler_waves.png' in the same directory.
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[width=0.8\textwidth]{doppler_waves.png} 
+% \caption{Wavefronts compressing (approaching) and stretching (receding).}
+% \end{figure}
+
+\subsection{The General Equation}
+The key to solving all Doppler effect problems is one master equation:
+\[
+f_o = f_s \left( \frac{v \pm v_o}{v \mp v_s} \right)
+\]
+Where:
+\begin{itemize}
+    \item $f_o$ = Observed frequency (what the listener hears)
+    \item $f_s$ = Source frequency (the actual frequency emitted)
+    \item $v$ = Speed of the wave in the medium (e.g., speed of sound, $\approx 343$ m/s in air)
+    \item $v_o$ = Speed of the observer
+    \item $v_s$ = Speed of the source
+\end{itemize}
+
+\subsection{Sign Convention: The Easy Way}
+Don't memorize combinations! Just use one rule: \textbf{"Towards means higher frequency."}
+\begin{enumerate}
+    \item \textbf{Top signs (Observer):} The observer is in the numerator ($v_o$). To make $f_o$ higher (when the observer moves \textbf{towards} the source), we must add. So, use '$+$' for towards.
+    \item \textbf{Bottom signs (Source):} The source is in the denominator ($v_s$). To make $f_o$ higher (when the source moves \textbf{towards} the observer), we must make the denominator smaller. So, use '$-$' for towards.
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Motion} & \textbf{Sign in Numerator ($v_o$)} & \textbf{Sign in Denominator ($v_s$)} \\
+\hline
+\textbf{Towards} each other & $+$ & $-$ \\
+\textbf{Away} from each other & $-$ & $+$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Example 1: The Simple Case}
+A car honking its horn at a frequency of \textbf{400 Hz} drives \textbf{towards} you at \textbf{20 m/s}. You are standing still. What frequency do you hear? (Speed of sound $v = 343$ m/s).
+
+\begin{itemize}
+    \item \textbf{Given:} $f_s = 400$ Hz, $v_s = 20$ m/s, $v_o = 0$ m/s (you are still), $v = 343$ m/s.
+    \item \textbf{Motion:} Source moves \textbf{towards} a stationary observer. We want a higher frequency, so we use '$-$' in the denominator.
+    \item \textbf{Calculation:}
+    \[
+    f_o = 400 \left( \frac{343 + 0}{343 - 20} \right) = 400 \left( \frac{343}{323} \right) \approx 424.8 \text{ Hz}
+    \]
+    As expected, the observed frequency is higher.
+\end{itemize}
+
+\hrulefill
+\section{The Moving Reflector: A Two-Step Problem \quad \Large }
+
+A moving reflector (like a wall, a truck, or a bat's prey) involves a \textbf{double Doppler shift}.
+\begin{enumerate}
+    \item \textbf{Step 1: The Reflector as a Moving Observer.} The reflector "hears" a shifted frequency from the original source.
+    \item \textbf{Step 2: The Reflector as a Moving Source.} The reflector re-emits (reflects) this new frequency, and this wave travels back to the original source (which is now the final observer).
+\end{enumerate}
+
+\subsection{Example 2: Police Radar}
+A police car at rest sends out a radar signal with a frequency $f_s$ of \textbf{10.5 GHz}. The signal bounces off a car moving \textbf{away} from the police car at \textbf{30 m/s}. What is the frequency of the reflected signal detected by the police car? (The speed of the radar wave is the speed of light, $c = 3 \times 10^8$ m/s).
+
+\textbf{Step 1: Car as the Observer.} The car is moving \textbf{away} from the source (police).
+\begin{itemize}
+    \item $v_o = 30$ m/s, $v_s = 0$. We want a lower frequency, so use '$-$' for the observer.
+    \item Frequency received by the car ($f_{\text{car}}$):
+    \[
+    f_{\text{car}} = f_s \left( \frac{c - v_o}{c + v_s} \right) = 10.5 \times 10^9 \left( \frac{3 \times 10^8 - 30}{3 \times 10^8 + 0} \right)
+    \]
+    \[
+    f_{\text{car}} \approx 10.49999895 \text{ GHz}
+    \]
+\end{itemize}
+
+\textbf{Step 2: Car as the Source.} The car now acts as a source, emitting $f_{\text{car}}$ while moving \textbf{away} from the observer (police).
+\begin{itemize}
+    \item $v_s = 30$ m/s, $v_o = 0$. We want a lower frequency, so use '$+$' for the source.
+    \item Frequency received by police ($f_o$):
+    \[
+    f_o = f_{\text{car}} \left( \frac{c - v_o}{c + v_s} \right) = (10.49999895 \times 10^9) \left( \frac{3 \times 10^8 + 0}{3 \times 10^8 + 30} \right)
+    \]
+    \[
+    f_o \approx 10.49999790 \text{ GHz}
+    \]
+\end{itemize}
+The frequency has been shifted down twice.
+
+\hrulefill
+\section{Beats: The Sound of Interference \quad \Large}
+When two sound waves of slightly different frequencies interfere, the loudness you hear varies periodically. This phenomenon is called \textbf{beats}. The number of loud-soft cycles per second is the \textbf{beat frequency}.
+
+\subsection{Beat Frequency Equation}
+The equation is very simple:
+\[
+f_{\text{beat}} = |f_1 - f_2|
+\]
+Where $f_1$ and $f_2$ are the frequencies of the two interfering waves. For example, if you play a 440 Hz note and a 442 Hz note at the same time, you will hear a "wa-wa" sound twice per second. The beat frequency is $442 - 440 = 2$ Hz.
+
+\hrulefill
+\section{Putting It All Together: The Complex Example \quad \Large}
+
+Let's combine everything. A police car traveling at \textbf{25 m/s} is chasing a car traveling at \textbf{40 m/s} in the same direction. The police siren emits a sound at \textbf{500 Hz}.
+
+\textbf{Question:} What is the beat frequency heard by the police officer between their own siren and the echo reflected from the chased car? (Use $v_{\text{sound}} = 343$ m/s).
+
+This is a three-part problem:
+\begin{enumerate}
+    \item Find the frequency the chased car "hears" from the siren.
+    \item Find the frequency the police car "hears" reflected back from the chased car.
+    \item Calculate the beat frequency between the original siren sound (500 Hz) and the reflected echo.
+\end{enumerate}
+
+\textbf{Step 1: Frequency heard by the chased car (Observer).}
+\begin{itemize}
+    \item Police (Source) is moving \textbf{towards} the car at $v_s = 25$ m/s.
+    \item Car (Observer) is moving \textbf{away} from the police at $v_o = 40$ m/s.
+    \[
+    f_{\text{car}} = f_s \left( \frac{v - v_o}{v - v_s} \right) = 500 \left( \frac{343 - 40}{343 - 25} \right) = 500 \left( \frac{303}{318} \right) \approx 476.4 \text{ Hz}
+    \]
+\end{itemize}
+
+\textbf{Step 2: Frequency of the echo heard by the police.}
+\begin{itemize}
+    \item Now, the car is the \textbf{source}, moving \textbf{away} at $v_s = 40$ m/s and emitting at 476.4 Hz.
+    \item The police car is the \textbf{observer}, moving \textbf{towards} the echo at $v_o = 25$ m/s.
+    \[
+    f_{\text{echo}} = f_{\text{car}} \left( \frac{v + v_o}{v + v_s} \right) = 476.4 \left( \frac{343 + 25}{343 + 40} \right) = 476.4 \left( \frac{368}{383} \right) \approx 458.2 \text{ Hz}
+    \]
+\end{itemize}
+
+\textbf{Step 3: Calculate the beat frequency.}
+\begin{itemize}
+    \item The police officer hears two sounds: their own siren ($f_1 = 500$ Hz) and the reflected echo ($f_2 = 458.2$ Hz).
+    \[
+    f_{\text{beat}} = |f_1 - f_2| = |500 - 458.2| = \mathbf{41.8 \text{ Hz}}
+    \]
+\end{itemize}
+The officer would hear a rapid flutter sound with a frequency of about 41.8 Hz.
+
+\end{document}

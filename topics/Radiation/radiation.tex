@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+
+% PACKAGES for math, layout, and formatting
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{siunitx}
+
+% Set page margins
+\geometry{a4paper, margin=1in}
+
+% DOCUMENT START
+\begin{document}
+
+\title{Stefan-Boltzmann Law: Mastery Problems}
+\author{}
+\date{}
+\maketitle
+
+\begin{center}
+\hrule
+\vspace{1em}
+\textbf{Constants for all problems:}
+\begin{itemize}
+    \item Stefan-Boltzmann Constant ($\sigma$): \SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}}
+\end{itemize}
+\hrule
+\end{center}
+
+\section*{Problem 1: The Spacecraft Radiator}
+
+A spherical spacecraft with a radius of \SI{2}{\meter} has an internal power consumption of \SI{1500}{\watt} from its electronics. The spacecraft's surface has an emissivity of $\epsilon = 0.85$ and is designed to radiate all of its waste heat into the vacuum of space (temperature $\approx \SI{0}{\kelvin}$).
+
+\paragraph{Part A:} Calculate the \textbf{equilibrium surface temperature} of the spacecraft.
+
+\paragraph{Part B:} The spacecraft enters the shadow of a planet and its internal systems are powered down to a "hibernation mode" that consumes only \SI{100}{\watt}. If the spacecraft had an initial temperature of \SI{290}{\kelvin} from sunlight exposure, what is the \textbf{initial net rate of energy loss} the moment it enters the shadow?
+
+\begin{framed}
+\noindent\textbf{Hint:} For Part A, at equilibrium, the power generated internally must equal the power radiated away. For Part B, the net power is the difference between the power being radiated at that temperature and the power being generated internally.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\paragraph{Part A: Equilibrium Temperature}
+\begin{enumerate}
+    \item \textbf{Surface Area (A):} The surface area of a sphere is $A = 4\pi r^2$.
+    $$ A = 4\pi (\SI{2}{\meter})^2 = 16\pi \approx \SI{50.27}{\meter\squared} $$
+
+    \item \textbf{Equilibrium Condition:} The power input ($P_{\text{in}}$) equals the power radiated ($P_{\text{rad}}$).
+    $$ P_{\text{in}} = P_{\text{rad}} = \epsilon \sigma A T^4 $$
+
+    \item \textbf{Solve for Temperature (T):}
+    \begin{align*}
+        T &= \left( \frac{P_{\text{in}}}{\epsilon \sigma A} \right)^{1/4} \\
+          &= \left( \frac{\SI{1500}{\watt}}{0.85 \times \SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} \times \SI{50.27}{\meter\squared}} \right)^{1/4} \\
+          &= \left( \frac{1500}{2.42 \times 10^{-6}} \right)^{1/4} \approx \SI{280.4}{\kelvin}
+    \end{align*}
+\end{enumerate}
+
+\paragraph{Part B: Initial Net Energy Loss}
+\begin{enumerate}
+    \item \textbf{Radiated Power at \SI{290}{\kelvin}:} Calculate the power the spacecraft radiates at its initial temperature.
+    \begin{align*}
+        P_{\text{rad}} &= \epsilon \sigma A T^4 \\
+        &= 0.85 \times \SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} \times \SI{50.27}{\meter\squared} \times (\SI{290}{\kelvin})^4 \\
+        &\approx \SI{17130}{\watt}
+    \end{align*}
+    
+    \item \textbf{Net Power Loss:} The net power is the radiated power minus the new, lower internal power generation.
+    $$ P_{\text{net}} = P_{\text{rad}} - P_{\text{in}} = \SI{17130}{\watt} - \SI{100}{\watt} = \SI{17030}{\watt} $$
+\end{enumerate}
+\end{framed}
+
+\newpage
+
+\section*{Problem 2: The Heated Filament}
+
+A cylindrical tungsten filament in a lamp has a length of \SI{20}{\centi\meter} and a radius of \SI{0.5}{\milli\meter}. It is designed to operate in a vacuum. Electrical power is supplied to the filament, heating it to a brilliant \SI{2800}{\kelvin}. The emissivity of tungsten at this temperature is approximately $\epsilon = 0.35$.
+
+\paragraph{Part A:} What is the \textbf{total electrical power} in watts that must be supplied to the filament to maintain this temperature?
+
+\paragraph{Part B:} A second filament is made of a new alloy. It has the same dimensions and is supplied with the same amount of power as the tungsten filament. If its equilibrium temperature is \SI{3100}{\kelvin}, what is the \textbf{emissivity of the new alloy}?
+
+\begin{framed}
+\noindent\textbf{Hint:} Remember to include the area of the two circular ends of the cylinder when calculating the total surface area. For Part B, the power and area are the same as in Part A.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\paragraph{Part A: Power Supplied to Tungsten Filament}
+\begin{enumerate}
+    \item \textbf{Surface Area (A):} The total surface area of a cylinder is $A = (2\pi r L) + (2\pi r^2)$.
+    The dimensions are $r = \SI{0.5}{\milli\meter} = \SI{5e-4}{\meter}$ and $L = \SI{20}{\centi\meter} = \SI{0.2}{\meter}$.
+    $$ A = (2\pi (\SI{5e-4}{\meter})(\SI{0.2}{\meter})) + (2\pi (\SI{5e-4}{\meter})^2) \approx \SI{6.296e-4}{\meter\squared} $$
+    
+    \item \textbf{Calculate Radiated Power:} At equilibrium, power supplied equals power radiated.
+    \begin{align*}
+        P &= \epsilon \sigma A T^4 \\
+        &= 0.35 \times \SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} \times \SI{6.296e-4}{\meter\squared} \times (\SI{2800}{\kelvin})^4 \\
+        &\approx \SI{767}{\watt}
+    \end{align*}
+\end{enumerate}
+
+\paragraph{Part B: Emissivity of New Alloy}
+\begin{enumerate}
+    \item \textbf{Knowns:} We know $P = \SI{767}{\watt}$, $A = \SI{6.296e-4}{\meter\squared}$, and $T = \SI{3100}{\kelvin}$.
+    
+    \item \textbf{Solve for Emissivity ($\epsilon$):}
+    \begin{align*}
+        \epsilon &= \frac{P}{\sigma A T^4} \\
+        &= \frac{\SI{767}{\watt}}{\SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} \times \SI{6.296e-4}{\meter\squared} \times (\SI{3100}{\kelvin})^4} \\
+        &= \frac{767}{3297} \approx 0.233
+    \end{align*}
+\end{enumerate}
+\end{framed}
+
+\newpage
+
+\section*{Problem 3: Dyson Sphere Equilibrium}
+
+Imagine a hypothetical Dyson sphere completely enclosing a star. The Sun has a surface temperature of $T_{\text{Sun}} = \SI{5778}{\kelvin}$ and a radius of $R_{\text{Sun}} = \SI{6.96e8}{\meter}$. The Dyson sphere has a radius of $R_{\text{Dyson}} = \SI{1.5e11}{\meter}$. Assume both the Sun and the sphere's outer surface behave as perfect blackbodies ($\epsilon=1$).
+
+What is the \textbf{equilibrium temperature} of the Dyson sphere?
+
+\begin{framed}
+\noindent\textbf{Hint:} At equilibrium, the total power radiated by the Sun must be equal to the total power radiated by the outer surface of the Dyson sphere.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Power Radiated by the Sun ($P_{\text{Sun}}$):}
+    \begin{align*}
+        A_{\text{Sun}} &= 4\pi R_{\text{Sun}}^2 = 4\pi (\SI{6.96e8}{\meter})^2 \approx \SI{6.08e18}{\meter\squared} \\
+        P_{\text{Sun}} &= \sigma A_{\text{Sun}} T_{\text{Sun}}^4 \\
+        &= \SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} \times \SI{6.08e18}{\meter\squared} \times (\SI{5778}{\kelvin})^4 \\
+        &\approx \SI{3.84e26}{\watt}
+    \end{align*}
+
+    \item \textbf{Equilibrium Condition:} The Dyson sphere absorbs and radiates all of this power.
+    $$ P_{\text{Dyson}} = P_{\text{Sun}} $$
+
+    \item \textbf{Solve for Sphere Temperature ($T_{\text{Dyson}}$):} The sphere radiates from its outer surface area.
+    \begin{align*}
+        A_{\text{Dyson}} &= 4\pi R_{\text{Dyson}}^2 = 4\pi (\SI{1.5e11}{\meter})^2 \approx \SI{2.83e23}{\meter\squared} \\
+        T_{\text{Dyson}} &= \left( \frac{P_{\text{Sun}}}{\sigma A_{\text{Dyson}}} \right)^{1/4} \\
+        &= \left( \frac{\SI{3.84e26}{\watt}}{\SI{5.67e-8}{\watt\per\meter\squared\per\kelvin\tothe{4}} \times \SI{2.83e23}{\meter\squared}} \right)^{1/4} \\
+        &\approx \SI{393.5}{\kelvin}
+    \end{align*}
+    (This is about \SI{120}{\celsius}, a bit hot for liquid water!)
+\end{enumerate}
+\end{framed}
+
+\end{document}

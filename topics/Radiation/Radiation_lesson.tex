@@ -1,0 +1,283 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{setspace}
+
+\onehalfspacing
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Thermal Radiation Problems}
+\lhead{Physics Lecture Notes}
+\cfoot{\thepage}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\newcommand{\sbc}{\sigma} % Stefan-Boltzmann Constant
+
+\begin{document}
+
+\title{\textbf{A One-Hour Guide to Solving Blackbody Radiation Problems}}
+\author{Gemini}
+\date{\today}
+\maketitle
+
+\begin{abstract}
+These notes provide a concise overview of the key concepts required to solve problems involving thermal radiation, specifically focusing on blackbody physics. We will cover the definitions of power and intensity, the inverse square law, the Stefan-Boltzmann law, and the principle of thermal equilibrium. Following the conceptual review, we will walk through the solutions to four typical problems. We conclude with a focused explanation on the crucial difference between absorption and emission areas for spherical objects.
+\end{abstract}
+
+\section{Key Concepts in Thermal Radiation}
+
+\subsection{Power and Intensity}
+\begin{itemize}
+    \item \textbf{Power ($P$):} This is the rate at which energy is radiated or transferred. Its unit is the Watt (W), where $1 \text{ W} = 1 \text{ Joule/second}$.
+    \item \textbf{Intensity ($I$):} This is the power flowing through a unit area. Its unit is Watts per square meter ($W/m^2$). It is defined as:
+    $$ I = \frac{P}{A} $$
+    where $A$ is the area perpendicular to the direction of energy flow. Think of intensity as the "brightness" of the radiation at a certain point.
+\end{itemize}
+
+\subsection{Intensity Variation with Distance: The Inverse Square Law}
+For a source that radiates power ($P$) uniformly in all directions (an isotropic source), the energy spreads out over the surface of a sphere. The surface area of a sphere with radius $r$ is $A = 4\pi r^2$.
+\begin{itemize}
+    \item The intensity at a distance $r$ from the source is:
+    $$ I = \frac{P}{4\pi r^2} $$
+    \item This is the \textbf{inverse square law}. It means that intensity is proportional to the inverse of the square of the distance from the source ($I \propto \frac{1}{r^2}$). If you double your distance from the source, the intensity drops to one-quarter of its original value.
+\end{itemize}
+
+\subsection{The Stefan-Boltzmann Law}
+This fundamental law describes the power radiated by an object due to its temperature.
+\begin{itemize}
+    \item For a perfect radiator, known as a \textbf{blackbody}, the radiated power ($P_{rad}$) is given by:
+    $$ P_{rad} = \sbc A T^4 $$
+    \item \textbf{Important Variables:}
+    \begin{itemize}
+        \item $\sbc$ is the \textbf{Stefan-Boltzmann constant}, $\sbc \approx 5.67 \times 10^{-8} \, W \, m^{-2} \, K^{-4}$.
+        \item $A$ is the total surface area of the radiating object.
+        \item $T$ is the absolute temperature of the object's surface in \textbf{Kelvin (K)}. Remember to convert from Celsius: $T(K) = T(^{\circ}C) + 273.15$.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Thermal Equilibrium and Net Power}
+Objects don't just radiate energy; they also absorb it from their surroundings.
+\begin{itemize}
+    \item \textbf{Absorption:} A blackbody in an environment at temperature $T_{env}$ absorbs power according to $P_{abs} = \sbc A T_{env}^4$.
+    \item \textbf{Net Power:} The net power lost by an object at temperature $T$ in an environment at $T_{env}$ is the difference between power radiated and power absorbed:
+    $$ P_{net} = P_{rad} - P_{abs} = \sbc A (T^4 - T_{env}^4) $$
+    \item \textbf{Thermal Equilibrium:} An object is in thermal equilibrium when its temperature is constant. This occurs when the total power going in equals the total power going out.
+    $$ P_{in} = P_{out} $$
+    Power in ($P_{in}$) can come from sources like an internal heater, an external radiation beam, or absorption from the environment. Power out ($P_{out}$) is the thermal radiation from the object's surface ($P_{rad} = \sbc A T^4$).
+\end{itemize}
+
+\newpage
+\section{Problem Solutions}
+
+\subsection{Problem 1: Equilibrium with an External Beam}
+\textbf{Question:} A spherical blackbody has a diameter of 10.0 m and is placed in an environment with a constant temperature of $27.0^{\circ}C$. A parallel beam of thermal radiation having intensity $2400 \, Wm^{-2}$ is incident onto the blackbody continuously. What is the final equilibrium temperature of the blackbody?
+
+\textbf{Solution Steps:}
+\begin{enumerate}
+    \item \textbf{Identify Given Information:}
+    \begin{itemize}
+        \item Diameter $d = 10.0$ m, so radius $r = 5.0$ m.
+        \item Environment temperature $T_{env} = 27.0^{\circ}C = 27.0 + 273.15 = 300.15$ K.
+        \item Beam intensity $I_{beam} = 2400 \, Wm^{-2}$.
+    \end{itemize}
+    
+    \item \textbf{Apply the Principle of Thermal Equilibrium:} At equilibrium, the total power absorbed equals the total power radiated ($P_{in} = P_{out}$).
+    
+    \item \textbf{Calculate Total Power In ($P_{in}$):} The blackbody absorbs energy from two sources:
+    \begin{itemize}
+        \item The incident beam: Power from the beam is its intensity multiplied by the area it hits. A parallel beam hitting a sphere is intercepted by its circular cross-section, $A_{cross} = \pi r^2$.
+        $$ P_{beam} = I_{beam} \times A_{cross} = I_{beam} (\pi r^2) $$
+        \item The environment: The body absorbs from the environment over its entire surface area, $A_{total} = 4\pi r^2$.
+        $$ P_{env} = \sbc A_{total} T_{env}^4 = \sbc (4\pi r^2) T_{env}^4 $$
+    \end{itemize}
+    So, $P_{in} = P_{beam} + P_{env} = I_{beam} (\pi r^2) + \sbc (4\pi r^2) T_{env}^4$.
+    
+    \item \textbf{Calculate Total Power Out ($P_{out}$):} The blackbody radiates power from its entire surface area ($A_{total}$) at its equilibrium temperature, $T_{eq}$.
+    $$ P_{out} = \sbc A_{total} T_{eq}^4 = \sbc (4\pi r^2) T_{eq}^4 $$
+    
+    \item \textbf{Set $P_{in} = P_{out}$ and Solve for $T_{eq}$:}
+    $$ I_{beam} (\pi r^2) + \sbc (4\pi r^2) T_{env}^4 = \sbc (4\pi r^2) T_{eq}^4 $$
+    We can divide the entire equation by $\pi r^2$:
+    $$ I_{beam} + 4\sbc T_{env}^4 = 4\sbc T_{eq}^4 $$
+    Rearranging to solve for $T_{eq}^4$:
+    $$ T_{eq}^4 = \frac{I_{beam}}{4\sbc} + T_{env}^4 $$
+    Substitute the numerical values:
+    \begin{align*}
+        T_{eq}^4 &= \frac{2400}{4 \times (5.67 \times 10^{-8})} + (300.15)^4 \\
+        T_{eq}^4 &= (1.0582 \times 10^{10}) + (8.118 \times 10^9) \\
+        T_{eq}^4 &= 1.870 \times 10^{10} \, K^4 \\
+        T_{eq} &= (1.870 \times 10^{10})^{1/4} \approx 370.2 \, K
+    \end{align*}
+\end{enumerate}
+\textbf{Final Answer:} The final equilibrium temperature of the blackbody is approximately \textbf{370 K}.
+
+\hrulefill
+
+\subsection{Problem 2: Sun and Mars Temperatures}
+\textbf{Question:} (i) The intensity of sunlight reaching the surface of the Earth is $1.37\times10^{3}\,Wm^{-2}$. The radius of the Sun is $6.957\times10^{5}$ km. The radius of the orbit of the Earth round the Sun is $1.496\times10^{8}$ km. Estimate the surface temperature of the Sun. (ii) The radius of the orbit of Mars round the sun is $2.280\times10^{8}$ km. Estimate the equilibrium temperature of Mars.
+
+\textbf{Solution for (i): Sun's Surface Temperature}
+\begin{enumerate}
+    \item \textbf{Given Information:}
+    \begin{itemize}
+        \item Intensity at Earth, $I_E = 1.37 \times 10^3 \, Wm^{-2}$.
+        \item Sun's radius, $R_S = 6.957 \times 10^5 \text{ km} = 6.957 \times 10^8$ m.
+        \item Earth's orbital radius, $R_E = 1.496 \times 10^8 \text{ km} = 1.496 \times 10^{11}$ m.
+    \end{itemize}
+    
+    \item \textbf{Relate Sun's Power ($P_S$) to Earth's Intensity:} The total power radiated by the Sun ($P_S$) spreads out over a sphere of radius $R_E$ by the time it reaches Earth. Using the inverse square law:
+    $$ I_E = \frac{P_S}{4\pi R_E^2} \implies P_S = I_E \cdot 4\pi R_E^2 $$
+    
+    \item \textbf{Relate Sun's Power to its Temperature:} Using the Stefan-Boltzmann law for the Sun's surface (area $A_S = 4\pi R_S^2$):
+    $$ P_S = \sbc A_S T_S^4 = \sbc (4\pi R_S^2) T_S^4 $$
+    
+    \item \textbf{Equate the two expressions for $P_S$ and solve for $T_S$:}
+    \begin{align*}
+        \sbc (4\pi R_S^2) T_S^4 &= I_E (4\pi R_E^2) \\
+        \sbc R_S^2 T_S^4 &= I_E R_E^2 \\
+        T_S^4 &= \frac{I_E R_E^2}{\sbc R_S^2} = \frac{(1.37 \times 10^3)(1.496 \times 10^{11})^2}{(5.67 \times 10^{-8})(6.957 \times 10^8)^2} \\
+        T_S^4 &= \frac{(1.37 \times 10^3)(2.238 \times 10^{22})}{(5.67 \times 10^{-8})(4.840 \times 10^{17})} = \frac{3.066 \times 10^{25}}{2.744 \times 10^{10}} \approx 1.117 \times 10^{15} \, K^4 \\
+        T_S &= (1.117 \times 10^{15})^{1/4} \approx 5782 \, K
+    \end{align*}
+\end{enumerate}
+\textbf{Answer (i):} The estimated surface temperature of the Sun is \textbf{5780 K}.
+
+\textbf{Solution for (ii): Mars' Equilibrium Temperature}
+\begin{enumerate}
+    \item \textbf{Given Information:} Mars' orbital radius, $R_M = 2.280 \times 10^8 \text{ km} = 2.280 \times 10^{11}$ m.
+    
+    \item \textbf{Find Solar Intensity at Mars ($I_M$):} Use the inverse square law, relating intensity at Mars to intensity at Earth:
+    $$ \frac{I_M}{I_E} = \frac{R_E^2}{R_M^2} \implies I_M = I_E \left(\frac{R_E}{R_M}\right)^2 $$
+    $$ I_M = (1.37 \times 10^3) \left(\frac{1.496 \times 10^{11}}{2.280 \times 10^{11}}\right)^2 \approx (1.37 \times 10^3)(0.656)^2 \approx 589.6 \, Wm^{-2} $$
+    
+    \item \textbf{Apply Thermal Equilibrium to Mars:} Assume Mars is a blackbody. It absorbs solar radiation over its cross-section ($A_{cross} = \pi r_M^2$) and radiates over its entire surface ($A_{total} = 4\pi r_M^2$).
+    $$ P_{in} = P_{out} \implies I_M (\pi r_M^2) = \sbc (4\pi r_M^2) T_M^4 $$
+    Note that the radius of Mars ($r_M$) cancels out.
+    $$ I_M = 4\sbc T_M^4 $$
+    
+    \item \textbf{Solve for $T_M$:}
+    \begin{align*}
+        T_M^4 &= \frac{I_M}{4\sbc} = \frac{589.6}{4 \times (5.67 \times 10^{-8})} \\
+        T_M^4 &\approx 2.599 \times 10^9 \, K^4 \\
+        T_M &= (2.599 \times 10^9)^{1/4} \approx 225.8 \, K
+    \end{align*}
+\end{enumerate}
+\textbf{Answer (ii):} The estimated equilibrium temperature of Mars is \textbf{226 K}.
+
+\hrulefill
+
+\subsection{Problem 3: Mars Temperature (Alternative Values)}
+\textbf{Question:} The intensity of solar radiation at the surface of the Earth is $1.38 \, kW m^{-2}$. The orbital radii of Earth and Mars are respectively $1.496\times10^{8}$ km and $2.280\times10^{8}$ km. Estimate the surface temperature of Mars assuming that both planets behave like blackbodies.
+
+\textbf{Solution Steps:}
+\begin{enumerate}
+    \item \textbf{Given Information:}
+    \begin{itemize}
+        \item Intensity at Earth, $I_E = 1.38 \, kWm^{-2} = 1380 \, Wm^{-2}$.
+        \item Earth's orbital radius, $R_E = 1.496 \times 10^{11}$ m.
+        \item Mars' orbital radius, $R_M = 2.280 \times 10^{11}$ m.
+    \end{itemize}
+    
+    \item \textbf{Find Solar Intensity at Mars ($I_M$):}
+    $$ I_M = I_E \left(\frac{R_E}{R_M}\right)^2 = 1380 \left(\frac{1.496 \times 10^{11}}{2.280 \times 10^{11}}\right)^2 \approx 1380 \times (0.4305) \approx 594.1 \, Wm^{-2} $$
+    
+    \item \textbf{Apply Thermal Equilibrium to Mars and Solve for $T_M$:} The equilibrium equation is the same as before: $I_M = 4\sbc T_M^4$.
+    \begin{align*}
+        T_M^4 &= \frac{I_M}{4\sbc} = \frac{594.1}{4 \times (5.67 \times 10^{-8})} \\
+        T_M^4 &\approx 2.619 \times 10^9 \, K^4 \\
+        T_M &= (2.619 \times 10^9)^{1/4} \approx 226.2 \, K
+    \end{align*}
+\end{enumerate}
+\textbf{Final Answer:} The estimated surface temperature of Mars is \textbf{226 K}.
+
+\hrulefill
+
+\subsection{Problem 4: Internally Heated Sphere}
+\textbf{Question:} A spherical blackbody has a radius of 30 cm and is placed in a constant temperature environment having temperature $20^{\circ}C$. The blackbody is heated by an internal heater which has a heating power of 1.8 kW. (i) What is the maximum temperature which the blackbody can attain? (ii) After attaining the maximum temperature, the internal heater is switched off. If the density of the material of the blackbody is $8940\,kgm^{-3}$ and its specific heat capacity is $389\,J\,kg^{-1}K^{-1}$, what is the initial rate of fall of temperature of the blackbody?
+
+\textbf{Solution for (i): Maximum Temperature}
+\begin{enumerate}
+    \item \textbf{Given Information:}
+    \begin{itemize}
+        \item Radius $r = 30 \text{ cm} = 0.30$ m.
+        \item Environment temperature $T_{env} = 20^{\circ}C = 293.15$ K.
+        \item Heater power $P_{heater} = 1.8 \text{ kW} = 1800$ W.
+    \end{itemize}
+    
+    \item \textbf{Apply Equilibrium Principle:} The maximum temperature ($T_{max}$) is the equilibrium temperature. At this point, the power input from the heater must equal the \textit{net} power lost to the environment.
+    $$ P_{in} = P_{out(net)} \implies P_{heater} = \sbc A (T_{max}^4 - T_{env}^4) $$
+    The surface area is $A = 4\pi r^2 = 4\pi (0.3)^2 = 0.36\pi \approx 1.131 \, m^2$.
+    
+    \item \textbf{Solve for $T_{max}$:}
+    \begin{align*}
+        1800 &= (5.67 \times 10^{-8})(1.131)(T_{max}^4 - (293.15)^4) \\
+        1800 &= (6.413 \times 10^{-8})(T_{max}^4 - 7.371 \times 10^9) \\
+        \frac{1800}{6.413 \times 10^{-8}} &= T_{max}^4 - 7.371 \times 10^9 \\
+        2.807 \times 10^{10} &= T_{max}^4 - 7.371 \times 10^9 \\
+        T_{max}^4 &= 2.807 \times 10^{10} + 0.7371 \times 10^{10} = 3.544 \times 10^{10} \, K^4 \\
+        T_{max} &= (3.544 \times 10^{10})^{1/4} \approx 433.8 \, K
+    \end{align*}
+\end{enumerate}
+
+\textbf{Solution for (ii): Initial Rate of Temperature Fall}
+\begin{enumerate}
+    \item \textbf{Principle:} When the heater is turned off, the body cools. The rate of heat energy loss ($P_{loss}$) is related to the rate of temperature change ($\frac{dT}{dt}$) by the formula $P_{loss} = mc|\frac{dT}{dt}|$, where $m$ is mass and $c$ is specific heat capacity.
+    
+    \item \textbf{Calculate Initial Power Loss:} The initial power loss is the net power being radiated at $T = T_{max}$. This must be equal to the heater power that was keeping it at that temperature.
+    $$ P_{loss} = P_{heater} = 1800 \, W $$
+    
+    \item \textbf{Calculate Mass of the Sphere:} Using the given density $\rho = 8940\,kgm^{-3}$:
+    $$ m = \rho V = \rho \left(\frac{4}{3}\pi r^3\right) = (8940) \left(\frac{4}{3}\pi (0.3)^3\right) \approx 1011.3 \, kg $$
+    
+    \item \textbf{Calculate Rate of Temperature Fall:} Using the given specific heat capacity $c = 389\,J\,kg^{-1}K^{-1}$:
+    \begin{align*}
+        P_{loss} &= mc \left|\frac{dT}{dt}\right| \\
+        \left|\frac{dT}{dt}\right| &= \frac{P_{loss}}{mc} = \frac{1800}{(1011.3)(389)} = \frac{1800}{393395.7} \\
+        \left|\frac{dT}{dt}\right| &\approx 0.004576 \, K/s
+    \end{align*}
+\end{enumerate}
+\textbf{Final Answer:} The initial rate of fall of temperature is $4.58 \times 10^{-3} \, K/s$.
+
+\newpage
+\section*{Appendix: Understanding Absorption vs. Emission Area}
+
+A common point of confusion is when to use the circular cross-sectional area ($\pi r^2$) versus the full spherical surface area ($4\pi r^2$). The choice depends on whether you are calculating the **absorption** of a parallel beam of radiation or the **emission** from the entire surface. Think of it this way: a sphere's "shadow" is a circle, but it glows from its entire surface.
+
+\subsection{Absorbing Parallel Radiation: Cross-Sectional Area ($\pi r^2$)}
+When a distant source like the sun sends parallel rays of light towards a spherical object (like a planet), the object only intercepts the energy that would pass through its circular cross-section.
+\begin{itemize}
+    \item \textbf{What it is:} This is the area of a flat circle with the same radius as the sphere, $A = \pi r^2$.
+    \item \textbf{When to use it:} Use this area to calculate the total \textbf{power absorbed} ($P_{in}$) from a parallel beam of radiation with intensity $I$.
+    \item \textbf{Formula:} $P_{in} = I \times (\pi r^2)$.
+\end{itemize}
+\begin{center}
+\fbox{\texttt{}}
+\end{center}
+
+\subsection{Emitting Thermal Radiation: Surface Area ($4\pi r^2$)}
+When a spherical object radiates heat due to its own temperature, it does so from its \textbf{entire surface} in all directions.
+\begin{itemize}
+    \item \textbf{What it is:} This is the total surface area of the sphere, $A = 4\pi r^2$.
+    \item \textbf{When to use it:} Use this area to calculate the total \textbf{power radiated} ($P_{out}$) by the object itself according to the Stefan-Boltzmann law. It's also used for calculating power absorbed from an environment that completely surrounds the object.
+    \item \textbf{Formula:} $P_{out} = \sbc A T^4 = \sbc (4\pi r^2) T^4$.
+\end{itemize}
+\begin{center}
+\fbox{\texttt{}}
+\end{center}
+
+\subsection{Putting It All Together: Thermal Equilibrium}
+In problems where an object's temperature is stable, the power coming in equals the power going out ($P_{in} = P_{out}$). This is where you often see both formulas used in the same equation. For a planet heated by the sun:
+$$ \underbrace{I \times (\pi r^2)}_{\text{Power Absorbed}} = \underbrace{\sbc \times (4\pi r^2) \times T^4}_{\text{Power Radiated}} $$
+Notice how the planet absorbs energy over its cross-section but radiates energy from its entire surface.
+
+\end{document}

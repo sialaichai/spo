@@ -1,0 +1,311 @@
+\documentclass[12pt]{article}
+
+% PACKAGES
+\usepackage[margin=1in]{geometry} % Set margins
+\usepackage{amsmath}               % For advanced math environments
+\usepackage{amssymb}               % For math symbols
+\usepackage{graphicx}              % For images (we use a placeholder)
+\usepackage{parskip}               % Use spacing between paragraphs, not indentation
+\usepackage{hyperref}              % For links (though not used here)
+\usepackage{xcolor}                % For colors
+
+% DEFINE A PLACEHOLDER FOR IMAGES
+\newcommand{\imageplaceholder}[1]{
+    \begin{center}
+    \fbox{\texttt{}}
+    \end{center}
+}
+
+% TITLE
+\title{Course Note: The Power of Integration in Physics}
+\author{}
+\date{} % No date
+
+% DOCUMENT START
+\begin{document}
+
+\maketitle
+
+% --- SECTION: CORE IDEA ---
+\section{\ The Core Idea: Summing Infinite Pieces}
+
+In introductory physics, we often use simple formulas like $W = Fd$, $K = \frac{1}{2}mv^2$, or $F = \frac{k|q_1 q_2|}{r^2}$. These formulas work perfectly for \textbf{point masses}, \textbf{point charges}, and \textbf{constant forces}.
+
+But what happens when we have a real-world object, like a metal rod, a planet, or a charged disk? The mass and charge are \emph{distributed} over a volume, and the forces or fields they create may vary with position.
+
+\textbf{Integration is the mathematical tool for summing an infinite number of infinitesimally small pieces.}
+
+The fundamental physics process is always the same:
+\begin{enumerate}
+    \item \textbf{Divide:} Break your continuous object (a rod, a disk, a path) into an infinite number of tiny pieces (elements). This piece is $dm$, $dq$, $dl$, $dA$, $dV$, or $dx$.
+    \item \textbf{Calculate:} Find the contribution of \emph{one} tiny piece. This might be the tiny torque $d\tau$ from a tiny mass $dm$, or the tiny electric field $dE$ from a tiny charge $dq$.
+    \item \textbf{Sum:} Add up all the contributions from all the pieces. This "infinite sum" is the definite integral.
+\end{enumerate}
+
+$$ \text{Total Quantity} = \int d(\text{quantity}) $$
+
+---
+% --- SECTION: STRATEGY ---
+\section{\ A General Strategy for Integration Problems}
+
+\begin{enumerate}
+    \item \textbf{Draw a Diagram:} This is the most important step. Label your axes and all relevant quantities.
+    \item \textbf{Choose a Coordinate System:} Pick one that matches the symmetry of the problem (e.g., Cartesian for a square, polar/cylindrical for a disk or ring).
+    \item \textbf{Identify the Infinitesimal Element:} Choose a "slice" of your object, $dm$, $dq$, or $dx$.
+    \item \textbf{Relate the Element to the Variable:} This is the key. You must write your element ($dm$, $dq$) in terms of your integration variable ($dx$, $dr$, $d\theta$). This almost always involves a \textbf{density}.
+    \begin{itemize}
+        \item \textbf{Linear density:} $\lambda = \frac{\text{mass}}{\text{length}}$ (in kg/m) $\implies dm = \lambda \, dx$
+        \item \textbf{Surface density:} $\sigma = \frac{\text{mass}}{\text{area}}$ (in kg/m²) $\implies dm = \sigma \, dA$
+        \item \textbf{Volume density:} $\rho = \frac{\text{mass}}{\text{volume}}$ (in kg/m³) $\implies dm = \rho \, dV$
+        \item (The same applies to charge densities $\lambda$, $\sigma$, $\rho$ for $dq$).
+    \end{itemize}
+    \item \textbf{Write the "Piece" Equation:} Write the basic physics formula \emph{for your single element}. For example, $dI = r^2 \, dm$ (moment of inertia) or $dE = \frac{k \, dq}{r^2}$ (electric field).
+    \item \textbf{Check for Vectors \& Symmetry:} If you are integrating a vector (like force or field), can you use symmetry? Often, components in one direction will cancel out, simplifying the problem immensely.
+    \item \textbf{Set Up the Definite Integral:} Combine steps 4 and 5 to get a single integral with one variable. Define your limits of integration (e.g., from $x=0$ to $x=L$).
+    \item \textbf{Solve the Integral:} Evaluate the integral to find the total quantity.
+\end{enumerate}
+
+---
+% --- SECTION: WORKED EXAMPLES ---
+\section{\ Worked Examples}
+
+\subsection{Example 1: Kinematics (Non-constant Acceleration)}
+\textbf{Concept:} $v(t) = v_0 + \int_{0}^{t} a(t') \, dt'$ and $x(t) = x_0 + \int_{0}^{t} v(t') \, dt'$. \\
+\textbf{Problem:} $a(t) = (2.0)t$, $v_0=0$, $x_0=0$. Find $v(3)$ and $x(3)$.
+\begin{itemize}
+    \item \textbf{Velocity:} $v(t) = \int_{0}^{t} (2.0 t') \, dt' = 2.0 \left[ \frac{t'^2}{2} \right]_{0}^{t} = 1.0 t^2$.
+    At $t = 3.0$ s: $v(3.0) = 1.0 \times (3.0)^2 = \mathbf{9.0 \, \text{m/s}}$.
+    \item \textbf{Position:} $x(t) = \int_{0}^{t} (1.0 t'^2) \, dt' = 1.0 \left[ \frac{t'^3}{3} \right]_{0}^{t} = \frac{1.0}{3} t^3$.
+    At $t = 3.0$ s: $x(3.0) = \frac{1.0}{3} (3.0)^3 = \mathbf{9.0 \, \text{m}}$.
+\end{itemize}
+
+\subsection{Example 2: Work (Variable Force)}
+\textbf{Concept:} $W = \int \vec{F} \cdot d\vec{s}$. \\
+\textbf{Problem:} Work to stretch a spring ($k$) from $x=0$ to $x=L$. $F_{app} = +kx$.
+\begin{itemize}
+    \item $dW = F_{app}(x) \, dx = (kx) \, dx$.
+    \item $W = \int dW = \int_{0}^{L} kx \, dx = k \left[ \frac{x^2}{2} \right]_{0}^{L} = \mathbf{\frac{1}{2}kL^2}$.
+\end{itemize}
+
+\subsection{Example 3: Center of Mass (Non-uniform 1D Rod)}
+\textbf{Concept:} $X_{cm} = \frac{1}{M} \int x \, dm$. \\
+\textbf{Problem:} Rod from $x=0$ to $x=L$. $\lambda(x) = cx$. Find $X_{cm}$.
+\begin{itemize}
+    \item $dm = \lambda(x) \, dx = (cx) \, dx$.
+    \item Numerator: $\int x \, dm = \int_{0}^{L} x (cx \, dx) = c \int_{0}^{L} x^2 \, dx = c \left[ \frac{x^3}{3} \right]_{0}^{L} = \frac{cL^3}{3}$.
+    \item Denominator: $M = \int dm = \int_{0}^{L} cx \, dx = c \left[ \frac{x^2}{2} \right]_{0}^{L} = \frac{cL^2}{2}$.
+    \item $X_{cm} = \frac{cL^3 / 3}{cL^2 / 2} = \mathbf{\frac{2L}{3}}$.
+\end{itemize}
+
+\subsection{Example 4: Moment of Inertia (Solid Disk)}
+\textbf{Concept:} $I = \int r^2 \, dm$. Axis is center. \\
+\textbf{Problem:} Uniform solid disk, mass $M$, radius $R$. Find $I$.
+\begin{itemize}
+    \item \textbf{Element:} A thin ring of radius $r$ and thickness $dr$.
+    \item $\sigma = \frac{M}{\pi R^2}$.
+    \item $dm = \sigma \, dA = \sigma (2\pi r \, dr) = \left( \frac{M}{\pi R^2} \right) (2\pi r \, dr) = \frac{2M}{R^2} r \, dr$.
+    \item \textbf{Piece Equation:} For a ring, $dI = (\text{radius})^2 \, (\text{mass}) = r^2 \, dm$.
+    \item $dI = r^2 \left( \frac{2M}{R^2} r \, dr \right) = \frac{2M}{R^2} r^3 \, dr$.
+    \item \textbf{Integral:} $I = \int dI = \int_{0}^{R} \frac{2M}{R^2} r^3 \, dr = \frac{2M}{R^2} \left[ \frac{r^4}{4} \right]_{0}^{R} = \frac{2M}{R^2} \left( \frac{R^4}{4} \right) = \mathbf{\frac{1}{2}MR^2}$.
+\end{itemize}
+
+\subsection{Example 5: Electric Field (Charged Ring on Axis)}
+\textbf{Concept:} $d\vec{E} = \frac{k \, dq}{r^2} \hat{r}$. \\
+\textbf{Problem:} Ring $Q$, $R$. Find $\vec{E}$ at $z$ on axis.
+\begin{itemize}
+    \item \textbf{Symmetry:} Perpendicular components $dE_{\perp}$ cancel. Only $dE_z$ survives.
+    \item $r = \sqrt{R^2 + z^2}$ (constant). $\cos\theta = \frac{z}{r}$ (constant).
+    \item $dE_z = |d\vec{E}| \cos\theta = \left( \frac{k \, dq}{r^2} \right) \cos\theta = \left( \frac{k \, dq}{R^2 + z^2} \right) \left( \frac{z}{\sqrt{R^2 + z^2}} \right)$.
+    \item $dE_z = \frac{k z}{(R^2 + z^2)^{3/2}} \, dq$.
+    \item \textbf{Integral:} $E_z = \int dE_z = \frac{k z}{(R^2 + z^2)^{3/2}} \int dq$.
+    \item $\int dq = Q$.
+    \item $\vec{E} = \mathbf{\frac{k Q z}{(R^2 + z^2)^{3/2}} \hat{k}}$.
+\end{itemize}
+
+\subsection{Example 6: Electric Field (Charged Disk - from Ring)}
+\textbf{Concept:} Build disk from rings. \\
+\textbf{Problem:} Disk $Q$, $R$. Find $\vec{E}$ at $z$ on axis.
+\begin{itemize}
+    \item \textbf{Element:} A ring of radius $r$, thickness $dr$, and charge $dq$.
+    \item $\sigma = \frac{Q}{\pi R^2}$. $dq = \sigma \, dA = \sigma (2\pi r \, dr)$.
+    \item \textbf{Piece Equation:} Use result from Ex 5. $dE_z = \frac{k (dq) z}{(r^2 + z^2)^{3/2}}$.
+    \item $E_z = \int dE_z = \int_{0}^{R} \frac{k z (\sigma 2\pi r \, dr)}{(r^2 + z^2)^{3/2}} = k z \sigma \pi \int_{0}^{R} \frac{2r}{(r^2 + z^2)^{3/2}} \, dr$.
+    \item \textbf{u-sub:} $u = r^2 + z^2$, $du = 2r \, dr$.
+    \item $E_z = k z \sigma \pi \int_{z^2}^{R^2+z^2} u^{-3/2} \, du = k z \sigma \pi \left[ -2 u^{-1/2} \right]_{z^2}^{R^2+z^2}$
+    \item $E_z = -2 \pi k \sigma z \left( \frac{1}{\sqrt{R^2+z^2}} - \frac{1}{\sqrt{z^2}} \right)$.
+    \item $\vec{E} = \mathbf{2 \pi k \sigma \left( 1 - \frac{z}{\sqrt{R^2+z^2}} \right) \hat{k}}$.
+\end{itemize}
+
+\subsection{Example 7: Gravitational Field (Uniform Rod)}
+\textbf{Concept:} $d\vec{g} = -\frac{G \, dm}{r^2} \hat{r}$. \\
+\textbf{Problem:} Rod $M$, $L$. Find $\vec{g}$ at $y$ on perpendicular bisector.
+\begin{itemize}
+    \item \textbf{Diagram:} Rod on x-axis from $-L/2$ to $+L/2$. $P$ at $(0, y)$.
+    \item \textbf{Element:} $dm = \lambda \, dx = (\frac{M}{L}) \, dx$ at position $x$.
+    \item \textbf{Symmetry:} x-components $dg_x$ cancel. Sum $dg_y$.
+    \item $r = \sqrt{x^2 + y^2}$. $\cos\theta = \frac{y}{r}$.
+    \item $dg_y = |d\vec{g}| \cos\theta = \left( \frac{G \, dm}{r^2} \right) \cos\theta = \left( \frac{G (\frac{M}{L} \, dx)}{x^2 + y^2} \right) \left( \frac{y}{\sqrt{x^2 + y^2}} \right)$.
+    \item $dg_y = \frac{G M y}{L} \frac{dx}{(x^2 + y^2)^{3/2}}$.
+    \item \textbf{Integral:} $g_y = \int_{-L/2}^{L/2} \frac{G M y}{L} \frac{dx}{(x^2 + y^2)^{3/2}}$.
+    \item Using $\int \frac{dx}{(x^2 + y^2)^{3/2}} = \frac{x}{y^2 \sqrt{x^2 + y^2}}$:
+    \item $g_y = \frac{G M y}{L} \left[ \frac{x}{y^2 \sqrt{x^2 + y^2}} \right]_{-L/2}^{L/2} = \frac{G M}{L y} \left( \frac{L}{\sqrt{L^2/4 + y^2}} \right)$.
+    \item $\vec{g} = -\mathbf{\frac{G M}{y \sqrt{L^2/4 + y^2}} \hat{j}}$.
+\end{itemize}
+
+\subsection{Example 8: Thermodynamics (Work in an Isothermal Process)}
+\textbf{Concept:} $W = \int P \, dV$. \\
+\textbf{Problem:} Isothermal ($T=\text{const}$) expansion of $n$ moles from $V_i$ to $V_f$.
+\begin{itemize}
+    \item \textbf{Relate $P, V$:} Ideal Gas Law $PV = nRT \implies P(V) = \frac{nRT}{V}$.
+    \item \textbf{Integral:} $W = \int_{V_i}^{V_f} \frac{nRT}{V} \, dV = nRT \int_{V_i}^{V_f} \frac{1}{V} \, dV$.
+    \item $W = nRT \left[ \ln V \right]_{V_i}^{V_f} = \mathbf{nRT \ln\left(\frac{V_f}{V_i}\right)}$.
+\end{itemize}
+
+\subsection{Example 9: Fluid Mechanics (Hydrostatic Force)}
+\textbf{Concept:} $F = \int P \, dA$. \\
+\textbf{Problem:} Force on rectangular dam, width $w$, height $H$. $P = \rho g y$.
+\begin{itemize}
+    \item \textbf{Diagram:} $y=0$ at surface, pointing down.
+    \item \textbf{Element:} Horizontal strip at depth $y$ with height $dy$. $dA = w \, dy$.
+    \item \textbf{Piece Equation:} $dF = P \, dA = (\rho g y) (w \, dy)$.
+    \item \textbf{Integral:} $F = \int dF = \int_{0}^{H} \rho g w y \, dy = \rho g w \int_{0}^{H} y \, dy$.
+    \item $F = \rho g w \left[ \frac{y^2}{2} \right]_{0}^{H} = \mathbf{\frac{1}{2} \rho g w H^2}$.
+\end{itemize}
+
+\subsection{Example 10: Magnetism (Biot-Savart Law)}
+\textbf{Concept:} $d\vec{B} = \frac{\mu_0 I}{4\pi} \frac{d\vec{l} \times \hat{r}}{r^2}$. \\
+\textbf{Problem:} $\vec{B}$ at center of circular loop ($R, I$).
+\begin{itemize}
+    \item \textbf{Strategy:} $d\vec{l}$ is tangent, $\hat{r}$ points to center. $d\vec{l} \perp \hat{r}$ always.
+    \item $d\vec{l} \times \hat{r}$ always points in $+\hat{k}$ (out of page) by right-hand rule.
+    \item $r = R$ (constant).
+    \item $|d\vec{B}| = \frac{\mu_0 I}{4\pi} \frac{dl \sin(90^\circ)}{R^2} = \frac{\mu_0 I}{4\pi R^2} dl$.
+    \item \textbf{Integral:} $B = \int dB = \int \frac{\mu_0 I}{4\pi R^2} \, dl = \frac{\mu_0 I}{4\pi R^2} \int dl$.
+    \item $\int dl = \text{Circumference} = 2\pi R$.
+    \item $B = \frac{\mu_0 I}{4\pi R^2} (2\pi R) = \frac{\mu_0 I}{2R}$.
+    \item $\vec{B} = \mathbf{\frac{\mu_0 I}{2R} \hat{k}}$.
+\end{itemize}
+
+\subsection{Example 11: Center of Mass (3D Solid Object)}
+\textbf{Concept:} $Y_{cm} = \frac{1}{V} \int y \, dV$ (for constant $\rho$). \\
+\textbf{Problem:} $Y_{cm}$ of a solid uniform hemisphere (radius $R$).
+\begin{itemize}
+    \item \textbf{Symmetry:} $X_{cm} = 0, Z_{cm} = 0$.
+    \item \textbf{Element:} A thin horizontal disk at height $y$, thickness $dy$.
+    \item $dV = (\pi r^2) \, dy$.
+    \item \textbf{Relate $r, y$:} $r^2 + y^2 = R^2 \implies r^2 = R^2 - y^2$.
+    \item $dV = \pi(R^2 - y^2) \, dy$.
+    \item \textbf{Numerator:} $\int y \, dV = \int_{0}^{R} y \left( \pi(R^2 - y^2) \, dy \right) = \pi \int_{0}^{R} (R^2 y - y^3) \, dy$.
+    \item $= \pi \left[ \frac{R^2 y^2}{2} - \frac{y^4}{4} \right]_{0}^{R} = \pi \left( \frac{R^4}{2} - \frac{R^4}{4} \right) = \mathbf{\frac{\pi R^4}{4}}$.
+    \item \textbf{Denominator:} $V = \int dV = \int_{0}^{R} \pi(R^2 - y^2) \, dy = \pi \left[ R^2 y - \frac{y^3}{3} \right]_{0}^{R} = \mathbf{\frac{2\pi R^3}{3}}$.
+    \item \textbf{Solve:} $Y_{cm} = \frac{\int y \, dV}{V} = \frac{\pi R^4 / 4}{2\pi R^3 / 3} = \mathbf{\frac{3R}{8}}$.
+\end{itemize}
+
+\subsection{Example 12: Gravitational Potential Energy of a Sphere}
+\textbf{Concept:} $U_g = \int dU_g$, where $dU_g = -\frac{G M_r dm}{r}$ is the work to add shell $dm$ to sphere $M_r$. \\
+\textbf{Problem:} Find $U_g$ of a uniform solid sphere ($M, R$).
+\begin{itemize}
+    \item \textbf{Strategy:} Build the sphere from $r=0$ to $r=R$.
+    \item \textbf{Element:} Add shell $dm$ to inner sphere $M_r$ at radius $r$.
+    \item $\rho = \frac{M}{\frac{4}{3}\pi R^3}$.
+    \item $M_r = \rho V_r = \rho (\frac{4}{3}\pi r^3) = M \frac{r^3}{R^3}$.
+    \item $dm = \rho dV = \rho (4\pi r^2 \, dr)$.
+    \item \textbf{Piece Equation:} $dU_g = -\frac{G M_r dm}{r} = -G \left( M \frac{r^3}{R^3} \right) \left( \rho (4\pi r^2) \, dr \right) \frac{1}{r}$.
+    \item Substitute $\rho = \frac{3M}{4\pi R^3}$:
+    \item $dU_g = -G \left( M \frac{r^3}{R^3} \right) \left( \left[ \frac{3M}{4\pi R^3} \right] (4\pi r^2) \, dr \right) \frac{1}{r} = -G \frac{3M^2}{R^6} r^4 \, dr$.
+    \item \textbf{Integral:} $U_g = \int dU_g = \int_{0}^{R} -G \frac{3M^2}{R^6} r^4 \, dr$.
+    \item $U_g = -G \frac{3M^2}{R^6} \left[ \frac{r^5}{5} \right]_{0}^{R} = -G \frac{3M^2}{R^6} \left( \frac{R^5}{5} \right) = \mathbf{-\frac{3}{5} \frac{GM^2}{R}}$.
+\end{itemize}
+
+\subsection{Example 13: Period of Oscillation in an Earth Tunnel (Chord)}
+\textbf{Concept:} Show $F_{restore} = -kx$ (SHM), then $T = 2\pi \sqrt{m/k}$. \\
+\textbf{Problem:} Find period $T$ of oscillation in a straight tunnel (chord) through Earth.
+\imageplaceholder{Earth with a tunnel (chord)}
+\begin{itemize}
+    \item \textbf{Step 1: Force Inside Earth:} From Shell Theorem, $F_g$ at $r < R_E$ is from $M_r$.
+    \item $M_r = M_E (r^3 / R_E^3)$.
+    \item $F_g = -\frac{G M_r m}{r^2} = -\frac{G (M_E r^3 / R_E^3) m}{r^2} = -\left( \frac{GM_E m}{R_E^3} \right) r$.
+    \item This is $F_g = -k'r$, where $k' = \frac{GM_E m}{R_E^3}$.
+    \item \textbf{Step 2: Restoring Force in Tunnel:}
+    \item Let $x$ be position from tunnel midpoint. Let $d$ be tunnel's closest approach to center.
+    \item $r^2 = d^2 + x^2$.
+    \item $F_{restore}$ is component of $F_g$ along tunnel. $F_{restore} = -F_g \cos\theta$.
+    \item From diagram, $\cos\theta = x/r$.
+    \item $F_{restore} = -(k'r) \left( \frac{x}{r} \right) = -k'x$. This is SHM!
+    \item \textbf{Step 3: Period:} $F_{restore} = -\left( \frac{GM_E m}{R_E^3} \right) x$.
+    \item $ma_x = -\left( \frac{GM_E m}{R_E^3} \right) x \implies a_x = -\left( \frac{GM_E}{R_E^3} \right) x$.
+    \item Comparing to $a_x = -\omega^2 x$: $\omega^2 = \frac{GM_E}{R_E^3}$.
+    \item $T = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{R_E^3}{GM_E}}$.
+    \item Since $g = \frac{GM_E}{R_E^2} \implies \frac{GM_E}{R_E^3} = \frac{g}{R_E}$.
+    \item $T = \mathbf{2\pi \sqrt{\frac{R_E}{g}}}$. (Independent of $d$)
+\end{itemize}
+
+---
+% --- SECTION: PROBLEM SET ---
+\section{\ Problem Set}
+
+\textbf{Problem 1 (Kinematics):}
+A car starts from rest. Its acceleration is given by $a(t) = A\sqrt{t}$, where $A = 1.0 \, \text{m/s}^{5/2}$. Find the car's velocity $v(t)$ and position $x(t)$ as functions of time. What are its velocity and position at $t=4.0$ s?
+
+\textbf{Problem 2 (Work \& Gravity):}
+Find the work *you* must do to lift a satellite of mass $m$ from the surface of the Earth (radius $R_E$, mass $M_E$) to a final altitude $h$ above the surface. The force of gravity is $F_g = \frac{GM_E m}{r^2}$ (downwards).
+
+\textbf{Problem 3 (Center of Mass):}
+Find the center of mass $X_{cm}$ of a thin rod of length $L$ ($x=0$ to $x=L$). Its linear mass density is $\lambda(x) = cx^2$.
+
+\textbf{Problem 4 (Moment of Inertia):}
+Find the moment of inertia $I$ of a thin, uniform rod ($M, L$) rotating about its \textbf{center}.
+
+\textbf{Problem 5 (Electric Potential):}
+Find the electric potential $V$ at a point $P$ located a distance $d$ from one end of a uniform rod ($Q, L$). The point $P$ lies on the same line as the rod.
+
+---
+% --- SECTION: SOLUTIONS ---
+\section{Solutions}
+
+\textbf{Solution 1 (Kinematics):}
+\begin{itemize}
+    \item $v(t) = \int_{0}^{t} A t'^{1/2} \, dt' = A \left[ \frac{t'^{3/2}}{3/2} \right]_{0}^{t} = \mathbf{\frac{2A}{3} t^{3/2}}$.
+    \item $x(t) = \int_{0}^{t} \frac{2A}{3} t'^{3/2} \, dt' = \frac{2A}{3} \left[ \frac{t'^{5/2}}{5/2} \right]_{0}^{t} = \mathbf{\frac{4A}{15} t^{5/2}}$.
+    \item At $t=4.0$ s:
+    $v(4) = \frac{2(1.0)}{3} (4.0)^{3/2} = \frac{16}{3} = \mathbf{5.33 \, \text{m/s}}$. \\
+    $x(4) = \frac{4(1.0)}{15} (4.0)^{5/2} = \frac{128}{15} = \mathbf{8.53 \, \text{m}}$.
+\end{itemize}
+
+\textbf{Solution 2 (Work \& Gravity):}
+\begin{itemize}
+    \item $F_{app} = +\frac{GM_E m}{r^2}$. $dr$ is upwards. $r_i = R_E$, $r_f = R_E + h$.
+    \item $W = \int_{R_E}^{R_E+h} \frac{GM_E m}{r^2} \, dr = GM_E m \int_{R_E}^{R_E+h} r^{-2} \, dr$.
+    \item $W = GM_E m \left[ -r^{-1} \right]_{R_E}^{R_E+h} = -GM_E m \left( \frac{1}{R_E+h} - \frac{1}{R_E} \right)$.
+    \item $W = \mathbf{GM_E m \left( \frac{1}{R_E} - \frac{1}{R_E+h} \right)}$.
+\end{itemize}
+
+\textbf{Solution 3 (Center of Mass):}
+\begin{itemize}
+    \item $dm = \lambda dx = cx^2 dx$.
+    \item $\int x \, dm = \int_{0}^{L} x (cx^2 \, dx) = c \int_{0}^{L} x^3 \, dx = \frac{cL^4}{4}$.
+    \item $M = \int dm = \int_{0}^{L} cx^2 \, dx = \frac{cL^3}{3}$.
+    \item $X_{cm} = \frac{\int x \, dm}{M} = \frac{cL^4 / 4}{cL^3 / 3} = \mathbf{\frac{3L}{4}}$.
+\end{itemize}
+
+\textbf{Solution 4 (Moment of Inertia):}
+\begin{itemize}
+    \item Rod from $x = -L/2$ to $x = +L/2$. $dm = (\frac{M}{L}) \, dx$.
+    \item $I = \int r^2 \, dm = \int_{-L/2}^{L/2} x^2 \left( \frac{M}{L} \, dx \right)$.
+    \item $I = \frac{M}{L} \int_{-L/2}^{L/2} x^2 \, dx = \frac{M}{L} \left[ \frac{x^3}{3} \right]_{-L/2}^{L/2}$.
+    \item $I = \frac{M}{3L} \left[ (L/2)^3 - (-L/2)^3 \right] = \frac{M}{3L} \left[ \frac{L^3}{8} + \frac{L^3}{8} \right] = \frac{M}{3L} \left( \frac{L^3}{4} \right) = \mathbf{\frac{1}{12}ML^2}$.
+\end{itemize}
+
+\textbf{Solution 5 (Electric Potential):}
+\begin{itemize}
+    \item Rod from $x=d$ to $x=d+L$. $P$ at $x=0$.
+    \item Element $dq = \lambda dx = (\frac{Q}{L}) dx$ at position $x$.
+    \item Distance $r = x$.
+    \item $V = \int dV = \int \frac{k \, dq}{r} = \int_{d}^{d+L} \frac{k (\frac{Q}{L} \, dx)}{x}$.
+    \item $V = \frac{kQ}{L} \int_{d}^{d+L} \frac{1}{x} \, dx = \frac{kQ}{L} \left[ \ln x \right]_{d}^{d+L}$.
+    \item $V = \frac{kQ}{L} (\ln(d+L) - \ln(d)) = \mathbf{\frac{kQ}{L} \ln\left( 1 + \frac{L}{d} \right)}$.
+\end{itemize}
+
+
+% DOCUMENT END
+\end{document}

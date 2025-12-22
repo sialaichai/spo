@@ -1,0 +1,346 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{Problems in Rotational Dynamics}
+\author{Gemini}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problems}
+
+\hrulefill
+\subsection*{Problem 1: The Spinning Disk and the Dropped Ring}
+
+A solid, uniform disk of mass $M = 2.0$ kg and radius $R = 0.5$ m is rotating about a frictionless vertical axle that passes through its center. Its initial angular velocity is $\omega_i = 15$ rad/s. A thin ring, also of mass $m = 2.0$ kg and radius $R = 0.5$ m, is gently dropped straight down onto the spinning disk. The ring eventually sticks to the disk, and they rotate together.
+
+\begin{enumerate}
+    \item[(a)] What is the final angular velocity, $\omega_f$, of the combined disk-ring system?
+    \item[(b)] What is the ratio of the final rotational kinetic energy to the initial rotational kinetic energy ($KE_f / KE_i$)? Explain why some energy was lost.
+\end{enumerate}
+
+\textbf{Helpful Formulas:}
+\begin{itemize}
+    \item Moment of inertia of a solid disk about its center: $I_{disk} = \frac{1}{2}MR^2$
+    \item Moment of inertia of a thin ring about its center: $I_{ring} = mR^2$
+\end{itemize}
+
+\begin{center}
+    \textit{}
+\end{center}
+
+\hrulefill
+\subsection*{Problem 2: The Toppling Rod}
+
+A thin, uniform rod of mass $M$ and length $L$ stands vertically on a horizontal, frictionless surface. It is given a slight nudge and begins to topple over, pivoting about its bottom end which remains in place.
+
+\begin{enumerate}
+    \item[(a)] Using the principle of conservation of energy, find an expression for the rod's angular velocity, $\omega$, just as it hits the horizontal surface.
+    \item[(b)] What is the linear velocity, $v_{tip}$, of the tip of the rod at that same moment?
+\end{enumerate}
+
+\textbf{Helpful Formula:}
+\begin{itemize}
+    \item Moment of inertia of a thin rod about its end: $I_{end} = \frac{1}{3}ML^2$
+\end{itemize}
+
+\hrulefill
+\subsection*{Problem 3: The Bullet and the Door}
+
+A wooden door with mass $M = 20$ kg and width $L = 1.2$ m is initially at rest and can swing freely on its hinges. A bullet of mass $m = 15$ g ($0.015$ kg) is fired with a velocity $v = 500$ m/s perpendicular to the door. The bullet strikes the door at a distance $d = 0.8$ m from the hinges and embeds itself.
+
+\begin{enumerate}
+    \item[(a)] What is the angular velocity, $\omega$, of the door-bullet system immediately after the collision?
+    \item[(b)] Calculate the initial kinetic energy of the bullet and the final rotational kinetic energy of the door-bullet system. Is kinetic energy conserved in this collision?
+\end{enumerate}
+
+\textbf{Helpful Formula:}
+\begin{itemize}
+    \item Moment of inertia of a door (treated as a uniform slab) about its hinge: $I_{door} = \frac{1}{3}ML^2$
+\end{itemize}
+
+\begin{center}
+    \textit{}
+\end{center}
+
+\hrulefill
+\subsection*{Problem 4: The Unwinding Spool}
+
+A solid cylinder of mass $M$ and radius $R$ has a light, inextensible string wrapped around its circumference. The free end of the string is held fixed, and the cylinder is released from rest. It falls vertically as the string unwinds.
+
+\begin{enumerate}
+    \item[(a)] Using Newton's second laws for translation and rotation, find an expression for the downward linear acceleration, $a$, of the cylinder in terms of $g$.
+    \item[(b)] Find an expression for the tension, $T$, in the string in terms of $M$ and $g$.
+\end{enumerate}
+
+\textbf{Helpful Formulas:}
+\begin{itemize}
+    \item Torque: $\tau = I\alpha$
+    \item Relationship between linear and angular acceleration: $a = R\alpha$
+    \item Moment of inertia of a solid cylinder about its center: $I_{cylinder} = \frac{1}{2}MR^2$
+\end{itemize}
+
+\clearpage
+\section*{Solutions}
+
+\hrulefill
+\subsection*{Solution 1: The Spinning Disk and the Dropped Ring}
+
+\textbf{(a) Final Angular Velocity}
+
+Since there are no external torques acting on the disk-ring system (the forces between the disk and ring are internal), \textbf{angular momentum is conserved}.
+
+Initial angular momentum $L_i$ is just that of the disk:
+$$L_i = I_{disk} \omega_i = \left(\frac{1}{2}MR^2\right)\omega_i$$
+
+Final angular momentum $L_f$ is that of the combined system:
+$$L_f = (I_{disk} + I_{ring})\omega_f = \left(\frac{1}{2}MR^2 + mR^2\right)\omega_f$$
+
+Set $L_i = L_f$:
+\begin{align*}
+    \left(\frac{1}{2}MR^2\right)\omega_i &= \left(\frac{1}{2}MR^2 + mR^2\right)\omega_f \\
+    \intertext{Since $M=m$, we can simplify:}
+    \left(\frac{1}{2}MR^2\right)\omega_i &= \left(\frac{1}{2}MR^2 + MR^2\right)\omega_f \\
+    \left(\frac{1}{2}MR^2\right)\omega_i &= \left(\frac{3}{2}MR^2\right)\omega_f \\
+    \frac{1}{2}\omega_i &= \frac{3}{2}\omega_f \\
+    \omega_f &= \frac{1}{3}\omega_i
+\end{align*}
+Plugging in the value for $\omega_i$:
+$$\omega_f = \frac{1}{3}(15 \text{ rad/s}) = 5.0 \text{ rad/s}$$
+\textbf{The final angular velocity is 5.0 rad/s.}
+
+\vspace{1cm}
+\textbf{(b) Energy Ratio}
+
+Initial Kinetic Energy: $KE_i = \frac{1}{2}I_{disk}\omega_i^2 = \frac{1}{2}\left(\frac{1}{2}MR^2\right)\omega_i^2 = \frac{1}{4}MR^2\omega_i^2$
+
+Final Kinetic Energy: $KE_f = \frac{1}{2}(I_{disk} + I_{ring})\omega_f^2 = \frac{1}{2}\left(\frac{3}{2}MR^2\right)\left(\frac{1}{3}\omega_i\right)^2 = \frac{1}{2}\left(\frac{3}{2}MR^2\right)\left(\frac{1}{9}\omega_i^2\right) = \frac{1}{12}MR^2\omega_i^2$
+
+Now, find the ratio:
+$$\frac{KE_f}{KE_i} = \frac{\frac{1}{12}MR^2\omega_i^2}{\frac{1}{4}MR^2\omega_i^2} = \frac{1/12}{1/4} = \frac{4}{12} = \frac{1}{3}$$
+\textbf{The ratio of final to initial kinetic energy is 1/3.} Energy was lost due to the \textbf{work done by friction} between the disk and the ring as the ring was accelerated up to the final angular velocity. This work converted mechanical energy into heat and sound.
+
+\hrulefill
+\subsection*{Solution 2: The Toppling Rod}
+
+\textbf{(a) Angular Velocity}
+
+We use \textbf{conservation of mechanical energy}. Let potential energy be zero at the ground level ($U_f = 0$).
+
+Initial Energy ($E_i$): The rod is at rest ($KE_i = 0$). Its center of mass is at a height of $L/2$.
+$$E_i = U_i = Mg\frac{L}{2}$$
+
+Final Energy ($E_f$): The rod is rotating and its center of mass is at height zero ($U_f = 0$).
+$$E_f = KE_f = \frac{1}{2}I\omega^2 = \frac{1}{2}\left(\frac{1}{3}ML^2\right)\omega^2$$
+
+Set $E_i = E_f$:
+\begin{align*}
+    Mg\frac{L}{2} &= \frac{1}{2}\left(\frac{1}{3}ML^2\right)\omega^2 \\
+    MgL &= \frac{1}{3}ML^2\omega^2 \\
+    3g &= L\omega^2 \\
+    \omega &= \sqrt{\frac{3g}{L}}
+\end{align*}
+\textbf{The angular velocity is $\sqrt{\frac{3g}{L}}$.}
+
+\vspace{1cm}
+\textbf{(b) Linear Velocity of the Tip}
+
+The linear velocity of a point on a rotating object is given by $v = r\omega$. For the tip of the rod, $r=L$.
+$$v_{tip} = L\omega = L\sqrt{\frac{3g}{L}} = \sqrt{\frac{3gL^2}{L}} = \sqrt{3gL}$$
+\textbf{The linear velocity of the tip is $\sqrt{3gL}$.}
+
+\hrulefill
+\subsection*{Solution 3: The Bullet and the Door}
+
+\textbf{(a) Angular Velocity}
+
+\textbf{Angular momentum about the hinge is conserved}.
+
+Initial angular momentum $L_i$ comes from the bullet:
+$$L_i = r_{\perp}p = d(mv)$$
+
+Final angular momentum $L_f$ comes from the rotating door-bullet system. The bullet is a point mass at distance $d$, so $I_{bullet} = md^2$.
+$$L_f = I_{total}\omega = (I_{door} + I_{bullet})\omega = \left(\frac{1}{3}ML^2 + md^2\right)\omega$$
+
+Set $L_i = L_f$:
+\begin{align*}
+    d(mv) &= \left(\frac{1}{3}ML^2 + md^2\right)\omega \\
+    \omega &= \frac{dmv}{\frac{1}{3}ML^2 + md^2}
+\end{align*}
+Now, plug in the values:
+\begin{align*}
+    I_{door} &= \frac{1}{3}(20 \text{ kg})(1.2 \text{ m})^2 = 9.6 \text{ kg} \cdot \text{m}^2 \\
+    I_{bullet} &= (0.015 \text{ kg})(0.8 \text{ m})^2 = 0.0096 \text{ kg} \cdot \text{m}^2 \\
+    L_i &= (0.8 \text{ m})(0.015 \text{ kg})(500 \text{ m/s}) = 6.0 \text{ kg} \cdot \text{m}^2/\text{s}
+\end{align*}
+$$\omega = \frac{6.0 \text{ kg} \cdot \text{m}^2/\text{s}}{9.6 \text{ kg} \cdot \text{m}^2 + 0.0096 \text{ kg} \cdot \text{m}^2} = \frac{6.0}{9.6096} \approx 0.624 \text{ rad/s}$$
+\textbf{The angular velocity of the door is approximately 0.624 rad/s.}
+
+\vspace{1cm}
+\textbf{(b) Kinetic Energy}
+
+Initial KE (bullet only):
+$$KE_i = \frac{1}{2}mv^2 = \frac{1}{2}(0.015 \text{ kg})(500 \text{ m/s})^2 = 1875 \text{ J}$$
+
+Final KE (door-bullet system):
+$$KE_f = \frac{1}{2}I_{total}\omega^2 = \frac{1}{2}(9.6096 \text{ kg} \cdot \text{m}^2)(0.624 \text{ rad/s})^2 \approx 1.87 \text{ J}$$
+\textbf{Kinetic energy is not conserved.} The vast majority of the energy was converted into heat, sound, and the work required to splinter the wood and embed the bullet.
+
+\hrulefill
+\subsection*{Solution 4: The Unwinding Spool}
+
+\textbf{(a) Linear Acceleration}
+
+Apply Newton's second law for translation (downward is positive):
+$$\sum F_y = Ma \implies Mg - T = Ma \quad \text{(Equation 1)}$$
+
+Apply Newton's second law for rotation. The torque is from tension $T$.
+$$\sum \tau = I\alpha \implies TR = \left(\frac{1}{2}MR^2\right)\alpha \quad \text{(Equation 2)}$$
+
+Use the no-slip condition $a = R\alpha$, so $\alpha = a/R$. Substitute into Equation 2:
+\begin{align*}
+    TR &= \left(\frac{1}{2}MR^2\right)\left(\frac{a}{R}\right) \\
+    T &= \frac{1}{2}Ma \quad \text{(Equation 3)}
+\end{align*}
+Now substitute Equation 3 into Equation 1:
+\begin{align*}
+    Mg - \left(\frac{1}{2}Ma\right) &= Ma \\
+    Mg &= Ma + \frac{1}{2}Ma \\
+    Mg &= \frac{3}{2}Ma \\
+    a &= \frac{2}{3}g
+\end{align*}
+\textbf{The linear acceleration of the cylinder is $\frac{2}{3}g$.}
+
+\vspace{1cm}
+\textbf{(b) Tension}
+
+Use the result for $a$ in Equation 3:
+$$T = \frac{1}{2}Ma = \frac{1}{2}M\left(\frac{2}{3}g\right) = \frac{1}{3}Mg$$
+\textbf{The tension in the string is $\frac{1}{3}Mg$.}
+
+
+\section*{Problems}
+
+\hrulefill
+\subsection*{Problem 5: The Pulled Spool}
+
+A spool of mass $M$ has an outer radius $R$ and an inner axle of radius $r$. Its moment of inertia about the central axis is $I$. A light string is wrapped around the inner axle, and a constant horizontal force $\vec{F}$ is applied to the end of the string. The spool rolls without slipping on a horizontal surface with a coefficient of static friction $\mu_s$.
+
+\begin{center}
+    \textit{}
+\end{center}
+
+\begin{enumerate}
+    \item[(a)] Find an expression for the linear acceleration, $a$, of the spool's center of mass.
+    \item[(b)] Find an expression for the force of static friction, $f_s$, acting on the spool. Under what condition does the friction force point forwards (in the same direction as $\vec{F}$)?
+    \item[(c)] Determine the maximum magnitude of the pulling force, $F_{max}$, for which the spool will roll without slipping.
+\end{enumerate}
+
+\hrulefill
+\subsection*{Problem 6: Gyroscopic Precession}
+
+A gyroscope consists of a solid disk (flywheel) of mass $M$ and radius $R$, spinning with a large angular velocity $\omega_s$ about its axle. The axle has negligible mass and extends a distance $d$ from the flywheel to a pivot point P. The axle is horizontal, supported only at the pivot. The gyroscope does not fall but instead precesses in a horizontal circle about the pivot.
+
+\begin{center}
+    \textit{}
+\end{center}
+
+\begin{enumerate}
+    \item[(a)] Let the axle be along the positive x-axis and the pivot be at the origin. What is the magnitude and direction of the torque, $\vec{\tau}$, produced by gravity about the pivot?
+    \item[(b)] What is the magnitude and direction of the flywheel's spin angular momentum, $\vec{L}_s$?
+    \item[(c)] Using the relationship $\vec{\tau} = \frac{d\vec{L}}{dt}$, derive an expression for the angular velocity of precession, $\Omega_p$. (Assume $\omega_s$ is very large, so the angular momentum associated with the precession itself is negligible compared to $\vec{L}_s$).
+\end{enumerate}
+\textbf{Helpful Formula:}
+\begin{itemize}
+    \item Moment of inertia of a solid disk about its center: $I_{disk} = \frac{1}{2}MR^2$
+\end{itemize}
+
+\clearpage
+\section*{Solutions}
+
+\hrulefill
+\subsection*{Solution 5: The Pulled Spool}
+
+Let's define the forward direction (the direction of $\vec{F}$) as positive for linear motion and the clockwise direction as positive for rotation. The static friction force $f_s$ acts at the contact point on the ground. Its direction is initially unknown, so let's assume it points backward (in the negative direction).
+
+\textbf{(a) Linear Acceleration}
+
+The translational equation of motion (Newton's second law) in the horizontal direction is:
+$$ \sum F_x = F - f_s = Ma \quad \text{(1)} $$
+The rotational equation of motion about the center of mass is:
+$$ \sum \tau = F \cdot r - f_s \cdot R = I\alpha \quad \text{(2)} $$
+For rolling without slipping, the linear and angular accelerations are related by:
+$$ a = R\alpha \implies \alpha = \frac{a}{R} \quad \text{(3)} $$
+Substitute (3) into (2):
+$$ Fr - f_s R = I \frac{a}{R} \implies f_s R = Fr - \frac{Ia}{R} \implies f_s = \frac{Fr}{R} - \frac{Ia}{R^2} \quad \text{(4)} $$
+Now substitute this expression for $f_s$ into (1):
+\begin{align*}
+    F - \left(\frac{Fr}{R} - \frac{Ia}{R^2}\right) &= Ma \\
+    F\left(1 - \frac{r}{R}\right) &= Ma - \frac{Ia}{R^2} \\
+    F\left(\frac{R-r}{R}\right) &= a\left(M - \frac{I}{R^2}\right) \\
+    \intertext{It is often convenient to write $I = \beta MR^2$ for some factor $\beta$. Here we will leave it as $I$.}
+    a\left(M + \frac{I}{R^2}\right) &= F\left(1 - \frac{r}{R}\right) \\
+    a &= \frac{F(1 - r/R)}{M + I/R^2} = \boxed{\frac{FR(R-r)}{MR^2 + I}}
+\end{align*}
+
+\textbf{(b) Static Friction Force}
+
+Using the result for $a$ in equation (4):
+\begin{align*}
+    f_s &= \frac{Fr}{R} - \frac{I}{R^2} \left( \frac{FR(R-r)}{MR^2 + I} \right) \\
+    f_s &= \frac{F}{R(MR^2 + I)} \left[ r(MR^2 + I) - I(R-r) \right] \\
+    f_s &= \frac{F}{R(MR^2 + I)} \left[ rMR^2 + rI - IR + Ir \right] \\
+    f_s &= \boxed{\frac{F(rMR^2 - I(R-r))}{R(MR^2 + I)}}
+\end{align*}
+The friction force $f_s$ points forwards if $f_s < 0$ in our sign convention (since we assumed it was backwards). This occurs when the term in the numerator is negative:
+$$ rMR^2 - I(R-r) < 0 \implies rMR^2 < I(R-r) \implies \boxed{\frac{r}{R-r} < \frac{I}{MR^2}} $$
+If the inner radius $r$ is very small, friction opposes the pull. If $r$ is large (approaching $R$), friction aids the pull.
+
+\textbf{(c) Maximum Force}
+
+The condition for no slipping is $|f_s| \le \mu_s N$. The normal force $N = Mg$.
+$$ \left| \frac{F(rMR^2 - I(R-r))}{R(MR^2 + I)} \right| \le \mu_s Mg $$
+$$ F_{max} = \boxed{\frac{\mu_s Mg R(MR^2 + I)}{|rMR^2 - I(R-r)|}} $$
+
+\hrulefill
+\subsection*{Solution 6: Gyroscopic Precession}
+
+\textbf{(a) Torque due to Gravity}
+
+Let's set up a coordinate system where the pivot P is at the origin $(0,0,0)$. The flywheel's center of mass is at $\vec{r} = d\,\hat{\imath}$. The force of gravity is $\vec{F}_g = -Mg\,\hat{k}$ (acting downwards). The torque about the pivot is:
+$$ \vec{\tau} = \vec{r} \times \vec{F}_g = (d\,\hat{\imath}) \times (-Mg\,\hat{k}) = -dMg (\hat{\imath} \times \hat{k}) $$
+Since $\hat{\imath} \times \hat{k} = -\hat{\jmath}$, the torque is:
+$$ \vec{\tau} = -dMg (-\hat{\jmath}) = dMg\,\hat{\jmath} $$
+The magnitude of the torque is $\tau = dMg$. Its direction is along the positive y-axis, which is horizontal and perpendicular to the axle (i.e., "into the page" if viewing from above).
+
+\textbf{(b) Spin Angular Momentum}
+
+The flywheel is a solid disk with moment of inertia $I = \frac{1}{2}MR^2$. It spins with angular velocity $\omega_s$ about the x-axis.
+The spin angular momentum is a vector pointing along the axis of rotation:
+$$ \vec{L}_s = I \vec{\omega}_s = \left(\frac{1}{2}MR^2\right) \omega_s \,\hat{\imath} $$
+The magnitude is $L_s = \frac{1}{2}MR^2 \omega_s$. Its direction is along the axle (positive x-axis).
+
+\textbf{(c) Precession Angular Velocity}
+
+The fundamental relation for rotational dynamics is $\vec{\tau} = \frac{d\vec{L}}{dt}$. In a small time interval $dt$, the change in angular momentum is $d\vec{L} = \vec{\tau}\,dt$.
+$$ d\vec{L} = (dMg\,\hat{\jmath})\,dt $$
+This change $d\vec{L}$ is perpendicular to the original angular momentum $\vec{L}_s$. This means the torque does not change the magnitude of $\vec{L}_s$, only its direction. It causes the tip of the $\vec{L}_s$ vector to move in a circle in the xy-plane.
+
+Let $d\phi$ be the small angle the axle precesses through in time $dt$. The change in the angular momentum vector is an arc of a circle with radius $L_s$. For a small angle, the arc length is $|d\vec{L}| \approx L_s d\phi$.
+The magnitude of the change is $|d\vec{L}| = \tau\,dt = dMg\,dt$.
+Equating the two expressions for $|d\vec{L}|$:
+$$ L_s d\phi = dMg\,dt $$
+$$ \frac{d\phi}{dt} = \frac{dMg}{L_s} $$
+The rate of change of the precession angle, $\frac{d\phi}{dt}$, is the precession angular velocity, $\Omega_p$.
+$$ \Omega_p = \frac{dMg}{L_s} $$
+Substituting the expression for $L_s$ from part (b):
+$$ \Omega_p = \frac{dMg}{\frac{1}{2}MR^2 \omega_s} = \boxed{\frac{2gd}{R^2 \omega_s}} $$
+
+\end{document}

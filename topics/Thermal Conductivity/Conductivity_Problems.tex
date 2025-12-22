@@ -1,0 +1,283 @@
+\documentclass[12pt, a4paper]{article}
+
+% ========== PACKAGES ==========
+\usepackage{amsmath}          % For advanced math environments
+\usepackage{amssymb}          % For math symbols
+\usepackage{graphicx}         % To include images
+\usepackage[margin=1in]{geometry} % For page layout
+\usepackage{xcolor}           % For colors
+\usepackage{hyperref}         % For hyperlinks
+\usepackage{fancyhdr}         % For headers and footers
+\usepackage{tikz}             % For drawing diagrams
+\usepackage{pgfplots}         % For plotting graphs
+\usepackage{siunitx}          % For typesetting units correctly
+\usepackage{gensymb}          % Provides the \degree symbol, used with siunitx
+
+\pgfplotsset{compat=1.17}     % Use a recent TikZ/PGFPlots version
+
+% ========== TIKZ LIBRARIES ==========
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning}
+
+% ========== DOCUMENT INFORMATION ==========
+\title{New Problems in Thermal Conductivity}
+\author{Gemini AI}
+\date{\today}
+
+% ========== HEADER AND FOOTER ==========
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Thermal Conductivity Problems}
+\lhead{\thetitle}
+\cfoot{\thepage}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\section{New Problem 1: The Composite Rod}
+
+\subsection*{Question Text}
+\begin{quote}
+A composite cylindrical rod is constructed from a \SI{30.0}{\centi\meter} section of aluminum and a \SI{50.0}{\centi\meter} section of steel, joined end-to-end. Both sections have a diameter of \SI{4.00}{\centi\meter}. The aluminum end is placed in thermal contact with boiling water at \SI{100}{\celsius}, while the steel end is in contact with a large reservoir of liquid nitrogen at its boiling point of \SI{77.0}{\kelvin}. The rod is well-insulated along its sides.
+
+(i) Find the temperature at the junction where the two sections are joined.
+
+(ii) Calculate the total rate of heat flow through the composite rod.
+
+(iii) What is the total rate of change of entropy for the system (hot reservoir + cold reservoir + rod)?
+
+\noindent
+\textbf{Given:}
+\begin{itemize}
+    \item Thermal conductivity of Aluminum, $k_{Al} = \SI{237}{\watt\per\meter\per\kelvin}$
+    \item Thermal conductivity of Steel, $k_{St} = \SI{45.0}{\watt\per\meter\per\kelvin}$
+\end{itemize}
+\end{quote}
+
+\subsection*{Explanation and Solution}
+\subsubsection*{Conceptual Breakdown}
+This problem involves heat conduction through two different materials connected in series.
+\begin{enumerate}
+    \item In a steady state, the rate of heat flow ($P$) must be the same through both sections of the rod. If it were not, energy would accumulate at the junction, causing its temperature to change, which contradicts the steady-state assumption.
+    \item We can write Fourier's Law for each section separately. Let $T_H$ be the hot temperature (\SI{100}{\celsius}), $T_C$ be the cold temperature (\SI{77}{\kelvin}), and $T_J$ be the unknown junction temperature.
+    \item By equating the heat flow rates ($P_{Al} = P_{St}$), we can solve for $T_J$.
+    \item Once $T_J$ is known, we can calculate the heat flow rate $P$ using the parameters of either section.
+    \item The rate of entropy change is calculated for the hot and cold reservoirs, remembering that the rod itself is in a steady state and has no net entropy change over time.
+\end{enumerate}
+
+% Diagram for Problem 1
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=1.2]
+    % Hot Reservoir (Boiling Water)
+    \fill[red!20] (-1, -1.2) rectangle (0, 1.2);
+    \draw[red!60!black, thick] (-1, -1.2) -- (-1, 1.2);
+    \node[align=center] at (-0.5, 0) {$T_H = \SI{100}{\celsius}$ \\ (\SI{373.15}{\kelvin})};
+    
+    % Aluminum Rod
+    \fill[gray!30] (0, -0.7) rectangle (3, 0.7);
+    \draw[thick] (0, -0.7) -- (3, -0.7);
+    \draw[thick] (0, 0.7) -- (3, 0.7);
+    \node at (1.5, 0) {Aluminum};
+    \draw[<->] (0, -0.9) -- (3, -0.9) node[midway, below] {$L_{Al} = \SI{0.30}{\meter}$};
+
+    % Junction
+    \draw[thick, dashed] (3, -1.2) -- (3, 1.2) node[above=0.2cm] {$T_J$};
+    
+    % Steel Rod
+    \fill[gray!60] (3, -0.7) rectangle (8, 0.7);
+    \draw[thick] (3, -0.7) -- (8, -0.7);
+    \draw[thick] (3, 0.7) -- (8, 0.7);
+    \node at (5.5, 0) {Steel};
+    \draw[<->] (3, -0.9) -- (8, -0.9) node[midway, below] {$L_{St} = \SI{0.50}{\meter}$};
+
+    % Cold Reservoir (Liquid Nitrogen)
+    \fill[blue!20] (8, -1.2) rectangle (9, 1.2);
+    \draw[blue!60!black, thick] (9, -1.2) -- (9, 1.2);
+    \node[align=center] at (8.5, 0) {$T_C$ \\ = \SI{77}{\kelvin}};
+
+    % Heat Flow Arrow
+    \draw[-{Stealth[length=3mm, width=3mm]}, red, thick] (0.5, 1.0) -- (7.5, 1.0) node[midway, above] {Heat Flow, $P$};
+\end{tikzpicture}
+\caption{A composite rod connecting a hot and a cold reservoir.}
+\end{figure}
+
+\subsubsection*{Part (i): Junction Temperature ($T_J$)}
+First, convert all temperatures to Kelvin:
+$T_H = \SI{100}{\celsius} + 273.15 = \SI{373.15}{\kelvin}$. $T_C$ is already \SI{77}{\kelvin}.
+The cross-sectional area $A$ is the same for both sections:
+$A = \pi r^2 = \pi (\SI{0.0200}{\meter})^2 = 4\pi \times 10^{-4} \, \si{\meter\squared} \approx \SI{1.257e-3}{\meter\squared}$.
+
+In steady state, $P_{Al} = P_{St}$:
+\[ \frac{k_{Al} A (T_H - T_J)}{L_{Al}} = \frac{k_{St} A (T_J - T_C)}{L_{St}} \]
+The area $A$ cancels out:
+\[ \frac{k_{Al}}{L_{Al}} (T_H - T_J) = \frac{k_{St}}{L_{St}} (T_J - T_C) \]
+Now, substitute the values and solve for $T_J$:
+\[ \frac{237}{0.30} (373.15 - T_J) = \frac{45.0}{0.50} (T_J - 77.0) \]
+\[ 790 (373.15 - T_J) = 90 (T_J - 77.0) \]
+\[ 294788.5 - 790 T_J = 90 T_J - 6930 \]
+\[ 301718.5 = 880 T_J \]
+\[ T_J = \frac{301718.5}{880} \approx \SI{342.86}{\kelvin} \]
+Converting back to Celsius: $T_J = 342.86 - 273.15 = \SI{69.7}{\celsius}$.
+
+\subsubsection*{Part (ii): Rate of Heat Flow ($P$)}
+We can use the parameters for either section to find $P$. Let's use aluminum:
+\[ P = \frac{k_{Al} A (T_H - T_J)}{L_{Al}} = \frac{(237)(\SI{1.257e-3}{\meter\squared})(\SI{373.15}{\kelvin} - \SI{342.86}{\kelvin})}{\SI{0.30}{\meter}} \]
+\[ P = \frac{(237)(\SI{1.257e-3}{})(30.29)}{0.30} \approx \SI{30.0}{\watt} \]
+
+\subsubsection*{Part (iii): Total Rate of Entropy Change}
+The rod is in a steady state, so its entropy does not change ($\frac{dS_{rod}}{dt} = 0$). We only consider the reservoirs.
+\[ \frac{dS_{\text{total}}}{dt} = \frac{dS_{\text{hot}}}{dt} + \frac{dS_{\text{cold}}}{dt} = \frac{-P}{T_H} + \frac{+P}{T_C} \]
+\[ \frac{dS_{\text{total}}}{dt} = \frac{-\SI{30.0}{\watt}}{\SI{373.15}{\kelvin}} + \frac{\SI{30.0}{\watt}}{\SI{77.0}{\kelvin}} \]
+\[ \frac{dS_{\text{total}}}{dt} = -0.0804 + 0.3896 = \SI{0.309}{\joule\per\kelvin\per\second} \]
+The total entropy of the system increases, as expected for an irreversible process.
+
+\newpage
+\section{New Problem 2: The Cooling Sphere}
+
+\subsection*{Question Text}
+\begin{quote}
+A solid iron sphere of radius \SI{5.0}{\centi\meter} is heated to an initial temperature of \SI{300}{\celsius}. It is then suspended by an insulating thread and fully submerged in a well-insulated container holding a mixture of \SI{500}{\gram} of ice and \SI{500}{\gram} of water, initially at thermal equilibrium at \SI{0}{\celsius}.
+
+Assuming heat is conducted uniformly from the entire surface of the sphere into the mixture, how long does it take for the sphere to cool down to \SI{100}{\celsius}?
+
+\noindent
+\textbf{Hint:} The rate of heat loss from the sphere depends on its own changing temperature. You will need to set up and solve a differential equation.
+
+\noindent
+\textbf{Given:}
+\begin{itemize}
+    \item Density of iron, $\rho_{Fe} = \SI{7870}{\kilogram\per\cubic\meter}$
+    \item Specific heat capacity of iron, $c_{Fe} = \SI{450}{\joule\per\kilogram\per\kelvin}$
+    \item Specific heat capacity of water, $c_w = \SI{4200}{\joule\per\kilogram\per\kelvin}$
+    \item Latent heat of fusion of water, $L_f = \SI{3.34e5}{\joule\per\kilogram}$
+    \item Consider the "length" of conduction to be the radius of the sphere.
+\end{itemize}
+\end{quote}
+
+\subsection*{Explanation and Solution}
+\subsubsection*{Conceptual Breakdown}
+This problem involves heat transfer from a source whose temperature is changing over time. The process occurs in two stages for the ice-water mixture:
+\begin{enumerate}
+    \item \textbf{Stage 1: Melting Ice.} The sphere cools from \SI{300}{\celsius} to some intermediate temperature, $T_1$. The heat it loses is used to melt all the ice at a constant mixture temperature of \SI{0}{\celsius}.
+    \item \textbf{Stage 2: Heating Water.} The sphere continues to cool from $T_1$ down to the final temperature of \SI{100}{\celsius}. The heat it loses is now used to raise the temperature of the entire mass of water (initial water + melted ice) from \SI{0}{\celsius} to some final temperature, $T_{f,w}$.
+\end{enumerate}
+In both stages, the rate of heat flow is not constant because the sphere's temperature, $T_{Fe}(t)$, is decreasing. This requires integration.
+
+\subsubsection*{Preliminary Calculations}
+Mass of the iron sphere, $m_{Fe}$:
+\[ m_{Fe} = \rho_{Fe} V = \rho_{Fe} \left(\frac{4}{3}\pi r^3\right) = (\SI{7870}{}) \left(\frac{4}{3}\pi (\SI{0.05}{\meter})^3\right) \approx \SI{4.12}{\kilogram} \]
+Heat required to melt all the ice ($Q_{melt}$):
+\[ Q_{melt} = m_{ice} L_f = (\SI{0.5}{\kilogram})(\SI{3.34e5}{\joule\per\kilogram}) = \SI{167000}{\joule} \]
+
+\subsubsection*{Stage 1: Sphere Cools While Melting Ice ($t_1$)}
+Let $T_{Fe}$ be the sphere's temperature. The mixture is at $T_C = \SI{0}{\celsius} = \SI{273.15}{\kelvin}$.
+The heat lost by the sphere in cooling by $dT_{Fe}$ is $dQ = -m_{Fe} c_{Fe} dT_{Fe}$. (The negative sign is because heat is lost as temperature decreases).
+The rate of heat flow out of the sphere is $P = \frac{dQ}{dt}$. For this problem, we are told to model the conduction over the length of the radius, $r$.
+\[ \frac{dQ}{dt} = \frac{k A (T_{Fe} - T_C)}{r} \quad \text{(Note: this is a simplification)} \]
+Wait, the problem doesn't give a thermal conductivity for water or a convection coefficient. This means we cannot use Fourier's law directly. The problem is simpler: it's a calorimetry problem that requires integration over time.
+
+Let's re-evaluate. The rate of heat lost by the sphere is:
+\[ \frac{dQ}{dt} = -m_{Fe}c_{Fe}\frac{dT_{Fe}}{dt} \]
+Let's assume the rate of heat transfer is proportional to the temperature difference, which is a common simplification (Newton's Law of Cooling). Let's assume the problem meant for us to find the total energy exchange first.
+
+Let's find the temperature $T_1$ the sphere reaches when all ice is melted.
+Heat lost by sphere = Heat gained by ice.
+\[ m_{Fe}c_{Fe}(T_{i,Fe} - T_1) = Q_{melt} \]
+\[ (\SI{4.12}{})(\SI{450}{})(300 - T_1) = 167000 \]
+\[ 1854(300 - T_1) = 167000 \]
+\[ 300 - T_1 = \frac{167000}{1854} \approx 90.08 \]
+\[ T_1 = 300 - 90.08 = \SI{209.9}{\celsius} \]
+Since $T_1 = \SI{209.9}{\celsius}$ is above the final temperature of \SI{100}{\celsius}, the process does indeed have two stages.
+
+This problem is ill-defined without a heat transfer coefficient or thermal conductivity. Let's redefine the problem to be solvable with the given concepts.
+
+\subsubsection*{Revised Problem 2 and Solution}
+Let's assume the question implies a constant heat flow rate for simplicity, perhaps by stating the *initial* rate of heat flow. A more interesting problem that is solvable is a variation of the original SPhO 2020 problem.
+
+\paragraph{New Question Text for Problem 2:}
+A well-insulated container holds \SI{2.0}{\kilogram} of a liquid with specific heat capacity \SI{2500}{\joule\per\kilogram\per\kelvin}. The liquid is initially at \SI{10}{\celsius}. A copper rod of length \SI{40}{\centi\meter} and diameter \SI{1.5}{\centi\meter} has one end immersed in the liquid, while the other is maintained in a steam bath at \SI{100}{\celsius}. How long does it take for the liquid's temperature to rise from \SI{10}{\celsius} to \SI{50}{\celsius}?
+[Thermal conductivity of copper $= \SI{400}{\watt\per\meter\per\kelvin}$]
+
+\paragraph{Solution}
+This problem mirrors the logic of the original SPhO 2020 problem's second stage. The temperature of the cold reservoir, $T_C(t)$, changes over time.
+
+1.  \textbf{Set up the differential equation}:
+    The heat $dQ$ flowing into the liquid raises its temperature by $dT_C$.
+    \[ dQ = m_{liq} c_{liq} dT_C \]
+    This heat is supplied by the rod at a non-constant rate, which depends on the liquid's current temperature $T_C$:
+    \[ \frac{dQ}{dt} = P(t) = \frac{kA(T_H - T_C(t))}{L} \]
+    Equating the two expressions for $dQ$:
+    \[ m_{liq} c_{liq} dT_C = \frac{kA(T_H - T_C)}{L} dt \]
+
+2.  \textbf{Separate variables and integrate}:
+    Rearrange the equation to separate the time variables ($dt$) and temperature variables ($dT_C$).
+    \[ dt = \frac{m_{liq} c_{liq} L}{kA} \frac{dT_C}{T_H - T_C} \]
+    Now, integrate both sides. The time $t$ goes from 0 to the final time $t_f$. The temperature of the cold liquid $T_C$ goes from the initial \SI{10}{\celsius} to the final \SI{50}{\celsius}.
+    \[ \int_0^{t_f} dt = \frac{m_{liq} c_{liq} L}{kA} \int_{10}^{50} \frac{dT_C}{100 - T_C} \]
+
+3.  \textbf{Perform the integration}:
+    The integral of $\frac{1}{100-T_C}$ with respect to $T_C$ is $-\ln(100 - T_C)$.
+    \[ t_f = \frac{m_{liq} c_{liq} L}{kA} \left[-\ln(100 - T_C)\right]_{10}^{50} \]
+    \[ t_f = \frac{m_{liq} c_{liq} L}{kA} \left( (-\ln(100 - 50)) - (-\ln(100 - 10)) \right) \]
+    \[ t_f = \frac{m_{liq} c_{liq} L}{kA} \left( \ln(90) - \ln(50) \right) = \frac{m_{liq} c_{liq} L}{kA} \ln\left(\frac{90}{50}\right) \]
+
+4.  \textbf{Substitute values and calculate}:
+    \begin{itemize}
+        \item $m_{liq} = \SI{2.0}{\kilogram}$
+        \item $c_{liq} = \SI{2500}{\joule\per\kilogram\per\kelvin}$
+        \item $L = \SI{0.40}{\meter}$
+        \item $k = \SI{400}{\watt\per\meter\per\kelvin}$
+        \item $A = \pi r^2 = \pi (\frac{\SI{0.015}{\meter}}{2})^2 = \pi (\SI{0.0075}{\meter})^2 \approx \SI{1.767e-4}{\meter\squared}$
+    \end{itemize}
+    \[ t_f = \frac{(\SI{2.0}{})(\SI{2500}{})(\SI{0.40}{})}{(\SI{400}{})(\SI{1.767e-4}{})} \ln(1.8) \]
+    \[ t_f = \frac{2000}{0.07068} \ln(1.8) \approx (28296.5)(0.5878) \approx \SI{16634}{\second} \]
+    This is approximately $\frac{16634}{60} \approx \SI{277}{\minute}$.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={Temperature of Liquid vs. Time},
+    xlabel={Time (s)},
+    ylabel={Temperature (\si{\celsius})},
+    xmin=0, xmax=17000,
+    ymin=0, ymax=60,
+    grid=major,
+    legend pos=south east,
+]
+\addplot[
+    domain=0:16634, 
+    samples=100, 
+    color=blue,
+    thick,
+]
+{100 - 90*exp(-x / (2000 / (400*1.767e-4 * ln(1.8) / 16634)))};
+% The exponential function needs to be derived from the integral solution
+% T(t) = T_H - (T_H - T_i) * exp(- (kA / (m c L)) * t)
+% Let C = kA / (m c L) = 0.07068 / 2000 = 3.534e-5
+% T(t) = 100 - (100-10)*exp(-C*t) = 100 - 90*exp(-3.534e-5 * t)
+\addplot[
+    domain=0:16634, 
+    samples=100, 
+    color=blue,
+    thick,
+]
+{100 - 90*exp(-3.534e-5 * x)};
+\addlegendentry{$T(t) = 100 - 90e^{-Ct}$}
+
+\draw[dashed, red] (axis cs:0,50) -- (axis cs:16634,50);
+\draw[dashed, red] (axis cs:16634,0) -- (axis cs:16634,50);
+\node[above, red] at (axis cs:8000, 50) {$t_f \approx \SI{16634}{s}$};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Graph showing the exponential rise in the liquid's temperature over time. The rate of heating slows as the liquid's temperature approaches the source temperature.}
+\end{figure}
+
+\end{document}

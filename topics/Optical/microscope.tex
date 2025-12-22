@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Define a new environment for problems to keep them distinct
+\newenvironment{problem}[1]
+  {\begin{center}\bfseries #1\end{center}\par\nobreak\vspace{\medskipamount}}
+  {\par\vspace{\bigskipamount}\hrule\vspace{\bigskipamount}}
+
+\begin{document}
+
+\begin{problem}{Problem 1: Compound Microscope - Magnification and Image Position}
+\subsection*{Question}
+A compound microscope has an \textbf{objective lens} with a focal length of \textbf{10 mm} and an \textbf{eyepiece} with a focal length of \textbf{40 mm}. An object is placed \textbf{12 mm} from the objective lens. The lenses are \textbf{200 mm} apart.
+\begin{itemize}
+    \item[a)] Where is the intermediate image formed by the objective lens?
+    \item[b)] What is the linear magnification of the objective?
+    \item[c)] What is the total magnification of the microscope, assuming the final image is viewed at the near point (\(D = 250\) mm)?
+\end{itemize}
+
+\subsection*{Solution}
+\subsubsection*{Given Information}
+\begin{itemize}
+    \item Objective focal length, \(f_o = 10 \text{ mm}\)
+    \item Eyepiece focal length, \(f_e = 40 \text{ mm}\)
+    \item Object distance from objective, \(u_o = 12 \text{ mm}\)
+    \item Distance between lenses, \(L = 200 \text{ mm}\)
+    \item Near point distance, \(D = 250 \text{ mm}\)
+\end{itemize}
+
+\subsubsection*{a) Position of the Intermediate Image (\(v_o\))}
+We use the thin lens formula for the objective lens. By convention, the distance to a real object is negative.
+$$ \frac{1}{f_o} = \frac{1}{v_o} - \frac{1}{u_o} $$
+Substituting the values, with \(u_o = -12 \text{ mm}\):
+$$ \frac{1}{10} = \frac{1}{v_o} - \frac{1}{-12} \implies \frac{1}{10} = \frac{1}{v_o} + \frac{1}{12} $$
+Rearranging to solve for \(v_o\):
+$$ \frac{1}{v_o} = \frac{1}{10} - \frac{1}{12} = \frac{6 - 5}{60} = \frac{1}{60} $$
+$$ v_o = 60 \text{ mm} $$
+The intermediate image is formed \textbf{60 mm} from the objective lens, inside the tube.
+
+\subsubsection*{b) Linear Magnification of the Objective (\(m_o\))}
+The linear magnification of the objective is given by:
+$$ m_o = -\frac{v_o}{u_o} $$
+$$ m_o = -\frac{60}{-12} = 5 $$
+The objective lens produces a real, inverted image magnified \textbf{5} times.
+
+\subsubsection*{c) Total Magnification of the Microscope (\(M_{total}\))}
+The eyepiece acts as a simple magnifier. Its angular magnification \(M_e\) for an image formed at the near point is:
+$$ M_e = 1 + \frac{D}{f_e} $$
+$$ M_e = 1 + \frac{250}{40} = 1 + 6.25 = 7.25 $$
+The total magnification is the product of the objective and eyepiece magnifications:
+$$ M_{total} = m_o \times M_e $$
+$$ M_{total} = 5 \times 7.25 = 36.25 $$
+The total magnification of the microscope is \textbf{36.25x}.
+\end{problem}
+
+\begin{problem}{Problem 2: Compound Microscope - Determining Focal Length}
+\subsection*{Question}
+A lab technician uses a compound microscope to view a sample. The eyepiece has a focal length of \textbf{25 mm}. The distance between the objective lens and the eyepiece is adjusted to \textbf{18 cm}. If the microscope provides a total magnification of \textbf{-250} when the final image is formed at infinity (normal adjustment), what is the focal length of the objective lens?
+
+\subsection*{Solution}
+\subsubsection*{Given Information}
+\begin{itemize}
+    \item Eyepiece focal length, \(f_e = 25 \text{ mm}\)
+    \item Distance between lenses (approximated as tube length), \(L \approx 18 \text{ cm} = 180 \text{ mm}\)
+    \item Total magnification, \(M_{total} = -250\)
+    \item Near point distance, \(D = 25 \text{ cm} = 250 \text{ mm}\)
+    \item The final image is at infinity (normal adjustment).
+\end{itemize}
+
+\subsubsection*{Calculation}
+For a compound microscope in normal adjustment, the total magnification is given by the formula:
+$$ M_{total} = \left( -\frac{L}{f_o} \right) \times \left( \frac{D}{f_e} \right) $$
+This formula provides a good approximation where \(L\) is the effective tube length. We are given all values except for \(f_o\), so we rearrange the formula to solve for it.
+$$ -250 = \left( -\frac{180}{f_o} \right) \times \left( \frac{250}{25} \right) $$
+First, simplify the eyepiece magnification term:
+$$ \frac{250}{25} = 10 $$
+Now substitute this back into the main equation:
+$$ -250 = -\frac{180}{f_o} \times 10 $$
+The negative signs on both sides cancel out:
+$$ 250 = \frac{1800}{f_o} $$
+Finally, solve for \(f_o\):
+$$ f_o = \frac{1800}{250} = \frac{180}{25} = 7.2 $$
+The focal length of the objective lens is \textbf{7.2 mm}.
+\end{problem}
+
+\begin{problem}{Problem 3: Two-Lens Telescope - Angular Magnification and Length}
+\subsection*{Question}
+An astronomical telescope consisting of two converging lenses is used to view a distant galaxy. The \textbf{objective lens} has a focal length of \textbf{1500 mm}, and the \textbf{eyepiece} has a focal length of \textbf{30 mm}. The telescope is set for a relaxed eye (normal adjustment, with the final image at infinity).
+\begin{itemize}
+    \item[a)] What is the angular magnification of the telescope?
+    \item[b)] What is the total length of the telescope (the distance between the two lenses)?
+\end{itemize}
+
+\subsection*{Solution}
+\subsubsection*{Given Information}
+\begin{itemize}
+    \item Objective lens focal length, \(f_o = 1500 \text{ mm}\)
+    \item Eyepiece focal length, \(f_e = 30 \text{ mm}\)
+    \item The telescope is in normal adjustment.
+\end{itemize}
+
+\subsubsection*{a) Angular Magnification (\(M\))}
+For a refracting telescope in normal adjustment, the angular magnification is the ratio of the objective's focal length to the eyepiece's focal length. The negative sign indicates an inverted image.
+$$ M = -\frac{f_o}{f_e} $$
+Plugging in the given values:
+$$ M = -\frac{1500 \text{ mm}}{30 \text{ mm}} = -50 $$
+The angular magnification is \textbf{-50x}.
+
+\subsubsection*{b) Total Length of the Telescope (\(L\))}
+In normal adjustment, a distant object (at infinity) forms an intermediate image at the objective's focal point (\(f_o\)). For the final image to also be at infinity, this intermediate image must be located at the eyepiece's focal point (\(f_e\)). Therefore, the two focal points must coincide, and the total length of the telescope is the sum of the two focal lengths.
+$$ L = f_o + f_e $$
+Plugging in the values:
+$$ L = 1500 \text{ mm} + 30 \text{ mm} = 1530 \text{ mm} $$
+The total length of the telescope is \textbf{1530 mm} (or 1.53 meters).
+\end{problem}
+
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\title{\textbf{Challenging Problems on Stationary Waves and Sonometer}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\hrule
+\vspace{1em}
+
+\section*{Problem 1: The Buoyant Block}
+
+A sonometer wire with a linear mass density of $\mu = 4.0 \times 10^{-4} \text{ kg/m}$ is set up so a segment of length $L_1 = 75 \text{ cm}$ vibrates in its fundamental mode. The tension is provided by a solid aluminum block of density $\rho_{Al} = 2700 \text{ kg/m}^3$ hanging freely in the air. The wire resonates with a 200 Hz tuning fork.
+
+The aluminum block is now fully submerged in a vat of oil with a density of $\rho_{oil} = 900 \text{ kg/m}^3$. To bring the wire back into resonance with the same 200 Hz tuning fork (still in the fundamental mode), the vibrating length must be adjusted to a new value, $L_2$. Find $L_2$. (Use $g=10 \text{ m/s}^2$).
+
+\vspace{1em}
+\noindent\textit{\textbf{Hint:} Submerging the block introduces a buoyant force that reduces the tension in the wire. Use Archimedes' principle to find the new, lower tension.}
+\vspace{1em}
+\hrule
+
+\subsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Find the Initial Tension ($T_1$)} \\
+    First, we use the fundamental frequency formula to find the initial tension required for resonance.
+    $$ f = \frac{1}{2L_1} \sqrt{\frac{T_1}{\mu}} $$
+    $$ 200 \text{ Hz} = \frac{1}{2 \times 0.75 \text{ m}} \sqrt{\frac{T_1}{4.0 \times 10^{-4} \text{ kg/m}}} $$
+    $$ 300 = \sqrt{\frac{T_1}{4.0 \times 10^{-4}}} $$
+    $$ T_1 = (300)^2 \times (4.0 \times 10^{-4}) = 90000 \times 4.0 \times 10^{-4} = \mathbf{36 \textbf{ N}} $$
+
+    \item \textbf{Find the Mass and Volume of the Block} \\
+    The initial tension is the weight of the block in air: $T_1 = M \times g$.
+    $$ M = \frac{T_1}{g} = \frac{36 \text{ N}}{10 \text{ m/s}^2} = 3.6 \text{ kg} $$
+    The volume of the block is $V = \frac{M}{\rho_{Al}}$.
+    $$ V = \frac{3.6 \text{ kg}}{2700 \text{ kg/m}^3} = \frac{1}{750} \text{ m}^3 $$
+
+    \item \textbf{Calculate the New Tension ($T_2$)} \\
+    When submerged in oil, the block experiences an upward buoyant force ($F_B$) equal to the weight of the displaced oil.
+    $$ F_B = V \times \rho_{oil} \times g $$
+    $$ F_B = \left(\frac{1}{750} \text{ m}^3\right) \times (900 \text{ kg/m}^3) \times (10 \text{ m/s}^2) = 12 \text{ N} $$
+    The new tension is the apparent weight: $T_2 = T_1 - F_B$.
+    $$ T_2 = 36 \text{ N} - 12 \text{ N} = \mathbf{24 \textbf{ N}} $$
+
+    \item \textbf{Find the New Resonating Length ($L_2$)} \\
+    The frequency must remain 200 Hz. We can set up a ratio:
+    $$ f = \frac{1}{2L_1} \sqrt{\frac{T_1}{\mu}} = \frac{1}{2L_2} \sqrt{\frac{T_2}{\mu}} $$
+    $$ \frac{\sqrt{T_1}}{L_1} = \frac{\sqrt{T_2}}{L_2} $$
+    $$ L_2 = L_1 \sqrt{\frac{T_2}{T_1}} = 0.75 \text{ m} \times \sqrt{\frac{24}{36}} = 0.75 \times \sqrt{\frac{2}{3}} $$
+    $$ L_2 \approx 0.75 \times 0.8165 \approx 0.612 \text{ m} $$
+\end{enumerate}
+The new resonating length is \textbf{61.2 cm}.
+
+\newpage
+\hrule
+\vspace{1em}
+\section*{Problem 2: The Elevator Ride}
+
+A sonometer is placed in an elevator. A wire with a vibrating length of $L = 60 \text{ cm}$ and linear density $\mu = 2.5 \times 10^{-4} \text{ kg/m}$ is tensioned by a 5.0 kg mass. When the elevator is at rest, the wire vibrates in its fourth harmonic ($n=4$) in resonance with a specific frequency source.
+
+The elevator then accelerates, and it's observed that the wire, vibrating in its third harmonic ($n=3$), is now in resonance with the \textit{same} frequency source. Determine the magnitude and direction of the elevator's acceleration. (Use $g=9.8 \text{ m/s}^2$).
+
+\vspace{1em}
+\noindent\textit{\textbf{Hint:} The acceleration of the elevator changes the apparent weight of the hanging mass, thus altering the tension. Since the frequency and length are constant, the term $n\sqrt{T}$ must be the same in both scenarios.}
+\vspace{1em}
+\hrule
+
+\subsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Set up the Frequency Relation} \\
+    Let $T_1$ be the tension when the elevator is at rest and $T_2$ be the tension when it is accelerating. The frequency $f$ is the same in both cases.
+    $$ f = \frac{n_1}{2L} \sqrt{\frac{T_1}{\mu}} = \frac{n_2}{2L} \sqrt{\frac{T_2}{\mu}} $$
+    Given $n_1 = 4$ (at rest) and $n_2 = 3$ (accelerating), we can simplify the relation:
+    $$ n_1 \sqrt{T_1} = n_2 \sqrt{T_2} $$
+    $$ 4 \sqrt{T_1} = 3 \sqrt{T_2} $$
+    Squaring both sides gives: $16 T_1 = 9 T_2 \implies T_2 = \frac{16}{9} T_1$.
+
+    \item \textbf{Relate Tension to Acceleration} \\
+    The tension at rest is $T_1 = Mg = 5.0 \times 9.8 = 49 \text{ N}$. The new tension is $T_2 = M(g+a)$, where $a$ is the elevator's acceleration (positive for upwards, negative for downwards). Since $T_2 = \frac{16}{9} T_1$, the tension has increased. An increase in apparent weight means the elevator must be accelerating \textbf{upwards}.
+
+    \item \textbf{Solve for Acceleration ($a$)} \\
+    Substitute the tension expressions into the relation from step 1:
+    $$ 16 (Mg) = 9 (M(g+a)) $$
+    Cancel the mass $M$:
+    $$ 16g = 9g + 9a $$
+    $$ 7g = 9a $$
+    $$ a = \frac{7}{9}g = \frac{7}{9} \times 9.8 \text{ m/s}^2 \approx 7.62 \text{ m/s}^2 $$
+\end{enumerate}
+The elevator's acceleration is \textbf{7.62 m/s$^2$ upwards}.
+
+\newpage
+\hrule
+\vspace{1em}
+\section*{Problem 3: The Sliding Block on an Incline}
+
+A sonometer wire is stretched horizontally. The wire passes over a frictionless pulley and is attached to a block of mass $m = 10 \text{ kg}$. The block rests on a rough inclined plane with an angle of $\theta = 30^\circ$ and a coefficient of kinetic friction $\mu_k = 0.25$. The vibrating length of the wire is $L=50 \text{ cm}$.
+
+First, the block is pulled \textbf{up} the incline at a constant velocity, and the wire's fundamental frequency is $f_{\text{up}}$. Next, the block is lowered \textbf{down} the incline at the same constant velocity, and the fundamental frequency is $f_{\text{down}}$. Calculate the ratio $\frac{f_{\text{up}}}{f_{\text{down}}}$. (Use $g=10 \text{ m/s}^2$).
+
+\vspace{1em}
+\noindent\textit{\textbf{Hint:} The tension in the wire is equal to the force required to move the block. When moving up, this force must overcome both gravity's component and friction. When moving down, gravity's component helps, and the required force is less.}
+\vspace{1em}
+\hrule
+
+\subsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Calculate Gravitational and Frictional Forces} \\
+    Component of gravity parallel to the incline:
+    $$ F_g = mg \sin\theta = 10 \times 10 \times \sin(30^\circ) = 100 \times 0.5 = 50 \text{ N} $$
+    Normal force on the block:
+    $$ N = mg \cos\theta = 10 \times 10 \times \cos(30^\circ) = 100 \times \frac{\sqrt{3}}{2} \approx 86.6 \text{ N} $$
+    Force of kinetic friction (magnitude is the same for both directions):
+    $$ f_k = \mu_k N = 0.25 \times 86.6 = 21.65 \text{ N} $$
+
+    \item \textbf{Find Tension When Moving Up ($T_{\text{up}}$)} \\
+    At constant velocity, the net force is zero. The tension ($T_{\text{up}}$) must balance the gravitational component and friction, which both act down the incline.
+    $$ T_{\text{up}} = F_g + f_k = 50 \text{ N} + 21.65 \text{ N} = \mathbf{71.65 \textbf{ N}} $$
+
+    \item \textbf{Find Tension When Moving Down ($T_{\text{down}}$)} \\
+    At constant velocity, the net force is again zero. The gravitational component pulls the block down the incline. The tension ($T_{\text{down}}$) and the force of friction both act up the incline to oppose this.
+    $$ T_{\text{down}} + f_k = F_g $$
+    $$ T_{\text{down}} = F_g - f_k = 50 \text{ N} - 21.65 \text{ N} = \mathbf{28.35 \textbf{ N}} $$
+
+    \item \textbf{Calculate the Frequency Ratio} \\
+    For a sonometer wire, frequency is directly proportional to the square root of the tension ($f \propto \sqrt{T}$).
+    $$ \frac{f_{\text{up}}}{f_{\text{down}}} = \frac{\sqrt{T_{\text{up}}}}{\sqrt{T_{\text{down}}}} = \sqrt{\frac{71.65}{28.35}} $$
+    $$ \frac{f_{\text{up}}}{f_{\text{down}}} = \sqrt{2.527} \approx 1.59 $$
+\end{enumerate}
+The ratio of the frequencies $\frac{f_{\text{up}}}{f_{\text{down}}}$ is approximately \textbf{1.59}.
+
+\newpage
+\hrule
+\vspace{1em}
+\section*{Problem 4: Beats, Harmonics, and Unison}
+
+Two identical sonometer wires, A and B, are stretched side-by-side with the same initial tension $T_0$ and vibrating length $L_0 = 80.0 \text{ cm}$. They are both plucked in their fundamental mode and vibrate in unison at $f_0 = 300 \text{ Hz}$.
+
+The tension in wire B is then increased slightly. When plucked together in their fundamental modes, 6 beats per second are heard. Following this, the bridges are adjusted. The length of wire A is changed to $L_A$ and the length of wire B to $L_B$. It is found that the \textbf{third harmonic} of wire A is in unison with the \textbf{fourth harmonic} of wire B.
+
+Calculate:
+\begin{enumerate}
+    \item[(a)] The percentage increase in the tension of wire B.
+    \item[(b)] The ratio of the new lengths, $L_A / L_B$.
+\end{enumerate}
+
+\vspace{1em}
+\noindent\textit{\textbf{Hint:} (a) The beat frequency gives you the new frequency of wire B. Use the relation $f \propto \sqrt{T}$ to find the change in tension. (b) Write the frequency equations for the third harmonic of A and the fourth harmonic of B, set them equal, and solve for the ratio of lengths.}
+\vspace{1em}
+\hrule
+
+\subsection*{Solution}
+\begin{enumerate}
+    \item[(a)] \textbf{Percentage Increase in Tension} \\
+    The initial frequency is $f_A = 300 \text{ Hz}$. Since tension in B was increased, its frequency $f_B$ is higher.
+    $$ f_B = f_A + f_{\text{beat}} = 300 \text{ Hz} + 6 \text{ Hz} = 306 \text{ Hz} $$
+    The ratio of frequencies is related to the ratio of tensions:
+    $$ \frac{f_B}{f_A} = \sqrt{\frac{T_B}{T_A}} $$
+    $$ \frac{306}{300} = \sqrt{\frac{T_B}{T_0}} \implies 1.02 = \sqrt{\frac{T_B}{T_0}} $$
+    $$ \frac{T_B}{T_0} = (1.02)^2 = 1.0404 $$
+    This means $T_B$ is $1.0404$ times $T_0$. The percentage increase is $(1.0404 - 1) \times 100\% = \mathbf{4.04\%}$.
+
+    \item[(b)] \textbf{Ratio of New Lengths} \\
+    The frequency of the third harmonic ($n=3$) of wire A at length $L_A$ and tension $T_0$ is:
+    $$ f'_{A} = \frac{3}{2L_A} \sqrt{\frac{T_0}{\mu}} $$
+    The frequency of the fourth harmonic ($n=4$) of wire B at length $L_B$ and tension $T_B = 1.0404 T_0$ is:
+    $$ f'_{B} = \frac{4}{2L_B} \sqrt{\frac{T_B}{\mu}} = \frac{2}{L_B} \sqrt{\frac{1.0404 T_0}{\mu}} = \frac{2 \sqrt{1.0404}}{L_B} \sqrt{\frac{T_0}{\mu}} $$
+    Since $\sqrt{1.0404} = 1.02$, this simplifies to:
+    $$ f'_{B} = \frac{2 \times 1.02}{L_B} \sqrt{\frac{T_0}{\mu}} = \frac{2.04}{L_B} \sqrt{\frac{T_0}{\mu}} $$
+    They are in unison, so $f'_{A} = f'_{B}$:
+    $$ \frac{3}{2L_A} \sqrt{\frac{T_0}{\mu}} = \frac{2.04}{L_B} \sqrt{\frac{T_0}{\mu}} $$
+    $$ \frac{1.5}{L_A} = \frac{2.04}{L_B} $$
+    $$ \frac{L_A}{L_B} = \frac{1.5}{2.04} \approx 0.735 $$
+\end{enumerate}
+The ratio of the new lengths $L_A / L_B$ is approximately \textbf{0.735}.
+
+\end{document}

@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+
+% PACKAGES for math, layout, and formatting
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+% Set page margins
+\geometry{a4paper, margin=1in}
+
+% DOCUMENT START
+\begin{document}
+
+\title{Derivation of the Vis-Viva Equation}
+\author{}
+\date{}
+\maketitle
+
+The \textbf{vis-viva equation} is a fundamental formula in orbital mechanics. Its derivation comes directly from one of the most important principles in physics: the \textbf{conservation of energy}.
+
+The total energy of an orbiting object remains constant. This energy is the sum of its kinetic energy (due to its motion) and its gravitational potential energy (due to its position). The derivation involves finding two different expressions for this total energy and setting them equal.
+
+\hrule
+\section*{Step 1: The General Energy Equation}
+
+First, we write the general formula for the total mechanical energy ($E$) of an object of mass $m$ orbiting a large body of mass $M$:
+\begin{align*}
+    E &= (\text{Kinetic Energy}) + (\text{Gravitational Potential Energy}) \\
+    E &= \frac{1}{2}mv^2 - \frac{GMm}{r}
+\end{align*}
+To simplify, we use the \textbf{specific orbital energy} ($\mathcal{E}$), which is the energy per unit mass ($\mathcal{E} = E/m$). This removes the spacecraft's own mass ($m$) from the equation. We also use the gravitational parameter ($\mu = GM$).
+
+This gives us our first expression for energy:
+$$ \mathcal{E} = \frac{v^2}{2} - \frac{\mu}{r} $$
+
+\hrule
+\section*{Step 2: Relating Energy to the Orbit's Size}
+
+Next, we find a second expression that relates the total energy \emph{only} to the size of the elliptical orbit, defined by its \textbf{semi-major axis ($a$)}.
+
+\begin{figure}[h!]
+    \centering
+    % In a real document, you would replace the \framebox with:
+    % \includegraphics[width=0.7\textwidth]{path/to/your/image.png}
+    \framebox[0.8\textwidth][c]{\small }
+    \caption{An elliptical orbit showing the semi-major axis ($a$), and the current distance ($r$).}
+    \label{fig:orbit}
+\end{figure}
+
+It can be shown that the specific energy of any elliptical orbit is constant and is given by this key formula:
+$$ \mathcal{E} = -\frac{\mu}{2a} $$
+This important result means that the total energy of an orbit depends only on its average size ($a$), not on how elliptical it is.
+
+\hrule
+\section*{Step 3: Equating the Energy Expressions}
+
+Since the specific energy $\mathcal{E}$ is constant everywhere in the orbit, we can set our two expressions from Step 1 and Step 2 equal to each other:
+$$ \frac{v^2}{2} - \frac{\mu}{r} = -\frac{\mu}{2a} $$
+
+\hrule
+\section*{Step 4: Solving for Velocity}
+
+Finally, we rearrange the equation algebraically to solve for the velocity, $v$.
+\begin{align*}
+    % Isolate the velocity term
+    \frac{v^2}{2} &= \frac{\mu}{r} - \frac{\mu}{2a} \\
+    % Multiply everything by 2
+    v^2 &= 2\left(\frac{\mu}{r} - \frac{\mu}{2a}\right) \\
+    % Factor out mu to arrive at the final form
+    v^2 &= \mu \left( \frac{2}{r} - \frac{1}{a} \right)
+\end{align*}
+This is the final form of the \textbf{vis-viva equation}. It elegantly connects an object's orbital speed ($v$) at any distance ($r$) to the overall size of its orbit ($a$).
+
+\end{document}

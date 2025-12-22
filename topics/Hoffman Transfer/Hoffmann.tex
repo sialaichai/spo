@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+% PACKAGES for math, layout, and formatting
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{framed}
+\usepackage{siunitx}
+
+% Set page margins
+\geometry{a4paper, margin=1in}
+
+% DOCUMENT START
+\begin{document}
+
+\title{Hohmann Transfer Orbit: Mastery Problems}
+\author{}
+\date{}
+\maketitle
+
+\begin{center}
+\hrule
+\vspace{1em}
+\textbf{Constants for All Problems}
+\begin{itemize}
+    \item Gravitational Constant ($G$): \SI{6.674e-11}{\newton\meter\squared\per\kilogram\squared}
+    \item Mass of the Sun ($M_{\odot}$): \SI{1.989e30}{\kilogram}
+    \item Sun's Gravitational Parameter ($\mu_{\odot}$): \SI{1.327e20}{\meter\cubed\per\second\squared}
+    \item 1 Astronomical Unit (AU): \SI{1.496e11}{\meter}
+\end{itemize}
+
+\begin{tabular}{|l|c|S[table-format=1.2e2]|}
+    \hline
+    \textbf{Planet} & \textbf{Orbital Radius (AU)} & {\textbf{Orbital Radius (m)}} \\
+    \hline
+    Venus  & 0.72 & 1.077e11 \\
+    Earth  & 1.00 & 1.496e11 \\
+    Mars   & 1.52 & 2.274e11 \\
+    Saturn & 9.58 & 1.433e12 \\
+    \hline
+\end{tabular}
+\vspace{1em}
+\hrule
+\end{center}
+
+\section*{Problem 1: Journey from Earth to Mars }
+A robotic probe is being sent from Earth's orbit to Mars's orbit. For this problem, assume the probe starts in Earth's circular orbit around the Sun and ends in Mars's circular orbit around the Sun.
+
+\paragraph{Part A: Change in Velocity ($\Delta v$)}
+Calculate the two impulsive burns required:
+\begin{enumerate}
+    \item The $\Delta v_1$ needed to leave Earth's orbit and enter the Hohmann transfer orbit.
+    \item The $\Delta v_2$ needed to leave the transfer orbit and enter Mars's orbit.
+\end{enumerate}
+
+\paragraph{Part B: Time of Flight}
+How many days will the journey from Earth to Mars take along this transfer orbit?
+
+\paragraph{Part C: Launch Window}
+How often, in years, does this launch window opportunity occur?
+
+\begin{framed}
+\noindent\textbf{Hint:} The Hohmann transfer is an ellipse tangent to both orbits. Its semi-major axis is the average of the two orbital radii. The launch window relates to the synodic period. There is a velocity boost at the start (Earth's orbit) and at the destination (Mar's orbit). The time taken to travel from Earth's orbit to Mar's orbit is half the period. In practice, space engineers has to time the launch so that when the spacecraft reaches Mars orbit, Mars is there. These optimal alignments occur approximately every 26 months, due to the orbital periods of the two planets around the Sun,
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Orbital Velocities} ($v = \sqrt{\mu_{\odot}/r}$):
+    \begin{align*}
+        v_{\text{Earth}} &= \sqrt{\frac{\SI{1.327e20}{\meter\cubed\per\second\squared}}{\SI{1.496e11}{\meter}}} \approx \SI{29785}{\meter\per\second} \\
+        v_{\text{Mars}} &= \sqrt{\frac{\SI{1.327e20}{\meter\cubed\per\second\squared}}{\SI{2.274e11}{\meter}}} \approx \SI{24128}{\meter\per\second}
+    \end{align*}
+
+    \item \textbf{Transfer Orbit Parameters:}
+    \begin{itemize}
+        \item Semi-major axis: $a_T = \frac{r_E + r_M}{2} = \frac{\num{1.496e11} + \num{2.274e11}}{2} = \SI{1.885e11}{\meter}$
+        \item Velocity at perihelion ($r_E$): $v_{T1} = \sqrt{\mu_{\odot} \left( \frac{2}{r_E} - \frac{1}{a_T} \right)} \approx \SI{32729}{\meter\per\second}$
+        \item Velocity at aphelion ($r_M$): $v_{T2} = \sqrt{\mu_{\odot} \left( \frac{2}{r_M} - \frac{1}{a_T} \right)} \approx \SI{21478}{\meter\per\second}$
+    \end{itemize}
+
+    \item \textbf{Part A: Delta-v Calculations:}
+    \begin{align*}
+        \Delta v_1 &= v_{T1} - v_{\text{Earth}} = 32729 - 29785 = \SI{2944}{\meter\per\second} \\
+        \Delta v_2 &= v_{\text{Mars}} - v_{T2} = 24128 - 21478 = \SI{2650}{\meter\per\second}
+    \end{align*}
+
+    \item \textbf{Part B: Transfer Time:} This is half the period ($P_T$) of the transfer orbit.
+    \begin{align*}
+        P_T &= 2\pi \sqrt{\frac{a_T^3}{\mu_{\odot}}} = 2\pi \sqrt{\frac{(\SI{1.885e11}{\meter})^3}{\SI{1.327e20}{\meter\cubed\per\second\squared}}} \approx \SI{4.468e7}{\second} \\
+        \text{Time of flight} &= P_T / 2 \approx \SI{2.234e7}{\second} \approx \textbf{\SI{258.6}{days}}
+    \end{align*}
+
+    \item \textbf{Part C: Launch Window (Synodic Period):}
+    \begin{itemize}
+        \item Earth's period: $P_E = \SI{1.00}{year}$. Mars's period: $P_M \approx \SI{1.87}{years}$.
+        \item Synodic period: $S = \frac{1}{|1/P_E - 1/P_M|} = \frac{1}{|1/1 - 1/1.87|} \approx \textbf{\SI{2.15}{years}}$
+    \end{itemize}
+\end{enumerate}
+\end{framed}
+
+\newpage
+
+\section*{Problem 2: Journey from Venus to Earth }
+
+A satellite needs to be moved from Venus's circular orbit to Earth's circular orbit.
+
+\paragraph{Part A: Specific Orbital Energy} Calculate the specific orbital energy for Venus's orbit, the transfer orbit, and Earth's orbit.
+
+\paragraph{Part B: Change in Velocity ($\Delta v$)} Calculate the two impulsive burns required, noting their direction.
+
+\paragraph{Part C: Missed Burn Scenario} If the first burn is successful but the second fails, what is the period of the spacecraft's new solar orbit?
+
+\begin{framed}
+\noindent\textbf{Hint:} Specific orbital energy is $\mathcal{E} = -\mu / (2a)$. For an outer-to-inner transfer, burns are decelerations.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Orbital Velocities:}
+    \begin{align*}
+        v_{\text{Venus}} &= \sqrt{\frac{\SI{1.327e20}{\meter\cubed\per\second\squared}}{\SI{1.077e11}{\meter}}} \approx \SI{35021}{\meter\per\second} \\
+        v_{\text{Earth}} &\approx \SI{29785}{\meter\per\second}
+    \end{align*}
+    
+    \item \textbf{Transfer Orbit Parameters:}
+    \begin{itemize}
+        \item Semi-major axis: $a_T = \frac{r_V + r_E}{2} = \SI{1.2865e11}{\meter}$
+        \item Velocity at aphelion ($r_V$): $v_{T1} \approx \SI{32258}{\meter\per\second}$
+        \item Velocity at perihelion ($r_E$): $v_{T2} \approx \SI{37557}{\meter\per\second}$
+    \end{itemize}
+
+    \item \textbf{Part A: Specific Orbital Energy ($\mathcal{E} = -\mu_{\odot} / (2a)$):}
+    \begin{align*}
+        \mathcal{E}_{\text{Venus}} &= -\frac{\mu_{\odot}}{2 r_V} \approx \textbf{\SI{-6.161e8}{\joule\per\kilogram}} \\
+        \mathcal{E}_{\text{Transfer}} &= -\frac{\mu_{\odot}}{2 a_T} \approx \textbf{\SI{-5.158e8}{\joule\per\kilogram}} \\
+        \mathcal{E}_{\text{Earth}} &= -\frac{\mu_{\odot}}{2 r_E} \approx \textbf{\SI{-4.435e8}{\joule\per\kilogram}}
+    \end{align*}
+
+    \item \textbf{Part B: Delta-v Calculations:}
+    \begin{align*}
+        \Delta v_1 &= v_{\text{Venus}} - v_{T1} = 35021 - 32258 = \textbf{\SI{2763}{\meter\per\second} (deceleration)} \\
+        \Delta v_2 &= v_{T2} - v_{\text{Earth}} = 37557 - 29785 = \textbf{\SI{7772}{\meter\per\second} (deceleration)}
+    \end{align*}
+    
+    \item \textbf{Part C: Missed Burn Scenario:} The spacecraft remains in the transfer orbit.
+    $$ P_T = 2\pi \sqrt{\frac{a_T^3}{\mu_{\odot}}} = 2\pi \sqrt{\frac{(\SI{1.2865e11}{\meter})^3}{\SI{1.327e20}{\meter\cubed\per\second\squared}}} \approx \SI{2.52e7}{\second} \approx \textbf{\SI{0.799}{years}} $$
+\end{enumerate}
+\end{framed}
+
+\newpage
+
+\section*{Problem 3: General Derivation }
+
+A spacecraft is in a circular orbit of radius $R_1$ around a star of mass $M$. It needs to perform a Hohmann transfer to a higher circular orbit of radius $R_2$. Derive a single expression for the total change in velocity ($\Delta v_{\text{total}}$) in terms of $G$, $M$, $R_1$, and $R_2$.
+
+\begin{framed}
+\noindent\textbf{Hint:} Follow the standard steps algebraically. Find expressions for initial/final circular velocities and transfer orbit velocities. Combine them.
+\end{framed}
+
+\begin{framed}
+\noindent\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Circular Velocities:} $v_1 = \sqrt{\frac{GM}{R_1}}$ and $v_2 = \sqrt{\frac{GM}{R_2}}$.
+    
+    \item \textbf{Transfer Orbit Semi-major Axis:} $a_T = \frac{R_1 + R_2}{2}$.
+    
+    \item \textbf{Transfer Orbit Velocities} (from vis-viva equation):
+    \begin{align*}
+        v_{T1} (\text{at } R_1) &= \sqrt{GM \left( \frac{2}{R_1} - \frac{1}{a_T} \right)} = \sqrt{GM \left( \frac{2}{R_1} - \frac{2}{R_1 + R_2} \right)} \\
+        v_{T2} (\text{at } R_2) &= \sqrt{GM \left( \frac{2}{R_2} - \frac{1}{a_T} \right)} = \sqrt{GM \left( \frac{2}{R_2} - \frac{2}{R_1 + R_2} \right)}
+    \end{align*}
+    
+    \item \textbf{Delta-v Expressions:}
+    \begin{align*}
+        \Delta v_1 &= v_{T1} - v_1 = \sqrt{GM \left( \frac{2}{R_1} - \frac{2}{R_1 + R_2} \right)} - \sqrt{\frac{GM}{R_1}} \\
+        \Delta v_2 &= v_2 - v_{T2} = \sqrt{\frac{GM}{R_2}} - \sqrt{GM \left( \frac{2}{R_2} - \frac{2}{R_1 + R_2} \right)}
+    \end{align*}
+    
+    \item \textbf{Total Delta-v:} Summing and factoring out terms gives the final expression:
+    $$ \Delta v_{\text{total}} = \sqrt{\frac{GM}{R_1}} \left( \sqrt{\frac{2R_2}{R_1+R_2}} - 1 \right) + \sqrt{\frac{GM}{R_2}} \left( 1 - \sqrt{\frac{2R_1}{R_1+R_2}} \right) $$
+\end{enumerate}
+\end{framed}
+
+\end{document}
