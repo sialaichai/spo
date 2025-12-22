@@ -123,7 +123,7 @@ The path difference for rays traveling to point P is $\Delta L = d \sin \theta$.
 
 \newpage
 
-\section{Advanced Topics & Problem-Solving Techniques}
+\section{Advanced Topics \& Problem-Solving Techniques}
 
 \subsection{The Small Angle Approximation}
 In many setups, the screen distance $l$ is much larger than the slit separation $d$ ($l \gg d$). This means the angle $\theta$ to any fringe is very small.
@@ -192,14 +192,19 @@ Figure 10 shows an opaque screen in which there are two narrow parallel slits, P
     \draw[dashed] (-2.5,0) -- (2.5,0);
 
     % Angle of incidence alpha (e.g., 30 degrees)
-    \def\alpha{30}
+    %\def\alpha{30}
+    \def\angleVal{30}
     % Incoming parallel rays from top-right
-    \draw[->, thick] (2, 0.75 - 2*tan(\alpha)) -- (P) node[pos=0.4, above, sloped] {Ray 1};
-    \draw[->, thick] (2, -0.75 - 2*tan(\alpha)) -- (Q) node[pos=0.4, above, sloped] {Ray 2};
+    % \draw[->, thick] (2, 0.75 - 2*tan(\alpha)) -- (P) node[pos=0.4, above, sloped] {Ray 1};
+    % \draw[->, thick] (2, -0.75 - 2*tan(\alpha)) -- (Q) node[pos=0.4, above, sloped] {Ray 2};
+
+    \draw[->, thick] (2, {0.75 - 2*tan(\angleVal)}) -- (P) node[pos=0.4, above, sloped] {Ray 1};
+    
+    \draw[->, thick] (2, {-0.75 - 2*tan(\angleVal)}) -- (Q) node[pos=0.4, above, sloped] {Ray 2};
 
     % Angle alpha label
-    \draw[->] (0.7,0) arc (0:-\alpha:-0.7);
-    \node at (1.0, -0.25) {$\alpha$};
+    \draw[->] (0.7,0) arc (0:-\angleVal:-0.7);
+    \node at (1.0, -0.25) {$\angleVal$};
 
     % Angle of emergence beta (e.g., 20 degrees)
     \def\beta{20}
