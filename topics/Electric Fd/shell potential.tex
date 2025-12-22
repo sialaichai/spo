@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\title{Detailed Solution for SPhO 2019 Theory Paper 2, Question 3(a)}
+\author{Gravitational Potential of a Hollow Sphere}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{The Goal}
+
+The question asks for the ratio of the gravitational potential on the outer surface ($V_{\text{outer}}$) to the gravitational potential on the inner surface ($V_{\text{inner}}$) of a hollow sphere with a uniform density $\rho$, inner radius $r$, and outer radius $R$.
+\[
+\text{Find:} \quad \frac{V_{\text{outer}}}{V_{\text{inner}}} = \frac{V(x=R)}{V(x=r)}
+\]
+
+\section*{Key Concepts}
+
+\subsection*{1. Gravitational Potential ($V$)}
+Potential is the potential energy per unit mass. It's a scalar quantity. The potential at a point is the work done by the gravitational field in bringing a unit mass from infinity to that point. By convention, the potential at an infinite distance is set to zero ($V(\infty) = 0$). Since gravity is an attractive force, work is done \textit{by} the field, so the potential for a finite mass distribution is always negative.
+
+\subsection*{2. Shell Theorem}
+This is the crucial concept that simplifies problems involving spherically symmetric mass distributions. It has two main parts:
+\begin{itemize}
+    \item A spherically symmetric shell of mass exerts no net gravitational force on any object \textbf{inside} it. Consequently, the gravitational potential is constant everywhere inside a hollow shell.
+    \item For any object \textbf{outside} the shell, the gravitational force (and potential) exerted by the shell is the same as if all the shell's mass were concentrated at a single point at its center.
+\end{itemize}
+
+\section*{Step-by-Step Derivation}
+
+First, we establish an expression for the total mass $M$ of the hollow sphere.
+\begin{align*}
+    \text{Volume of material} &= (\text{Volume of outer sphere}) - (\text{Volume of inner sphere}) \\
+    V_{\text{sphere}} &= \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3 = \frac{4}{3}\pi(R^3 - r^3) \\
+    \text{Total Mass } M &= \text{density} \times \text{volume} \\
+    M &= \rho \cdot \frac{4}{3}\pi(R^3 - r^3)
+\end{align*}
+
+\subsection*{1. Potential on the Outer Surface ($V_{\text{outer}}$ at $x=R$)}
+
+According to the shell theorem, for any point at or outside the outer surface ($x \ge R$), the hollow sphere behaves exactly like a point mass $M$ located at the center. The standard formula for the potential of a point mass $M$ at a distance $x$ is $V(x) = -\frac{GM}{x}$.
+
+To find the potential on the outer surface, we set $x=R$:
+\[
+V_{\text{outer}} = V(R) = -\frac{GM}{R}
+\]
+Now, we substitute our expression for $M$:
+\[
+V_{\text{outer}} = -\frac{G}{R} \left( \rho \frac{4}{3}\pi(R^3 - r^3) \right) = \mathbf{-\frac{4\pi G\rho}{3R}(R^3 - r^3)} \quad \text{(Equation 1)}
+\]
+
+\subsection*{2. Potential on the Inner Surface ($V_{\text{inner}}$ at $x=r$)}
+
+The potential inside the hollow cavity ($x \le r$) is constant because the gravitational field inside a hollow shell is zero. This constant value must be equal to the potential at the boundary, so $V_{\text{inner}} = V(r)$.
+
+To calculate $V(r)$, we integrate the potential contributions from all infinitesimal shells that make up the sphere. Since the potential is constant throughout the cavity, the potential at the center is the same as the potential at the inner surface.
+
+Consider a thin shell at a radius $x'$ with thickness $dx'$.
+\begin{itemize}
+    \item Mass of the shell: $dM = \rho \cdot dV_{\text{shell}} = \rho (4\pi (x')^2 dx')$.
+    \item Potential contribution from this shell at the center: $dV_{\text{center}} = -G\frac{dM}{x'}$.
+    \[
+    dV_{\text{center}} = -G \frac{4\pi\rho (x')^2 dx'}{x'} = -4\pi G\rho x' dx'
+    \]
+\end{itemize}
+To find the total potential at the center (and thus on the inner surface), we integrate from the inner radius $r$ to the outer radius $R$.
+\begin{align*}
+    V_{\text{inner}} = V_{\text{center}} &= \int_{r}^{R} -4\pi G\rho x' dx' \\
+    &= -4\pi G\rho \int_{r}^{R} x' dx' \\
+    &= -4\pi G\rho \left[ \frac{(x')^2}{2} \right]_{r}^{R} \\
+    &= -4\pi G\rho \left( \frac{R^2}{2} - \frac{r^2}{2} \right) \\
+    &= \mathbf{-2\pi G\rho(R^2 - r^2)} \quad \text{(Equation 2)}
+\end{align*}
+
+\subsection*{3. Calculating the Ratio}
+Finally, we divide Equation 1 by Equation 2.
+\[
+\frac{V_{\text{outer}}}{V_{\text{inner}}} = \frac{-\frac{4\pi G\rho}{3R}(R^3 - r^3)}{-2\pi G\rho(R^2 - r^2)}
+\]
+Canceling common terms ($\-$, $\pi$, G, $\rho$):
+\[
+\frac{V_{\text{outer}}}{V_{\text{inner}}} = \frac{\frac{4}{3R}(R^3 - r^3)}{2(R^2 - r^2)} = \frac{4(R^3 - r^3)}{6R(R^2 - r^2)} = \frac{2(R^3 - r^3)}{3R(R^2 - r^2)}
+\]
+We use the algebraic identities for the difference of cubes ($a^3-b^3=(a-b)(a^2+ab+b^2)$) and the difference of squares ($a^2-b^2=(a-b)(a+b)$) to simplify.
+\[
+\frac{V_{\text{outer}}}{V_{\text{inner}}} = \frac{2(R-r)(R^2 + Rr + r^2)}{3R(R-r)(R+r)}
+\]
+The $(R-r)$ term cancels out, leaving the final answer:
+\[
+\frac{V_{\text{outer}}}{V_{\text{inner}}} = \mathbf{\frac{2(R^2 + Rr + r^2)}{3R(R+r)}}
+\]
+
+\end{document}
