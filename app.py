@@ -88,7 +88,7 @@ def compile_latex(file_path):
         return None, str(e)
 
 # --- Sidebar Navigation ---
-st.sidebar.title("Physics Archive")
+st.sidebar.title("Physics SPO")
 
 # Logout Button (Optional but useful)
 if st.sidebar.button("Logout", type="secondary"):
