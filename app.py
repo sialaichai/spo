@@ -20,11 +20,15 @@ def get_tex_files(topic):
     return [f for f in os.listdir(topic_path) if f.endswith(".tex")]
 
 def compile_latex(file_path):
-    """Compiles LaTeX to PDF and returns the PDF path."""
+    """
+    Compiles LaTeX to PDF. 
+    Returns:
+        - (pdf_path, None) if successful
+        - (None, error_log) if failed
+    """
     file_name = os.path.basename(file_path)
     job_name = os.path.splitext(file_name)[0]
     
-    # Run pdflatex
     try:
         process = subprocess.run(
             [
@@ -35,14 +39,20 @@ def compile_latex(file_path):
                 file_path
             ],
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
+            stderr=subprocess.PIPE,
+            text=True  # specific to Python 3.7+, ensures output is string not bytes
         )
+        
         pdf_path = os.path.join(TEMP_DIR, f"{job_name}.pdf")
+        
         if process.returncode == 0 and os.path.exists(pdf_path):
-            return pdf_path
-    except Exception:
-        return None
-    return None
+            return pdf_path, None
+        else:
+            # Return the standard output (where LaTeX prints errors)
+            return None, process.stdout
+            
+    except Exception as e:
+        return None, str(e)
 
 # --- Main Layout ---
 st.title("📚 Physics Topics Repository")
@@ -61,35 +71,33 @@ selected_file = st.sidebar.selectbox("Select Document", tex_files)
 source_path = os.path.join(TOPICS_DIR, selected_topic, selected_file)
 
 # --- Automatic Compilation Logic ---
-# We use session state to track which file is currently compiled
-# so we don't re-compile every time you click a tab.
-
 if "last_compiled_file" not in st.session_state:
     st.session_state.last_compiled_file = None
+if "compilation_error" not in st.session_state:
+    st.session_state.compilation_error = None
 
-# If the user selected a new file, trigger compilation immediately
+# Trigger compilation if file changed
 if st.session_state.last_compiled_file != source_path:
     with st.spinner("Rendering document..."):
-        pdf_path = compile_latex(source_path)
+        pdf_path, error_log = compile_latex(source_path)
+        
         if pdf_path:
             st.session_state.current_pdf_path = pdf_path
             st.session_state.last_compiled_file = source_path
+            st.session_state.compilation_error = None # Clear previous errors
         else:
-            st.error("Error: Could not compile LaTeX.")
+            st.session_state.current_pdf_path = None
+            st.session_state.compilation_error = error_log
 
 # --- Display Area ---
 tab_view, tab_code = st.tabs(["📄 Document Viewer", "📝 Source Code"])
 
 with tab_view:
-    # Check if we have a valid PDF path in the state
-    if "current_pdf_path" in st.session_state and os.path.exists(st.session_state.current_pdf_path):
-        
-        # 1. Use streamlit-pdf-viewer (Safe, won't be blocked)
-        # width and height can be adjusted. 'width' ensures it fits the container.
+    # 1. Success Case: Display PDF
+    if st.session_state.get("current_pdf_path") and os.path.exists(st.session_state.current_pdf_path):
         pdf_viewer(st.session_state.current_pdf_path, width=700, height=1000)
-
+        
         st.markdown("---")
-        # 2. Download Button
         with open(st.session_state.current_pdf_path, "rb") as f:
             st.download_button(
                 label="⬇️ Download PDF",
@@ -97,6 +105,14 @@ with tab_view:
                 file_name=os.path.basename(st.session_state.current_pdf_path),
                 mime="application/pdf"
             )
+
+    # 2. Error Case: Display Log
+    elif st.session_state.get("compilation_error"):
+        st.error("⚠️ Compilation Failed")
+        with st.expander("View Error Log (Click to expand)", expanded=True):
+            st.code(st.session_state.compilation_error, language="text")
+            
+        st.info("Tip: Look for lines starting with '! LaTeX Error'. It usually means a package is missing.")
 
 with tab_code:
     with open(source_path, "r", encoding="utf-8") as f:
