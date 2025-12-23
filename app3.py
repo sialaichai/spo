@@ -2,38 +2,24 @@ import streamlit as st
 import os
 import subprocess
 from streamlit_pdf_viewer import pdf_viewer
-from github import Github, Auth
 import shutil
-from cryptography.fernet import Fernet
+# NEW
+from github import Github, Auth
 
 # --- Configuration ---
-# We now define a list of folders to manage
-BASE_DIRS = {
-    "Topics": "topics",
-    "Year": "year"
-}
-
+TOPICS_DIR = "topics"
 TEMP_DIR = "temp_build"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-st.set_page_config(page_title="Physics Archive", layout="wide")
+st.set_page_config(page_title="Physics Topics", layout="wide")
 
 # ==========================================
-# 🔐 ENCRYPTION HELPER
-# ==========================================
-def get_cipher():
-    """Returns the Fernet cipher using the key from secrets."""
-    try:
-        key = st.secrets["encryption_key"]
-        return Fernet(key.encode() if isinstance(key, str) else key)
-    except Exception as e:
-        st.error(f"Encryption Key Error: {e}")
-        st.stop()
-
-# ==========================================
-# 🔒 AUTHENTICATION LOGIC
+# 🔒 AUTHENTICATION LOGIC (DUAL LEVEL)
 # ==========================================
 def check_login():
+    """
+    Returns: 'admin', 'viewer', or None
+    """
     if "user_role" not in st.session_state:
         st.session_state.user_role = None
 
@@ -48,6 +34,7 @@ def check_login():
         submit_button = st.form_submit_button("Login")
 
         if submit_button:
+            # Check against secrets.toml
             if password_input == st.secrets["admin_password"]:
                 st.session_state.user_role = "admin"
                 st.success("Logged in as Administrator")
@@ -58,117 +45,108 @@ def check_login():
                 st.rerun()
             else:
                 st.error("❌ Invalid Password")
+
     return None
 
+# STOP IF NOT LOGGED IN
 current_role = check_login()
-if not current_role: st.stop()
+if not current_role:
+    st.stop()
 
 # ==========================================
-# 🐙 GITHUB SYNC (MULTI-FOLDER)
+# 🐙 GITHUB SYNC FUNCTIONS
 # ==========================================
 def push_to_github(local_path, content, commit_message):
     """
-    Encrypts content and pushes to GitHub.
-    local_path example: 'Year/2023/exam.tex'
+    Updates the file on GitHub.
+    local_path: 'topics/Topic1/file.tex'
     """
     try:
+        # --- FIX STARTS HERE ---
         auth_token = Auth.Token(st.secrets["github_token"])
         g = Github(auth=auth_token)
+        # --- FIX ENDS HERE ---
+        
         repo = g.get_repo(st.secrets["github_repo"])
         
-        # 1. ENCRYPT CONTENT
-        cipher = get_cipher()
-        encrypted_data = cipher.encrypt(content.encode('utf-8'))
-        
-        # 2. PUSH
+        # Get the file from the repo to retrieve its SHA (needed for update)
         contents = repo.get_contents(local_path, ref=st.secrets["github_branch"])
+        
+        # Update the file
         repo.update_file(
             path=contents.path,
             message=commit_message,
-            content=encrypted_data,
+            content=content,
             sha=contents.sha,
             branch=st.secrets["github_branch"]
         )
-        return True, "Successfully encrypted and pushed to GitHub!"
+        return True, "Successfully pushed to GitHub!"
     except Exception as e:
         return False, f"GitHub Error: {str(e)}"
 
 def pull_from_github():
     """
-    Loops through BASE_DIRS, wipes them locally, and re-downloads/decrypts from GitHub.
+    1. Wipes the local 'topics' folder.
+    2. Downloads a fresh copy from GitHub.
     """
     try:
+        # 1. WIPE LOCAL FOLDER CLEAN
+        if os.path.exists(TOPICS_DIR):
+            shutil.rmtree(TOPICS_DIR)  # Deletes the folder and everything inside
+        
+        # Re-create the empty folder
+        os.makedirs(TOPICS_DIR, exist_ok=True)
+
+        # 2. CONNECT TO GITHUB
+        # --- FIX STARTS HERE ---
         auth_token = Auth.Token(st.secrets["github_token"])
         g = Github(auth=auth_token)
+        # --- FIX ENDS HERE ---
+        
         repo = g.get_repo(st.secrets["github_repo"])
-        cipher = get_cipher()
         
-        total_files = 0
+        # 3. DOWNLOAD EVERYTHING
+        contents = repo.get_contents(TOPICS_DIR, ref=st.secrets["github_branch"])
+        count = 0
         
-        # Iterate over "topics" and "Year"
-        for label, folder_name in BASE_DIRS.items():
-            
-            # 1. Wipe Local Folder
-            if os.path.exists(folder_name):
-                shutil.rmtree(folder_name)
-            os.makedirs(folder_name, exist_ok=True)
-            
-            # 2. Get Contents from GitHub (handle if folder missing in repo)
-            try:
-                contents = repo.get_contents(folder_name, ref=st.secrets["github_branch"])
-            except:
-                print(f"Warning: {folder_name} not found in GitHub repo.")
-                continue
-
-            # 3. Recursive Download
-            while contents:
-                file_content = contents.pop(0)
-                if file_content.type == "dir":
-                    contents.extend(repo.get_contents(file_content.path, ref=st.secrets["github_branch"]))
-                else:
-                    local_path = file_content.path 
-                    os.makedirs(os.path.dirname(local_path), exist_ok=True)
+        while contents:
+            file_content = contents.pop(0)
+            if file_content.type == "dir":
+                contents.extend(repo.get_contents(file_content.path, ref=st.secrets["github_branch"]))
+            else:
+                # Calculate where to save it locally
+                local_path = file_content.path 
+                
+                # Ensure the subfolder exists
+                os.makedirs(os.path.dirname(local_path), exist_ok=True)
+                
+                # Write the file
+                with open(local_path, "wb") as f:
+                    f.write(file_content.decoded_content)
+                count += 1
                     
-                    raw_data = file_content.decoded_content
-                    
-                    # Decrypt logic
-                    try:
-                        decrypted_data = cipher.decrypt(raw_data)
-                    except Exception:
-                        decrypted_data = raw_data # Fallback if not encrypted
-                    
-                    with open(local_path, "wb") as f:
-                        f.write(decrypted_data)
-                    total_files += 1
-                    
-        return True, f"Sync complete! Processed {total_files} files across all folders."
+        return True, f"Clean sync complete! Downloaded {count} files."
     except Exception as e:
         return False, str(e)
 
-# --- AUTO-PULL CHECK ---
-# If "topics" is missing, we assume we need to pull everything (including Year)
-if not os.path.exists(BASE_DIRS["Topics"]) or not os.listdir(BASE_DIRS["Topics"]):
-    if "encryption_key" in st.secrets:
-        pull_from_github()
-
 # ==========================================
-# 🚀 HELPER FUNCTIONS
+# 🚀 MAIN APP LOGIC
 # ==========================================
 
-def get_subfolders(root_dir):
-    """Returns list of subfolders (e.g., 'Kinematics', '2023')"""
-    if not os.path.exists(root_dir): return []
-    return sorted([d for d in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, d))])
+def get_topics():
+    if not os.path.exists(TOPICS_DIR): return []
+    return sorted([d for d in os.listdir(TOPICS_DIR) if os.path.isdir(os.path.join(TOPICS_DIR, d))])
 
-def get_files(root_dir, subfolder):
-    """Returns list of supported files in the specific subfolder"""
-    target_path = os.path.join(root_dir, subfolder)
+def get_topic_files(topic):
+    topic_path = os.path.join(TOPICS_DIR, topic)
+    # MODIFIED: Now accepts images (jpg, png) in addition to tex and pdf
     allowed_extensions = ('.tex', '.pdf', '.jpg', '.jpeg', '.png')
-    return sorted([f for f in os.listdir(target_path) if f.lower().endswith(allowed_extensions)])
+    return sorted([f for f in os.listdir(topic_path) if f.lower().endswith(allowed_extensions)])
 
 def compile_latex(file_path):
     file_name = os.path.basename(file_path)
     job_name = os.path.splitext(file_name)[0]
+    
     abs_temp_dir = os.path.abspath(TEMP_DIR)
     
     try:
@@ -180,9 +158,12 @@ def compile_latex(file_path):
                 f"-jobname={job_name}",
                 file_path
             ],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
         )
         pdf_path = os.path.join(abs_temp_dir, f"{job_name}.pdf")
+        
         if process.returncode == 0 and os.path.exists(pdf_path):
             return pdf_path, None
         else:
@@ -190,15 +171,14 @@ def compile_latex(file_path):
     except Exception as e:
         return None, str(e)
 
-# ==========================================
-# 🖥️ SIDEBAR NAVIGATION
-# ==========================================
+        
+# --- SIDEBAR ---
 st.sidebar.title(f"Physics Archive ({current_role.title()})")
 
-# ADMIN SYNC
+# ADMIN ONLY: Sync Button
 if current_role == 'admin':
-    if st.sidebar.button("🔄 Pull & Decrypt All"):
-        with st.spinner("Syncing Topics and Year..."):
+    if st.sidebar.button("🔄 Pull from GitHub"):
+        with st.spinner("Downloading latest files..."):
             success, msg = pull_from_github()
             if success:
                 st.sidebar.success(msg)
@@ -210,118 +190,120 @@ if st.sidebar.button("Logout", type="secondary"):
     st.session_state.user_role = None
     st.rerun()
 
-st.sidebar.markdown("---")
-
-# 1. SELECT MODE (Topics vs Year)
-browse_mode = st.sidebar.radio("Library Section:", ["Topics", "Year"], horizontal=True)
-current_root_dir = BASE_DIRS[browse_mode] # "topics" or "Year"
-
-# 2. SELECT SUBFOLDER (e.g., "Kinematics" or "2023")
-subfolders = get_subfolders(current_root_dir)
-
-if not subfolders:
-    st.sidebar.error(f"No folders found in '{current_root_dir}'.")
+topics = get_topics()
+if not topics:
+    st.sidebar.error("No topics found in 'topics/' folder.")
     st.stop()
 
-selected_subfolder = st.sidebar.selectbox(f"Select {browse_mode[:-1]}", subfolders) # "Select Topic" or "Select Yea"
-
+selected_topic = st.sidebar.selectbox("Select Topic", topics)
 st.sidebar.markdown("---") 
-
-# 3. SELECT FILE
-files = get_files(current_root_dir, selected_subfolder)
+files = get_topic_files(selected_topic)
 
 if not files:
     st.sidebar.warning("No files found.")
     st.stop()
 
-selected_file = st.sidebar.radio(f"Documents in {selected_subfolder}", files)
+selected_file = st.sidebar.radio(f"Documents in {selected_topic}", files)
 
-# Build Paths
-# rel_path = "Year/2023/exam.tex"
-rel_path = os.path.join(current_root_dir, selected_subfolder, selected_file).replace("\\", "/")
+# --- FILE PATHS ---
+rel_path = os.path.join(TOPICS_DIR, selected_topic, selected_file).replace("\\", "/")
 abs_path = os.path.abspath(rel_path)
 
-# ==========================================
-# 👁️ MAIN VIEW / EDIT LOGIC
-# ==========================================
+# --- PROCESSING LOGIC ---
+if "force_recompile" not in st.session_state:
+    st.session_state.force_recompile = False
+if "last_processed" not in st.session_state:
+    st.session_state.last_processed = None
 
-# Determine file type
+# Logic to determine what to show based on file type
 file_ext = selected_file.lower().split('.')[-1]
 is_image = file_ext in ['jpg', 'jpeg', 'png']
 is_pdf = file_ext == 'pdf'
 is_tex = file_ext == 'tex'
 
-# Check if we need to recompile or if selection changed
-if "force_recompile" not in st.session_state: st.session_state.force_recompile = False
-if "last_processed" not in st.session_state: st.session_state.last_processed = None
-
+# Run processing only if file changed or recompile forced
 if st.session_state.last_processed != rel_path or st.session_state.force_recompile:
+    
     st.session_state.current_pdf = None
     st.session_state.compilation_error = None
     
     if is_pdf:
         st.session_state.current_pdf = abs_path
+        
     elif is_tex:
         with st.spinner(f"Compiling {selected_file}..."):
             pdf, log = compile_latex(abs_path)
             st.session_state.current_pdf = pdf
             st.session_state.compilation_error = log
             
+    # For images, we don't need to "process" them, we just read them directly in the view
+            
     st.session_state.last_processed = rel_path
     st.session_state.force_recompile = False
 
-# TABS
+# --- TABS ---
 tab_label = "✏️ Edit Source" if current_role == 'admin' else "📝 Source Code"
 tab_view, tab_edit = st.tabs(["📄 Document Viewer", tab_label])
 
-# --- VIEWER TAB ---
+# 1. VIEWER TAB
 with tab_view:
+    # A. IMAGE VIEWER
     if is_image:
         st.success(f"**{selected_file}** loaded.")
         st.image(abs_path, caption=selected_file, use_container_width=True)
+        
+    # B. PDF VIEWER (Native or Compiled)
     elif st.session_state.current_pdf and os.path.exists(st.session_state.current_pdf):
         col1, col2 = st.columns([6, 1])
         with col1: st.success(f"**{selected_file}** loaded.")
         with col2:
             with open(st.session_state.current_pdf, "rb") as f:
                 st.download_button("⬇️ PDF", f, file_name=selected_file.replace('.tex','.pdf'), mime="application/pdf", type="primary")
+        
         st.markdown("---")
         pdf_viewer(st.session_state.current_pdf, width=800, height=1000)
+        
+    # C. ERROR STATE
     elif st.session_state.compilation_error:
         st.error("⚠️ Compilation Failed")
         with st.expander("Error Log"):
             st.code(st.session_state.compilation_error)
 
-# --- EDITOR TAB ---
+# 2. EDIT / SOURCE TAB
 with tab_edit:
     if is_image or is_pdf:
         st.info(f"Binary file ({file_ext.upper()}) cannot be edited directly.")
     else:
-        # Read file
+        # Read current content
         with open(abs_path, "r", encoding="utf-8") as f:
             file_content = f.read()
 
         if current_role == 'admin':
-            st.warning(f"⚠️ You are editing: {rel_path}")
+            st.warning(f"⚠️ You are editing: {selected_file}")
             
+            # The Text Editor
             new_content = st.text_area(
                 "LaTeX Source", 
                 value=file_content, 
-                height=600, 
-                key=abs_path
+                height=600,
+                key=abs_path # Dynamic key to reset on file change
             )
-            
-            if st.button("💾 Encrypt & Push to GitHub", type="primary"):
+
+            # SAVE BUTTON
+            if st.button("💾 Save to GitHub & Re-Render", type="primary"):
                 if new_content != file_content:
+                    # 1. Save locally (immediate update)
                     with open(abs_path, "w", encoding="utf-8") as f:
                         f.write(new_content)
                     
-                    with st.spinner("Encrypting and pushing..."):
+                    # 2. Push to GitHub
+                    with st.spinner("Pushing to GitHub..."):
                         success, msg = push_to_github(
                             rel_path, 
                             new_content, 
-                            f"Update {selected_file} via Streamlit"
+                            f"Update {selected_file} via Streamlit Admin"
                         )
+                    
                     if success:
                         st.success(msg)
                         st.session_state.force_recompile = True
@@ -331,5 +313,6 @@ with tab_edit:
                 else:
                     st.info("No changes detected.")
         else:
+            # Viewer Mode (Read Only)
             st.caption(f"Path: {rel_path}")
             st.code(file_content, language="latex")
