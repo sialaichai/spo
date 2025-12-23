@@ -2,8 +2,9 @@ import streamlit as st
 import os
 import subprocess
 from streamlit_pdf_viewer import pdf_viewer
-from github import Github
 import shutil
+# NEW
+from github import Github, Auth
 
 # --- Configuration ---
 TOPICS_DIR = "topics"
@@ -61,7 +62,11 @@ def push_to_github(local_path, content, commit_message):
     local_path: 'topics/Topic1/file.tex'
     """
     try:
-        g = Github(st.secrets["github_token"])
+        # --- FIX STARTS HERE ---
+        auth_token = Auth.Token(st.secrets["github_token"])
+        g = Github(auth=auth_token)
+        # --- FIX ENDS HERE ---
+        
         repo = g.get_repo(st.secrets["github_repo"])
         
         # Get the file from the repo to retrieve its SHA (needed for update)
@@ -93,7 +98,11 @@ def pull_from_github():
         os.makedirs(TOPICS_DIR, exist_ok=True)
 
         # 2. CONNECT TO GITHUB
-        g = Github(st.secrets["github_token"])
+        # --- FIX STARTS HERE ---
+        auth_token = Auth.Token(st.secrets["github_token"])
+        g = Github(auth=auth_token)
+        # --- FIX ENDS HERE ---
+        
         repo = g.get_repo(st.secrets["github_repo"])
         
         # 3. DOWNLOAD EVERYTHING
