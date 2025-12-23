@@ -10,7 +10,7 @@ from cryptography.fernet import Fernet
 # We now define a list of folders to manage
 BASE_DIRS = {
     "Topics": "topics",
-    "Year": "Year"
+    "Year": "year"
 }
 
 TEMP_DIR = "temp_build"
