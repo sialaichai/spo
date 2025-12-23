@@ -210,7 +210,7 @@ if st.sidebar.button("Logout", type="secondary"):
     st.session_state.user_role = None
     st.rerun()
 
-st.sidebar.markdown("---")
+#st.sidebar.markdown("---")
 
 # 1. SELECT MODE (Topics vs Year)
 browse_mode = st.sidebar.radio("Library Section:", ["Topics", "Year"], horizontal=True)
@@ -225,7 +225,7 @@ if not subfolders:
 
 selected_subfolder = st.sidebar.selectbox(f"Select {browse_mode[:-1]}", subfolders) # "Select Topic" or "Select Yea"
 
-st.sidebar.markdown("---") 
+#st.sidebar.markdown("---") 
 
 # 3. SELECT FILE
 files = get_files(current_root_dir, selected_subfolder)
