@@ -16,7 +16,7 @@ BASE_DIRS = {
 TEMP_DIR = "temp_build"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-st.set_page_config(page_title="Physics Archive", layout="wide")
+st.set_page_config(page_title="JPJC SPhO Archive", layout="wide")
 
 # ==========================================
 # 🔐 ENCRYPTION HELPER
