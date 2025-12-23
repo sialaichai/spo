@@ -8,18 +8,22 @@ from cryptography.fernet import Fernet
 
 # --- HELPER FUNCTION ---
 def get_secret(key):
-    """
-    Retrieves a secret from Streamlit secrets (local) 
-    OR Environment Variables (Render/Cloud).
-    """
-    # 1. Try st.secrets (Local Development)
-    if key in st.secrets:
-        return st.secrets(key)
+    # 1. Priority: Check Environment Variables (Render)
+    # We check this FIRST to avoid touching st.secrets if possible
+    if key in os.environ:
+        return os.environ[key]
 
-  
-    # 2. Try OS Environment Variables (Render Deployment)
-    # We return None if it's missing, or you could raise an error
-    return os.environ.get(key)
+    # 2. Fallback: Check st.secrets (Local)
+    # We wrap this in a try-except block because simply accessing st.secrets
+    # causes a crash if the secrets.toml file does not exist.
+    try:
+        if key in st.secrets:
+            return st.secrets[key]
+    except Exception:
+        # If secrets.toml is missing, just ignore it and return None
+        pass
+
+    return None
 
 
 # --- Configuration ---
