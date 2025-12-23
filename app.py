@@ -14,7 +14,7 @@ def get_secret(key):
     """
     # 1. Try st.secrets (Local Development)
     if key in st.secrets:
-        return st.secrets[key]
+        return st.secrets(key)
 
   
     # 2. Try OS Environment Variables (Render Deployment)
@@ -41,7 +41,7 @@ def get_cipher():
     """Returns the Fernet cipher using the key from secrets."""
     try:
         #key = st.secrets["encryption_key"]
-        key = get_secret["encryption_key"]
+        key = get_secret("encryption_key")
         return Fernet(key.encode() if isinstance(key, str) else key)
     except Exception as e:
         st.error(f"Encryption Key Error: {e}")
@@ -66,12 +66,12 @@ def check_login():
 
         if submit_button:
             #if password_input == st.secrets["admin_password"]:
-            if password_input == get_secret["admin_password"]:  
+            if password_input == get_secret("admin_password"):  
                 st.session_state.user_role = "admin"
                 st.success("Logged in as Administrator")
                 st.rerun()
             #elif password_input == st.secrets["viewer_password"]:
-            elif password_input == get_secret["viewer_password"]:  
+            elif password_input == get_secret("viewer_password"):  
                 st.session_state.user_role = "viewer"
                 st.success("Logged in as Viewer")
                 st.rerun()
@@ -92,10 +92,10 @@ def push_to_github(local_path, content, commit_message):
     """
     try:
         #auth_token = Auth.Token(st.secrets["github_token"])
-        auth_token = Auth.Token(get_secret["github_token"])
+        auth_token = Auth.Token(get_secret("github_token"))
         g = Github(auth=auth_token)
         #repo = g.get_repo(st.secrets["github_repo"])
-        repo = g.get_repo(get_secret["github_repo"])
+        repo = g.get_repo(get_secret("github_repo"))
         
         # 1. ENCRYPT CONTENT
         cipher = get_cipher()
@@ -103,14 +103,14 @@ def push_to_github(local_path, content, commit_message):
         
         # 2. PUSH
         #contents = repo.get_contents(local_path, ref=st.secrets["github_branch"])
-        contents = repo.get_contents(local_path, ref=get_secret["github_branch"])
+        contents = repo.get_contents(local_path, ref=get_secret("github_branch"))
         repo.update_file(
             path=contents.path,
             message=commit_message,
             content=encrypted_data,
             sha=contents.sha,
             #branch=st.secrets["github_branch"]
-            branch=get_secret["github_branch"]
+            branch=get_secret("github_branch")
         )
         return True, "Successfully encrypted and pushed to GitHub!"
     except Exception as e:
@@ -122,10 +122,10 @@ def pull_from_github():
     """
     try:
         #auth_token = Auth.Token(st.secrets["github_token"])
-        auth_token = Auth.Token(get_secret["github_token"])
+        auth_token = Auth.Token(get_secret("github_token"))
         g = Github(auth=auth_token)
         #repo = g.get_repo(st.secrets["github_repo"])
-        repo = g.get_repo(get_secret["github_repo"])
+        repo = g.get_repo(get_secret("github_repo"))
         cipher = get_cipher()
         
         total_files = 0
@@ -141,7 +141,7 @@ def pull_from_github():
             # 2. Get Contents from GitHub (handle if folder missing in repo)
             try:
                 #contents = repo.get_contents(folder_name, ref=st.secrets["github_branch"])
-                contents = repo.get_contents(folder_name, ref=get_secret["github_branch"])
+                contents = repo.get_contents(folder_name, ref=get_secret("github_branch"))
             except:
                 print(f"Warning: {folder_name} not found in GitHub repo.")
                 continue
@@ -151,7 +151,7 @@ def pull_from_github():
                 file_content = contents.pop(0)
                 if file_content.type == "dir":
                     #contents.extend(repo.get_contents(file_content.path, ref=st.secrets["github_branch"]))
-                    contents.extend(repo.get_contents(file_content.path, ref=get_secret["github_branch"]))
+                    contents.extend(repo.get_contents(file_content.path, ref=get_secret("github_branch")))
                 else:
                     local_path = file_content.path 
                     os.makedirs(os.path.dirname(local_path), exist_ok=True)
