@@ -1,0 +1,428 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, siunitx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{SPhO 2019 — Theory Paper 1 Solutions}
+\lhead{32nd Singapore Physics Olympiad}
+\rfoot{Page \thepage}
+
+\title{32nd Singapore Physics Olympiad \\ Theory Paper 1 — Full Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1(a) \hfill [7 marks]}
+
+A projectile is fired with initial speed \(v_0\) at angle \(\theta\) to the horizontal. It passes through two points at the same height \(h\) above ground. Find the horizontal separation \(D\) between these points.
+
+\textbf{Solution:}
+
+Trajectory equation:
+\[
+y = x \tan\theta - \frac{g x^2}{2 v_0^2 \cos^2 \theta}
+\]
+Set \(y = h\):
+\[
+h = x \tan\theta - \frac{g x^2}{2 v_0^2} (1 + \tan^2 \theta)
+\]
+This is a quadratic in \(x\): \(A x^2 - B x + h = 0\), where
+\[
+A = \frac{g}{2 v_0^2 \cos^2 \theta}, \quad B = \tan\theta
+\]
+
+The two roots \(x_1, x_2\) correspond to the two points. Horizontal separation:
+\[
+D = |x_2 - x_1| = \frac{\sqrt{B^2 - 4 A h}}{A}
+\]
+
+But better: from standard projectile motion, time to reach height \(h\):
+\[
+h = v_0 \sin\theta \, t - \frac{1}{2} g t^2 \Rightarrow \frac{1}{2} g t^2 - v_0 \sin\theta \, t + h = 0
+\]
+Roots \(t_1, t_2\); then \(D = v_0 \cos\theta \, |t_2 - t_1|\)
+
+\[
+|t_2 - t_1| = \frac{\sqrt{(v_0 \sin\theta)^2 - 2 g h}}{g/2} \cdot \frac{1}{2} = \frac{2 \sqrt{v_0^2 \sin^2 \theta - 2 g h}}{g}
+\]
+
+So
+\[
+D = v_0 \cos\theta \cdot \frac{2 \sqrt{v_0^2 \sin^2 \theta - 2 g h}}{g}
+= \frac{2 v_0 \cos\theta}{g} \sqrt{v_0^2 \sin^2 \theta - 2 g h}
+\]
+
+\[
+\boxed{D = \dfrac{2 v_0 \cos\theta}{g} \sqrt{v_0^2 \sin^2 \theta - 2 g h}}
+\]
+
+\section*{Question 1(b) \hfill [3 marks]}
+
+Given \(v_0 = \SI{200}{\m\per\s}\), angle adjusted for maximum range → \(\theta = \ang{45}\). Find \(D\).
+
+\textbf{Solution:}
+
+Maximum range occurs at \(\theta = \ang{45}\), but \(h\) is not specified! However, in part (a), \(h\) is a given parameter. Since \(h\) is not provided, we assume the question implies **general expression evaluated at \(\theta = 45^\circ\)**—but that still depends on \(h\).
+
+But likely, the problem intends you to **express \(D\) in terms of \(h\)** for this case. However, since it asks to “calculate the value of \(D\)”, and no \(h\) is given, we suspect a missing detail.
+
+But re-examining: in many Olympiad problems, if not specified, they might mean the **maximum possible \(D\)** for a given \(h\), but that doesn’t help.
+
+Alternatively—perhaps in part (b), **\(h\) is arbitrary**, and you just plug \(\theta = 45^\circ\) into the expression:
+
+\[
+\cos\theta = \sin\theta = \frac{\sqrt{2}}{2}
+\]
+
+\[
+D = \frac{2 \cdot 200 \cdot \frac{\sqrt{2}}{2}}{9.81} \sqrt{(200)^2 \cdot \frac{1}{2} - 2 \cdot 9.81 \cdot h}
+= \frac{200 \sqrt{2}}{9.81} \sqrt{20000 - 19.62 h}
+\]
+
+But without \(h\), no numerical answer.
+
+However, checking standard interpretation: often in such problems, part (b) assumes the same \(h\) as would yield real roots, but since none is given, **the problem likely expects you to leave it in terms of \(h\)** or there’s a typo.
+
+But given the marks (3), and context, perhaps they expect you to **recognize that for maximum range, the trajectory is symmetric**, and the expression is as above.
+
+Since the problem says “calculate the value”, yet provides no \(h\), we conclude it’s an oversight. **We’ll assume \(h\) is given implicitly**, but as it’s not, we present the simplified expression:
+
+\[
+\boxed{D = \dfrac{200\sqrt{2}}{9.81} \sqrt{20000 - 19.62\,h} \quad \text{(in metres)}}
+\]
+
+> \textit{Note: If the original exam included a specific \(h\), it is missing in the provided text.}
+
+\newpage
+
+\section*{Question 2(a) \hfill [4 marks]}
+
+A mass \(m = \SI{0.25}{\kg}\) is attached to a spring (\(k = \SI{20}{\N\per\m}\)), released from unstretched position, oscillates with decreasing amplitude (damped), and comes to rest. Surroundings at \(T = \SI{27}{\celsius} = \SI{300}{\K}\). Find entropy change of surroundings.
+
+\textbf{Solution:}
+
+Initially, spring is unstretched, mass is released → it falls under gravity until equilibrium.
+
+But the process is **irreversible**: mechanical energy is dissipated as heat into surroundings.
+
+Total mechanical energy lost = initial gravitational potential energy relative to final equilibrium.
+
+At equilibrium: \(k x_0 = m g \Rightarrow x_0 = \frac{m g}{k}\)
+
+Initial energy: only gravitational PE (set final equilibrium as zero PE for spring + gravity combined).
+
+Better: total initial mechanical energy (just after release): spring PE = 0, gravitational PE = \(m g x_0\) (if we measure from equilibrium).
+
+At final rest: all energy dissipated as heat \(Q = \frac{1}{2} k x_0^2 - m g x_0\)? No.
+
+Actually, when released from **unstretched** position (spring at natural length), the mass falls distance \(x_0 = m g / k\) to equilibrium, but due to damping, it doesn’t oscillate—it settles.
+
+The loss in gravitational PE: \(m g x_0\)
+
+Gain in spring PE: \(\frac{1}{2} k x_0^2\)
+
+So energy dissipated: 
+\[
+Q = m g x_0 - \frac{1}{2} k x_0^2 = m g \left( \frac{m g}{k} \right) - \frac{1}{2} k \left( \frac{m g}{k} \right)^2 = \frac{m^2 g^2}{k} - \frac{1}{2} \frac{m^2 g^2}{k} = \frac{1}{2} \frac{m^2 g^2}{k}
+\]
+
+This heat flows into surroundings at constant \(T\), so entropy change:
+\[
+\Delta S = \frac{Q}{T} = \frac{m^2 g^2}{2 k T}
+\]
+
+Plug in:
+\[
+m = 0.25, \quad g = 9.81, \quad k = 20, \quad T = 300
+\]
+\[
+Q = \frac{(0.25)^2 (9.81)^2}{2 \cdot 20} = \frac{0.0625 \cdot 96.236}{40} \approx \frac{6.0148}{40} \approx \SI{0.1504}{\J}
+\]
+\[
+\Delta S = \frac{0.1504}{300} \approx \SI{5.01e-4}{\J\per\K}
+\]
+
+\[
+\boxed{\Delta S \approx \SI{5.0e-4}{\J\per\K}}
+\]
+
+\section*{Question 2(b)(i) \hfill [3 marks]}
+
+Solar constant: \(I = \SI{1.37e3}{\W\per\m^2}\)
+
+Sun radius: \(R_s = \SI{6.957e8}{\m}\)
+
+Earth orbit radius: \(r = \SI{1.496e11}{\m}\)
+
+Find Sun’s surface temperature.
+
+\textbf{Solution:}
+
+Power radiated by Sun: \(P = 4 \pi R_s^2 \sigma T^4\)
+
+At Earth: \(I = \frac{P}{4 \pi r^2} = \frac{R_s^2 \sigma T^4}{r^2}\)
+
+So:
+\[
+T^4 = \frac{I r^2}{\sigma R_s^2} \Rightarrow T = \left( \frac{I r^2}{\sigma R_s^2} \right)^{1/4}
+\]
+
+Compute:
+\[
+\frac{r}{R_s} = \frac{1.496 \times 10^{11}}{6.957 \times 10^8} \approx 215.0
+\]
+\[
+\left( \frac{r}{R_s} \right)^2 \approx 46225
+\]
+\[
+T^4 = \frac{1370 \cdot 46225}{5.67 \times 10^{-8}} \approx \frac{6.33 \times 10^7}{5.67 \times 10^{-8}} \approx 1.117 \times 10^{15}
+\]
+\[
+T = (1.117 \times 10^{15})^{1/4} \approx \SI{5770}{\K}
+\]
+
+\[
+\boxed{T \approx \SI{5800}{\K}} \quad \text{(commonly accepted value)}
+\]
+
+\section*{Question 2(b)(ii) \hfill [3 marks]}
+
+Mars orbit radius: \(r_M = \SI{2.280e11}{\m}\). Find equilibrium temperature of Mars.
+
+\textbf{Solution:}
+
+Assume Mars absorbs as blackbody, radiates as blackbody. At equilibrium:
+
+Absorbed power = emitted power
+
+\[
+I_M \pi R_M^2 = \sigma T_M^4 (4 \pi R_M^2) \Rightarrow T_M = \left( \frac{I_M}{4 \sigma} \right)^{1/4}
+\]
+
+But \(I_M = I \left( \frac{r}{r_M} \right)^2 = 1370 \left( \frac{1.496}{2.280} \right)^2 \approx 1370 \cdot (0.656)^2 \approx 1370 \cdot 0.430 \approx \SI{589}{\W\per\m^2}\)
+
+Then:
+\[
+T_M = \left( \frac{589}{4 \cdot 5.67 \times 10^{-8}} \right)^{1/4} = \left( \frac{589}{2.268 \times 10^{-7}} \right)^{1/4} \approx (2.60 \times 10^9)^{1/4}
+\]
+
+\[
+(2.60 \times 10^9)^{1/4} = (2.60)^{1/4} \cdot (10^9)^{1/4} \approx 1.27 \cdot 177.8 \approx \SI{226}{\K}
+\]
+
+\[
+\boxed{T_M \approx \SI{226}{\K}}
+\]
+
+\newpage
+
+\section*{Question 3(a) \hfill [4 marks]}
+
+Mass \(m = \SI{0.1}{\kg}\), force \(F = -10 x\) (N), so \(k = \SI{10}{\N\per\m}\)
+
+Initial: \(x_0 = \SI{0.05}{\m}\), \(v_0 = \frac{\sqrt{3}}{2}~\si{\m\per\s} \approx \SI{0.866}{\m\per\s}\) away from O.
+
+\textbf{(i) Amplitude}
+
+\(\omega = \sqrt{k/m} = \sqrt{10 / 0.1} = \sqrt{100} = \SI{10}{\radian\per\s}\)
+
+Energy: \(\frac{1}{2} k A^2 = \frac{1}{2} k x_0^2 + \frac{1}{2} m v_0^2\)
+
+\[
+A^2 = x_0^2 + \frac{m}{k} v_0^2 = (0.05)^2 + \frac{0.1}{10} \cdot \left( \frac{3}{4} \right) = 0.0025 + 0.01 \cdot 0.75 = 0.0025 + 0.0075 = 0.01
+\]
+\[
+A = \SI{0.1}{\m}
+\]
+
+\[
+\boxed{A = \SI{0.10}{\m}}
+\]
+
+\textbf{(ii) Initial phase angle}
+
+General solution: \(x = A \cos(\omega t + \phi)\)
+
+At \(t = 0\): \(x_0 = A \cos \phi = 0.05 = 0.1 \cos \phi \Rightarrow \cos \phi = 0.5 \Rightarrow \phi = \pm \frac{\pi}{3}\)
+
+Velocity: \(v = -A \omega \sin(\omega t + \phi) \Rightarrow v_0 = -A \omega \sin \phi\)
+
+\[
+0.866 = -0.1 \cdot 10 \cdot \sin \phi = -\sin \phi \Rightarrow \sin \phi = -0.866
+\]
+
+So \(\phi = -\frac{\pi}{3}\) (or \(5\pi/3\))
+
+\[
+\boxed{\phi = -\dfrac{\pi}{3}}
+\]
+
+\textbf{(iii) Max speed and acceleration}
+
+\[
+v_{\max} = A \omega = 0.1 \cdot 10 = \SI{1.0}{\m\per\s}, \quad a_{\max} = A \omega^2 = 0.1 \cdot 100 = \SI{10}{\m\per\s^2}
+\]
+
+\[
+\boxed{v_{\max} = \SI{1.0}{\m\per\s}, \quad a_{\max} = \SI{10}{\m\per\s^2}}
+\]
+
+\section*{Question 3(b) \hfill [6 marks]}
+
+Rod of length \(L\), floats vertically with \(h\) above liquid → submerged length = \(L - h\)
+
+Show SHM for small vertical displacement; find period.
+
+\textbf{Solution:}
+
+Let cross-section area = \(A\), density of rod = \(\rho\), liquid = \(\rho_l\)
+
+At equilibrium: weight = buoyancy
+\[
+\rho A L g = \rho_l A (L - h) g \Rightarrow \rho L = \rho_l (L - h)
+\]
+
+Displace downward by small \(y\): new submerged length = \(L - h + y\)
+
+Net upward force:
+\[
+F = -[\text{buoyancy} - \text{weight}] = -[ \rho_l A (L - h + y) g - \rho A L g ] = -\rho_l A g y
+\]
+(using equilibrium condition)
+
+So \(F = -(\rho_l A g) y = -k_{\text{eff}} y\), so SHM with
+\[
+\omega = \sqrt{ \frac{\rho_l A g}{m} } = \sqrt{ \frac{\rho_l A g}{\rho A L} } = \sqrt{ \frac{\rho_l g}{\rho L} }
+\]
+
+But from equilibrium: \(\frac{\rho_l}{\rho} = \frac{L}{L - h}\), so
+\[
+\omega = \sqrt{ \frac{g}{L - h} \cdot \frac{L}{L} \cdot \frac{\rho_l}{\rho} } = \sqrt{ \frac{g}{L - h} \cdot \frac{L}{L - h} \cdot \frac{L - h}{L} } \Rightarrow \text{better:}
+\]
+\[
+\omega = \sqrt{ \frac{\rho_l g}{\rho L} } = \sqrt{ \frac{g}{L - h} } \quad \text{(since } \rho_l / \rho = L / (L - h) \text{)}
+\]
+
+Thus period:
+\[
+T = \frac{2\pi}{\omega} = 2\pi \sqrt{ \frac{L - h}{g} }
+\]
+
+\[
+\boxed{T = 2\pi \sqrt{ \dfrac{L - h}{g} }}
+\]
+
+\newpage
+
+\section*{Question 4(a) \hfill [5 marks]}
+
+Spherical oil drop: potential at surface = \SI{1000}{\V}. Two identical drops merge. Find new potential.
+
+\textbf{Solution:}
+
+For isolated sphere: \(V = \frac{1}{4\pi \varepsilon_0} \frac{Q}{R}\)
+
+Let each drop have charge \(Q\), radius \(R\)
+
+After merging: charge = \(2Q\), volume = \(2 \cdot \frac{4}{3}\pi R^3 = \frac{4}{3}\pi R'^3 \Rightarrow R' = R \cdot 2^{1/3}\)
+
+New potential:
+\[
+V' = \frac{1}{4\pi \varepsilon_0} \frac{2Q}{R \cdot 2^{1/3}} = \frac{2}{2^{1/3}} \cdot \frac{1}{4\pi \varepsilon_0} \frac{Q}{R} = 2^{2/3} V
+\]
+
+\[
+2^{2/3} \approx 1.5874, \quad V' \approx 1.5874 \cdot 1000 \approx \SI{1587}{\V}
+\]
+
+\[
+\boxed{V' = 2^{2/3} \times \SI{1000}{\V} \approx \SI{1590}{\V}}
+\]
+
+\section*{Question 4(b) \hfill [5 marks]}
+
+Bainbridge mass spectrometer: velocity selector with \(E = \SI{100}{\V\per\cm} = \SI{10000}{\V\per\m}\), \(B = \SI{0.2}{\T}\)
+
+\textbf{(i) Speed of ion that passes through}
+
+In velocity selector: \(q E = q v B \Rightarrow v = E / B = 10000 / 0.2 = \SI{5.0e4}{\m\per\s}\)
+
+\[
+\boxed{v = \SI{5.0e4}{\m\per\s}}
+\]
+
+\textbf{(ii) Can it resolve \(^3\)He and \(^4\)He? Slit width = \SI{1}{\mm}}
+
+After selector, ions enter magnetic field (same \(B\)?), move in circular paths.
+
+Radius: \(r = \frac{m v}{q B}\)
+
+For same \(q, v, B\): \(\Delta r = r_4 - r_3 = \frac{v}{q B} (m_4 - m_3)\)
+
+Masses: \(m_3 = 3u\), \(m_4 = 4u\), \(u = \SI{1.66e-27}{\kg}\)
+
+\[
+\Delta r = \frac{5.0 \times 10^4}{1.60 \times 10^{-19} \cdot 0.2} \cdot (1.66 \times 10^{-27}) = \frac{5.0 \times 10^4 \cdot 1.66 \times 10^{-27}}{3.2 \times 10^{-20}} \approx \frac{8.3 \times 10^{-23}}{3.2 \times 10^{-20}} \approx \SI{2.59e-3}{\m} = \SI{2.59}{\mm}
+\]
+
+Slit width = \SI{1}{\mm}, so \(\Delta r > \text{slit width}\) → **can resolve**
+
+\[
+\boxed{\text{Yes, since } \Delta r \approx \SI{2.6}{\mm} > \SI{1}{\mm}}
+\]
+
+\newpage
+
+\section*{Question 5(a) \hfill [5 marks]}
+
+Light intensity \(I = \SI{50}{\W\per\m^2}\) incident normally on **perfect reflector**. Find radiation pressure.
+
+\textbf{Solution:}
+
+For perfect reflection: pressure \(P = \frac{2 I}{c}\)
+
+\[
+P = \frac{2 \cdot 50}{3.00 \times 10^8} = \frac{100}{3 \times 10^8} \approx \SI{3.33e-7}{\Pa}
+\]
+
+\[
+\boxed{P = \dfrac{2I}{c} \approx \SI{3.33e-7}{\Pa}}
+\]
+
+\section*{Question 5(b) \hfill [5 marks]}
+
+Positronium: electron and positron (mass \(m\), opposite charges). Find shortest wavelength in Lyman series.
+
+\textbf{Solution:}
+
+Reduced mass: \(\mu = \frac{m \cdot m}{m + m} = \frac{m}{2}\)
+
+Energy levels scale with reduced mass:
+\[
+E_n = -\frac{\mu e^4}{8 \varepsilon_0^2 h^2} \cdot \frac{1}{n^2} = -\frac{1}{2} \cdot \frac{m e^4}{8 \varepsilon_0^2 h^2} \cdot \frac{1}{n^2} = \frac{1}{2} E_n^{\text{(H)}}
+\]
+
+So ionization energy = \(\frac{1}{2} \times \SI{13.6}{\eV} = \SI{6.8}{\eV}\)
+
+Lyman series: \(n \geq 2 \to n=1\)
+
+Shortest wavelength = highest energy = \(n = \infty \to n = 1\)
+
+\[
+\Delta E = 0 - (-6.8) = \SI{6.8}{\eV}
+\]
+\[
+\lambda = \frac{hc}{\Delta E} = \frac{1240~\si{\eV\nm}}{6.8~\si{\eV}} \approx \SI{182}{\nm}
+\]
+
+\[
+\boxed{\lambda \approx \SI{182}{\nm}}
+\]
+
+\end{document}
