@@ -1,12 +1,13 @@
 # Use a lightweight Python setup
 FROM python:3.9-slim
 
-# 1. Install LaTeX and Git (System Level)
-# We use 'slim' to keep it small, but we need these specific packages for your app.
+# 1. Install LaTeX (including SCIENCE packages) and Git
 RUN apt-get update && apt-get install -y \
     texlive-latex-base \
     texlive-fonts-recommended \
     texlive-latex-extra \
+    texlive-latex-recommended \
+    texlive-science \
     git \
     && rm -rf /var/lib/apt/lists/*
 
