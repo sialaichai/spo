@@ -16,7 +16,7 @@ BASE_DIRS = {
 TEMP_DIR = "temp_build"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-st.set_page_config(page_title="Physics Archive", layout="wide")
+st.set_page_config(page_title="JPJC SPhO Archive", layout="wide")
 
 # ==========================================
 # 🔐 ENCRYPTION HELPER
@@ -193,7 +193,7 @@ def compile_latex(file_path):
 # ==========================================
 # 🖥️ SIDEBAR NAVIGATION
 # ==========================================
-st.sidebar.title(f"Physics Archive ({current_role.title()})")
+st.sidebar.title(f"JPJC SPhO ({current_role.title()})")
 
 # ADMIN SYNC
 if current_role == 'admin':
@@ -210,7 +210,7 @@ if st.sidebar.button("Logout", type="secondary"):
     st.session_state.user_role = None
     st.rerun()
 
-st.sidebar.markdown("---")
+#st.sidebar.markdown("---")
 
 # 1. SELECT MODE (Topics vs Year)
 browse_mode = st.sidebar.radio("Library Section:", ["Topics", "Year"], horizontal=True)
@@ -225,7 +225,7 @@ if not subfolders:
 
 selected_subfolder = st.sidebar.selectbox(f"Select {browse_mode[:-1]}", subfolders) # "Select Topic" or "Select Yea"
 
-st.sidebar.markdown("---") 
+#st.sidebar.markdown("---") 
 
 # 3. SELECT FILE
 files = get_files(current_root_dir, selected_subfolder)
