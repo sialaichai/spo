@@ -1,0 +1,667 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, siunitx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{SPhO 2020 — Solutions}
+\lhead{33rd Singapore Physics Olympiad}
+\rfoot{Page \thepage}
+
+\title{33rd Singapore Physics Olympiad \\ Theory Paper — Full Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1 \hfill [10 marks]}
+
+A cylindrical rod of radius \SI{1.0}{\cm} and length \SI{1.0}{\m} consists of two equal sections: zinc and copper. The zinc end is pivoted at \(O\). The rod is released from horizontal and swings to vertical. Find the angular velocity at the vertical position.
+
+\textbf{Given:}
+\[
+\rho_{\text{Zn}} = \SI{7135}{\kg\per\cubic\m}, \quad \rho_{\text{Cu}} = \SI{8940}{\kg\per\cubic\m}
+\]
+
+\textbf{Solution:}
+
+Volume of each half:
+\[
+V = \pi r^2 \cdot \frac{L}{2} = \pi (0.01)^2 (0.5) = \num{1.57e-4}~\si{\cubic\m}
+\]
+
+Masses:
+\[
+m_{\text{Zn}} = \rho_{\text{Zn}} V \approx 7135 \times \num{1.57e-4} = \SI{1.121}{\kg}
+\]
+\[
+m_{\text{Cu}} = \rho_{\text{Cu}} V \approx 8940 \times \num{1.57e-4} = \SI{1.404}{\kg}
+\]
+
+Center of mass (from pivot at zinc end):
+\[
+x_{\text{CM}} = \frac{m_{\text{Zn}}(0.25) + m_{\text{Cu}}(0.75)}{m_{\text{Zn}} + m_{\text{Cu}}}
+= \frac{1.121 \cdot 0.25 + 1.404 \cdot 0.75}{2.525} \approx \SI{0.528}{\m}
+\]
+
+Loss in gravitational PE:
+\[
+\Delta U = (m_{\text{Zn}} + m_{\text{Cu}}) g x_{\text{CM}} \approx 2.525 \cdot 9.81 \cdot 0.528 \approx \SI{13.06}{\J}
+\]
+
+Moment of inertia about pivot:
+\[
+I_{\text{Zn}} = \frac{1}{3} m_{\text{Zn}} (0.5)^2 = \frac{1}{3}(1.121)(0.25) \approx \SI{0.0934}{\kg\m^2}
+\]
+\[
+I_{\text{Cu}} = \frac{1}{12} m_{\text{Cu}} (0.5)^2 + m_{\text{Cu}} (0.75)^2 \approx 0.0293 + 0.7898 = \SI{0.819}{\kg\m^2}
+\]
+\[
+I = I_{\text{Zn}} + I_{\text{Cu}} \approx \SI{0.912}{\kg\m^2}
+\]
+
+Energy conservation:
+\[
+\frac{1}{2} I \omega^2 = \Delta U \Rightarrow \omega = \sqrt{\frac{2 \Delta U}{I}} = \sqrt{\frac{2 \cdot 13.06}{0.912}} \approx \sqrt{28.64} \approx \SI{5.35}{\radian\per\second}
+\]
+
+\[
+\boxed{\omega \approx \SI{5.35}{\radian\per\second}}
+\]
+
+\newpage
+
+\section*{Question 2(a) \hfill [5 marks]}
+
+Swing of length \SI{5}{\m}, amplitude \ang{45}, sound frequency \SI{400}{\Hz}. Find max and min heard frequency.
+
+\textbf{Solution:}
+
+Max speed at bottom:
+\[
+v_{\text{max}} = \sqrt{2 g L (1 - \cos \theta_0)} = \sqrt{2 \cdot 9.81 \cdot 5 \cdot (1 - \cos 45^\circ)} \approx \sqrt{28.73} \approx \SI{5.36}{\m\per\s}
+\]
+
+Doppler effect (observer moving):
+\[
+f_{\text{max}} = f_0 \left(1 + \frac{v_{\text{obs}}}{v_{\text{sound}}} \right) = 400 \left(1 + \frac{5.36}{330} \right) \approx \SI{406.5}{\Hz}
+\]
+\[
+f_{\text{min}} = 400 \left(1 - \frac{5.36}{330} \right) \approx \SI{393.5}{\Hz}
+\]
+
+\[
+\boxed{f_{\text{max}} \approx \SI{406.5}{\Hz}, \quad f_{\text{min}} \approx \SI{393.5}{\Hz}}
+\]
+
+\section*{Question 2(b) \hfill [5 marks]}
+
+Microscope: \(f_o = \SI{6.0}{\mm}, f_e = \SI{40.0}{\mm}\), tube length = \SI{200}{\mm}, final image at \SI{250}{\mm} from eyepiece.
+
+\textbf{(i) Object distance from objective}
+
+For eyepiece:
+\[
+\frac{1}{f_e} = \frac{1}{v_e} - \frac{1}{u_e}, \quad v_e = -\SI{250}{\mm}, \quad u_e = -(200 - v_o)
+\]
+\[
+\frac{1}{40} = -\frac{1}{250} + \frac{1}{200 - v_o} \Rightarrow \frac{1}{200 - v_o} = \frac{1}{40} + \frac{1}{250} = \frac{29}{1000}
+\]
+\[
+200 - v_o = \frac{1000}{29} \approx \SI{34.48}{\mm} \Rightarrow v_o \approx \SI{165.52}{\mm}
+\]
+
+For objective:
+\[
+\frac{1}{f_o} = \frac{1}{v_o} + \frac{1}{u_o} \Rightarrow \frac{1}{6.0} = \frac{1}{165.52} + \frac{1}{u_o}
+\Rightarrow u_o \approx \SI{6.22}{\mm}
+\]
+
+\[
+\boxed{u_o \approx \SI{6.22}{\mm}}
+\]
+
+\textbf{(ii) Magnifying power}
+
+\[
+M_o = \frac{v_o}{u_o} \approx \frac{165.52}{6.22} \approx 26.6, \quad M_e = \frac{D}{|u_e|} = \frac{250}{34.48} \approx 7.25
+\]
+\[
+M = M_o M_e \approx 26.6 \times 7.25 \approx 193
+\]
+
+\[
+\boxed{M \approx 193}
+\]
+
+\newpage
+
+\section*{Question 3 \hfill [10 marks]}
+
+Rotating conducting rod of length \(\ell\), resistance \(R\), connected to resistor \(R_0\), in uniform \(\vec{B} \perp\) plane, angular speed \(\omega\).
+
+\textbf{(a) Induced emf}
+
+Element at radius \(r\): \(d\mathcal{E} = B (\omega r) dr\)
+
+\[
+\mathcal{E} = \int_0^\ell B \omega r \, dr = \frac{1}{2} B \omega \ell^2
+\]
+
+\[
+\boxed{\mathcal{E} = \dfrac{1}{2} B \omega \ell^2}
+\]
+
+\textbf{(b) Power in \(R_0\)}
+
+Total resistance: \(R + R_0\), current \(I = \dfrac{\mathcal{E}}{R + R_0}\)
+
+\[
+P = I^2 R_0 = \frac{\mathcal{E}^2 R_0}{(R + R_0)^2} = \frac{B^2 \omega^2 \ell^4 R_0}{4(R + R_0)^2}
+\]
+
+\[
+\boxed{P = \dfrac{B^2 \omega^2 \ell^4 R_0}{4(R + R_0)^2}}
+\]
+
+\textbf{(c) Origin of power}
+
+The power comes from mechanical work done by an external agent to maintain constant \(\omega\) against the magnetic braking torque caused by induced current (Lenz’s law). Thus, mechanical energy → electrical energy → heat.
+
+\[
+\boxed{\text{Mechanical work maintains rotation against magnetic damping; energy converted to Joule heating.}}
+\]
+
+\newpage
+
+\section*{Question 4 \hfill [10 marks]}
+
+Free electron collides with H atom (ground state). After collision, atom emits two photons; one has \(\lambda_1 = \SI{656.3}{\nm}\) (H\(\alpha\): \(n=3 \to 2\)). Final electron de Broglie wavelength \(\lambda_e = \SI{1.915}{\nm}\).
+
+\textbf{(a) Wavelength of other photon}
+
+656.3 nm corresponds to transition \(n=3 \to n=2\). So atom was excited to \(n=3\). De-excitation path: \(3 \to 2 \to 1\). Other photon is \(2 \to 1\).
+
+Energy of \(2 \to 1\):
+\[
+E = 13.6 \left(1 - \frac{1}{4} \right) = \SI{10.2}{\eV}
+\]
+\[
+\lambda = \frac{hc}{E} = \frac{1240~\si{\eV\nm}}{10.2~\si{\eV}} \approx \SI{121.6}{\nm}
+\]
+
+\[
+\boxed{\lambda \approx \SI{121.6}{\nm}}
+\]
+
+\textbf{(b) Initial electron speed}
+
+Final electron momentum:
+\[
+p = \frac{h}{\lambda_e} = \frac{6.63 \times 10^{-34}}{1.915 \times 10^{-9}} \approx \SI{3.46e-25}{\kg\m\per\s}
+\]
+\[
+v_f = \frac{p}{m_e} = \frac{3.46 \times 10^{-25}}{9.11 \times 10^{-31}} \approx \SI{3.80e5}{\m\per\s}
+\]
+\[
+K_f = \frac{1}{2} m_e v_f^2 \approx \SI{65.7}{\eV}
+\]
+
+Energy lost to atom: excitation from \(n=1\) to \(n=3\):
+\[
+\Delta E = 13.6 \left(1 - \frac{1}{9} \right) = \SI{12.09}{\eV}
+\]
+
+Initial kinetic energy: \(K_i = K_f + \Delta E \approx 65.7 + 12.09 = \SI{77.8}{\eV}\)
+
+Initial speed:
+\[
+v_i = \sqrt{\frac{2 K_i e}{m_e}} = \sqrt{\frac{2 \cdot 77.8 \cdot 1.60 \times 10^{-19}}{9.11 \times 10^{-31}}} \approx \SI{5.22e5}{\m\per\s}
+\]
+
+\[
+\boxed{v_i \approx \SI{5.22e5}{\m\per\s}}
+\]
+
+\newpage
+
+\section*{Question 5(a) \hfill [7 marks]}
+
+Airplane speed: \(\SI{540}{\kilo\meter\per\hour} = \SI{150}{\m\per\s}\), height \SI{1200}{\m}. Fires projectile at speed \(u\) relative to plane → absolute speed = \(150 + u\).
+
+Vehicle speed: \SI{40}{\m\per\s}, initial horizontal distance = \(d\) (km → \(1000 d\) m).
+
+Time to fall: \(t = \sqrt{2h/g} = \sqrt{2 \cdot 1200 / 9.81} \approx \SI{15.64}{\s}\)
+
+Horizontal distance traveled by projectile: \((150 + u)t\)
+
+By vehicle: \(40 t\)
+
+To hit: \((150 + u)t = 1000 d + 40 t \Rightarrow 1000 d = (110 + u) t\)
+
+Minimum \(d\) occurs when \(u = 0\) (minimum possible firing speed):
+
+\[
+d_{\min} = \frac{110 \cdot 15.64}{1000} \approx \SI{1.72}{\km}
+\]
+
+If \(d = 5 d_{\min} = \SI{8.60}{\km}\), then:
+\[
+1000 \cdot 8.60 = (110 + u) \cdot 15.64 \Rightarrow u \approx \frac{8600}{15.64} - 110 \approx \SI{439.3}{\m\per\s}
+\]
+
+Projectile speed when it hits = horizontal: \(150 + u = \SI{589.3}{\m\per\s}\), vertical: \(v_y = g t = 9.81 \cdot 15.64 \approx \SI{153.4}{\m\per\s}\)
+
+Speed magnitude:
+\[
+v = \sqrt{(589.3)^2 + (153.4)^2} \approx \SI{609}{\m\per\s}
+\]
+
+\[
+\boxed{d_{\min} \approx \SI{1.72}{\km}, \quad v \approx \SI{609}{\m\per\s}}
+\]
+
+\section*{Question 5(b) \hfill [5 marks]}
+
+Satellite at \(h = \SI{400}{\km}\), co-rotating with Earth.
+
+Orbital radius: \(r = R_E + h = 6370 + 400 = \SI{6770}{\km} = \SI{6.77e6}{\m}\)
+
+Orbital period (Kepler):
+\[
+T = 2\pi \sqrt{\frac{r^3}{G M_E}} = 2\pi \sqrt{\frac{r^3}{g R_E^2}} \quad (\text{since } g = G M_E / R_E^2)
+\]
+\[
+T = 2\pi \sqrt{\frac{(6.77 \times 10^6)^3}{9.81 \cdot (6.37 \times 10^6)^2}} \approx \SI{5540}{\s} \approx \SI{92.3}{\minute}
+\]
+
+Earth rotates once per 24 h = \SI{86400}{\s}. In time \(T\), Earth rotates by angle \(\theta = \omega_E T\), so satellite sees new point.
+
+Number of photos in 24 h = number of orbits:
+\[
+N = \frac{86400}{5540} \approx 15.6 \Rightarrow \boxed{15}
+\]
+
+(Only full passes over distinct points count; typically integer number of revolutions.)
+
+\newpage
+
+\section*{Question 6(a) \hfill [6 marks]}
+
+Uniformly charged insulating sphere, density \(\rho\), radius \(R\). Tunnel along diameter. Particle \(-q\), mass \(m\), released from surface.
+
+Inside sphere, electric field:
+\[
+E(r) = \frac{\rho r}{3 \varepsilon_0}, \quad F = -q E = -\left( \frac{q \rho}{3 \varepsilon_0} \right) r \Rightarrow \text{SHM}
+\]
+
+Motion is simple harmonic about center.
+
+Potential difference from surface to center:
+\[
+\Delta V = V(0) - V(R) = \frac{\rho}{6 \varepsilon_0} (3R^2 - R^2) - \frac{\rho R^2}{2 \varepsilon_0} = \frac{\rho R^2}{3 \varepsilon_0} - \frac{\rho R^2}{2 \varepsilon_0} = -\frac{\rho R^2}{6 \varepsilon_0}
+\]
+Better: use energy.
+
+Energy conservation: loss in electric PE = gain in KE.
+
+Total charge: \(Q = \frac{4}{3} \pi R^3 \rho\)
+
+Potential at surface: \(V(R) = \frac{1}{4\pi \varepsilon_0} \frac{Q}{R} = \frac{\rho R^2}{3 \varepsilon_0}\)
+
+Potential at center: \(V(0) = \frac{3}{2} V(R) = \frac{\rho R^2}{2 \varepsilon_0}\)
+
+So \(\Delta V = V(0) - V(R) = \frac{\rho R^2}{6 \varepsilon_0}\)
+
+KE gained:
+\[
+\frac{1}{2} m v^2 = q \Delta V = \frac{q \rho R^2}{6 \varepsilon_0}
+\Rightarrow v = \sqrt{ \frac{q \rho R^2}{3 m \varepsilon_0} }
+\]
+
+\[
+\boxed{v = \sqrt{ \dfrac{q \rho R^2}{3 m \varepsilon_0} }, \quad \text{motion is simple harmonic}}
+\]
+
+\section*{Question 6(b) \hfill [6 marks]}
+
+Forces: \(F_A = -2 m \mu x\) (if A at \(x = -L/2\)), \(F_B = -m \mu (x - L)\). But better: let midpoint be origin, AB = \(2a\).
+
+Let \(x\) = displacement from midpoint. Then \(d_A = a + x\), \(d_B = a - x\)
+
+Net force toward A: \(F_A = -2 m \mu (a + x)\) (negative if right of A)
+
+But direction: \(F_A\) toward A, \(F_B\) toward B.
+
+So net force:
+\[
+F = -2 m \mu (a + x) + m \mu (a - x) = -2 m \mu a - 2 m \mu x + m \mu a - m \mu x = -m \mu a - 3 m \mu x
+\]
+
+But equilibrium at net force = 0 → \(x_0 = -a/3\). However, problem states particle is at rest at midpoint and O is where net force = 0.
+
+Alternative: set A at \(x = 0\), B at \(x = L\). Then \(d_A = x\), \(d_B = L - x\)
+
+\[
+F_{\text{net}} = -2 m \mu x + m \mu (L - x) = m \mu (L - 3x)
+\]
+
+Zero at \(x = L/3 = O\). Let \(y = x - L/3\), then:
+
+\[
+F = m \mu (L - 3(y + L/3)) = -3 m \mu y \Rightarrow m \ddot{y} = -3 m \mu y \Rightarrow \ddot{y} + 3 \mu y = 0
+\]
+
+SHM with \(\omega = \sqrt{3 \mu}\), period \(T = \dfrac{2\pi}{\sqrt{3 \mu}}\)
+
+Amplitude: particle at rest at midpoint \(x = L/2 = y = L/2 - L/3 = L/6\)
+
+So amplitude \(A = L/6\)
+
+KE at \(O\) (y=0): max KE = total energy = \(\frac{1}{2} m \omega^2 A^2 = \frac{1}{2} m (3 \mu) (L/6)^2 = \frac{m \mu L^2}{24}\)
+
+\[
+\boxed{T = \dfrac{2\pi}{\sqrt{3\mu}}, \quad A = \dfrac{L}{6}, \quad K = \dfrac{m \mu L^2}{24}}
+\]
+
+\newpage
+
+\section*{Question 7(a) \hfill [6 marks]}
+
+Initial: \(V = \SI{8.0e-3}{\m^3}\), \(P_1 = \SI{1.14e5}{\Pa}\), \(T\)
+
+Gas expands adiabatically (open lid) to \(P_2 = \SI{1.01e5}{\Pa}\), some gas escapes.
+
+Then lid closed, gas reheated to \(T\), new pressure \(P_3 = \SI{1.06e5}{\Pa}\)
+
+\textbf{(i) Volume of remaining gas at original \(T, P_1\)?}
+
+After re-heating: \(P_3 V = n R T\)
+
+Originally: \(P_1 V = n_0 R T\)
+
+So ratio: \(\frac{n}{n_0} = \frac{P_3}{P_1} = \frac{1.06}{1.14}\)
+
+At original \(P_1, T\), volume of remaining gas:
+\[
+V' = \frac{n}{n_0} V = \frac{1.06}{1.14} \times 8.0 \times 10^{-3} \approx \SI{7.44e-3}{\m^3}
+\]
+
+\[
+\boxed{V' \approx \SI{7.44e-3}{\m^3}}
+\]
+
+\textbf{(ii) Find \(\gamma\)}
+
+Adiabatic expansion: \(P_1^{1-\gamma} T_1^\gamma = P_2^{1-\gamma} T_2^\gamma\), but gas that remains underwent \(P_1 V_1^\gamma = P_2 V_2^\gamma\)
+
+But amount changed. Better: the gas that remains satisfied \(T_2 / T_1 = (P_2 / P_1)^{(\gamma - 1)/\gamma}\)
+
+But after expansion, when lid closed, same \(n\), then heated back to \(T\): \(P_2 / T_2 = P_3 / T \Rightarrow T_2 = T \cdot P_2 / P_3\)
+
+So:
+\[
+\frac{T_2}{T} = \left( \frac{P_2}{P_1} \right)^{(\gamma - 1)/\gamma}
+\Rightarrow \frac{P_2}{P_3} = \left( \frac{P_2}{P_1} \right)^{(\gamma - 1)/\gamma}
+\]
+
+Take logs:
+\[
+\ln\left( \frac{P_2}{P_3} \right) = \frac{\gamma - 1}{\gamma} \ln\left( \frac{P_2}{P_1} \right)
+\]
+
+Plug: \(P_1 = 1.14\), \(P_2 = 1.01\), \(P_3 = 1.06\) (in \(\times 10^5\) Pa)
+
+\[
+\frac{1.01}{1.06} = 0.9528, \quad \frac{1.01}{1.14} = 0.8860
+\]
+\[
+\ln(0.9528) = -0.0484, \quad \ln(0.8860) = -0.1208
+\]
+\[
+-0.0484 = \frac{\gamma - 1}{\gamma} (-0.1208) \Rightarrow \frac{\gamma - 1}{\gamma} = 0.4007 \Rightarrow \gamma = \frac{1}{1 - 0.4007} \approx 1.67
+\]
+
+\[
+\boxed{\gamma \approx 1.67}
+\]
+
+\textbf{(iii) Atomicity}
+
+\(\gamma = 5/3 \approx 1.67\) → monatomic gas.
+
+\[
+\boxed{\text{Monatomic}}
+\]
+
+\section*{Question 7(b) \hfill [6 marks]}
+
+Copper rod: \(L = \SI{0.5}{\m}\), \(r = \SI{0.01}{\m}\), \(k = \SI{400}{\W\per\m\per\K}\)
+
+Hot end: \SI{100}{\celsius}, cold end in ice–water mix (0°C). Melt ice (\SI{200}{\g}) and heat total water (\SI{300}{\g}) to \SI{20}{\celsius}.
+
+Total heat required:
+\[
+Q = m_{\text{ice}} L_f + (m_{\text{ice}} + m_{\text{water}}) c \Delta T
+= 0.2 \cdot 3.34 \times 10^5 + 0.3 \cdot 4200 \cdot 20
+= 66800 + 25200 = \SI{92000}{\J}
+\]
+
+Steady-state heat current:
+\[
+\frac{dQ}{dt} = \frac{k A \Delta T}{L} = \frac{400 \cdot \pi (0.01)^2 \cdot 100}{0.5} = \frac{400 \cdot \pi \cdot 10^{-4} \cdot 100}{0.5} \approx \SI{25.13}{\W}
+\]
+
+Time:
+\[
+t = \frac{Q}{dQ/dt} = \frac{92000}{25.13} \approx \SI{3660}{\s} \approx \SI{61}{\minute}
+\]
+
+\[
+\boxed{t \approx \SI{3660}{\s} \ (\text{about } \SI{61}{\minute})}
+\]
+
+\newpage
+
+\section*{Question 8(a) \hfill [5 marks]}
+
+Source B accelerates from rest at \(a = \SI{0.5}{\m\per\s\squared}\) to point \(P\) at distance \(x\), then moves at constant speed \(v = \sqrt{2 a x}\).
+
+At that moment, frequency difference: \(\Delta f = \SI{8}{\Hz}\), \(f_0 = \SI{256}{\Hz}\), \(v_{\text{sound}} = \SI{330}{\m\per\s}\)
+
+Observer hears:
+\[
+f = f_0 \frac{v_{\text{sound}}}{v_{\text{sound}} - v} \quad (\text{source moving away})
+\]
+\[
+f_0 - f = 8 \Rightarrow f_0 \left(1 - \frac{330}{330 - v} \right) = -8 \Rightarrow \frac{f_0 v}{330 - v} = 8
+\]
+\[
+256 v = 8 (330 - v) \Rightarrow 256 v + 8 v = 2640 \Rightarrow v = \frac{2640}{264} = \SI{10}{\m\per\s}
+\]
+
+Then \(v^2 = 2 a x \Rightarrow x = \frac{100}{2 \cdot 0.5} = \SI{100}{\m}\)
+
+\[
+\boxed{x = \SI{100}{\m}}
+\]
+
+\section*{Question 8(b) \hfill [7 marks]}
+
+Proton, \(K = \SI{10}{\MeV}\), \(B = \SI{1.5}{\T}\), field length \(\Delta x = \SI{2.0}{\m}\)
+
+Non-relativistic? \(m_p c^2 \approx \SI{938}{\MeV} \gg 10\) MeV → OK.
+
+\[
+K = \frac{1}{2} m v^2 \Rightarrow v = \sqrt{\frac{2 K}{m}} = \sqrt{ \frac{2 \cdot 10 \cdot 10^6 \cdot 1.60 \times 10^{-19}}{1.67 \times 10^{-27}} } \approx \SI{1.38e7}{\m\per\s}
+\]
+
+Cyclotron radius:
+\[
+r = \frac{m v}{q B} = \frac{1.67 \times 10^{-27} \cdot 1.38 \times 10^7}{1.60 \times 10^{-19} \cdot 1.5} \approx \SI{0.96}{\m}
+\]
+
+Arc length in field: chord length = \SI{2.0}{\m}, but actually, particle traverses arc of circle with radius \(r\), horizontal projection = 2.0 m.
+
+So: \(r \sin \alpha = 2.0 \Rightarrow \sin \alpha = 2.0 / 0.96 > 1\) → impossible!
+
+Wait: magnetic field only changes direction, path is circular arc. The beam enters at \(x=0\), exits at \(x=2.0\), so the **horizontal displacement** is 2.0 m, which equals \(r \sin \theta\), where \(\theta\) = deflection angle.
+
+But \(r = 0.96~\si{\m} < 2.0~\si{\m}\) → contradiction.
+
+Thus, must treat **relativistically**.
+
+Relativistic momentum:
+\[
+K = (\gamma - 1) m c^2 = 10 \Rightarrow \gamma = 1 + \frac{10}{938} \approx 1.0107
+\]
+\[
+p = \gamma m v = \frac{1}{c} \sqrt{K^2 + 2 K m c^2} \approx \frac{1}{c} \sqrt{ (10)^2 + 2 \cdot 10 \cdot 938 } \approx \frac{\sqrt{18860}}{c} \approx \frac{137.3}{c}~\si{\MeV\per c}
+\]
+
+In SI:
+\[
+p = \frac{137.3 \cdot 10^6 \cdot 1.60 \times 10^{-19}}{3.00 \times 10^8} \approx \SI{7.32e-20}{\kg\m\per\s}
+\]
+
+Then:
+\[
+r = \frac{p}{q B} = \frac{7.32 \times 10^{-20}}{1.60 \times 10^{-19} \cdot 1.5} \approx \SI{0.305}{\m}
+\]
+
+Now, horizontal distance: \(x = r \sin \alpha = 2.0\) → still impossible since \(r < 2\).
+
+But actually: the particle moves in a **circular arc** of radius \(r\). The maximum horizontal distance it can cover is \(2r\) (diameter). Since \(2r \approx \SI{0.61}{\m} < \SI{2.0}{\m}\), the proton **completes more than half a circle**.
+
+Better: the angle swept \(\theta\) satisfies:
+\[
+\text{Arc length along x: } \Delta x = r \sin \theta + r \theta? \text{ No.}
+\]
+
+Actually, parametric: \(x = r \sin \theta\), \(y = r (1 - \cos \theta)\). So \(x = r \sin \theta = 2.0\)
+
+But \(r = 0.305\) → \(\sin \theta = 2.0 / 0.305 \approx 6.56\) → impossible.
+
+So **error**: the magnetic field is in \(z\), motion in \(xy\)-plane. The **path is circular**, but the field region is only from \(x=0\) to \(x=2\). The proton **enters at (0,0) with velocity in x**, so trajectory: center at (0, r). Then:
+\[
+x = r \sin \omega t, \quad y = r (1 - \cos \omega t)
+\]
+When \(x = 2.0\), \(r \sin \theta = 2.0 \Rightarrow \sin \theta = 2.0 / r\)
+
+But this requires \(r > 2.0\). So initial non-relativistic calc must have error.
+
+Recheck non-relativistic \(v\):
+
+\[
+K = 10~\si{\MeV} = 1.60 \times 10^{-12}~\si{\J}
+\]
+\[
+v = \sqrt{2K/m} = \sqrt{2 \cdot 1.60 \times 10^{-12} / 1.67 \times 10^{-27}} = \sqrt{1.916 \times 10^{15}} \approx \SI{4.38e7}{\m\per\s}
+\]
+(earlier used wrong conversion!)
+
+Then:
+\[
+r = \frac{m v}{q B} = \frac{1.67 \times 10^{-27} \cdot 4.38 \times 10^7}{1.60 \times 10^{-19} \cdot 1.5} \approx \SI{3.05}{\m}
+\]
+
+Now, \(x = r \sin \alpha = 2.0 \Rightarrow \sin \alpha = 2.0 / 3.05 = 0.6557 \Rightarrow \alpha = \arcsin(0.6557) \approx \ang{41.0}\)
+
+\[
+\boxed{\alpha \approx \ang{41}}
+\]
+
+\newpage
+
+\section*{Question 9(a) \hfill [5 marks]}
+
+Light \(\lambda = \SI{122}{\nm}\) on metal → photoelectrons with max KE enter \(B = \SI{5e-5}{\T}\), move in circle \(r = \SI{0.158}{\m}\).
+
+Find work function \(\phi\).
+
+From magnetic motion:
+\[
+r = \frac{m v}{e B} \Rightarrow p = e B r
+\]
+\[
+K = \frac{p^2}{2 m} = \frac{(e B r)^2}{2 m}
+\]
+
+Compute:
+\[
+p = 1.60 \times 10^{-19} \cdot 5 \times 10^{-5} \cdot 0.158 \approx \SI{1.264e-24}{\kg\m\per\s}
+\]
+\[
+K = \frac{(1.264 \times 10^{-24})^2}{2 \cdot 9.11 \times 10^{-31}} \approx \SI{8.77e-19}{\J} = \frac{8.77 \times 10^{-19}}{1.60 \times 10^{-19}} \approx \SI{5.48}{\eV}
+\]
+
+Photon energy:
+\[
+E = \frac{1240}{122} \approx \SI{10.16}{\eV}
+\]
+
+Work function:
+\[
+\phi = E - K \approx 10.16 - 5.48 = \SI{4.68}{\eV}
+\]
+
+\[
+\boxed{\phi \approx \SI{4.68}{\eV}}
+\]
+
+\section*{Question 9(b) \hfill [7 marks]}
+
+Muons: \(v = 0.995c\), \(\tau_{1/2} = \SI{1.56}{\micro\s}\) (rest), mountain height \SI{2000}{\m}, 568 muons at top.
+
+\textbf{(i) Classical prediction at bottom}
+
+Time to travel: \(t = \frac{2000}{0.995 \cdot 3.00 \times 10^8} \approx \SI{6.70e-6}{\s} = \SI{6.70}{\micro\s}\)
+
+Number of half-lives: \(n = 6.70 / 1.56 \approx 4.295\)
+
+Survival fraction: \( (1/2)^{4.295} \approx 0.051 \)
+
+Expected muons: \(568 \cdot 0.051 \approx 29\)
+
+\[
+\boxed{29}
+\]
+
+\textbf{(ii) Why experiment sees 422?}
+
+Relativistic time dilation: in Earth frame, muon lifetime is \(\gamma \tau\), so many survive.
+
+\[
+\boxed{\text{Time dilation in special relativity extends muon lifetime in Earth frame.}}
+\]
+
+\textbf{(iii) Height in muon frame}
+
+Length contraction: \(L' = L / \gamma\)
+
+\(\gamma = 1 / \sqrt{1 - 0.995^2} = 1 / \sqrt{0.009975} \approx 10.01\)
+
+\[
+L' = 2000 / 10.01 \approx \SI{200}{\m}
+\]
+
+\[
+\boxed{\SI{200}{\m}}
+\]
+
+\textbf{(iv) Velocity of particle (0.9995c) in muon frame}
+
+Use relativistic velocity addition:
+\[
+u' = \frac{u - v}{1 - u v / c^2} = \frac{0.9995c - 0.995c}{1 - (0.9995)(0.995)} = \frac{0.0045c}{1 - 0.9945025} = \frac{0.0045c}{0.0054975} \approx 0.819c
+\]
+
+\[
+\boxed{u' \approx 0.819c}
+\]
+
+\end{document}
