@@ -193,7 +193,7 @@ def compile_latex(file_path):
 # ==========================================
 # 🖥️ SIDEBAR NAVIGATION
 # ==========================================
-st.sidebar.title(f"Physics Archive ({current_role.title()})")
+st.sidebar.title(f"JPJC SPhO ({current_role.title()})")
 
 # ADMIN SYNC
 if current_role == 'admin':
