@@ -1,0 +1,304 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{tikz}
+\geometry{margin=1in}
+
+\title{Solutions to the 30th Singapore Physics Olympiad 2017 (Part A)}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\newpage
+
+\section*{Question 1: Planetary Orbit after Stellar Explosion}
+
+\subsection*{Problem Statement}
+A planet is in a circular orbit about a massive star of mass $M$. The star undergoes a spherically symmetric explosion, instantaneously ejecting mass such that the remaining mass is $M'$. The planet is unaffected by the explosion itself. Find the eccentricity of the new orbit.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Initial State}
+Before the explosion, the planet of mass $m$ is in a circular orbit of radius $r_0$ around the star of mass $M$.
+The gravitational force provides the centripetal acceleration:
+\[ \frac{GMm}{r_0^2} = \frac{mv_0^2}{r_0} \]
+The initial orbital velocity $v_0$ is:
+\[ v_0 = \sqrt{\frac{GM}{r_0}} \]
+
+\subsubsection*{2. Effect of Instantaneous Mass Loss}
+Since the mass loss is instantaneous and spherically symmetric:
+\begin{itemize}
+    \item The position of the planet does not change instantly ($r = r_0$).
+    \item The velocity of the planet does not change instantly ($v = v_0$).
+    \item The central mass changes from $M$ to $M'$.
+\end{itemize}
+Thus, immediately after the explosion, the planet is at distance $r_0$ with velocity $v_0$ perpendicular to the radius vector. This point corresponds to the perihelion (closest approach) of the new orbit because the velocity is purely tangential and the mass has decreased (gravity is weaker, so the planet will swing out further).
+
+\subsubsection*{3. Conservation of Energy and Angular Momentum}
+Let the new orbit be an ellipse with semi-major axis $a$ and eccentricity $e$.
+
+\textbf{Specific Energy:}
+The total energy per unit mass in the new orbit is:
+\[ E' = \frac{1}{2}v_0^2 - \frac{GM'}{r_0} \]
+Substituting $v_0^2 = GM/r_0$:
+\[ E' = \frac{1}{2}\frac{GM}{r_0} - \frac{GM'}{r_0} = \frac{G}{2r_0}(M - 2M') \]
+
+For an elliptical orbit, the energy is also given by:
+\[ E' = -\frac{GM'}{2a} \]
+
+Equating the two expressions for energy:
+\[ -\frac{GM'}{2a} = \frac{G}{2r_0}(M - 2M') \]
+\[ -\frac{M'}{a} = \frac{M - 2M'}{r_0} \]
+\[ a = r_0 \frac{M'}{2M' - M} \]
+
+\subsubsection*{4. Finding Eccentricity}
+For an elliptical orbit, the distance of closest approach (perihelion) is given by:
+\[ r_p = a(1 - e) \]
+As established, the planet starts at the perihelion position $r_0$. Thus:
+\[ r_0 = a(1 - e) \]
+\[ 1 - e = \frac{r_0}{a} \]
+\[ e = 1 - \frac{r_0}{a} \]
+
+Substituting $a$:
+\[ e = 1 - \frac{r_0}{r_0 \frac{M'}{2M' - M}} \]
+\[ e = 1 - \frac{2M' - M}{M'} \]
+\[ e = 1 - \left( 2 - \frac{M}{M'} \right) \]
+\[ e = \frac{M}{M'} - 1 \]
+
+\subsubsection*{Conditions for Orbit Types}
+The eccentricity depends on the mass ratio:
+\begin{itemize}
+    \item If $e < 1$ (Elliptical): $\frac{M}{M'} - 1 < 1 \implies M < 2M'$ or $M' > M/2$. The planet remains bound.
+    \item If $e = 1$ (Parabolic): $M = 2M'$. The planet escapes.
+    \item If $e > 1$ (Hyperbolic): $M > 2M'$. The planet escapes.
+\end{itemize}
+
+\textbf{Answer:}
+The eccentricity of the new orbit is:
+\[ e = \frac{M}{M'} - 1 \]
+
+\newpage
+
+\section*{Question 2: Fermat's Principle}
+
+\subsection*{Problem Statement}
+Use Fermat's Principle (light travels the path of least time) to determine paths in different scenarios.
+
+\subsection*{(a) Reflection by a Plane Mirror}
+\textbf{Goal:} Find the point $B(x, 0)$ on the x-axis (mirror) that light strikes traveling from $A(0, h)$ to $C(L, d)$.
+
+\textbf{Setup:}
+\begin{itemize}
+    \item Point A: $(0, h)$
+    \item Point C: $(L, d)$
+    \item Reflection Point B: $(x, 0)$
+    \item Speed of light $c$ is constant.
+\end{itemize}
+
+\textbf{Time Calculation:}
+The total time $T$ is the sum of time from A to B and B to C.
+\[ T(x) = \frac{\sqrt{(x-0)^2 + (0-h)^2}}{c} + \frac{\sqrt{(L-x)^2 + (d-0)^2}}{c} \]
+\[ T(x) = \frac{1}{c} \left( \sqrt{x^2 + h^2} + \sqrt{(L-x)^2 + d^2} \right) \]
+
+\textbf{Minimization:}
+Differentiate $T$ with respect to $x$ and set to zero:
+\[ \frac{dT}{dx} = \frac{1}{c} \left( \frac{x}{\sqrt{x^2 + h^2}} + \frac{-(L-x)}{\sqrt{(L-x)^2 + d^2}} \right) = 0 \]
+\[ \frac{x}{\sqrt{x^2 + h^2}} = \frac{L-x}{\sqrt{(L-x)^2 + d^2}} \]
+
+\textbf{Interpretation:}
+From the geometry:
+\begin{itemize}
+    \item $\sin \theta_i = \frac{x}{\sqrt{x^2 + h^2}}$ (Angle of incidence with vertical/normal)
+    \item $\sin \theta_r = \frac{L-x}{\sqrt{(L-x)^2 + d^2}}$ (Angle of reflection with vertical/normal)
+\end{itemize}
+Thus:
+\[ \sin \theta_i = \sin \theta_r \implies \theta_i = \theta_r \]
+This is the law of reflection.
+
+\subsection*{(b) Actual Path vs. Other Paths}
+To construct path (b), we draw the image of A, denoted $A'$, across the mirror line (x-axis).
+\begin{itemize}
+    \item $A = (0, h) \implies A' = (0, -h)$.
+    \item The shortest distance between two points ($A'$ and $C$) is a straight line.
+    \item The intersection of the line $A'C$ with the x-axis gives the point $B$.
+\end{itemize}
+
+
+
+[Image of Reflection Geometry]
+
+
+\textbf{Comments on Angles:}
+The angle of incidence equals the angle of reflection. The path corresponds to the straight line in the "unfolded" geometry connecting the source's virtual image to the destination.
+
+\subsection*{(c) Refraction (Snell's Law)}
+\textbf{Goal:} Path from $A(x_A, y_A)$ in medium $n_1$ to $C(x_C, y_C)$ in medium $n_2$. Interface is the y-axis ($x=0$?). The diagram usually implies an interface along one axis. Based on the coordinates in Figure 2 ($A$ is left, $C$ is right, divided by y-axis?), let's assume the interface is $x=0$.
+Wait, standard Snell's law derivation usually puts interface at $y=0$ or $x=0$.
+Let's assume the interface is the y-axis ($x=0$).
+\begin{itemize}
+    \item Region 1 ($x < 0$): Index $n_1$, Speed $v_1 = c/n_1$. Point A.
+    \item Region 2 ($x > 0$): Index $n_2$, Speed $v_2 = c/n_2$. Point C.
+    \item Interface Point $B(0, y)$.
+\end{itemize}
+
+\textbf{Time Calculation:}
+Let A be $(-x_A, y_A)$ and C be $(x_C, y_C)$ relative to the interface. Let the crossing point be $(0, y)$.
+\[ T(y) = \frac{\sqrt{x_A^2 + (y - y_A)^2}}{v_1} + \frac{\sqrt{x_C^2 + (y_C - y)^2}}{v_2} \]
+\[ T(y) = \frac{n_1}{c}\sqrt{x_A^2 + (y - y_A)^2} + \frac{n_2}{c}\sqrt{x_C^2 + (y_C - y)^2} \]
+
+\textbf{Minimization:}
+\[ \frac{dT}{dy} = \frac{n_1}{c} \frac{y - y_A}{\sqrt{x_A^2 + (y - y_A)^2}} - \frac{n_2}{c} \frac{y_C - y}{\sqrt{x_C^2 + (y_C - y)^2}} = 0 \]
+Let $\theta_1$ be the angle with the normal (x-axis): $\sin \theta_1 = \frac{y - y_A}{\text{dist}_1}$. (Check sign convention).
+Actually, usually angles are defined relative to the normal (x-axis in this setup).
+$\sin \theta_1 = \frac{y - y_A}{\sqrt{x_A^2 + (y-y_A)^2}}$
+$\sin \theta_2 = \frac{y_C - y}{\sqrt{x_C^2 + (y_C-y)^2}}$
+
+\[ n_1 \sin \theta_1 = n_2 \sin \theta_2 \]
+
+\textbf{Comments on Angles:}
+The angles of incidence and refraction satisfy Snell's Law. The light bends towards the normal in the denser medium ($n_2 > n_1 \implies \theta_2 < \theta_1$).
+
+\newpage
+
+\section*{Question 3: Half-life of Chlorine-36}
+
+\subsection*{Problem Statement}
+\begin{itemize}
+    \item Decay scheme: $^{36}\text{Cl} \to ^{36}\text{Ar}$ (98.1\%) and $^{36}\text{Cl} \to ^{36}\text{S}$ (1.9\%).
+    \item Present masses: $m(\text{Cl}) = 20 \mu\text{g}$, $m(\text{S}) = 0.36 \mu\text{g}$.
+    \item Age of water: $t = 290,000$ years.
+    \item Find: Half-life of $^{36}\text{Cl}$.
+\end{itemize}
+
+\subsection*{Solution}
+
+\subsubsection*{1. Decay Equations}
+Let $N(t)$ be the number of $^{36}\text{Cl}$ atoms at time $t$.
+Let $N_0$ be the initial number of $^{36}\text{Cl}$ atoms.
+\[ N(t) = N_0 e^{-\lambda t} \]
+where $\lambda$ is the total decay constant.
+
+The number of decayed nuclei is $\Delta N = N_0 - N(t) = N(t) (e^{\lambda t} - 1)$.
+
+These decayed nuclei branch into Argon and Sulfur.
+Let $N_{\text{Ar}}$ and $N_{\text{S}}$ be the number of daughter nuclei.
+The branching ratios are $b_{\text{Ar}} = 0.981$ and $b_{\text{S}} = 0.019$.
+\[ N_{\text{S}} = b_{\text{S}} \times \Delta N = 0.019 \times N(t) (e^{\lambda t} - 1) \]
+
+\subsubsection*{2. Relating Mass to Number of Atoms}
+Since the atomic mass number (36) is the same for Cl and S (isobars), the ratio of masses is effectively the ratio of the number of atoms (assuming negligible mass difference for this calculation level).
+\[ \frac{m_{\text{S}}}{m_{\text{Cl}}} = \frac{N_{\text{S}}}{N(t)} \]
+
+Given values:
+\[ \frac{0.36 \mu\text{g}}{20 \mu\text{g}} = 0.018 \]
+
+\subsubsection*{3. Solving for Decay Constant $\lambda$}
+Substitute the decay relation:
+\[ \frac{N_{\text{S}}}{N(t)} = 0.019 (e^{\lambda t} - 1) \]
+\[ 0.018 = 0.019 (e^{\lambda t} - 1) \]
+\[ \frac{0.018}{0.019} = e^{\lambda t} - 1 \]
+\[ 0.9474 = e^{\lambda t} - 1 \]
+\[ e^{\lambda t} = 1.9474 \]
+\[ \lambda t = \ln(1.9474) \approx 0.6665 \]
+
+\subsubsection*{4. Calculating Half-life}
+The half-life $T_{1/2}$ is related to $\lambda$ by:
+\[ T_{1/2} = \frac{\ln 2}{\lambda} \]
+From $\lambda t = 0.6665$:
+\[ \lambda = \frac{0.6665}{t} \]
+\[ T_{1/2} = \frac{\ln 2}{0.6665/t} = t \frac{0.6931}{0.6665} \]
+
+Substitute $t = 290,000$ years:
+\[ T_{1/2} = 290,000 \times 1.040 \]
+\[ T_{1/2} \approx 301,600 \text{ years} \]
+
+\textbf{Answer:}
+The half-life of $^{36}\text{Cl}$ is approximately \textbf{3.02 $\times 10^5$ years}.
+
+\newpage
+
+\section*{Question 4: Infinite Capacitor Network}
+
+\subsection*{Problem Statement}
+An infinite capacitor network is connected to an AC voltage supply $V = 220$ V, $f = 50$ Hz.
+The structure is a ladder network:
+\begin{itemize}
+    \item Series element: Capacitor $C = 1 \mu\text{F}$.
+    \item Parallel (shunt) element: Capacitor $C = 1 \mu\text{F}$.
+    \item The ladder repeats infinitely.
+\end{itemize}
+Find the total impedance, current, or effective capacitance (The question text in the snippet cuts off, but typically asks for equivalent capacitance or total current). I will solve for the equivalent capacitance and total current.
+
+
+
+\subsection*{Solution}
+
+\subsubsection*{1. Equivalent Capacitance $C_{eq}$}
+Since the ladder is infinite, adding one more section to the front of the network does not change the equivalent capacitance.
+Let the total equivalent capacitance be $C_{eq}$.
+
+A single section consists of:
+\begin{itemize}
+    \item One capacitor $C$ in series.
+    \item One capacitor $C$ in parallel.
+\end{itemize}
+
+The rest of the infinite ladder, which has capacitance $C_{eq}$, is connected in parallel with the shunt capacitor $C$.
+This combination ($C + C_{eq}$) is then in series with the first series capacitor $C$.
+
+The equation for the total capacitance is:
+\[ \frac{1}{C_{eq}} = \frac{1}{C} + \frac{1}{C + C_{eq}} \]
+
+\subsubsection*{2. Solving the Quadratic Equation}
+Multiply through by $C_{eq} C (C + C_{eq})$:
+\[ C(C + C_{eq}) = C_{eq}(C + C_{eq}) + C C_{eq} \]
+\[ C^2 + C C_{eq} = C C_{eq} + C_{eq}^2 + C C_{eq} \]
+\[ C^2 + C C_{eq} = 2C C_{eq} + C_{eq}^2 \]
+\[ C_{eq}^2 + C C_{eq} - C^2 = 0 \]
+
+This is a quadratic equation in $C_{eq}$:
+\[ C_{eq} = \frac{-C \pm \sqrt{C^2 - 4(1)(-C^2)}}{2} \]
+\[ C_{eq} = \frac{-C \pm \sqrt{5C^2}}{2} \]
+\[ C_{eq} = \frac{-1 \pm \sqrt{5}}{2} C \]
+
+Since capacitance must be positive, we take the positive root:
+\[ C_{eq} = \frac{\sqrt{5} - 1}{2} C \]
+This is related to the Golden Ratio $\phi$: $C_{eq} = \frac{1}{\phi} C \approx 0.618 C$.
+
+Given $C = 1 \mu\text{F}$:
+\[ C_{eq} \approx 0.618 \mu\text{F} \]
+
+\subsubsection*{3. Impedance and Current}
+The impedance of the network is:
+\[ Z = \frac{1}{j \omega C_{eq}} \]
+Magnitude:
+\[ |Z| = \frac{1}{2\pi f C_{eq}} \]
+
+Given values:
+\begin{itemize}
+    \item $V_{rms} = 220$ V
+    \item $f = 50$ Hz
+    \item $C_{eq} = 0.618 \times 10^{-6}$ F
+\end{itemize}
+
+\[ |Z| = \frac{1}{2\pi (50) (0.618 \times 10^{-6})} \]
+\[ |Z| = \frac{1}{314.16 \times 0.618 \times 10^{-6}} \]
+\[ |Z| = \frac{1}{1.94 \times 10^{-4}} \approx 5150 \Omega \]
+
+RMS Current:
+\[ I_{rms} = \frac{V_{rms}}{|Z|} = 220 \times 2\pi \times 50 \times 0.618 \times 10^{-6} \]
+\[ I_{rms} = 220 \times 1.94 \times 10^{-4} \]
+\[ I_{rms} \approx 0.0427 \text{ A} = 42.7 \text{ mA} \]
+
+\textbf{Answer:}
+\begin{itemize}
+    \item Equivalent Capacitance: $C_{eq} = \frac{\sqrt{5}-1}{2} C \approx 0.618 \mu\text{F}$.
+    \item Total Current drawn: $I \approx 42.7$ mA.
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,410 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\geometry{margin=1in}
+
+\title{Solutions to the 29th Singapore Physics Olympiad 2016}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\newpage
+
+\section*{Question 1: Hohmann transfer orbit and gravity assist}
+
+\subsection*{(a) Earth to Saturn Hohmann Transfer}
+
+\subsubsection*{(i) Change in velocity $\Delta v$}
+A Hohmann transfer involves an elliptical orbit tangent to both the initial and final circular orbits.
+Let the subscript 1 denote Earth and 2 denote Saturn.
+Given:
+\begin{itemize}
+    \item Earth's orbital radius $r_1 = 1.50 \times 10^{11}$ m
+    \item Saturn's orbital radius $r_2 = 1.43 \times 10^{12}$ m
+    \item Earth's velocity $v_1 = 2.97 \times 10^4$ m/s
+    \item Mass of Sun $M_{\odot} = 1.99 \times 10^{30}$ kg
+    \item Gravitational constant $G = 6.67 \times 10^{-11}$ N m$^2$/kg$^2$
+\end{itemize}
+
+The semi-major axis $a_t$ of the transfer orbit is the average of the two radii:
+\[ a_t = \frac{r_1 + r_2}{2} = \frac{1.50 \times 10^{11} + 1.43 \times 10^{12}}{2} = 7.90 \times 10^{11} \text{ m} \]
+
+The velocity of the spacecraft at the perihelion of the transfer orbit (at Earth's distance) is given by the \textit{vis-viva} equation:
+\[ v_{transfer,1} = \sqrt{GM_{\odot} \left( \frac{2}{r_1} - \frac{1}{a_t} \right)} \]
+
+Substituting the values:
+\[ GM_{\odot} = (6.67 \times 10^{-11})(1.99 \times 10^{30}) \approx 1.327 \times 10^{20} \text{ m}^3/\text{s}^2 \]
+\[ v_{transfer,1} = \sqrt{1.327 \times 10^{20} \left( \frac{2}{1.50 \times 10^{11}} - \frac{1}{7.90 \times 10^{11}} \right)} \]
+\[ v_{transfer,1} = \sqrt{1.327 \times 10^{20} (1.333 \times 10^{-11} - 0.1266 \times 10^{-11})} \]
+\[ v_{transfer,1} = \sqrt{1.327 \times 10^{20} (1.206 \times 10^{-11})} \approx \sqrt{16.0 \times 10^8} \approx 4.00 \times 10^4 \text{ m/s} \]
+
+(Note: Using $v_1 = \sqrt{GM/r_1}$, we can check consistency: $v_1 = \sqrt{1.327 \times 10^{20} / 1.5 \times 10^{11}} \approx 2.974 \times 10^4$ m/s, which matches the given data.)
+
+The required change in velocity $\Delta v$ is the difference between the transfer velocity and Earth's orbital velocity:
+\[ \Delta v = v_{transfer,1} - v_1 = 40.0 \text{ km/s} - 29.7 \text{ km/s} = 10.3 \text{ km/s} \]
+\[ \Delta v = 1.03 \times 10^4 \text{ m/s} \]
+
+\subsubsection*{(ii) Travel time}
+The time taken is half the period of the transfer orbit. Using Kepler's Third Law:
+\[ T^2 = \frac{4\pi^2}{GM_{\odot}} a_t^3 \]
+\[ t_{transfer} = \frac{T}{2} = \pi \sqrt{\frac{a_t^3}{GM_{\odot}}} \]
+\[ t_{transfer} = \pi \sqrt{\frac{(7.90 \times 10^{11})^3}{1.327 \times 10^{20}}} = \pi \sqrt{\frac{4.93 \times 10^{35}}{1.327 \times 10^{20}}} \]
+\[ t_{transfer} = \pi \sqrt{3.715 \times 10^{15}} \approx \pi (6.095 \times 10^7) \approx 1.91 \times 10^8 \text{ s} \]
+
+Converting to years (1 yr $\approx 3.15 \times 10^7$ s):
+\[ t_{transfer} \approx 6.06 \text{ years} \]
+
+\subsection*{(b) Venus Gravity Assist}
+The spacecraft travels from Earth to Venus via a Hohmann transfer, then enters a 2:1 resonant orbit with Venus.
+Given:
+\begin{itemize}
+    \item Venus orbital radius $r_V = 1.08 \times 10^{11}$ m
+    \item Venus orbital period $T_V = 0.615$ years
+\end{itemize}
+
+\textbf{Step 1: Arrival at Venus}
+Transfer orbit from Earth ($r_1$) to Venus ($r_V$):
+\[ a_{EV} = \frac{r_1 + r_V}{2} = \frac{1.50 + 1.08}{2} \times 10^{11} = 1.29 \times 10^{11} \text{ m} \]
+Velocity of spacecraft arriving at Venus (at distance $r_V$):
+\[ v_{arr} = \sqrt{GM_{\odot} \left( \frac{2}{r_V} - \frac{1}{a_{EV}} \right)} \]
+Venus' orbital velocity $v_V$:
+\[ v_V = \sqrt{\frac{GM_{\odot}}{r_V}} \approx \sqrt{\frac{1.327 \times 10^{20}}{1.08 \times 10^{11}}} \approx 3.505 \times 10^4 \text{ m/s} \]
+Numerical value for $v_{arr}$:
+\[ v_{arr} = \sqrt{1.327 \times 10^{20} \left( \frac{2}{1.08} - \frac{1}{1.29} \right) \times 10^{-11}} \]
+\[ v_{arr} = \sqrt{1.327 \times 10^{9} (1.852 - 0.775)} \approx 3.78 \times 10^4 \text{ m/s} \]
+
+\textbf{Step 2: Departure from Venus into 2:1 Resonant Orbit}
+The spacecraft returns to Venus after Venus completes 2 orbits. Thus the period of the new spacecraft orbit is $T_{new} = 2 T_V$.
+From Kepler's Third Law ($T^2 \propto a^3$):
+\[ \left(\frac{a_{new}}{r_V}\right)^3 = \left(\frac{T_{new}}{T_V}\right)^2 = 2^2 = 4 \]
+\[ a_{new} = r_V \cdot 4^{1/3} \approx 1.587 r_V = 1.714 \times 10^{11} \text{ m} \]
+The gravity assist occurs at perihelion of the new orbit (since $a_{new} > r_V$).
+Velocity at perihelion of the new orbit ($r_p = r_V$):
+\[ v_{dep} = \sqrt{GM_{\odot} \left( \frac{2}{r_V} - \frac{1}{a_{new}} \right)} \]
+\[ v_{dep} = \sqrt{GM_{\odot} \left( \frac{2}{r_V} - \frac{1}{1.587 r_V} \right)} = \sqrt{\frac{GM_{\odot}}{r_V} \left( 2 - 0.630 \right)} \]
+\[ v_{dep} = v_V \sqrt{1.370} \approx (3.505 \times 10^4)(1.170) \approx 4.10 \times 10^4 \text{ m/s} \]
+
+\textbf{Step 3: Change in Velocity}
+The change in heliocentric speed provided by the gravity assist is:
+\[ \Delta v = v_{dep} - v_{arr} \approx 41.0 \text{ km/s} - 37.8 \text{ km/s} = 3.2 \text{ km/s} \]
+
+Answer: $\Delta v \approx 3.2 \times 10^3 \text{ m/s}$.
+
+\newpage
+
+\section*{Question 2: Rolling Wheel with Friction}
+
+Consider a wheel of mass $M$, radius $R$, moment of inertia $I$, and coefficient of kinetic friction $\mu_k$.
+
+\subsection*{(a) Initial spin $\omega_0$, $v_0 = 0$}
+Initial state: $v(0) = 0$, $\omega(0) = \omega_0$.
+Velocity of contact point: $v_{cp} = v - R\omega = -R\omega_0$ (backward).
+Friction acts forward to oppose slipping: $f = \mu_k Mg$.
+
+Equations of motion:
+\begin{align*}
+    Ma &= f = \mu_k Mg \implies a = \mu_k g \\
+    I\alpha &= -fR = -\mu_k MgR \implies \alpha = -\frac{\mu_k MgR}{I}
+\end{align*}
+
+Velocities as functions of time:
+\begin{align*}
+    v(t) &= at = \mu_k g t \\
+    \omega(t) &= \omega_0 + \alpha t = \omega_0 - \frac{\mu_k MgR}{I} t
+\end{align*}
+
+Rolling begins when $v(T_a) = R\omega(T_a)$:
+\[ \mu_k g T_a = R \left( \omega_0 - \frac{\mu_k MgR}{I} T_a \right) \]
+\[ \mu_k g T_a = R\omega_0 - \frac{\mu_k Mg R^2}{I} T_a \]
+\[ \mu_k g T_a \left( 1 + \frac{MR^2}{I} \right) = R\omega_0 \]
+\[ T_a = \frac{R\omega_0}{\mu_k g \left( 1 + \frac{MR^2}{I} \right)} \]
+
+Final speed $v_a$:
+\[ v_a = \mu_k g T_a = \frac{R\omega_0}{1 + \frac{MR^2}{I}} \]
+For a hoop/cylindrical shell ($I=MR^2$), $v_a = R\omega_0/2$. For a disk ($I=MR^2/2$), $v_a = R\omega_0/3$.
+
+\subsection*{(b) Initial spin $\omega_0$, speed $v_0$}
+The friction direction depends on the slip velocity $v_{slip} = v_0 - R\omega_0$.
+
+\textbf{Case 1: $v_0 > R\omega_0$} (Slipping forward)
+Friction acts backward ($f = -\mu_k Mg$).
+\[ a = -\mu_k g, \quad \alpha = \frac{\mu_k MgR}{I} \]
+\[ v(t) = v_0 - \mu_k g t, \quad \omega(t) = \omega_0 + \frac{\mu_k MgR}{I} t \]
+Rolling condition $v = R\omega$:
+\[ v_0 - \mu_k g T_b = R\omega_0 + \frac{\mu_k Mg R^2}{I} T_b \]
+\[ v_0 - R\omega_0 = \mu_k g T_b \left( 1 + \frac{MR^2}{I} \right) \]
+\[ T_b = \frac{v_0 - R\omega_0}{\mu_k g (1 + MR^2/I)}, \quad v_b = v(T_b) = \frac{v_0 + \frac{MR^2}{I}R\omega_0}{1 + MR^2/I} \]
+
+\textbf{Case 2: $v_0 < R\omega_0$} (Slipping backward)
+Friction acts forward. Same algebra as part (a) but with initial $v_0$.
+\[ T_b = \frac{R\omega_0 - v_0}{\mu_k g (1 + MR^2/I)}, \quad v_b = \frac{v_0 + \frac{MR^2}{I}R\omega_0}{1 + MR^2/I} \]
+
+\subsection*{(c) Initial backspin $-\omega_0$, speed $v_0$}
+Initial state: $v(0) = v_0$ (forward), $\omega(0) = -\omega_0$ (backward rotation).
+Slip velocity: $v_{cp} = v_0 - R(-\omega_0) = v_0 + R\omega_0$ (forward).
+Friction acts backward ($f = -\mu_k Mg$).
+Torque acts to rotate wheel forward (positive $\alpha$): $\tau = \mu_k MgR$.
+
+Equations:
+\[ v(t) = v_0 - \mu_k g t \]
+\[ \omega(t) = -\omega_0 + \frac{\mu_k MgR}{I} t \]
+
+Rolling condition $v(t) = R\omega(t)$:
+\[ v_0 - \mu_k g t = R(-\omega_0) + \frac{\mu_k MgR^2}{I} t \]
+\[ v_0 + R\omega_0 = \mu_k g t \left( 1 + \frac{MR^2}{I} \right) \]
+Time to roll:
+\[ T = \frac{v_0 + R\omega_0}{\mu_k g (1 + MR^2/I)} \]
+
+Final velocity:
+\[ v_{final} = v_0 - \frac{v_0 + R\omega_0}{1 + MR^2/I} = \frac{v_0(MR^2/I) - R\omega_0}{1 + MR^2/I} \]
+
+Possible motions:
+\begin{enumerate}
+    \item \textbf{Wheel continues forward:} If $v_0(MR^2/I) > R\omega_0$, then $v_{final} > 0$.
+    \item \textbf{Wheel stops:} If $v_0(MR^2/I) = R\omega_0$, then $v_{final} = 0$.
+    \item \textbf{Wheel reverses:} If $v_0(MR^2/I) < R\omega_0$, then $v_{final} < 0$.
+\end{enumerate}
+
+\newpage
+
+\section*{Question 3: Circuit in Changing Magnetic Field}
+
+The system consists of a circular loop and an inscribed equilateral triangle.
+Let the resistance of the arcs be $R_{arc} = r_1$ and the chords be $R_{chord} = r_2$ (except one chord $BC$ which is $2r_2$ according to the text snippet, but usually symmetric. The prompt says "Given $2r_1 = 3r_2$". Let's assume symmetry A-B and A-C).
+However, the diagram labels are crucial.
+Based on the text: "A $r_1$ $r_1$ $r_2$ $r_2$ C B $2r_2$ $r_1$".
+Interpretation:
+\begin{itemize}
+    \item Arc AC: $r_1$, Chord AC: $r_2$.
+    \item Arc AB: $r_1$, Chord AB: $r_2$.
+    \item Arc BC: $r_1$, Chord BC: $2r_2$.
+\end{itemize}
+Also given $2r_1 = 3r_2 \implies r_1 = 1.5 r_2$.
+
+\textbf{Equivalent Circuit Model:}
+The changing magnetic field $B(t)$ (decreasing rate $k$) induces EMFs.
+$\mathcal{E}_{loop} = k \cdot \text{Area}$.
+We model each wire segment as a resistor in series with a voltage source proportional to the area subtended by the segment at the center.
+Let $\mathcal{E}_{arc}$ be EMF in an arc, $\mathcal{E}_{chord}$ in a chord.
+Area of circle sector ($120^\circ$) = $\frac{1}{3}\pi a^2$. $\mathcal{E}_{arc} = \frac{1}{3} k \pi a^2$.
+Area of triangle $OAB$ = $\frac{1}{2} a^2 \sin(120^\circ) = \frac{\sqrt{3}}{4} a^2$. $\mathcal{E}_{chord} = \frac{\sqrt{3}}{4} k a^2$.
+Direction: $B$ into paper decreasing $\implies$ induced B into paper $\implies$ Current Clockwise (A to B to C).
+Sources push current clockwise.
+
+\textbf{Reduce Parallel Branches:}
+Between nodes A and C (and A and B):
+Branch 1 (Arc): $R=r_1$, Source $\mathcal{E}_{arc}$.
+Branch 2 (Chord): $R=r_2$, Source $\mathcal{E}_{chord}$.
+Thevenin Equivalent between A and C ($V_{AC}^{eq}, R_{AC}^{eq}$):
+\[ R_{eq} = r_1 || r_2 = \frac{1.5 r_2 \cdot r_2}{2.5 r_2} = 0.6 r_2 \]
+Using Millman's theorem for sources (oriented A to C):
+\[ \mathcal{E}_{AC}^{eff} = \frac{\frac{\mathcal{E}_{arc}}{r_1} + \frac{\mathcal{E}_{chord}}{r_2}}{\frac{1}{r_1} + \frac{1}{r_2}} = R_{eq} \left( \frac{\mathcal{E}_{arc}}{1.5r_2} + \frac{\mathcal{E}_{chord}}{r_2} \right) = 0.6 \left( \frac{\mathcal{E}_{arc}}{1.5} + \mathcal{E}_{chord} \right) = 0.4 \mathcal{E}_{arc} + 0.6 \mathcal{E}_{chord} \]
+Since geometry is symmetric for AB and AC, $\mathcal{E}_{AB}^{eff} = \mathcal{E}_{AC}^{eff}$ and $R_{AB}^{eq} = 0.6 r_2$.
+
+Between nodes C and B:
+Branch 1 (Arc): $R=r_1$, Source $\mathcal{E}_{arc}$.
+Branch 2 (Chord): $R=2r_2$, Source $\mathcal{E}_{chord}$.
+\[ R_{CB}^{eq} = r_1 || 2r_2 = \frac{1.5 r_2 \cdot 2r_2}{3.5 r_2} = \frac{3}{3.5} r_2 = \frac{6}{7} r_2 \]
+\[ \mathcal{E}_{CB}^{eff} = \frac{6}{7} r_2 \left( \frac{\mathcal{E}_{arc}}{1.5r_2} + \frac{\mathcal{E}_{chord}}{2r_2} \right) = \frac{6}{7} \left( \frac{2}{3}\mathcal{E}_{arc} + \frac{1}{2}\mathcal{E}_{chord} \right) = \frac{4}{7}\mathcal{E}_{arc} + \frac{3}{7}\mathcal{E}_{chord} \]
+
+\textbf{Total Loop Calculation:}
+We have a single loop A-B-C-A with effective sources and resistors.
+Total Resistance: $R_{total} = R_{AB} + R_{BC} + R_{CA} = 0.6r_2 + \frac{6}{7}r_2 + 0.6r_2 = (1.2 + 0.857)r_2 \approx 2.057 r_2$.
+Total EMF driving clockwise current:
+\[ \mathcal{E}_{total} = \mathcal{E}_{AB}^{eff} + \mathcal{E}_{BC}^{eff} + \mathcal{E}_{CA}^{eff} = 2(0.4 \mathcal{E}_{arc} + 0.6 \mathcal{E}_{chord}) + (\frac{4}{7}\mathcal{E}_{arc} + \frac{3}{7}\mathcal{E}_{chord}) \]
+\[ \mathcal{E}_{total} = (0.8 + 0.571)\mathcal{E}_{arc} + (1.2 + 0.429)\mathcal{E}_{chord} = 1.371 \mathcal{E}_{arc} + 1.629 \mathcal{E}_{chord} \]
+
+Current $I = \mathcal{E}_{total} / R_{total}$.
+
+\textbf{Potential Difference $U_{AB} = V_A - V_B$:}
+In the effective circuit, $V_A - V_B = \mathcal{E}_{AB}^{eff} - I R_{AB}^{eq}$.
+Substitute expressions and simplify.
+
+\newpage
+
+\section*{Question 4: Gravitational Acceleration Experiment}
+
+System: Atwood machine with masses $M$ (left) and $M+m$ (right), where $m=0.01M$.
+\textbf{Phase 1:} Mass $m$ present.
+Net driving force: $(M+m)g - Mg = mg$.
+Total mass: $M + (M+m) = 2M+m$.
+Acceleration $a_1$:
+\[ a_1 = \frac{mg}{2M+m} = \frac{0.01Mg}{2.01M} = \frac{0.01}{2.01}g \]
+Distance $h = 1$ m. Final velocity $v$ after distance $h$ (starting from rest):
+\[ v^2 = 2 a_1 h = 2 \left( \frac{0.01g}{2.01} \right) (1) \]
+
+\textbf{Phase 2:} Mass $m$ removed.
+Masses are $M$ and $M$. Net force 0. Acceleration 0.
+The system moves with constant velocity $v$.
+Given distance $H = 0.312$ m in time $t = 1$ s.
+\[ v = \frac{H}{t} = 0.312 \text{ m/s} \]
+
+\textbf{Calculate g:}
+\[ v^2 = (0.312)^2 = 0.097344 \]
+\[ 0.097344 = \frac{0.02}{2.01} g \]
+\[ g = \frac{0.097344 \times 2.01}{0.02} = \frac{0.19566}{0.02} \approx 9.78 \text{ m/s}^2 \]
+
+Answer: $g \approx 9.78$ m/s$^2$.
+
+\newpage
+
+\section*{Question 5: Alpha Decay}
+
+Decay: ${}^{228}\text{Th} \rightarrow {}^{224}\text{Ra} + \alpha$.
+$Q = K_{\alpha} + K_{\text{Ra}}$.
+
+\subsection*{(a) Percentage of energy}
+Conservation of momentum (parent at rest): $p_{\alpha} = p_{\text{Ra}}$.
+Kinetic energy $K = p^2/2m$.
+\[ \frac{K_{\alpha}}{K_{\text{Ra}}} = \frac{m_{\text{Ra}}}{m_{\alpha}} \implies K_{\text{Ra}} = \frac{m_{\alpha}}{m_{\text{Ra}}} K_{\alpha} \]
+\[ Q = K_{\alpha} \left( 1 + \frac{m_{\alpha}}{m_{\text{Ra}}} \right) \]
+Fraction carried by alpha:
+\[ \frac{K_{\alpha}}{Q} = \frac{1}{1 + \frac{m_{\alpha}}{m_{\text{Ra}}}} = \frac{m_{\text{Ra}}}{m_{\text{Ra}} + m_{\alpha}} \approx \frac{224}{228} \]
+\[ \% = \frac{224}{228} \times 100 \approx 98.2\% \]
+
+\subsection*{(b) First excited state energy}
+The highest energy alpha ($K_1 = 5.423$ MeV) corresponds to decay to the ground state.
+$Q_{ground} = 5.423 \times \frac{228}{224}$ MeV.
+The next highest ($K_2 = 5.341$ MeV) corresponds to decay to the first excited state.
+$Q_{excited} = 5.341 \times \frac{228}{224}$ MeV.
+The energy of the excited state $E^*$ is the difference in $Q$ values:
+\[ E^* = Q_{ground} - Q_{excited} = \frac{228}{224} (5.423 - 5.341) \text{ MeV} \]
+\[ E^* = \frac{228}{224} (0.082) \approx 1.018 \times 0.082 \approx 0.0835 \text{ MeV} = 83.5 \text{ keV} \]
+
+\newpage
+
+\section*{Question 6: Rainbows and Bubbles}
+
+\subsection*{(a) Zeroth order rainbow}
+Diagram: Ray enters sphere, refracts, crosses sphere, refracts out.
+Deviation $\delta = (i - r) + (i' - r')$. For sphere $i' = r$, $r' = i$.
+\[ \delta = 2(i - r) \]
+
+\subsection*{(b) Non-existence}
+Rainbow occurs at extremum of $\delta$.
+\[ \frac{d\delta}{di} = 2(1 - \frac{dr}{di}) = 0 \implies \frac{dr}{di} = 1 \]
+Snell's Law: $\sin i = n \sin r \implies \cos i = n \cos r \frac{dr}{di}$.
+Substituting $dr/di = 1$: $\cos i = n \cos r$.
+Squaring: $\cos^2 i = n^2 \cos^2 r = n^2 (1 - \sin^2 r) = n^2 - \sin^2 i$.
+$1 - \sin^2 i = n^2 - \sin^2 i \implies n = 1$.
+Since $n \neq 1$ for water, no solution exists.
+
+\subsection*{(c) and (d) Bubblebows}
+Bubble index $n \approx 1$, surroundings $n_w \approx 1.33$. Relative index $m = 1/n_w < 1$.
+Snell's Law: $n_w \sin i = \sin r \implies \sin r = n_w \sin i$.
+
+\textbf{Case 1: No internal reflection}
+Same math as (b). Condition $\cos i = m \cos r$. No solution for $m \neq 1$.
+
+\textbf{Case 2: One internal reflection}
+Path: Enter -> Refract -> Reflect off internal surface -> Refract out.
+Deviation $\delta = (i - r) + (\pi - 2r) + (i - r) = 2i - 4r + \pi$.
+Extremum: $\frac{d\delta}{di} = 2 - 4\frac{dr}{di} = 0 \implies \frac{dr}{di} = \frac{1}{2}$.
+From Snell's law: $\frac{dr}{di} = \frac{n_w \cos i}{\cos r}$.
+\[ \frac{n_w \cos i}{\cos r} = \frac{1}{2} \implies 2 n_w \cos i = \cos r \]
+Square: $4 n_w^2 (1 - \sin^2 i) = 1 - \sin^2 r = 1 - n_w^2 \sin^2 i$.
+\[ 4 n_w^2 - 4 n_w^2 \sin^2 i = 1 - n_w^2 \sin^2 i \]
+\[ 3 n_w^2 \sin^2 i = 4 n_w^2 - 1 \]
+\[ \sin^2 i = \frac{4 n_w^2 - 1}{3 n_w^2} \]
+For $n_w = 1.33$, $\sin^2 i \approx \frac{4(1.77)-1}{3(1.77)} = \frac{6.08}{5.31} > 1$.
+No solution. Thus, no rainbow exists for air bubbles in water.
+
+\newpage
+
+\section*{Question 7: Rotating Charged Cylinders}
+
+\subsection*{(a) Electric Field}
+Static charge distribution. Use Gauss's Law with cylindrical symmetry.
+Total charge enclosed per length.
+\begin{itemize}
+    \item $r < a$: $Q_{enc} = 0 \implies \mathbf{E} = 0$.
+    \item $a < r < 4a$: $Q_{enc} = +\lambda$. $\mathbf{E} = \frac{\lambda}{2\pi \epsilon_0 r} \hat{r}$.
+    \item $r > 4a$: $Q_{enc} = \lambda - \lambda = 0$. $\mathbf{E} = 0$.
+\end{itemize}
+
+\subsection*{(b) Magnetic Field}
+Rotating inner cylinder constitutes a surface current $K = \sigma v$.
+$\lambda = 2\pi a \sigma \implies \sigma = \lambda / 2\pi a$.
+$v = \omega a$.
+$K = \frac{\lambda}{2\pi a} (\omega a) = \frac{\lambda \omega}{2\pi}$.
+This acts like a solenoid current.
+\begin{itemize}
+    \item $r < a$: Uniform field $\mathbf{B} = \mu_0 K \hat{z} = \frac{\mu_0 \lambda \omega}{2\pi} \hat{z}$.
+    \item $r > a$: $\mathbf{B} = 0$.
+\end{itemize}
+
+\subsection*{(c) Poynting Vector}
+$\mathbf{S} = \frac{1}{\mu_0} \mathbf{E} \times \mathbf{B}$.
+We check regions:
+\begin{itemize}
+    \item $r < a$: $\mathbf{E} = 0 \implies \mathbf{S} = 0$.
+    \item $a < r < 4a$: $\mathbf{B} = 0 \implies \mathbf{S} = 0$.
+    \item $r > 4a$: $\mathbf{E} = 0, \mathbf{B} = 0 \implies \mathbf{S} = 0$.
+\end{itemize}
+Thus, $\mathbf{S} = 0$ everywhere.
+
+\newpage
+
+\section*{Question 8: Relativistic Spaceship}
+
+Proper acceleration $a$.
+\subsection*{(a) Relative speed $v(t')$}
+Using standard relativistic kinematics for constant proper acceleration:
+\[ v(t') = c \tanh\left(\frac{a t'}{c}\right) \]
+Limit $at' \ll c$:
+$\tanh(x) \approx x$.
+\[ v(t') \approx c \left(\frac{a t'}{c}\right) = a t' \]
+This recovers the Newtonian result $v = at$.
+
+\subsection*{(b) Relation between $t$ and $t'$}
+Time dilation relation $dt = \gamma dt'$.
+\[ dt = \cosh\left(\frac{a t'}{c}\right) dt' \]
+Integrating from 0 to $t'$:
+\[ t = \int_0^{t'} \cosh\left(\frac{a \tau}{c}\right) d\tau = \left[ \frac{c}{a} \sinh\left(\frac{a \tau}{c}\right) \right]_0^{t'} \]
+\[ t = \frac{c}{a} \sinh\left(\frac{a t'}{c}\right) \]
+Limit $at' \gg c$:
+$\sinh(x) \approx \frac{1}{2}e^x$.
+\[ t \approx \frac{c}{2a} e^{at'/c} \]
+The lab time grows exponentially with proper time.
+
+\newpage
+
+\section*{Question 9: Electron Bubble}
+
+\subsection*{(a) Pressure relation}
+Mechanical equilibrium of the bubble interface (Young-Laplace equation):
+\[ P_e - P_{He} = \frac{2\sigma}{R} \]
+
+\subsection*{(b) Relation between $E_K$ and $P_e$}
+The electron gas exerts pressure. Using thermodynamics $dE = -P dV$ (at T=0, S=0).
+\[ P_e = - \frac{dE_K}{dV} = - \frac{dE_K}{dR} \frac{dR}{dV} \]
+\[ V = \frac{4}{3}\pi R^3 \implies \frac{dV}{dR} = 4\pi R^2 \]
+\[ P_e = - \frac{1}{4\pi R^2} \frac{dE_K}{dR} \]
+
+\subsection*{(c) Estimate $E_0(R)$}
+Using Heisenberg Uncertainty Principle for a confined particle:
+$\Delta x \sim R$, so $\Delta p \sim \frac{h}{4R}$ (or similar estimate).
+Kinetic Energy $E_K \approx \frac{p^2}{2m}$.
+Using the particle in a box/sphere model ground state energy:
+\[ E_0 \approx \frac{h^2}{8m R^2} \]
+(The exact pre-factor depends on the model chosen, e.g., spherical box gives $\frac{h^2}{8mR^2}$).
+
+\subsection*{(d) Equilibrium radius $R_e$}
+Set $P_{He} = 0$. Then $P_e = 2\sigma/R$.
+Compute $P_e$ from $E_0$:
+\[ P_e = - \frac{1}{4\pi R^2} \frac{d}{dR} \left( \frac{h^2}{8m R^2} \right) = - \frac{1}{4\pi R^2} \left( -2 \frac{h^2}{8m R^3} \right) = \frac{h^2}{16\pi m R^5} \]
+Equating pressures:
+\[ \frac{2\sigma}{R} = \frac{h^2}{16\pi m R^5} \]
+\[ R^4 = \frac{h^2}{32\pi m \sigma} \]
+\[ R_e = \left( \frac{h^2}{32\pi m \sigma} \right)^{1/4} \]
+
+Calculation:
+$h = 6.63 \times 10^{-34}$, $m = 9.11 \times 10^{-31}$, $\sigma = 3.75 \times 10^{-4}$.
+\[ R_e \approx \left( \frac{(6.63 \times 10^{-34})^2}{32\pi (9.11 \times 10^{-31})(3.75 \times 10^{-4})} \right)^{1/4} \approx 1.9 \text{ nm} \]
+
+\end{document}
