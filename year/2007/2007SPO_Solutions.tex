@@ -1,0 +1,441 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\geometry{a4paper, margin=1in}
+
+\title{Detailed Solutions: 20th Singapore Physics Olympiad (2007)}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Question 1: Stacking Blocks}
+
+\subsection*{Problem Statement}
+You have five (5) blocks of dimension 1 meter by 1 meter and 25 mm thick. What is the furthest you can stack them from the edge of a table before they topple? [cite: 22, 23]
+
+\subsection*{Solution}
+Let the length of each block be $L = 1 \text{ m}$. We have $N=5$ blocks.
+We define the overhang of the $i$-th block (counting from the top, $i=1$) relative to the block directly beneath it (or the table for the $N$-th block) as $x_i$.
+
+For the system to be stable, the center of mass (CM) of the cluster of blocks resting on any pivot point must not extend beyond that pivot. The pivot point for the $i$-th block is the edge of the $(i+1)$-th block.
+
+\begin{enumerate}
+    \item \textbf{Top Block ($i=1$):} The CM is at the geometric center, $L/2$ from the edge. To maximize overhang relative to block 2, we place the CM exactly at the edge of block 2.
+    \[ x_1 = \frac{L}{2} \]
+
+    \item \textbf{Top Two Blocks ($i=2$):} The combined CM of block 1 and block 2 must lie on the edge of block 3. The mass of block 1 is $m$ and block 2 is $m$. The position of the combined CM relative to the right edge of block 2 is:
+    \[ x_{cm, 1+2} = \frac{m(x_1) + m(0)}{2m} \]
+    Wait, let's use the standard recursive formula for the maximum overhang $d_n$ of $n$ blocks relative to the support.
+    
+    The maximum overhang that the $n$-th block (from the top) can provide relative to the one below it is $L/(2n)$.
+    
+    Let's verify:
+    \begin{itemize}
+        \item Block 1 (top): CM is at $L/2$. Overhang $o_1 = L/2$.
+        \item Block 2: Holds Block 1. Combined CM must be over the edge of Block 3.
+        Let edge of Block 3 be at 0.
+        Block 2 extends to $o_2$. Block 1 extends to $o_2 + o_1$.
+        Moment balance about edge of Block 3:
+        $m(o_2 - L/2) + m(o_2 + o_1 - L/2) = 0$ is not the easiest way.
+    \end{itemize}
+    
+    \textbf{Using the Harmonic Series Result:}
+    The maximum overhang $d$ achieved by $N$ identical blocks is given by half the $N$-th partial sum of the harmonic series:
+    \[ d = \sum_{n=1}^{N} \frac{L}{2n} = \frac{L}{2} \sum_{n=1}^{N} \frac{1}{n} \]
+    Here $n=1$ is the top block, and $n=N$ is the bottom block sitting on the table.
+\end{enumerate}
+
+\subsection*{Calculation}
+Given $N=5$ and $L=1 \text{ m}$:
+\[ d = \frac{1}{2} \left( \frac{1}{1} + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} \right) \]
+
+Find the common denominator (60):
+\[ d = \frac{1}{2} \left( \frac{60}{60} + \frac{30}{60} + \frac{20}{60} + \frac{15}{60} + \frac{12}{60} \right) \]
+\[ d = \frac{1}{2} \left( \frac{60 + 30 + 20 + 15 + 12}{60} \right) \]
+\[ d = \frac{1}{2} \left( \frac{137}{60} \right) \]
+\[ d = \frac{137}{120} \text{ m} \]
+
+\[ d \approx 1.1417 \text{ m} \]
+
+\subsection*{Answer}
+The furthest distance is \textbf{1.14 m}.
+
+\newpage
+
+\section*{Question 2: Marble Columns}
+
+\subsection*{Problem Statement}
+Two marble blocks, each weighing $W = 15 \text{ kN}$, are stacked. A force $F$ is applied to the top block via a rope with slope 3:4.
+Friction coefficients:
+\begin{itemize}
+    \item Marble-Ground $\mu_{MG} = 0.15$
+    \item Marble-Marble $\mu_{MM} = 0.20$
+\end{itemize}
+Dimensions: Height $h=2 \text{ m}$, Width $b=0.75 \text{ m}$. [cite: 27, 28, 30]
+
+\subsection*{Solution}
+We resolve the force $F$ into components. The slope is 3 vertical to 4 horizontal. Hypotenuse = 5.
+\[ F_x = F \cos \theta = \frac{4}{5} F = 0.8F \]
+\[ F_y = F \sin \theta = \frac{3}{5} F = 0.6F \quad (\text{acting downwards}) \]
+
+We must check four failure modes. The system fails at the minimum $F$ required for any mode.
+
+\subsubsection*{1. Top Block Sliding (on Bottom Block)}
+Normal force $N_1 = W + F_y = 15 + 0.6F$.
+Friction limit $f_{max} = \mu_{MM} N_1 = 0.20(15 + 0.6F) = 3 + 0.12F$.
+Driving force $F_x = 0.8F$.
+Sliding occurs if $0.8F > 3 + 0.12F$.
+\[ 0.68F > 3 \implies F > \frac{3}{0.68} \approx 4.41 \text{ kN} \]
+
+\subsubsection*{2. Top Block Toppling (about its bottom-right corner)}
+Pivot $P_1$ is at the bottom-right corner of the top block.
+Clockwise (Toppling) Torque: $\tau_{cw} = F_x(h) + F_y(b/2)$ (assuming F attached at center top).
+Counter-clockwise (Restoring) Torque: $\tau_{ccw} = W(b/2)$.
+\[ 0.8F(2) + 0.6F(0.375) > 15(0.375) \]
+\[ 1.6F + 0.225F > 5.625 \]
+\[ 1.825F > 5.625 \implies F > \frac{5.625}{1.825} \approx 3.082 \text{ kN} \]
+
+\subsubsection*{3. Both Blocks Sliding (on Ground)}
+Normal force $N_2 = 2W + F_y = 30 + 0.6F$.
+Friction limit $f_{max} = \mu_{MG} N_2 = 0.15(30 + 0.6F) = 4.5 + 0.09F$.
+Driving force $F_x = 0.8F$.
+Sliding occurs if $0.8F > 4.5 + 0.09F$.
+\[ 0.71F > 4.5 \implies F > \frac{4.5}{0.71} \approx 6.34 \text{ kN} \]
+
+\subsubsection*{4. Both Blocks Toppling (about ground corner)}
+Pivot $P_2$ is at the bottom-right corner of the bottom block.
+Clockwise Torque: $\tau_{cw} = F_x(2h) + F_y(b/2)$.
+Restoring Torque: $\tau_{ccw} = (2W)(b/2)$.
+\[ 0.8F(4) + 0.6F(0.375) > 30(0.375) \]
+\[ 3.2F + 0.225F > 11.25 \]
+\[ 3.425F > 11.25 \implies F > \frac{11.25}{3.425} \approx 3.285 \text{ kN} \]
+
+\subsection*{Conclusion}
+The lowest force causing instability is for the top block toppling.
+\[ F_{max} = 3.08 \text{ kN} \]
+
+\newpage
+
+\section*{Question 3: Man on Sliding Wedge}
+
+\subsection*{Problem Statement}
+A person of mass $M$ stands on a weighing scale fixed to a wedge on a frictionless ramp inclined at angle $\theta$. The system slides down with acceleration $a$. Find the apparent weight $W$. [cite: 39, 41]
+
+\subsection*{Solution}
+\begin{enumerate}
+    \item \textbf{Acceleration of the System:}
+    Since the ramp is frictionless, the wedge and man accelerate down the slope due to gravity component $g \sin \theta$.
+    \[ a = g \sin \theta \]
+    The vector $\vec{a}$ points down the incline.
+
+    \item \textbf{Analyzing the Man:}
+    We consider the forces on the man in the inertial (ground) frame.
+    \begin{itemize}
+        \item Gravity: $Mg$ (downwards).
+        \item Normal Force (Scale Reading): $W$ (upwards, perpendicular to the scale surface, which is horizontal).
+        \item Friction from Scale: $f$ (horizontal, keeping the man accelerating horizontally).
+    \end{itemize}
+
+    \item \textbf{Vertical Component of Acceleration:}
+    Resolve the acceleration vector $\vec{a}$ into horizontal ($x$) and vertical ($y$) components.
+    \[ a_y = a \sin \theta = (g \sin \theta) \sin \theta = g \sin^2 \theta \quad (\text{downwards}) \]
+
+    \item \textbf{Equation of Motion (Vertical):}
+    Apply Newton's Second Law in the vertical direction (taking down as positive for convenience):
+    \[ F_{net, y} = M a_y \]
+    \[ Mg - W = M (g \sin^2 \theta) \]
+
+    \item \textbf{Solving for Apparent Weight $W$:}
+    \[ W = Mg - Mg \sin^2 \theta \]
+    \[ W = Mg (1 - \sin^2 \theta) \]
+    Using the identity $\cos^2 \theta + \sin^2 \theta = 1$:
+    \[ W = Mg \cos^2 \theta \]
+\end{enumerate}
+
+\subsection*{Answer}
+\[ W = Mg \cos^2 \theta \]
+
+\newpage
+
+\section*{Question 4: Projectile and Exploding Rocket}
+
+\subsection*{Part (a): Maximum Height}
+\textbf{To Show:} $H = \frac{v_0^2 \sin^2 \theta}{2g}$.
+
+\textbf{Proof:}
+Consider the vertical motion.
+Initial vertical velocity $u_y = v_0 \sin \theta$.
+At maximum height, vertical velocity $v_y = 0$.
+Acceleration $a_y = -g$.
+Using $v_y^2 = u_y^2 + 2 a_y s$:
+\[ 0^2 = (v_0 \sin \theta)^2 - 2gH \]
+\[ 2gH = v_0^2 \sin^2 \theta \]
+\[ H = \frac{v_0^2 \sin^2 \theta}{2g} \]
+
+\subsection*{Part (b): Rocket Fragmentation}
+\textbf{Problem:} Rocket explodes at max height $h$ into 3 equal masses ($m$). One falls down in $t_1$. Two land in $t_2$. Find $h(t_1, t_2)$. [cite: 54, 55]
+
+\textbf{Solution:}
+\begin{enumerate}
+    \item \textbf{Momentum Conservation:}
+    At max height, the rocket is momentarily at rest (vertical velocity is zero). Momentum $P_{initial} = 0$.
+    After explosion:
+    Fragment 1 ($m$): Velocity $\vec{v}_1$.
+    Fragments 2 \& 3 ($m, m$): Velocity $\vec{v}_2, \vec{v}_3$.
+    
+    Since Fragment 1 falls straight down, $\vec{v}_1 = -v_1 \hat{j}$.
+    Fragments 2 and 3 land at the same time $t_2$, implying they have identical vertical velocity components $u$ (upwards). Horizontal components must cancel out.
+    Conservation of vertical momentum:
+    \[ m(-v_1) + m(u) + m(u) = 0 \implies v_1 = 2u \implies u = \frac{v_1}{2} \]
+
+    \item \textbf{Kinematics:}
+    \textbf{Fragment 1:} Fired downwards with speed $v_1$ from height $h$. Time $t_1$.
+    \[ h = v_1 t_1 + \frac{1}{2}g t_1^2 \quad \dots (1) \]
+    
+    \textbf{Fragments 2 \& 3:} Fired upwards with speed $u = v_1/2$ from height $h$. Time $t_2$.
+    Displacement is $-h$.
+    \[ -h = u t_2 - \frac{1}{2}g t_2^2 \]
+    \[ h = -u t_2 + \frac{1}{2}g t_2^2 = -\frac{v_1}{2} t_2 + \frac{1}{2}g t_2^2 \quad \dots (2) \]
+
+    \item \textbf{Solving for $h$:}
+    From (1): $v_1 = \frac{h}{t_1} - \frac{g t_1}{2}$.
+    Substitute into (2):
+    \[ h = -\frac{t_2}{2} \left( \frac{h}{t_1} - \frac{g t_1}{2} \right) + \frac{1}{2}g t_2^2 \]
+    \[ h = -\frac{h t_2}{2 t_1} + \frac{g t_1 t_2}{4} + \frac{g t_2^2}{2} \]
+    Multiply by $4 t_1$:
+    \[ 4 t_1 h = -2 h t_2 + g t_1^2 t_2 + 2 g t_1 t_2^2 \]
+    \[ h (4 t_1 + 2 t_2) = g t_1 t_2 (t_1 + 2 t_2) \]
+    \[ h = \frac{g t_1 t_2 (t_1 + 2 t_2)}{2(2 t_1 + t_2)} \]
+\end{enumerate}
+
+\subsection*{Answer}
+\[ h = \frac{g t_1 t_2 (t_1 + 2 t_2)}{2(2 t_1 + t_2)} \]
+
+\newpage
+
+\section*{Question 5: Physical Principles}
+
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Feather vs Metal Fall (Moon vs Earth):} [cite: 63]
+    On Earth, the atmosphere exerts air resistance (drag) on falling objects. A feather has a large surface area-to-mass ratio, experiencing significant drag relative to its weight, causing it to fall slowly. A piece of metal has a small area-to-mass ratio, making drag negligible compared to weight. On the Moon, there is a vacuum (no atmosphere). The only force acting is gravity ($F_g = mg$). By Newton's Second Law ($ma = mg$), acceleration $a=g$ is independent of mass and shape. Thus, both fall with the same acceleration.
+
+    \item \textbf{Real Gas Forces:} [cite: 65]
+    Deviations from ideal gas behavior arise from intermolecular forces.
+    \textbf{Intermolecular forces:} Attractive forces between gas molecules reduce the net force a molecule imparts when hitting the container wall (lowering pressure), and the finite size of molecules reduces available free volume. These modify the equation of state (e.g., $P \to P + a/V^2$).
+    \textbf{Wall forces:} The forces between the wall and molecules are short-range repulsive forces that essentially define the boundary condition of the volume. While they cause the change in momentum (pressure), they do not alter the internal energy relationships or the effective volume occupied by the gas bulk itself in a way that causes deviation from the state equation logic; they simply define the confinement.
+
+    \item \textbf{Elliptical Sun at Sunset:} [cite: 67]
+    This is due to \textbf{atmospheric refraction}. As light from the Sun enters Earth's atmosphere, it bends towards the normal (downwards) because air density increases near the surface. Light from the bottom of the Sun travels through denser air than light from the top, resulting in a greater upward refraction angle for the bottom edge. This compresses the apparent vertical diameter of the Sun, while the horizontal diameter remains unaffected, making the Sun appear elliptical.
+
+    \item \textbf{Series vs Parallel Motor:} [cite: 69]
+    \textbf{Series Motor:} The field coil is in series with the armature ($I_f = I_a$). Torque $T \propto \Phi I_a \propto I_a^2$. Back EMF $E \propto \Phi \omega \propto I_a \omega$. When load increases, speed drops, $E$ drops, causing a large increase in current $I_a$. Since flux $\Phi$ also increases with $I_a$, the speed $\omega \approx (V-I_a R)/k\Phi$ drops significantly to balance the equation.
+    \textbf{Parallel (Shunt) Motor:} The field coil is parallel to the source, so flux $\Phi$ is roughly constant. When load increases, $I_a$ increases to provide torque, but since $\Phi$ is constant, the speed drop required to reduce back EMF is much smaller (Speed $\propto 1/\Phi$). Thus, series motors exhibit a much larger speed drop under load.
+\end{enumerate}
+
+\newpage
+
+\section*{Question 6: Circular Coil}
+
+\subsection*{Part (i): Magnetic Induction B}
+We model the coil as a distribution of current loops.
+Parameters: $R_1, R_2$, Length $L$. $n = \text{turns/m}^2$. [cite: 71, 75]
+Current density: Consider an element of width $dx$ and thickness $dr$.
+Current in element $dI = n I \, dx \, dr$ (where $I$ is current per turn).
+
+The field $dB$ at the center from a ring of radius $r$ at distance $x$:
+\[ dB = \frac{\mu_0 (n I \, dx \, dr) r^2}{2(r^2 + x^2)^{3/2}} \]
+
+Integrate $x$ from $-L/2$ to $L/2$ and $r$ from $R_1$ to $R_2$.
+Integration over $x$:
+\[ \int_{-L/2}^{L/2} \frac{dx}{(r^2 + x^2)^{3/2}} = \left[ \frac{x}{r^2\sqrt{r^2+x^2}} \right]_{-L/2}^{L/2} = \frac{L}{r^2\sqrt{r^2 + (L/2)^2}} \]
+
+Now integrate over $r$:
+\[ B = \frac{\mu_0 n I}{2} \int_{R_1}^{R_2} r^2 \left( \frac{L}{r^2\sqrt{r^2 + (L/2)^2}} \right) dr = \frac{\mu_0 n I L}{2} \int_{R_1}^{R_2} \frac{dr}{\sqrt{r^2 + (L/2)^2}} \]
+
+Using $\int \frac{dr}{\sqrt{r^2+k^2}} = \ln(r + \sqrt{r^2+k^2})$:
+\[ B = \frac{\mu_0 n I L}{2} \left[ \ln\left(r + \sqrt{r^2 + \frac{L^2}{4}}\right) \right]_{R_1}^{R_2} \]
+\[ B = \frac{\mu_0 n I L}{2} \ln \left( \frac{R_2 + \sqrt{R_2^2 + L^2/4}}{R_1 + \sqrt{R_1^2 + L^2/4}} \right) \]
+
+Substitute $\alpha = R_2/R_1$ and $\beta = L/(2R_1)$ (so $L/2 = \beta R_1$):
+\[ \text{Numerator} = \alpha R_1 + \sqrt{\alpha^2 R_1^2 + \beta^2 R_1^2} = R_1(\alpha + \sqrt{\alpha^2 + \beta^2}) \]
+\[ \text{Denominator} = R_1 + \sqrt{R_1^2 + \beta^2 R_1^2} = R_1(1 + \sqrt{1 + \beta^2}) \]
+
+\[ B = \frac{\mu_0 n I L}{2} \ln \left( \frac{\alpha + \sqrt{\alpha^2 + \beta^2}}{1 + \sqrt{1 + \beta^2}} \right) \]
+
+\subsection*{Part (ii): Length of Wire}
+Consider volume element $dV = 2\pi r \, dr \, dx$.
+Number of turns in element $dN = n \, dr \, dx$.
+Length of wire in element $dl = 2\pi r \, dN = 2\pi r n \, dr \, dx$.
+
+\[ l = \int_{-L/2}^{L/2} dx \int_{R_1}^{R_2} 2\pi n r \, dr = L \cdot 2\pi n \left[ \frac{r^2}{2} \right]_{R_1}^{R_2} \]
+\[ l = \pi n L (R_2^2 - R_1^2) \]
+
+Substitute $R_2 = \alpha R_1$ and $L = 2\beta R_1$:
+\[ l = \pi n (2\beta R_1) ( \alpha^2 R_1^2 - R_1^2 ) \]
+\[ l = 2\pi n \beta R_1^3 (\alpha^2 - 1) \]
+
+\subsection*{Answer}
+\[ l = 2\pi n (\alpha^2 - 1) \beta R_1^3 \]
+
+\newpage
+
+\section*{Question 7: Radio Interference}
+
+\subsection*{Problem Statement}
+Frequency $f = 200 \text{ MHz}$. Antenna height $h = 20 \text{ m}$. [cite: 81, 82]
+Find distance $d$ at first minimum and ship speed $v$ if time to next minimum is 50 s.
+
+\subsection*{Solution}
+Wavelength $\lambda = c/f = (3 \times 10^8) / (2 \times 10^8) = 1.5 \text{ m}$.
+
+This is a Lloyd's Mirror problem. The radio wave reflects off the sea surface with a phase shift of $\pi$ (hard boundary).
+Path 1 (Direct): $r_1 \approx d$ (for $d \gg h$, more accurately $\sqrt{d^2}$).
+Path 2 (Reflected): Appears to come from image source $h$ below water. Total vertical separation $2h$. $r_2 = \sqrt{d^2 + (2h)^2}$.
+
+\textbf{Condition for Interference:}
+Phase difference $\Delta \phi = k(r_2 - r_1) + \pi$.
+Minima (Destructive) occur when $\Delta \phi = (2m+1)\pi$.
+\[ k(r_2 - r_1) + \pi = (2m+1)\pi \implies \frac{2\pi}{\lambda}(r_2 - r_1) = 2m\pi \implies r_2 - r_1 = m\lambda \]
+where $m = 1, 2, \dots$ (starting from ship nearing shore).
+
+\textbf{First Minimum ($m=1$):}
+\[ \sqrt{d_1^2 + 4h^2} - d_1 = \lambda \]
+\[ \sqrt{d_1^2 + 4h^2} = d_1 + \lambda \]
+Square both sides:
+\[ d_1^2 + 4h^2 = d_1^2 + 2d_1\lambda + \lambda^2 \]
+\[ d_1 = \frac{4h^2 - \lambda^2}{2\lambda} \]
+Given $h=20, \lambda=1.5$:
+\[ d_1 = \frac{4(400) - 2.25}{3} = \frac{1597.75}{3} \approx 532.58 \text{ m} \]
+
+\textbf{Second Minimum ($m=2$):}
+\[ d_2 = \frac{4h^2 - (2\lambda)^2}{2(2\lambda)} = \frac{1600 - 9}{6} = \frac{1591}{6} \approx 265.17 \text{ m} \]
+
+\textbf{Ship Speed:}
+Distance traveled $\Delta d = d_1 - d_2 = 532.58 - 265.17 = 267.41 \text{ m}$.
+Time $t = 50 \text{ s}$.
+\[ v = \frac{\Delta d}{t} = \frac{267.41}{50} \approx 5.35 \text{ m/s} \]
+
+\subsection*{Answer}
+Distance: \textbf{532.6 m}.
+Speed: \textbf{5.35 m/s}.
+
+\newpage
+
+\section*{Question 8: Van der Waals Equation}
+
+\subsection*{Part (a): Dimensions}
+Equation: $(P + a/V^2)(V - b) = RT$. [cite: 88]
+$P$: Pressure ($\text{Pa}$ or $\text{N/m}^2$), $V$: Molar Volume ($\text{m}^3/\text{mol}$).
+
+\begin{itemize}
+    \item $[b] = [V] = \text{L}^3 \text{mol}^{-1}$ (SI: $\text{m}^3/\text{mol}$).
+    \item $[a/V^2] = [P] \implies [a] = [P][V]^2 = (\text{M L}^{-1} \text{T}^{-2}) (\text{L}^3)^2 = \text{M L}^5 \text{T}^{-2} \text{mol}^{-2}$ (SI: $\text{Pa m}^6 \text{mol}^{-2}$).
+\end{itemize}
+
+\subsection*{Part (b): Critical Point}
+At the critical point, the isotherm has an inflection point:
+\[ \frac{\partial P}{\partial V} = 0 \quad \text{and} \quad \frac{\partial^2 P}{\partial V^2} = 0 \]
+\[ P = \frac{RT}{V-b} - \frac{a}{V^2} \]
+
+1. First derivative:
+\[ -\frac{RT}{(V-b)^2} + \frac{2a}{V^3} = 0 \implies RT = \frac{2a(V-b)^2}{V^3} \]
+
+2. Second derivative:
+\[ \frac{2RT}{(V-b)^3} - \frac{6a}{V^4} = 0 \implies RT = \frac{3a(V-b)^3}{V^4} \]
+
+Divide equations:
+\[ 1 = \frac{2}{3} \frac{V}{V-b} \implies 3V - 3b = 2V \implies V_c = 3b \]
+
+Substitute $V_c$ back to find $T_c$:
+\[ RT_c = \frac{2a(2b)^2}{(3b)^3} = \frac{8ab^2}{27b^3} \implies T_c = \frac{8a}{27Rb} \]
+
+Find $P_c$:
+\[ P_c = \frac{R(8a/27Rb)}{2b} - \frac{a}{9b^2} = \frac{4a}{27b^2} - \frac{3a}{27b^2} = \frac{a}{27b^2} \]
+
+\subsection*{Answer}
+\[ T_c = \frac{8a}{27bR}, \quad P_c = \frac{a}{27b^2} \]
+
+\newpage
+
+\section*{Question 9: Acoustics and Pulsating Star}
+
+\subsection*{Part (a): Wave Equation}
+Force analysis on fluid element. [cite: 98, 99]
+Net force $F_{net} = A [p(x) - p(x+\Delta x)] = -A \frac{\partial p}{\partial x} \Delta x$.
+With $p = -B \frac{\partial s}{\partial x}$, we have $\frac{\partial p}{\partial x} = -B \frac{\partial^2 s}{\partial x^2}$.
+So $F_{net} = A B \frac{\partial^2 s}{\partial x^2} \Delta x$.
+Newton's 2nd Law: $F_{net} = (dm) a = (\rho A \Delta x) \frac{\partial^2 s}{\partial t^2}$.
+\[ A B \frac{\partial^2 s}{\partial x^2} \Delta x = \rho A \Delta x \frac{\partial^2 s}{\partial t^2} \]
+\[ \frac{\partial^2 s}{\partial t^2} = \frac{B}{\rho} \frac{\partial^2 s}{\partial x^2} \]
+This is the wave equation with speed $v^2 = B/\rho$.
+\[ \rho v^2 = B \]
+
+\subsection*{Part (b): Star Pulsation}
+Model: One end closed (center, node), one end open (surface, antinode). [cite: 105, 107]
+Fundamental wavelength $\lambda = 4R$.
+Period $T = \lambda/v = 4R/v$.
+Speed of sound $v = \sqrt{B/\rho}$.
+
+Given: $B = 1.33 \times 10^{22} \text{ Pa}$, $\rho = 10^{10} \text{ kg/m}^3$.
+\[ v = \sqrt{\frac{1.33 \times 10^{22}}{10^{10}}} = \sqrt{1.33 \times 10^{12}} \approx 1.153 \times 10^6 \text{ m/s} \]
+
+Radius $R = 9.0 \times 10^{-3} R_{sun}$. Using $R_{sun} \approx 6.96 \times 10^8 \text{ m}$.
+\[ R = 9.0 \times 10^{-3} \times 6.96 \times 10^8 = 6.264 \times 10^6 \text{ m} \]
+
+\[ T = \frac{4(6.264 \times 10^6)}{1.153 \times 10^6} \approx 21.7 \text{ s} \]
+
+\subsection*{Answer}
+The period is approximately \textbf{22 seconds}.
+
+\newpage
+
+\section*{Question 10: Compton Scattering}
+
+\subsection*{Problem Statement}
+Show that the maximum kinetic energy of a recoil electron (scattered from photon energy $E$) is:
+$K_{max} = \frac{E^2}{E + m_0 c^2}$. [cite: 110]
+
+\textit{Note: The standard physical derivation for maximum kinetic energy (backscattering) yields a result that differs by a factor of 2. The derivation below presents the standard physics result.}
+
+\subsection*{Solution}
+Maximum kinetic energy transfer occurs when the photon is backscattered ($180^\circ$).
+Let initial photon energy be $E$ and final $E'$. Electron recoil energy $K$.
+
+\textbf{1. Compton Shift Formula:}
+\[ \Delta \lambda = \lambda' - \lambda = \frac{h}{m_0 c}(1 - \cos \theta) \]
+For max transfer ($\theta = 180^\circ$):
+\[ \lambda' - \lambda = \frac{2h}{m_0 c} \]
+
+\textbf{2. Energy Relation:}
+Using $E = hc/\lambda$ and $E' = hc/\lambda'$:
+\[ \frac{hc}{E'} - \frac{hc}{E} = \frac{2h}{m_0 c} \]
+\[ \frac{1}{E'} - \frac{1}{E} = \frac{2}{m_0 c^2} \]
+\[ \frac{1}{E'} = \frac{m_0 c^2 + 2E}{E m_0 c^2} \implies E' = \frac{E m_0 c^2}{m_0 c^2 + 2E} \]
+
+\textbf{3. Kinetic Energy of Electron:}
+By conservation of energy: $K = E - E'$.
+\[ K_{max} = E - \frac{E m_0 c^2}{m_0 c^2 + 2E} \]
+\[ K_{max} = E \left( 1 - \frac{m_0 c^2}{m_0 c^2 + 2E} \right) \]
+\[ K_{max} = E \left( \frac{m_0 c^2 + 2E - m_0 c^2}{m_0 c^2 + 2E} \right) \]
+\[ K_{max} = \frac{2E^2}{2E + m_0 c^2} \]
+
+\subsection*{Discussion on the Provided Formula}
+The question asks to show $K_{max} = \frac{E^2}{E + m_0 c^2}$.
+Comparing the two:
+\begin{itemize}
+    \item Standard Result: $\frac{E^2}{E + m_0 c^2/2}$
+    \item Question Result: $\frac{E^2}{E + m_0 c^2}$
+\end{itemize}
+The expression in the question paper appears to be missing a factor of 2 in the denominator or corresponds to a scattering angle of $90^\circ$ (where shift is $h/m_0c$ instead of $2h/m_0c$), but $90^\circ$ does not provide the \textit{maximum} kinetic energy.
+
+\end{document}
