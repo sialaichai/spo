@@ -1,0 +1,355 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Solutions to the 26th Singapore Physics Olympiad (2012)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question 1: Atomic Bomb Explosion}
+
+\subsection*{Dimensional Analysis}
+We assume the radius of the shockwave $R$ depends on the energy of the explosion $E$, the density of the medium $\rho$, and the time elapsed $t$.
+\[ R \propto E^a \rho^b t^c \]
+The dimensions of the quantities are:
+\begin{itemize}
+    \item $R$: $[L]$
+    \item $E$: $[M L^2 T^{-2}]$
+    \item $\rho$: $[M L^{-3}]$
+    \item $t$: $[T]$
+\end{itemize}
+Equating dimensions:
+\[ [L] = [M L^2 T^{-2}]^a [M L^{-3}]^b [T]^c = M^{a+b} L^{2a-3b} T^{-2a+c} \]
+This gives a system of linear equations for the exponents:
+1. $a + b = 0 \implies b = -a$
+2. $2a - 3b = 1 \implies 2a - 3(-a) = 5a = 1 \implies a = 1/5$
+3. $-2a + c = 0 \implies c = 2a = 2/5$
+
+Thus, $b = -1/5$. The expression for the radius is:
+\[ R = C \left( \frac{E t^2}{\rho} \right)^{1/5} \]
+where $C$ is a dimensionless proportionality constant. The problem states to assume $C=1$.
+
+\subsection*{Energy Estimation}
+From the provided image , we have the following data:
+\begin{itemize}
+    \item Time $t = 25 \text{ msec} = 0.025 \text{ s}$.
+    \item Density of air $\rho = 1.2 \text{ kg m}^{-3}$.
+    \item Scale bar represents $100 \text{ m}$.
+\end{itemize}
+Visually estimating the radius of the hemispherical shockwave from Figure 1 , the height of the dome appears to be approximately $1.4$ times the $100 \text{ m}$ scale bar. Let us estimate $R \approx 140 \text{ m}$.
+
+Rearranging the formula to solve for Energy $E$:
+\[ R^5 = \frac{E t^2}{\rho} \implies E = \frac{\rho R^5}{t^2} \]
+Substituting the values:
+\[ E = \frac{1.2 \times (140)^5}{(0.025)^2} \]
+\[ E = \frac{1.2 \times 5.378 \times 10^{10}}{6.25 \times 10^{-4}} \approx 1.03 \times 10^{14} \text{ J} \]
+
+Converting to tons of TNT equivalent ($1 \text{ ton TNT} = 4.184 \times 10^9 \text{ J}$):
+\[ E_{\text{TNT}} = \frac{1.03 \times 10^{14}}{4.184 \times 10^9} \approx 24,600 \text{ tons} \]
+The estimated energy is approximately \textbf{25 kilotons}. (Historical value for Trinity was $\sim 20-22$ kt).
+
+\newpage
+
+\section*{Question 2: Adiabatic Invariant of a Pendulum}
+
+The adiabatic invariant for a periodic system with slowly varying parameters is the action variable $J = \oint p \, dq$, or equivalently the ratio of the energy to the frequency $E/\nu$ (or $E/\omega$) for a harmonic oscillator.
+
+For a simple pendulum of length $L$ and mass $M$ undergoing small oscillations:
+\begin{itemize}
+    \item Angular frequency $\omega = \sqrt{\frac{g}{L}}$.
+    \item Energy $E = \frac{1}{2} M \omega^2 A^2$, where $A$ is the linear amplitude of oscillation.
+\end{itemize}
+The adiabatic invariant condition states:
+\[ \frac{E}{\omega} = \text{constant} \]
+Substituting $E$:
+\[ \frac{\frac{1}{2} M \omega^2 A^2}{\omega} = \frac{1}{2} M \omega A^2 = \text{constant} \]
+Since $M$ is constant, we have $\omega A^2 = \text{constant}$.
+Substituting $\omega = \sqrt{g/L}$:
+\[ \sqrt{\frac{g}{L}} A^2 = \text{constant} \implies \frac{A^2}{\sqrt{L}} = \text{constant} \implies A \propto L^{1/4} \]
+
+If the string is shortened by a factor of 2 ($L_f = L_i / 2$):
+\[ \frac{A_f}{A_i} = \left( \frac{L_f}{L_i} \right)^{1/4} = \left( \frac{1}{2} \right)^{1/4} \approx 0.84 \]
+The amplitude decreases by a factor of $2^{-1/4}$ or approximately \textbf{0.84}.
+
+\newpage
+
+\section*{Question 3: Exploding Rocket}
+
+Let the rocket explode at height $h$. Just before explosion, velocity is zero. It breaks into three fragments of mass $m$.
+Conservation of momentum just after explosion:
+\[ \vec{p}_1 + \vec{p}_2 + \vec{p}_3 = 0 \]
+Fragment 1 falls straight down, so $\vec{v}_1 = -v_1 \hat{j}$.
+Fragments 2 and 3 land at the same time $t_2$, which implies by symmetry they have the same initial vertical velocity component $u_y$.
+Vertical momentum conservation:
+\[ m(-v_1) + m(u_y) + m(u_y) = 0 \implies v_1 = 2u_y \implies u_y = \frac{v_1}{2} \]
+
+Using kinematics ($y = y_0 + v_{y0} t - \frac{1}{2}g t^2$) with final height $y=0$ and $y_0=h$:
+For Fragment 1 (downward):
+\[ 0 = h - v_1 t_1 - \frac{1}{2} g t_1^2 \implies h = v_1 t_1 + \frac{1}{2} g t_1^2 \quad \text{--- (1)} \]
+For Fragments 2 \& 3 (upward):
+\[ 0 = h + u_y t_2 - \frac{1}{2} g t_2^2 \implies h = -u_y t_2 + \frac{1}{2} g t_2^2 = -\frac{v_1}{2} t_2 + \frac{1}{2} g t_2^2 \quad \text{--- (2)} \]
+
+From (1), $v_1 = \frac{h}{t_1} - \frac{g t_1}{2}$. Substitute into (2):
+\[ h = -\frac{t_2}{2} \left( \frac{h}{t_1} - \frac{g t_1}{2} \right) + \frac{1}{2} g t_2^2 \]
+\[ h = -\frac{h t_2}{2 t_1} + \frac{g t_1 t_2}{4} + \frac{g t_2^2}{2} \]
+Multiply by $4 t_1$:
+\[ 4 t_1 h = -2 h t_2 + g t_1^2 t_2 + 2 g t_1 t_2^2 \]
+\[ h (4 t_1 + 2 t_2) = g t_2 (t_1^2 + 2 t_1 t_2) \]
+\[ h (2 (2 t_1 + t_2)) = g t_1 t_2 (t_1 + 2 t_2) \]
+\[ h = \frac{g t_1 t_2 (t_1 + 2 t_2)}{2 (2 t_1 + t_2)} \]
+
+\newpage
+
+\section*{Question 4: Thomson Model of Hydrogen}
+
+\textbf{(i) Restoring Force}
+The positive charge $+e$ is uniformly distributed in a sphere of radius $R$. Charge density $\rho = \frac{e}{(4/3)\pi R^3}$.
+By Gauss's Law, the electric field at a distance $r < R$ from the center is determined by the enclosed charge $q_{enc} = \rho \frac{4}{3} \pi r^3 = e \frac{r^3}{R^3}$.
+\[ E(r) 4 \pi r^2 = \frac{q_{enc}}{\epsilon_0} \implies E(r) = \frac{e r}{4 \pi \epsilon_0 R^3} \]
+The force on the electron (charge $-e$) at $r$ is:
+\[ F = -e E(r) = - \frac{e^2}{4 \pi \epsilon_0 R^3} r \]
+This is of the form $F = -K r$ with constant $K = \frac{e^2}{4 \pi \epsilon_0 R^3}$.
+At $r=0$, $F=0$, so the electron is in equilibrium.
+
+\textbf{(ii) Frequency of Oscillation}
+The equation of motion is $m_e \ddot{r} = -K r$, which describes simple harmonic motion with angular frequency $\omega = \sqrt{K/m_e}$.
+Frequency $f = \frac{\omega}{2\pi}$:
+\[ f = \frac{1}{2\pi} \sqrt{\frac{e^2}{4 \pi \epsilon_0 R^3 m_e}} \]
+
+\textbf{(iii) Calculation of R}
+Given $f = 2.47 \times 10^{15}$ Hz. Solve for $R$:
+\[ f^2 = \frac{1}{4\pi^2} \frac{e^2}{4 \pi \epsilon_0 m_e R^3} = \frac{e^2}{16 \pi^3 \epsilon_0 m_e R^3} \]
+\[ R^3 = \frac{e^2}{16 \pi^3 \epsilon_0 m_e f^2} \]
+Using constants: $e \approx 1.6 \times 10^{-19}$ C, $\epsilon_0 \approx 8.85 \times 10^{-12}$ F/m, $m_e \approx 9.11 \times 10^{-31}$ kg.
+\[ R^3 = \frac{(1.6 \times 10^{-19})^2}{16 \pi^3 (8.85 \times 10^{-12}) (9.11 \times 10^{-31}) (2.47 \times 10^{15})^2} \]
+\[ R \approx 1.0 \times 10^{-10} \text{ m} = 1 \text{ \AA} \]
+
+\newpage
+
+\section*{Question 5: Antimatter Rocket}
+
+Let initial mass be $M_0$. Final ship mass $m = f M_0$. Ship speed $v$.
+Units $c=1$.
+\textbf{(i) Energy Conservation}
+Initial energy: $E_i = M_0$.
+Final energy: Ship energy $E_{ship} = \gamma m$ + Radiation energy $E_{rad}$.
+\[ M_0 = \gamma m + E_{rad} \]
+
+\textbf{(ii) Momentum Conservation}
+Initial momentum: $P_i = 0$.
+Final momentum: $P_{ship} = \gamma m v$. Radiation momentum $P_{rad}$.
+Assuming radiation is directed strictly backward (for max thrust): $P_{rad} = -E_{rad}$ (magnitude $E$, direction opposite).
+\[ 0 = \gamma m v - E_{rad} \implies E_{rad} = \gamma m v \]
+
+\textbf{(iii) Relation for $f$}
+Substitute $E_{rad}$ into energy equation:
+\[ M_0 = \gamma m + \gamma m v = \gamma m (1+v) \]
+Dividing by $M_0$ and using $f = m/M_0$:
+\[ 1 = \gamma f (1+v) = \gamma f + \gamma v f \]
+
+\textbf{(iv) Quadratic Equation for $f$}
+We need to express $v$ in terms of $\gamma$. Since $\gamma = 1/\sqrt{1-v^2}$, we have $\gamma^2 - 1 = \gamma^2 v^2$, so $\gamma v = \sqrt{\gamma^2 - 1}$.
+Substitute into the result from (iii):
+\[ \gamma f + f \sqrt{\gamma^2 - 1} = 1 \]
+\[ f (\gamma + \sqrt{\gamma^2 - 1}) = 1 \]
+Invert to find $f$:
+\[ f = \frac{1}{\gamma + \sqrt{\gamma^2 - 1}} = \gamma - \sqrt{\gamma^2 - 1} \]
+Rearranging $f = \gamma - \sqrt{\gamma^2 - 1}$:
+\[ \gamma - f = \sqrt{\gamma^2 - 1} \]
+Square both sides:
+\[ \gamma^2 - 2\gamma f + f^2 = \gamma^2 - 1 \]
+\[ f^2 - 2\gamma f + 1 = 0 \]
+
+\textbf{(v) Value for $\gamma=10$}
+\[ f = 10 - \sqrt{100 - 1} = 10 - \sqrt{99} \approx 10 - 9.95 = 0.05 \]
+Yes, it is possible to construct such a ship if the payload and shell are 5\% of the initial mass (95\% fuel).
+
+\textbf{(vi) Energy of Radiation vs Fuel Mass}
+Mass of fuel consumed $M_{fuel} = M_0 - m = M_0(1-f)$.
+Energy of radiation $E_{rad} = \gamma m v = \gamma m \frac{\sqrt{\gamma^2-1}}{\gamma} = m \sqrt{\gamma^2-1}$.
+From conservation of energy, $E_{rad} = M_0 - \gamma m$.
+We compare $M_0 - m$ (fuel mass) and $M_0 - \gamma m$ (radiation energy).
+Since $\gamma > 1$ (for $v>0$), $\gamma m > m$, so $M_0 - \gamma m < M_0 - m$.
+The energy of the emitted radiation is \textbf{less} than the mass of the fuel consumed because a portion of the fuel's mass-energy is converted into the kinetic energy of the remaining spaceship ($\gamma m - m$).
+
+\newpage
+
+\section*{Question 6: Ring in Magnetic Field}
+
+\textbf{Induced Force}
+The magnetic field changes as $B(t) = B_0 + \alpha t$. Flux through the large ring of radius $R$ is $\Phi = \pi R^2 (B_0 + \alpha t)$.
+Induced EMF via Faraday's Law: $\mathcal{E} = -\frac{d\Phi}{dt} = - \pi R^2 \alpha$.
+The induced electric field $E$ along the ring is tangential:
+\[ E (2\pi R) = \pi R^2 \alpha \implies E = \frac{R \alpha}{2} \]
+The force on the small ring of charge $q$ is $F_t = q E = \frac{q R \alpha}{2}$.
+This force acts tangentially, accelerating the small ring along the large ring.
+
+\textbf{Motion}
+Newton's Second Law for tangential motion:
+\[ m a_t = F_t \implies m R \frac{d\omega}{dt} = \frac{q R \alpha}{2} \]
+Angular acceleration $\frac{d\omega}{dt} = \frac{q \alpha}{2m}$ is constant.
+Angular velocity $\omega(t) = \frac{q \alpha}{2m} t$.
+
+\textbf{Force on the Big Ring}
+The small ring exerts a force on the big ring (Newton's 3rd Law). The forces are:
+1. Tangential reaction force: $F_{tan} = \frac{q R \alpha}{2}$.
+2. Radial force: The big ring provides the normal force to keep the small ring in circular motion against magnetic and centripetal effects.
+   Radial force on small ring (inward positive): $F_r = q v B - m R \omega^2$ (direction depends on signs, assuming Lorentz force opposes centripetal or adds).
+   Actually, the net radial force required for motion is $-m R \omega^2$ (inward).
+   Forces applied: Normal force $N$ (inward) and Lorentz force (outward $q \omega R B$).
+   $N - q \omega R B = - m R \omega^2 \implies N = q \omega R B - m R \omega^2$.
+   The force of the small ring on the big ring is $-N$ (outward).
+
+\newpage
+
+\section*{Question 7: Three Polarizers}
+
+Using Malus's Law: $I_{out} = I_{in} \cos^2(\Delta \theta)$.
+Incident light $I_0 = 10.0$ polarized vertically ($0^\circ$).
+
+\textbf{(i)} $\theta_1=20^\circ, \theta_2=40^\circ, \theta_3=60^\circ$.
+Angle differences are all $20^\circ$.
+\[ I_1 = I_0 \cos^2(20^\circ) \]
+\[ I_2 = I_1 \cos^2(40^\circ - 20^\circ) = I_0 (\cos^2 20^\circ)^2 \]
+\[ I_3 = I_2 \cos^2(60^\circ - 40^\circ) = I_0 (\cos^2 20^\circ)^3 \]
+Calculation: $\cos 20^\circ \approx 0.9397$. $\cos^2 20^\circ \approx 0.883$.
+$I_3 = 10.0 \times (0.883)^3 \approx 10.0 \times 0.688 = 6.88$.
+
+\textbf{(ii)} $\theta_1=0^\circ, \theta_2=30^\circ, \theta_3=60^\circ$.
+\[ I_1 = I_0 \cos^2(0) = I_0 \]
+\[ I_2 = I_1 \cos^2(30^\circ) = I_0 (3/4) \]
+\[ I_3 = I_2 \cos^2(30^\circ) = I_0 (3/4)^2 = I_0 (9/16) \]
+$I_3 = 10.0 \times 0.5625 = 5.625$.
+
+\textbf{(iii)} $\theta_1=0^\circ, \theta_3=60^\circ$. Maximize $I_3$ by varying $\theta_2$.
+$I_3 = I_0 \cos^2(\theta_2) \cos^2(60^\circ - \theta_2)$.
+Maximum occurs when $\theta_2$ is exactly in the middle of $\theta_1$ and $\theta_3$.
+$\theta_2 = 30^\circ$.
+
+\newpage
+
+\section*{Question 8: Railgun Circuit}
+
+\textbf{Setup}
+$B = 0.0100$ T. Rail width $L = 0.100$ m.
+Left rod ($10 \Omega$) moves left at $v_1 = 4.00$ m/s.
+Right rod ($15 \Omega$) moves right at $v_2 = 2.00$ m/s.
+Middle resistor $R_c = 5.00 \Omega$.
+
+\textbf{Induced EMFs}
+Both rods move outward, increasing the flux area.
+$\mathcal{E}_1 = B L v_1 = 0.01 \times 0.1 \times 4 = 0.004$ V.
+$\mathcal{E}_2 = B L v_2 = 0.01 \times 0.1 \times 2 = 0.002$ V.
+
+\textbf{Circuit Analysis}
+We model the rods as voltage sources in series with their resistance.
+Let the bottom rail be ground ($0$ V) and the top rail be at potential $V$.
+Determining polarity: For expanding area, Lenz's law implies induced current opposes the external field. If $B$ is up, induced $B$ is down, current is Clockwise (viewed from top).
+Left Loop (Left Rod + Middle Resistor): Clockwise current means Up through Left Rod, Down through Middle Resistor.
+Right Loop (Right Rod + Middle Resistor): Clockwise current (in the loop defined by the circuit) means Down through Right Rod, Up through Middle Resistor.
+Alternatively, using Motional EMF vector force $\vec{F} = q \vec{v} \times \vec{B}$.
+Assume $B$ is out of page ($+z$).
+Left Rod ($v$ left): Force on $+q$ is Down. Top is negative, Bottom is positive.
+Right Rod ($v$ right): Force on $+q$ is Down. Top is negative, Bottom is positive.
+Wait, let's re-check directions.
+If $B$ is $+z$, $v_1 = -v \hat{x}$. $F = q (-v \hat{x} \times B \hat{z}) = q v B \hat{y}$ (Up). Top is +.
+If $B$ is $+z$, $v_2 = +v \hat{x}$. $F = q (v \hat{x} \times B \hat{z}) = q v B (-\hat{y})$ (Down). Top is -.
+
+So Left Rod acts as battery $4$ mV, + terminal at Top.
+Right Rod acts as battery $2$ mV, + terminal at Bottom (so -2 mV at Top).
+Nodal Analysis at Top Rail (Voltage $V$):
+Currents leaving node $V$:
+1. To Left Rod: $(V - 0.004) / 10$
+2. To Middle Resistor: $V / 5$
+3. To Right Rod: $(V - (-0.002)) / 15$
+Sum = 0:
+\[ \frac{V - 0.004}{10} + \frac{V}{5} + \frac{V + 0.002}{15} = 0 \]
+Multiply by 30:
+\[ 3(V - 0.004) + 6V + 2(V + 0.002) = 0 \]
+\[ 3V - 0.012 + 6V + 2V + 0.004 = 0 \]
+\[ 11V = 0.008 \]
+\[ V = \frac{0.008}{11} \approx 0.000727 \text{ V} \]
+
+\textbf{Current in 5.00 $\Omega$ Resistor}
+\[ I = \frac{V}{5} = \frac{0.000727}{5} \approx 145 \times 10^{-6} \text{ A} = 145 \, \mu\text{A} \]
+Direction: From Top to Bottom (since $V > 0$).
+
+\newpage
+
+\section*{Question 9: RL Circuit}
+
+\textbf{(i) Initial Conditions}
+At $t < 0$, switch S is closed. The battery ($18$ V) is connected.
+Assuming standard configuration (battery in center branch):
+Left branch $R_2 = 6$ k$\Omega$. Right branch $R_1 = 2$ k$\Omega$ + $L$.
+Inductor behaves as short circuit.
+$I_L(0^-) = \frac{18}{2000} = 9$ mA. Flow is Down.
+$I_{R2}(0^-) = \frac{18}{6000} = 3$ mA. Flow is Down.
+
+At $t=0$, S opens. Battery is removed. The circuit becomes a single loop with $R_1$, $L$, and $R_2$ in series.
+Current in inductor cannot change instantly: $I(0^+) = 9$ mA.
+This current circulates: Inductor $\to$ Bottom Wire $\to$ $R_2$ (Up) $\to$ Top Wire $\to$ $R_1$ $\to$ Inductor.
+Voltage across L: $V_L + I(R_1 + R_2) = 0$.
+$V_L = -I(R_1 + R_2) = - (9 \text{ mA}) (8 \text{ k}\Omega) = -72$ V.
+Potential difference $V_a - V_b$.
+Current flows $a \to b$. The inductor acts as the source driving the current. Inside the source, current flows from $-$ to $+$.
+So $b$ is at a higher potential than $a$.
+Value: \textbf{72 V}. $b$ is higher.
+
+\textbf{(ii) Graphs}
+$I_{R1}$: Starts at $+9$ mA, decays exponentially to 0.
+$I_{R2}$: Jump from $+3$ mA (down) to $-9$ mA (up, loop current). Decays to 0.
+
+\textbf{(iii) Time Calculation}
+Current decay $I(t) = I_0 e^{-t/\tau}$.
+$\tau = \frac{L}{R_{eq}} = \frac{0.100}{8000} = 12.5 \, \mu\text{s}$.
+Find $t$ when $I_{R2} = 2.00$ mA.
+\[ 2 = 9 e^{-t/12.5\mu\text{s}} \]
+\[ e^{t/\tau} = 4.5 \implies t = \tau \ln(4.5) \]
+\[ t = 12.5 \times 1.504 \approx 18.8 \, \mu\text{s} \]
+
+\newpage
+
+\section*{Question 10: Transparent Cylinder with Mirror}
+
+\textbf{Geometry}
+Radius $R = 2.00$ m. Right half is mirrored.
+Incident ray is parallel to the exiting ray, separated by distance $d = 2.00$ m.
+Let the incident ray height be $y = d/2 = 1.00$ m.
+Exit ray height is $y = -1.00$ m.
+Path symmetry implies the ray enters at A ($y=1$), reflects at a point B on the axis ($y=0$) at the back of the cylinder, and exits at D ($y=-1$).
+
+\textbf{Angles}
+1. \textbf{Entry at A ($y=1$):}
+   $\sin \theta_A = y/R = 1/2 \implies \theta_A = 30^\circ$ (angle of radius with horizontal axis).
+   Normal is at $150^\circ$ from the positive x-axis.
+   Incident ray is horizontal ($180^\circ$). Angle of incidence $i = 30^\circ$.
+   Let refraction angle be $r$.
+
+2. \textbf{Reflection at B:}
+   For the ray to exit symmetrically at $y=-1$, it must reflect at the vertex of the mirror $B(2,0)$ on the optical axis.
+   Consider the triangle formed by the Center $O$, Entry point $A$, and Mirror point $B$.
+   $OA = R, OB = R$.
+   Angle $\angle AOB = 150^\circ$.
+   Triangle $AOB$ is isosceles. The base angles are $\angle OAB = \angle OBA = \frac{180 - 150}{2} = 15^\circ$.
+   The angle $\angle OAB$ is the angle between the radius (normal) and the ray path $AB$.
+   Thus, the angle of refraction is $r = 15^\circ$.
+
+3. \textbf{Calculation of Refractive Index:}
+   Using Snell's Law at point A:
+   \[ \sin i = n \sin r \]
+   \[ \sin 30^\circ = n \sin 15^\circ \]
+   \[ 0.5 = n \sin 15^\circ \]
+   Using half-angle formula: $\sin 15^\circ = \sin(45-30) = \frac{\sqrt{6}-\sqrt{2}}{4} \approx 0.2588$.
+   \[ n = \frac{0.5}{0.2588} \approx 1.93 \]
+
+\textbf{Answer}
+The index of refraction is \textbf{1.93}.
+
+\end{document}

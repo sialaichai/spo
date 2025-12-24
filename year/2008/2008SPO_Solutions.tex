@@ -1,0 +1,384 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{enumitem}
+
+\geometry{a4paper, margin=1in}
+
+\title{Detailed Solutions: 21st Singapore Physics Olympiad (2008)}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Question 1: Kinematics of a Moving Point}
+
+\subsection*{Problem Statement}
+A point moves along the x-axis with an acceleration $a(t) = kt^2$, where $t$ is the time and $k$ is a constant. The initial speed of the point is $u$. Show that the distance travelled in time $t$ is $x(t) = ut + \frac{1}{12}kt^4$.
+
+\subsection*{Solution}
+We are given the acceleration as a function of time:
+\[ a(t) = \frac{dv}{dt} = kt^2 \]
+
+To find the velocity $v(t)$, we integrate the acceleration with respect to time. Let $v(0) = u$ be the initial velocity.
+\[ \int_{u}^{v(t)} dv = \int_{0}^{t} kt^2 \, dt \]
+\[ v(t) - u = \left[ \frac{kt^3}{3} \right]_0^t \]
+\[ v(t) = u + \frac{1}{3}kt^3 \]
+
+The velocity is the rate of change of position, $v(t) = \frac{dx}{dt}$. To find the position $x(t)$ (representing distance travelled from the origin, assuming motion starts at $x=0$), we integrate the velocity.
+\[ \int_{0}^{x(t)} dx = \int_{0}^{t} \left( u + \frac{1}{3}kt^3 \right) dt \]
+\[ x(t) = \left[ ut + \frac{1}{3}k \frac{t^4}{4} \right]_0^t \]
+\[ x(t) = ut + \frac{1}{12}kt^4 \]
+
+\subsection*{Answer}
+Shown as required:
+\[ x(t) = ut + \frac{1}{12}kt^4 \]
+
+\newpage
+
+\section*{Question 2: Bear on a Beam}
+
+\subsection*{Problem Statement}
+A uniform beam of weight $W_{beam} = 200 \text{ N}$ and length $L = 6.00 \text{ m}$ is hinged at a wall. A basket of food weighing $W_{basket} = 80.0 \text{ N}$ hangs at the end. The beam is supported by a wire inclined at $60.0^\circ$ at the outer end. A bear of weight $W_{bear} = 700 \text{ N}$ walks on the beam.
+
+\subsection*{Part (a)}
+\textbf{Find the tension $T$ and wall force components when the bear is at $x = 1.00 \text{ m}$.}
+
+\textbf{1. Calculation of Tension ($T$):}
+We apply the condition for rotational equilibrium ($\sum \tau = 0$) about the hinge (left end).
+\begin{itemize}
+    \item Torque from Beam Weight: $\tau_{beam} = 200 \text{ N} \times 3.00 \text{ m}$ (acting at center, $L/2$).
+    \item Torque from Bear: $\tau_{bear} = 700 \text{ N} \times 1.00 \text{ m}$.
+    \item Torque from Basket: $\tau_{basket} = 80.0 \text{ N} \times 6.00 \text{ m}$.
+    \item Torque from Wire: The vertical component $T \sin(60^\circ)$ provides counter-clockwise torque at distance $6.00 \text{ m}$.
+\end{itemize}
+
+\[ \sum \tau_{\text{hinge}} = (T \sin 60^\circ)(6.00) - (200)(3.00) - (700)(1.00) - (80)(6.00) = 0 \]
+\[ 6T \sin 60^\circ = 600 + 700 + 480 \]
+\[ 6T \left(\frac{\sqrt{3}}{2}\right) = 1780 \]
+\[ 5.196 T = 1780 \]
+\[ T = \frac{1780}{5.196} \approx 342.6 \text{ N} \]
+
+\textbf{2. Calculation of Wall Forces ($H_x, H_y$):}
+\begin{itemize}
+    \item Horizontal Equilibrium ($\sum F_x = 0$): The wire pulls left, hinge pushes right.
+    \[ H_x - T \cos 60^\circ = 0 \implies H_x = 342.6 \times 0.5 = 171.3 \text{ N} \]
+    \item Vertical Equilibrium ($\sum F_y = 0$):
+    \[ H_y + T \sin 60^\circ = W_{beam} + W_{bear} + W_{basket} \]
+    \[ H_y + 342.6 \sin 60^\circ = 200 + 700 + 80 \]
+    \[ H_y + 296.7 = 980 \]
+    \[ H_y = 980 - 296.7 = 683.3 \text{ N} \]
+\end{itemize}
+
+\subsection*{Part (b)}
+\textbf{Maximum distance $x_{max}$ the bear can walk if $T_{max} = 900 \text{ N}$.}
+
+Using the torque equation with $T = 900$:
+\[ (900 \sin 60^\circ)(6.00) = (200)(3.00) + (700)(x_{max}) + (80)(6.00) \]
+\[ 5400(0.866) = 600 + 700 x_{max} + 480 \]
+\[ 4676.5 = 1080 + 700 x_{max} \]
+\[ 700 x_{max} = 3596.5 \]
+\[ x_{max} \approx 5.14 \text{ m} \]
+
+\subsection*{Answer}
+(a) Tension: \textbf{343 N}. Wall Force: \textbf{171 N} horizontal, \textbf{683 N} vertical.\\
+(b) Maximum distance: \textbf{5.14 m}.
+
+\newpage
+
+\section*{Question 3: Falling Chain}
+
+\subsection*{Problem Statement}
+A chain of mass $M$ and length $L$ is suspended vertically just touching a scale. It is released. Find the scale reading when a length $z$ has fallen.
+
+\subsection*{Solution}
+The reading on the scale comes from two sources:
+1. The static weight of the portion of the chain already lying on the scale.
+2. The impulsive force exerted by the falling links coming to rest.
+
+Let the linear mass density be $\lambda = \frac{M}{L}$.
+
+\textbf{1. Weight of accumulated chain ($W$):}
+The mass of the chain on the scale is $m(z) = \lambda z$.
+\[ W = (\lambda z)g = \frac{Mgz}{L} \]
+
+\textbf{2. Impulsive Force ($F_{imp}$):}
+Consider an element of mass $dm$ falling with velocity $v$.
+The velocity of free fall for distance $z$ is $v = \sqrt{2gz}$.
+The rate at which mass hits the scale is $\frac{dm}{dt} = \lambda v$.
+The momentum destroyed per unit time is force:
+\[ F_{imp} = v \frac{dm}{dt} = v (\lambda v) = \lambda v^2 \]
+Substitute $v^2 = 2gz$:
+\[ F_{imp} = \lambda (2gz) = 2 \lambda z g = \frac{2Mgz}{L} \]
+
+\textbf{3. Total Scale Reading ($R$):}
+\[ R = W + F_{imp} \]
+\[ R = \frac{Mgz}{L} + \frac{2Mgz}{L} = \frac{3Mgz}{L} \]
+
+When the entire chain has fallen ($z=L$), the reading is momentarily $3Mg$.
+
+\subsection*{Answer}
+\[ \text{Reading} = \frac{3Mgz}{L} \]
+
+\newpage
+
+\section*{Question 4: Electrons in the Crab Nebula}
+
+\subsection*{Problem Statement}
+Magnetic field $B = 2 \times 10^{-8} \text{ T}$. Electron energy $E = 2 \times 10^{14} \text{ eV}$.
+
+\subsection*{Part (a): Radius of Gyration}
+The electron energy is extremely high ($2 \times 10^{14} \text{ eV} \gg 0.51 \text{ MeV}$), so the electron is ultra-relativistic. We can approximate its speed as $v \approx c$ and its momentum as $p \approx E/c$.
+
+The radius of gyration $r$ for a particle of charge $q$ in a magnetic field $B$ is given by the centripetal force balance:
+\[ qvB = \frac{\gamma m v^2}{r} \implies qB = \frac{p}{r} \implies r = \frac{p}{qB} \]
+Substitute $p = E/c$:
+\[ r = \frac{E}{c q B} \]
+
+Given values:
+\begin{itemize}
+    \item $E = 2 \times 10^{14} \text{ eV} = 2 \times 10^{14} \times 1.60 \times 10^{-19} \text{ J} = 3.2 \times 10^{-5} \text{ J}$
+    \item $c = 3.00 \times 10^8 \text{ m/s}$
+    \item $q = 1.60 \times 10^{-19} \text{ C}$
+    \item $B = 2 \times 10^{-8} \text{ T}$
+\end{itemize}
+
+\[ r = \frac{3.2 \times 10^{-5}}{(3.00 \times 10^8)(1.60 \times 10^{-19})(2 \times 10^{-8})} \]
+Denominator: $(3 \times 1.6 \times 2) \times 10^{8-19-8} = 9.6 \times 10^{-19}$.
+\[ r = \frac{3.2 \times 10^{-5}}{9.6 \times 10^{-19}} = \frac{1}{3} \times 10^{14} \approx 3.33 \times 10^{13} \text{ m} \]
+
+\textbf{Comparison with Earth's Radius ($R_E \approx 6.4 \times 10^6 \text{ m}$):}
+\[ \frac{r}{R_E} = \frac{3.33 \times 10^{13}}{6.4 \times 10^6} \approx 5.2 \times 10^6 \]
+The radius is about 5 million times the radius of the Earth.
+
+\subsection*{Part (b): Period of Revolution}
+The period $T$ is distance divided by speed:
+\[ T = \frac{2\pi r}{v} \approx \frac{2\pi r}{c} \]
+\[ T = \frac{2\pi (3.33 \times 10^{13})}{3.00 \times 10^8} \approx 6.98 \times 10^5 \text{ s} \]
+
+Convert to Earth days ($1 \text{ day} = 86400 \text{ s}$):
+\[ T_{days} = \frac{6.98 \times 10^5}{86400} \approx 8.1 \text{ days} \]
+
+\subsection*{Answer}
+(a) $r \approx 3.3 \times 10^{13} \text{ m}$.
+(b) $T \approx 8.1 \text{ days}$.
+
+\newpage
+
+\section*{Question 5: Satellite Orbit}
+
+\subsection*{Problem Statement}
+Satellite mass $m = 1000 \text{ kg}$.
+Perigee altitude $h_p = 250 \text{ km}$.
+Apogee altitude $h_a = 1200 \text{ km}$.
+Earth Radius $R_E \approx 6371 \text{ km}$ (using standard value as typically required when not provided).
+Earth Mass parameter $GM = 3.986 \times 10^{14} \text{ m}^3/\text{s}^2$.
+
+Orbital radii:
+$r_p = 6371 + 250 = 6621 \text{ km} = 6.621 \times 10^6 \text{ m}$.
+$r_a = 6371 + 1200 = 7571 \text{ km} = 7.571 \times 10^6 \text{ m}$.
+
+\subsection*{Part (a)}
+\textbf{Sketch Kinetic Energy vs Height.}
+Kinetic Energy $K = \frac{GMm}{2r}$ for circular, but varies for elliptical.
+$K$ is maximum at perigee (lowest height) and minimum at apogee (highest height). The curve decreases monotonically from $h=250$ to $h=1200$.
+
+\subsection*{Part (b)}
+\textbf{Conservation of Angular Momentum.}
+At perigee and apogee, velocity is perpendicular to the radius vector.
+\[ L = m r_p v_p = m r_a v_a \]
+\[ v_a = v_p \left( \frac{r_p}{r_a} \right) \]
+
+\subsection*{Part (c)}
+\textbf{Determine the value of $v_p$ (Assuming symbol is $u_p$ or $v_p$).}
+Using Conservation of Energy:
+\[ \frac{1}{2} m v_p^2 - \frac{GMm}{r_p} = \frac{1}{2} m v_a^2 - \frac{GMm}{r_a} \]
+Substitute $v_a = v_p \frac{r_p}{r_a}$:
+\[ \frac{1}{2} v_p^2 - \frac{GM}{r_p} = \frac{1}{2} v_p^2 \left( \frac{r_p}{r_a} \right)^2 - \frac{GM}{r_a} \]
+\[ \frac{1}{2} v_p^2 \left[ 1 - \left( \frac{r_p}{r_a} \right)^2 \right] = GM \left( \frac{1}{r_p} - \frac{1}{r_a} \right) \]
+\[ \frac{1}{2} v_p^2 \left[ \frac{r_a^2 - r_p^2}{r_a^2} \right] = GM \left( \frac{r_a - r_p}{r_p r_a} \right) \]
+\[ v_p^2 = 2GM \frac{r_a - r_p}{r_p r_a} \cdot \frac{r_a^2}{(r_a - r_p)(r_a + r_p)} \]
+\[ v_p^2 = \frac{2GM r_a}{r_p (r_a + r_p)} \]
+
+Calculation:
+\[ v_p = \sqrt{\frac{2(3.986 \times 10^{14})(7.571 \times 10^6)}{(6.621 \times 10^6)(6.621 \times 10^6 + 7.571 \times 10^6)}} \]
+\[ v_p = \sqrt{\frac{6.0356 \times 10^{21}}{6.621 \times 10^6 (14.192 \times 10^6)}} \]
+\[ v_p = \sqrt{\frac{6.0356 \times 10^{21}}{9.396 \times 10^{13}}} = \sqrt{6.423 \times 10^7} \approx 8014 \text{ m/s} \]
+
+\subsection*{Answer}
+$v_p \approx 8.01 \text{ km/s}$.
+
+\newpage
+
+\section*{Question 6: Atmospheric Pressure}
+
+\subsection*{Problem Statement}
+Temperature variation: $T = T_0 - \alpha y$.
+Find pressure $p(y)$.
+
+\subsection*{Part (a): Derivation}
+Hydrostatic equation: $\frac{dp}{dy} = -\rho g$.
+Ideal gas law: $pV = nRT \implies \rho = \frac{PM}{RT}$, where $M$ is molar mass of air.
+\[ \frac{dp}{dy} = - \frac{pMg}{R(T_0 - \alpha y)} \]
+Separating variables:
+\[ \frac{dp}{p} = - \frac{Mg}{R} \frac{dy}{T_0 - \alpha y} \]
+Integrate from $y=0$ ($p=p_0$) to $y$ ($p=p$):
+Let $u = T_0 - \alpha y$, then $du = -\alpha dy$.
+\[ \int_{p_0}^p \frac{dp}{p} = \frac{Mg}{R\alpha} \int_{y=0}^y \frac{-\alpha dy}{T_0 - \alpha y} \]
+\[ \ln \left( \frac{p}{p_0} \right) = \frac{Mg}{R\alpha} \left[ \ln(T_0 - \alpha y) \right]_0^y = \frac{Mg}{R\alpha} \ln \left( \frac{T_0 - \alpha y}{T_0} \right) \]
+\[ p(y) = p_0 \left( 1 - \frac{\alpha y}{T_0} \right)^{\frac{Mg}{R\alpha}} \]
+
+\subsection*{Part (b): Limit $\alpha \to 0$}
+We use the limit definition $e^x = \lim_{n \to \infty} (1 + x/n)^n$.
+Let $n = -T_0 / (\alpha y)$. Then $-\alpha y / T_0 = 1/n$.
+Exponent becomes $\frac{Mg}{R\alpha} = \frac{Mg y}{R T_0} (\frac{T_0}{\alpha y}) = - \frac{Mg y}{R T_0} n$.
+\[ p = p_0 \lim_{n \to \infty} \left[ \left(1 + \frac{1}{n}\right)^n \right]^{-Mgy/RT_0} = p_0 e^{-\frac{Mgy}{RT_0}} \]
+This is the standard barometric formula for an isothermal atmosphere.
+
+\subsection*{Part (c): Calculation}
+$y = 8863 \text{ m}$. $T_0 = 300 \text{ K}$. $p_0 = 1 \text{ atm}$. $\alpha = 6 \times 10^{-3} \text{ K/m}$.
+Assume $M \approx 0.029 \text{ kg/mol}$, $g = 9.81 \text{ m/s}^2$, $R = 8.31 \text{ J/(mol K)}$.
+
+Exponent $n = \frac{Mg}{R\alpha} = \frac{0.029 \times 9.81}{8.31 \times 0.006} \approx 5.71$.
+Base term: $1 - \frac{0.006 \times 8863}{300} = 1 - \frac{53.18}{300} = 1 - 0.177 = 0.823$.
+\[ p = 1 \text{ atm} \times (0.823)^{5.71} \approx 0.33 \text{ atm} \]
+
+\subsection*{Answer}
+$p \approx 0.33 \text{ atm}$ (or $3.3 \times 10^4 \text{ Pa}$).
+
+\newpage
+
+\section*{Question 7: Special Relativity}
+
+\subsection*{Problem Statement}
+Flash sent from $x_1$, received at $x_2 = x_1 + l$ in frame $S$.
+Frame $S'$ moves with velocity $V$ (where $b = V/c$).
+Show $l' = l \sqrt{\frac{1-b}{1+b}}$ and $\Delta t' = \frac{l}{c} \sqrt{\frac{1-b}{1+b}}$.
+
+\subsection*{Solution}
+In frame $S$:
+Event 1 (Emission): $(x_1, t_1)$.
+Event 2 (Reception): $(x_2, t_2)$.
+$\Delta x = x_2 - x_1 = l$.
+Since light travels distance $l$, $\Delta t = t_2 - t_1 = l/c$.
+
+We use the Lorentz Transformations to find intervals in $S'$ moving with velocity $V = bc$.
+$\gamma = \frac{1}{\sqrt{1 - b^2}}$.
+
+\textbf{(a) Spatial Separation $l'$:}
+\[ \Delta x' = \gamma (\Delta x - V \Delta t) \]
+Substitute $\Delta x = l$ and $\Delta t = l/c$:
+\[ l' = \gamma (l - (bc)(l/c)) = \gamma l (1 - b) \]
+\[ l' = \frac{l (1 - b)}{\sqrt{(1 - b)(1 + b)}} = l \frac{\sqrt{1 - b} \sqrt{1 - b}}{\sqrt{1 - b} \sqrt{1 + b}} = l \sqrt{\frac{1 - b}{1 + b}} \]
+
+\textbf{(b) Time Interval $\Delta t'$:}
+\[ \Delta t' = \gamma \left( \Delta t - \frac{V \Delta x}{c^2} \right) \]
+Substitute values:
+\[ \Delta t' = \gamma \left( \frac{l}{c} - \frac{(bc)(l)}{c^2} \right) = \gamma \frac{l}{c} (1 - b) \]
+\[ \Delta t' = \frac{l}{c} \frac{(1 - b)}{\sqrt{1 - b^2}} = \frac{l}{c} \sqrt{\frac{1 - b}{1 + b}} \]
+
+\subsection*{Answer}
+Expressions shown as required.
+
+\newpage
+
+\section*{Question 8: Electrostatics Equilibrium}
+
+\subsection*{Problem Statement}
+Two spheres, $m = 2.00 \text{ g}$, $L = 10.0 \text{ cm}$. Charges $q_1 = -5.00 \times 10^{-8} \text{ C}$ (left), $q_2 = +5.00 \times 10^{-8} \text{ C}$ (right).
+Uniform E-field applied. Equilibrium at $\theta = 10.0^\circ$ (angle of strings with vertical). Find $E$.
+
+\subsection*{Solution}
+Let's analyze the forces on the right sphere (positive charge $q$).
+1. Tension $T$ along string at angle $\theta$.
+2. Gravity $mg$ downwards.
+3. Electric force from field $F_E = qE$ (Assuming E is to the right to balance the attraction and tension configuration. Figure 2 usually implies symmetry or specific direction. Given the charges are opposite and separated, they attract. For the strings to hang at an angle, an external force must act. If the angle is $10^\circ$ outward, $qE$ must overcome Coulomb attraction).
+4. Coulomb force $F_C$ (attractive, to the left).
+
+Distance between spheres $r = 2 L \sin \theta$.
+\[ r = 2(0.10) \sin 10^\circ \approx 0.03473 \text{ m} \]
+
+\textbf{Coulomb Force:}
+\[ F_C = \frac{k q^2}{r^2} = \frac{(8.99 \times 10^9)(5.00 \times 10^{-8})^2}{(0.03473)^2} \]
+\[ F_C = \frac{2.2475 \times 10^{-5}}{0.001206} \approx 0.0186 \text{ N} \]
+
+\textbf{Equilibrium Equations (Right Sphere):}
+Horizontal ($x$): $T \sin \theta + F_C = qE$ (Assuming E pulls right to maintain angle).
+Vertical ($y$): $T \cos \theta = mg$.
+
+From vertical: $T = \frac{mg}{\cos \theta}$.
+Substitute into horizontal:
+\[ \left( \frac{mg}{\cos \theta} \right) \sin \theta + F_C = qE \]
+\[ mg \tan \theta + F_C = qE \]
+
+\textbf{Calculation:}
+$m = 0.002 \text{ kg}$. $g = 9.81 \text{ m/s}^2$. $\tan 10^\circ \approx 0.1763$.
+\[ mg \tan \theta = (0.002)(9.81)(0.1763) \approx 0.00346 \text{ N} \]
+\[ qE = 0.00346 + 0.0186 = 0.02206 \text{ N} \]
+\[ E = \frac{0.02206}{5.00 \times 10^{-8}} = 4.41 \times 10^5 \text{ N/C} \]
+
+\subsection*{Answer}
+\[ E \approx 4.4 \times 10^5 \text{ N/C} \]
+
+\newpage
+
+\section*{Question 9: Motional EMF}
+
+\subsection*{Problem Statement}
+Rod of length $l$ moves with velocity $v$ parallel to a long wire carrying current $I$. Rod is perpendicular to wire. Near end at $r$.
+
+\subsection*{Solution}
+The magnetic field $B$ at a distance $x$ from the wire is given by Ampere's Law:
+\[ B(x) = \frac{\mu_0 I}{2\pi x} \]
+The direction of $B$ is perpendicular to the plane containing the wire and the rod (azimuthal).
+
+The Lorentz force on a charge carrier $q$ in the rod is $\vec{F} = q(\vec{v} \times \vec{B})$.
+Since $\vec{v}$ is parallel to the wire and $\vec{B}$ is perpendicular to the wire/rod plane, the cross product $\vec{v} \times \vec{B}$ points along the length of the rod (radially outward or inward).
+The magnitude of the induced electric field is $E_{ind} = vB$.
+
+The induced EMF $\mathcal{E}$ is the integral of the field along the rod from $x=r$ to $x=r+l$:
+\[ \mathcal{E} = \int_{r}^{r+l} v B(x) \, dx \]
+\[ \mathcal{E} = \int_{r}^{r+l} v \left( \frac{\mu_0 I}{2\pi x} \right) dx \]
+\[ \mathcal{E} = \frac{\mu_0 I v}{2\pi} \int_{r}^{r+l} \frac{dx}{x} \]
+\[ \mathcal{E} = \frac{\mu_0 I v}{2\pi} \left[ \ln x \right]_r^{r+l} \]
+\[ \mathcal{E} = \frac{\mu_0 I v}{2\pi} \ln \left( \frac{r+l}{r} \right) = \frac{\mu_0 I v}{2\pi} \ln \left( 1 + \frac{l}{r} \right) \]
+
+Comparing with the given form $\mathcal{E} = \kappa I v \ln(1 + \frac{l}{r})$, the constant $\kappa$ is:
+\[ \kappa = \frac{\mu_0}{2\pi} \]
+
+\subsection*{Answer}
+\[ \kappa = \frac{\mu_0}{2\pi} \]
+
+\newpage
+
+\section*{Question 10: CD Player Optics}
+
+\subsection*{Problem Statement}
+Laser wavelength in vacuum $\lambda_0 = 780 \text{ nm}$. Refractive index of plastic $n = 1.50$.
+Pit depth $d$ is chosen such that interference is destructive.
+
+\subsection*{Solution}
+When the laser beam scans a pit, part of the light reflects from the bottom of the pit and part from the surrounding land (top surface).
+The light traveling to the bottom of the pit and back travels an extra distance $2d$ compared to the light reflected from the land.
+Since this happens inside the plastic, the optical path difference is:
+\[ \Delta L = n(2d) \]
+For destructive interference, the path difference must be half a wavelength ($\lambda_0/2$) (or an odd multiple).
+\[ 2nd = \frac{\lambda_0}{2} \]
+(Note: The problem statement says the depth is chosen to be one quarter of the wavelength. If $d = \lambda_{plastic}/4 = \lambda_0/4n$, then $2d = \lambda_0/2n$, so optical path difference $2nd = \lambda_0/2$. This confirms the condition).
+
+We need to calculate $d$:
+\[ d = \frac{\lambda_0}{4n} \]
+Given $\lambda_0 = 780 \text{ nm}$ and $n = 1.50$:
+\[ d = \frac{780 \text{ nm}}{4(1.50)} = \frac{780}{6.00} \]
+\[ d = 130 \text{ nm} \]
+
+\subsection*{Answer}
+The depth of each pit should be \textbf{130 nm}.
+
+\end{document}

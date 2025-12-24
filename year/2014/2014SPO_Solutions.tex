@@ -1,0 +1,590 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\geometry{a4paper, margin=1in}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Detailed Solutions: 27th SPhO (2014)}
+\rhead{\thepage}
+
+\title{\textbf{Detailed Solutions: 27th Singapore Physics Olympiad (2014)}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+%\newpage
+
+\section*{Question 1: Yo-Yo on a Table}
+
+\subsection*{Problem Statement}
+A yo-yo of mass $M$, outer radius $A$, inner radius $B$, and moment of inertia $I_{cm} = \frac{1}{2}MA^2$ lies on a smooth horizontal table. A string is pulled with force $F$ from the inner radius $B$ at an angle $\theta$.
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Direction of Rolling}
+
+To determine the direction of rolling, we analyze the torque $\tau_P$ about the instantaneous axis of rotation, which is the contact point $P$ between the yo-yo and the table. The yo-yo rolls in the direction that this torque tries to rotate it.
+
+The torque is defined as:
+\begin{equation}
+    \vec{\tau}_P = \vec{r} \times \vec{F}
+\end{equation}
+where $\vec{r}$ is the vector from $P$ to the point of force application.
+
+\begin{enumerate}
+    \item \textbf{Case $\theta = 0$ (Horizontal pull to the right):}
+    The force acts horizontally to the right at a height $A-B$ (assuming the string comes from the bottom of the inner hub). The line of action passes \textit{above} the contact point $P$.
+    \begin{itemize}
+        \item The torque about $P$ is \textbf{clockwise}.
+        \item \textbf{Result:} The yo-yo rolls to the \textbf{RIGHT}.
+    \end{itemize}
+
+    \item \textbf{Case $\theta = \pi/2$ (Vertical pull upwards):}
+    The force acts vertically upwards tangent to the right side of the inner hub. The line of action is at a horizontal distance $B$ to the right of $P$.
+    \begin{itemize}
+        \item The force exerts an upward pull at a lever arm $B$.
+        \item The torque about $P$ is \textbf{counter-clockwise}.
+        \item \textbf{Result:} The yo-yo rolls to the \textbf{LEFT}.
+    \end{itemize}
+
+    \item \textbf{Case $\theta = \pi$ (Horizontal pull to the left):}
+    The force pulls the string to the left. This creates a counter-clockwise torque about the center, and also about the contact point $P$ (the line of action is at height $A+B$ or $A-B$ depending on winding, but generally above $P$).
+    \begin{itemize}
+        \item The torque about $P$ is \textbf{counter-clockwise}.
+        \item \textbf{Result:} The yo-yo rolls to the \textbf{LEFT}.
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection*{(b) Critical Angle for Sliding}
+
+The yo-yo is in rotational equilibrium (on the verge of sliding without rolling) when the net torque about the contact point $P$ is zero. This occurs when the line of action of the force $F$ passes directly through the contact point $P$.
+
+Consider the geometry:
+\begin{itemize}
+    \item The string leaves the inner radius $B$ tangentially.
+    \item The line of the string must pass through the bottom contact point $P$.
+    \item We form a right-angled triangle with the radius $B$ as the side opposite to the angle at $P$, and the outer radius $A$ as the hypotenuse connecting the center to $P$.
+\end{itemize}
+
+The angle $\theta$ is measured from the horizontal. The angle of the string relative to the vertical is $\alpha$. From geometry, the angle $\theta$ satisfies:
+\begin{equation}
+    \cos \theta = \frac{\text{Adjacent}}{\text{Hypotenuse}} = \frac{B}{A}
+\end{equation}
+
+Thus, the critical angle is:
+\begin{equation}
+    \theta_{crit} = \arccos\left(\frac{B}{A}\right)
+\end{equation}
+
+\subsubsection*{(c) Acceleration for Vertical Pull ($\theta = \pi/2$)}
+
+We apply Newton's Second Law for rotation about the instantaneous contact point $P$.
+\begin{itemize}
+    \item The force $F$ is applied vertically upwards at a horizontal distance $B$ from the center.
+    \item The contact point $P$ is at a horizontal distance $0$ from the center.
+    \item The lever arm for the torque about $P$ is $B$.
+\end{itemize}
+
+The torque about $P$ is:
+\begin{equation}
+    \tau_P = F \cdot B
+\end{equation}
+
+The moment of inertia about $P$ (using the Parallel Axis Theorem) is:
+\begin{equation}
+    I_P = I_{cm} + MA^2 = \frac{1}{2}MA^2 + MA^2 = \frac{3}{2}MA^2
+\end{equation}
+
+Using the rotational dynamic equation $\tau_P = I_P \alpha$:
+\begin{equation}
+    FB = \left( \frac{3}{2} MA^2 \right) \alpha
+\end{equation}
+
+Solving for angular acceleration $\alpha$:
+\begin{equation}
+    \alpha = \frac{2FB}{3MA^2}
+\end{equation}
+
+The linear acceleration $a$ of the center of mass (assuming rolling without slipping) is related by $a = A\alpha$:
+\begin{equation}
+    a = A \left( \frac{2FB}{3MA^2} \right) = \frac{2FB}{3MA}
+\end{equation}
+
+\textbf{Answer:} The acceleration is $\mathbf{a = \frac{2FB}{3MA}}$ directed to the left.
+
+\newpage
+
+\section*{Question 2: Bead on a Semicircle}
+
+\subsection*{Problem Statement}
+A bead of mass $m$ slides from rest from the top of a smooth semicircle of radius $R$. Find the reaction force $N$ as a function of the angle $\theta$ from the vertical.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Velocity via Conservation of Energy}
+Let the top of the semicircle be the reference point for zero potential energy, or measure height from the center.
+\begin{itemize}
+    \item Initial state ($\theta = 0$): $v=0$. Height $h_i = R$.
+    \item Final state ($\theta$): Velocity $v$. Height $h_f = R \cos \theta$.
+\end{itemize}
+
+Conservation of Energy:
+\begin{equation}
+    E_{total} = mgR = mg(R \cos \theta) + \frac{1}{2}mv^2
+\end{equation}
+
+Rearranging to solve for $v^2$:
+\begin{equation}
+    mgR (1 - \cos \theta) = \frac{1}{2}mv^2
+\end{equation}
+\begin{equation}
+    v^2 = 2gR(1 - \cos \theta)
+\end{equation}
+
+\subsubsection*{2. Force Analysis (Radial Direction)}
+We apply Newton's Second Law in the radial direction (towards the center of the semicircle).
+The forces acting radially are:
+\begin{itemize}
+    \item The component of gravity: $mg \cos \theta$ (inwards).
+    \item The normal reaction force: $N$ (outwards).
+\end{itemize}
+
+The net radial force provides the centripetal acceleration:
+\begin{equation}
+    \sum F_{rad} = mg \cos \theta - N = \frac{mv^2}{R}
+\end{equation}
+
+Solving for the normal force $N$:
+\begin{equation}
+    N = mg \cos \theta - \frac{m}{R}(v^2)
+\end{equation}
+
+Substitute the expression for $v^2$:
+\begin{equation}
+    N = mg \cos \theta - \frac{m}{R} \left[ 2gR(1 - \cos \theta) \right]
+\end{equation}
+\begin{equation}
+    N = mg \cos \theta - 2mg(1 - \cos \theta)
+\end{equation}
+\begin{equation}
+    N = mg \cos \theta - 2mg + 2mg \cos \theta
+\end{equation}
+
+\textbf{Final Expression:}
+\begin{equation}
+    N(\theta) = mg (3 \cos \theta - 2)
+\end{equation}
+
+\subsubsection*{3. Point of Losing Contact}
+The bead loses contact when the normal force drops to zero ($N=0$):
+\begin{equation}
+    3 \cos \theta - 2 = 0 \implies \cos \theta = \frac{2}{3}
+\end{equation}
+\begin{equation}
+    \theta_{separation} = \arccos\left(\frac{2}{3}\right) \approx 48.2^\circ
+\end{equation}
+
+\newpage
+
+\section*{Question 3: Binary Star System}
+
+\subsection*{Problem Statement}
+Two stars with masses $M_1$ and $M_2$ orbit their common center of mass.
+\begin{itemize}
+    \item Orbital period: $T$
+    \item Maximum observed orbital velocities: $v_1$ and $v_2$.
+\end{itemize}
+Determine the total mass of the system.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Center of Mass Frame}
+In the center of mass frame, the total momentum is zero.
+\begin{equation}
+    M_1 v_1 = M_2 v_2 \implies \frac{M_1}{M_2} = \frac{v_2}{v_1}
+\end{equation}
+
+\subsubsection*{2. Orbital Radii}
+Assuming circular orbits, the velocity is related to the orbital radius $r$ and period $T$ by $v = \frac{2\pi r}{T}$.
+\begin{equation}
+    r_1 = \frac{v_1 T}{2\pi}, \quad r_2 = \frac{v_2 T}{2\pi}
+\end{equation}
+
+The total separation $R$ between the stars is:
+\begin{equation}
+    R = r_1 + r_2 = \frac{T}{2\pi} (v_1 + v_2)
+\end{equation}
+
+\subsubsection*{3. Dynamics (Kepler's Third Law)}
+The gravitational force provides the centripetal force for star 1:
+\begin{equation}
+    \frac{G M_1 M_2}{R^2} = M_1 \frac{v_1^2}{r_1} = M_1 r_1 \omega^2
+\end{equation}
+where $\omega = \frac{2\pi}{T}$.
+
+Canceling $M_1$:
+\begin{equation}
+    \frac{G M_2}{R^2} = r_1 \omega^2
+\end{equation}
+
+Similarly for star 2:
+\begin{equation}
+    \frac{G M_1}{R^2} = r_2 \omega^2
+\end{equation}
+
+Adding these two equations:
+\begin{equation}
+    \frac{G (M_1 + M_2)}{R^2} = (r_1 + r_2) \omega^2 = R \omega^2
+\end{equation}
+\begin{equation}
+    G (M_1 + M_2) = R^3 \omega^2
+\end{equation}
+
+\subsubsection*{4. Solving for Total Mass}
+Substitute $R = \frac{T(v_1+v_2)}{2\pi}$ and $\omega = \frac{2\pi}{T}$:
+\begin{equation}
+    M_1 + M_2 = \frac{1}{G} \left[ \frac{T(v_1+v_2)}{2\pi} \right]^3 \left[ \frac{2\pi}{T} \right]^2
+\end{equation}
+
+Simplifying the constants:
+\begin{equation}
+    M_1 + M_2 = \frac{1}{G} \frac{T^3 (v_1+v_2)^3}{8\pi^3} \frac{4\pi^2}{T^2}
+\end{equation}
+\begin{equation}
+    M_{total} = \frac{T (v_1 + v_2)^3}{2 \pi G}
+\end{equation}
+
+\newpage
+
+\section*{Question 4: Thermodynamic Cycle}
+
+\subsection*{Problem Statement}
+An ideal gas undergoes a cycle consisting of thermodynamic processes (e.g., isothermal, adiabatic, isobaric). Calculate the efficiency.
+
+\subsection*{Solution}
+
+\subsubsection*{1. General Definition of Efficiency}
+The thermal efficiency $\eta$ of a heat engine is defined as the ratio of net work done to the heat absorbed.
+\begin{equation}
+    \eta = \frac{W_{net}}{Q_{in}} = \frac{Q_{in} - |Q_{out}|}{Q_{in}} = 1 - \frac{|Q_{out}|}{Q_{in}}
+\end{equation}
+
+\subsubsection*{2. Calculating Work and Heat for Processes}
+For an ideal gas with equation of state $PV = nRT$:
+
+\begin{itemize}
+    \item \textbf{Isobaric Process (Constant P):}
+    \begin{equation}
+        W = P \Delta V, \quad Q = n C_P \Delta T
+    \end{equation}
+    
+    \item \textbf{Isochoric Process (Constant V):}
+    \begin{equation}
+        W = 0, \quad Q = n C_V \Delta T
+    \end{equation}
+    
+    \item \textbf{Isothermal Process (Constant T):}
+    \begin{equation}
+        W = nRT \ln\left(\frac{V_f}{V_i}\right), \quad \Delta U = 0, \quad Q = W
+    \end{equation}
+    
+    \item \textbf{Adiabatic Process ($Q=0$):}
+    \begin{equation}
+        PV^\gamma = \text{const}, \quad W = \frac{P_f V_f - P_i V_i}{1-\gamma} = -\Delta U
+    \end{equation}
+\end{itemize}
+
+\subsubsection*{3. Calculation Procedure}
+1. Determine $P, V, T$ at all cycle vertices using the Ideal Gas Law.
+2. Calculate $Q$ for each segment. Identify segments where $Q > 0$ (Heat In) and $Q < 0$ (Heat Out).
+3. Sum the positive heat values to find $Q_{in}$.
+4. Sum the work done over the cycle to find $W_{net}$ (Area enclosed).
+5. Compute $\eta = W_{net} / Q_{in}$.
+
+\newpage
+
+\section*{Question 5: Diffraction Grating}
+
+\subsection*{Problem Statement}
+Light containing two wavelengths $\lambda_1$ and $\lambda_2$ is incident on a diffraction grating with line density $N$ (lines/mm).
+
+\subsection*{Solution}
+
+\subsubsection*{1. Grating Equation}
+The condition for constructive interference maxima is:
+\begin{equation}
+    d \sin \theta_m = m \lambda
+\end{equation}
+where:
+\begin{itemize}
+    \item $d = 1/N$ is the grating spacing.
+    \item $m$ is the order of the spectrum ($0, 1, 2, \dots$).
+    \item $\theta_m$ is the diffraction angle.
+\end{itemize}
+
+\subsubsection*{2. Angular Separation}
+For a small difference in wavelength $\Delta \lambda = \lambda_2 - \lambda_1$, the difference in angle $\Delta \theta$ can be found by differentiating the grating equation:
+\begin{equation}
+    d (\cos \theta) \, d\theta = m \, d\lambda
+\end{equation}
+\begin{equation}
+    \Delta \theta \approx \frac{m \Delta \lambda}{d \cos \theta}
+\end{equation}
+
+\subsubsection*{3. Resolving Power}
+The resolving power $R$ required to distinguish two wavelengths $\lambda$ and $\lambda + \Delta \lambda$ is:
+\begin{equation}
+    R = \frac{\lambda}{\Delta \lambda}
+\end{equation}
+For a diffraction grating of order $m$ with $N_{total}$ total illuminated lines:
+\begin{equation}
+    R_{grating} = m N_{total}
+\end{equation}
+Resolution occurs if $R_{grating} \ge \frac{\lambda}{\Delta \lambda}$.
+
+\newpage
+
+\section*{Question 6: Electric Field of a Charged Rod}
+
+\subsection*{Problem Statement}
+Find the electric field $E$ at a point $P$ distance $y$ from the center of a uniformly charged rod of length $L$ and total charge $Q$. $P$ is on the perpendicular bisector.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Charge Element}
+Let $\lambda = Q/L$ be the linear charge density. Consider a small element $dx$ at position $x$ along the rod.
+\begin{equation}
+    dq = \lambda dx
+\end{equation}
+The distance from this element to $P$ is $r = \sqrt{x^2 + y^2}$.
+
+\subsubsection*{2. Field Contribution}
+The magnitude of the field due to $dq$ is:
+\begin{equation}
+    dE = \frac{1}{4\pi\epsilon_0} \frac{dq}{r^2} = \frac{k \lambda dx}{x^2 + y^2}
+\end{equation}
+
+\subsubsection*{3. Symmetry and Components}
+Due to symmetry, the horizontal components of the field cancel. We only integrate the vertical component $dE_y$.
+\begin{equation}
+    dE_y = dE \cos \theta
+\end{equation}
+where $\cos \theta = \frac{y}{r} = \frac{y}{\sqrt{x^2+y^2}}$.
+
+\subsubsection*{4. Integration}
+\begin{equation}
+    E_{net} = \int_{-L/2}^{L/2} \frac{k \lambda dx}{x^2 + y^2} \left( \frac{y}{\sqrt{x^2+y^2}} \right)
+\end{equation}
+\begin{equation}
+    E_{net} = k \lambda y \int_{-L/2}^{L/2} \frac{dx}{(x^2+y^2)^{3/2}}
+\end{equation}
+
+Using the integral result $\int \frac{dx}{(x^2+a^2)^{3/2}} = \frac{x}{a^2\sqrt{x^2+a^2}}$:
+\begin{equation}
+    E_{net} = k \lambda y \left[ \frac{x}{y^2\sqrt{x^2+y^2}} \right]_{-L/2}^{L/2}
+\end{equation}
+
+Evaluating the limits:
+\begin{equation}
+    E_{net} = \frac{k \lambda}{y} \left( \frac{L/2}{\sqrt{(L/2)^2+y^2}} - \frac{-L/2}{\sqrt{(-L/2)^2+y^2}} \right)
+\end{equation}
+\begin{equation}
+    E_{net} = \frac{k \lambda}{y} \frac{L}{\sqrt{(L/2)^2+y^2}}
+\end{equation}
+
+Since $Q = \lambda L$:
+\begin{equation}
+    E = \frac{1}{4\pi\epsilon_0} \frac{Q}{y \sqrt{y^2 + (L/2)^2}}
+\end{equation}
+
+\newpage
+
+\section*{Question 7: Solenoid and Induction}
+
+\subsection*{Problem Statement}
+A long solenoid has $n$ turns per meter and carries current $I(t) = I_0 \cos(\omega t)$. A small coil of $N$ turns, radius $r$, and resistance $R$ is placed inside.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Magnetic Field}
+The magnetic field inside a long solenoid is uniform and parallel to the axis:
+\begin{equation}
+    B(t) = \mu_0 n I(t) = \mu_0 n I_0 \cos(\omega t)
+\end{equation}
+
+\subsubsection*{2. Magnetic Flux}
+The flux through the small coil is:
+\begin{equation}
+    \Phi_{coil} = N \cdot B \cdot A = N (\mu_0 n I_0 \cos(\omega t)) (\pi r^2)
+\end{equation}
+
+\subsubsection*{3. Induced EMF}
+Using Faraday's Law:
+\begin{equation}
+    \mathcal{E} = -\frac{d\Phi_{coil}}{dt}
+\end{equation}
+\begin{equation}
+    \mathcal{E} = - N \pi r^2 \mu_0 n I_0 \frac{d}{dt} [\cos(\omega t)]
+\end{equation}
+\begin{equation}
+    \mathcal{E} = - N \pi r^2 \mu_0 n I_0 [-\omega \sin(\omega t)]
+\end{equation}
+\begin{equation}
+    \mathcal{E} = N \pi r^2 \mu_0 n I_0 \omega \sin(\omega t)
+\end{equation}
+
+\subsubsection*{4. Induced Current}
+Using Ohm's Law $I_{ind} = \mathcal{E}/R$:
+\begin{equation}
+    I_{ind}(t) = \frac{N \pi r^2 \mu_0 n I_0 \omega}{R} \sin(\omega t)
+\end{equation}
+
+\newpage
+
+\section*{Question 8: Relativistic Decay}
+
+\subsection*{Problem Statement}
+A particle travels a distance $L$ in the lab frame before decaying. Its proper lifetime is $\tau$. Determine its speed $v$.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Time Dilation}
+The lifetime of the particle in the laboratory frame, $t_{lab}$, is dilated compared to the proper time $\tau$ measured in the particle's rest frame.
+\begin{equation}
+    t_{lab} = \gamma \tau = \frac{\tau}{\sqrt{1 - v^2/c^2}}
+\end{equation}
+
+\subsubsection*{2. Distance Relation}
+The distance traveled in the lab is:
+\begin{equation}
+    L = v t_{lab} = v \gamma \tau = \frac{v \tau}{\sqrt{1 - v^2/c^2}}
+\end{equation}
+
+\subsubsection*{3. Solving for Speed v}
+Square both sides:
+\begin{equation}
+    L^2 = \frac{v^2 \tau^2}{1 - v^2/c^2}
+\end{equation}
+\begin{equation}
+    L^2 \left( 1 - \frac{v^2}{c^2} \right) = v^2 \tau^2
+\end{equation}
+\begin{equation}
+    L^2 = v^2 \tau^2 + L^2 \frac{v^2}{c^2} = v^2 \left( \tau^2 + \frac{L^2}{c^2} \right)
+\end{equation}
+
+Isolating $v^2$:
+\begin{equation}
+    v^2 = \frac{L^2}{\tau^2 + L^2/c^2} = \frac{c^2 L^2}{c^2 \tau^2 + L^2}
+\end{equation}
+\begin{equation}
+    v = \frac{c L}{\sqrt{L^2 + c^2 \tau^2}}
+\end{equation}
+
+\newpage
+
+\section*{Question 9: Quantum Potential Well}
+
+\subsection*{Problem Statement}
+A particle of mass $m$ is confined in a 1D infinite potential well of width $a$ ($0 < x < a$). Find the energy levels and wavefunctions.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Schrödinger Equation}
+Inside the well ($V=0$), the time-independent Schrödinger equation is:
+\begin{equation}
+    -\frac{\hbar^2}{2m} \frac{d^2\psi}{dx^2} = E \psi
+\end{equation}
+\begin{equation}
+    \frac{d^2\psi}{dx^2} + k^2 \psi = 0, \quad \text{where } k = \frac{\sqrt{2mE}}{\hbar}
+\end{equation}
+
+\subsubsection*{2. Boundary Conditions}
+The potential is infinite outside, so the wavefunction must vanish at the boundaries:
+\begin{equation}
+    \psi(0) = 0 \quad \text{and} \quad \psi(a) = 0
+\end{equation}
+The general solution is $\psi(x) = A \sin(kx) + B \cos(kx)$.
+\begin{itemize}
+    \item $\psi(0) = B = 0 \implies \psi(x) = A \sin(kx)$.
+    \item $\psi(a) = A \sin(ka) = 0$.
+\end{itemize}
+This implies $ka = n\pi$ for integer $n = 1, 2, 3, \dots$.
+
+\subsubsection*{3. Energy Levels}
+Using $k_n = \frac{n\pi}{a}$:
+\begin{equation}
+    \frac{\sqrt{2mE_n}}{\hbar} = \frac{n\pi}{a}
+\end{equation}
+\begin{equation}
+    E_n = \frac{\hbar^2 k_n^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2ma^2}
+\end{equation}
+
+\subsubsection*{4. Normalized Wavefunctions}
+Normalization condition $\int_0^a |\psi|^2 dx = 1$:
+\begin{equation}
+    \int_0^a A^2 \sin^2\left(\frac{n\pi x}{a}\right) dx = A^2 \left( \frac{a}{2} \right) = 1
+\end{equation}
+\begin{equation}
+    A = \sqrt{\frac{2}{a}}
+\end{equation}
+The wavefunctions are:
+\begin{equation}
+    \psi_n(x) = \sqrt{\frac{2}{a}} \sin\left(\frac{n\pi x}{a}\right)
+\end{equation}
+
+\newpage
+
+\section*{Question 10: Radioactive Dating}
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Decay Reaction}
+Rubidium-87 undergoes beta-minus decay to Strontium-87. A neutron turns into a proton, emitting an electron and an antineutrino.
+\begin{equation}
+    {}^{87}_{37}\text{Rb} \rightarrow {}^{87}_{38}\text{Sr} + e^- + \bar{\nu}_e
+\end{equation}
+
+\subsubsection*{(b) The Isochron Equation}
+The number of daughter nuclei $D(t)$ (${}^{87}\text{Sr}$) at time $t$ is given by the initial amount $D_0$ plus the amount generated by the decay of the parent $P$ (${}^{87}\text{Rb}$).
+\begin{equation}
+    D_t = D_0 + (P_0 - P_t)
+\end{equation}
+Since $P_t = P_0 e^{-\lambda t}$, we have $P_0 = P_t e^{\lambda t}$. Substituting this:
+\begin{equation}
+    D_t = D_0 + P_t (e^{\lambda t} - 1)
+\end{equation}
+Dividing by the constant amount of stable isotope $S$ (${}^{86}\text{Sr}$):
+\begin{equation}
+    \frac{D_t}{S} = \frac{D_0}{S} + \frac{P_t}{S} (e^{\lambda t} - 1)
+\end{equation}
+This is the equation of a line $y = c + mx$, where:
+\begin{itemize}
+    \item $y = ({}^{87}\text{Sr} / {}^{86}\text{Sr})_{now}$
+    \item $x = ({}^{87}\text{Rb} / {}^{86}\text{Sr})_{now}$
+    \item Slope $m = e^{\lambda t} - 1$
+\end{itemize}
+
+\subsubsection*{(c) Determining Age}
+From the slope $m$ of the isochron plot:
+\begin{equation}
+    m = e^{\lambda t} - 1 \implies e^{\lambda t} = m + 1
+\end{equation}
+\begin{equation}
+    t = \frac{1}{\lambda} \ln(m+1)
+\end{equation}
+Using the half-life $T_{1/2}$, where $\lambda = \ln 2 / T_{1/2}$:
+\begin{equation}
+    t = T_{1/2} \frac{\ln(m+1)}{\ln 2}
+\end{equation}
+
+\end{document}
