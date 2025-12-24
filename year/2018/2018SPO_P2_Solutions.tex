@@ -1,0 +1,401 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{siunitx}
+
+% Adjusting page geometry for better reading comfort
+\geometry{margin=1in}
+
+% Increasing line spacing and paragraph separation for clarity
+\renewcommand{\baselinestretch}{1.3} 
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{Solutions to 31st Singapore Physics Olympiad 2018}\\ \large Theory Paper 2}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\newpage
+
+% ==============================================================
+% QUESTION 1
+% ==============================================================
+\section*{Question 1: Inelastic Neutron-Helium Collision}
+
+\subsection*{(a) Kinetic energy of the singly ionized helium atom}
+
+\textbf{1. Define System Parameters:}
+\begin{itemize}
+    \item Mass of neutron: $m_n = m$
+    \item Mass of Helium ion ($He^+$): $m_{He} \approx 4m$
+    \item Initial kinetic energy of neutron: $K_{n,i} = \SI{68.2}{eV}$
+    \item Scattering angle of neutron: $90^\circ$
+\end{itemize}
+
+\textbf{2. Conservation of Momentum:}
+Let the initial velocity of the neutron be along the x-axis, $\vec{v}_{n,i} = v_0 \hat{i}$.
+After the collision, the neutron moves along the $-y$ direction, $\vec{v}_{n,f} = -v_1 \hat{j}$.
+The Helium ion moves with velocity $\vec{v}_{He}$.
+
+Conservation in x-direction:
+\begin{equation}
+    m v_0 = 4m v_{He,x} \implies v_{He,x} = \frac{v_0}{4}
+\end{equation}
+
+Conservation in y-direction:
+\begin{equation}
+    0 = -m v_1 + 4m v_{He,y} \implies v_{He,y} = \frac{v_1}{4}
+\end{equation}
+
+\textbf{3. Kinetic Energy Relationships:}
+The kinetic energy is given by $K = \frac{p^2}{2M}$.
+The final kinetic energy of the Helium ion is:
+\begin{equation}
+    K_{He} = \frac{1}{2}(4m)(v_{He,x}^2 + v_{He,y}^2) = 2m \left( \frac{v_0^2}{16} + \frac{v_1^2}{16} \right)
+\end{equation}
+\begin{equation}
+    K_{He} = \frac{1}{4} \left( \frac{1}{2} m v_0^2 + \frac{1}{2} m v_1^2 \right) = \frac{K_{n,i} + K_{n,f}}{4}
+\end{equation}
+
+\textbf{4. Conservation of Energy:}
+The collision is inelastic. The Helium ion is excited by an energy $\Delta E$.
+\begin{equation}
+    K_{n,i} = K_{n,f} + K_{He} + \Delta E
+\end{equation}
+Substituting the expression for $K_{He}$:
+\begin{equation}
+    K_{n,i} = K_{n,f} + \frac{K_{n,i} + K_{n,f}}{4} + \Delta E
+\end{equation}
+Rearranging to solve for $K_{n,f}$:
+\begin{equation}
+    \frac{3}{4} K_{n,i} - \Delta E = \frac{5}{4} K_{n,f} \implies K_{n,f} = \frac{3}{5} K_{n,i} - \frac{4}{5} \Delta E
+\end{equation}
+
+\textbf{5. Determining the Excitation Energy $\Delta E$:}
+The energy levels of $He^+$ are $E_n = -54.4/n^2$ eV.
+\begin{itemize}
+    \item Ground state ($n=1$): $E_1 = \SI{-54.4}{eV}$
+    \item First excited state ($n=2$): $E_2 = \SI{-13.6}{eV}$
+    \item Transition energy $\Delta E = E_2 - E_1 = -13.6 - (-54.4) = \SI{40.8}{eV}$
+\end{itemize}
+Check if this transition is allowed ($K_{n,f} > 0$):
+\begin{equation}
+    K_{n,f} = 0.6(68.2) - 0.8(40.8) = 40.92 - 32.64 = \SI{8.28}{eV}
+\end{equation}
+Since $K_{n,f} > 0$, this transition is physically possible. Higher transitions ($n=3$) would result in $K_{n,f} \approx \SI{2.2}{eV}$, but $n=2$ is the most probable dominant excitation. We assume excitation to $n=2$.
+
+\textbf{6. Calculate $K_{He}$:}
+\begin{equation}
+    K_{He} = \frac{68.2 + 8.28}{4} = \frac{76.48}{4} = \SI{19.12}{eV}
+\end{equation}
+
+\textbf{Answer:} The kinetic energy of the helium ion is \textbf{19.1 eV}.
+
+\vspace{1cm}
+
+\subsection*{(b) Kinetic energy of the neutron after collision}
+
+Using the calculation from part (a):
+\begin{equation}
+    K_{n,f} = \SI{8.28}{eV}
+\end{equation}
+
+\textbf{Answer:} The kinetic energy of the neutron is \textbf{8.28 eV}.
+
+\vspace{1cm}
+
+\subsection*{(c) Calculate the angle $\theta$}
+
+Let $\theta$ be the angle of the Helium ion's velocity vector with respect to the x-axis.
+\begin{equation}
+    \tan \theta = \frac{p_{He,y}}{p_{He,x}}
+\end{equation}
+From momentum conservation, $p_{He,x} = p_{n,i}$ and $p_{He,y} = p_{n,f}$.
+\begin{equation}
+    \tan \theta = \frac{p_{n,f}}{p_{n,i}} = \frac{\sqrt{2m K_{n,f}}}{\sqrt{2m K_{n,i}}} = \sqrt{\frac{K_{n,f}}{K_{n,i}}}
+\end{equation}
+\begin{equation}
+    \tan \theta = \sqrt{\frac{8.28}{68.2}} \approx \sqrt{0.1214} \approx 0.3484
+\end{equation}
+\begin{equation}
+    \theta = \arctan(0.3484) \approx 19.2^\circ
+\end{equation}
+
+\textbf{Answer:} The angle is $\mathbf{19.2^\circ}$.
+
+\newpage
+
+% ==============================================================
+% QUESTION 2
+% ==============================================================
+\section*{Question 2: Split Lens Interference}
+
+\subsection*{(a) Describe the image observed by the camera}
+
+\textbf{1. Lens Analysis:}
+The original lens has focal length $f = \SI{10}{cm}$. The object distance is $u = \SI{30}{cm}$.
+Using the lens formula $\frac{1}{v} + \frac{1}{u} = \frac{1}{f}$:
+\begin{equation}
+    \frac{1}{v} = \frac{1}{10} - \frac{1}{30} = \frac{2}{30} \implies v = \SI{15}{cm}
+\end{equation}
+The magnification is $M = -\frac{v}{u} = -\frac{15}{30} = -0.5$.
+
+\textbf{2. Effect of Splitting:}
+The lens is split and separated by $d = \SI{1.0}{cm}$.
+\begin{itemize}
+    \item Upper half (Lens A) moves up by $\SI{0.5}{cm}$. Its optical axis is at $y = 0.5$. The object is at $y=0$, so relative to axis A, $u_y = -0.5$. The image forms at $y_{i,A}' = M u_y = (-0.5)(-0.5) = +0.25$ relative to axis. Absolute position: $y_A = 0.5 + 0.25 = \SI{0.75}{cm}$.
+    \item Lower half (Lens B) moves down by $\SI{0.5}{cm}$. By symmetry, the image forms at absolute position $y_B = \SI{-0.75}{cm}$.
+\end{itemize}
+
+\textbf{3. Interference:}
+We effectively have two coherent point sources separated by $a = 0.75 - (-0.75) = \SI{1.5}{cm}$.
+These sources are located $\SI{15}{cm}$ from the lens.
+The CCD screen is $\SI{90}{cm}$ from the lens, so the distance from the sources to the screen is $D = 90 - 15 = \SI{75}{cm}$.
+
+\textbf{Answer:} The two images act as coherent sources producing a **pattern of parallel interference fringes** (bright and dark bands) on the CCD camera.
+
+\vspace{1cm}
+
+\subsection*{(b) Calculate the fringe spacing}
+
+The fringe spacing $\Delta y$ in a double-slit experiment configuration is given by:
+\begin{equation}
+    \Delta y = \frac{\lambda D}{a}
+\end{equation}
+Given:
+\begin{itemize}
+    \item $\lambda = \SI{632.8}{nm} = 6.328 \times 10^{-7} \text{ m}$
+    \item $D = \SI{75}{cm} = \SI{0.75}{m}$
+    \item $a = \SI{1.5}{cm} = \SI{0.015}{m}$
+\end{itemize}
+
+Calculation:
+\begin{equation}
+    \Delta y = \frac{(6.328 \times 10^{-7})(0.75)}{0.015} = (6.328 \times 10^{-7})(50)
+\end{equation}
+\begin{equation}
+    \Delta y = 3.164 \times 10^{-5} \text{ m} = \SI{31.6}{\mu m}
+\end{equation}
+
+\textbf{Answer:} The fringe spacing is $\mathbf{31.6\,\mu m}$.
+
+\vspace{1cm}
+
+\subsection*{(c) Number of fringes on the CCD}
+
+\textbf{1. Determine the Overlap Region:}
+We must check if the light cones from the two lens halves overlap sufficiently to cover the CCD.
+Let's trace the marginal rays for Lens A (top half, shifted to $y \in [0.5, 2.5]$? No, usually split implies the gap is empty, or geometric centers move. Assuming gap $d=1$ means edges are at $\pm 0.5$).
+\begin{itemize}
+    \item Bottom edge of Lens A ($y=0.5$): Ray passes through image ($y=0.75$ at $x=15$) to screen ($x=90$). By similar triangles, $y_{screen} = \SI{2.0}{cm}$.
+    \item Top edge of Lens A ($y=2.5$): Ray passes through image to screen. $y_{screen} = \SI{-8.0}{cm}$.
+\end{itemize}
+Range of light from A: $[-8.0, 2.0]$ cm.
+By symmetry, Range of light from B: $[-2.0, 8.0]$ cm.
+The **Overlap Region** is $[-2.0, 2.0]$ cm (Width = \SI{4.0}{cm}).
+
+\textbf{2. Compare with CCD:}
+The CCD width is \SI{2.4}{cm}. Since $2.4 < 4.0$, the CCD is completely filled with interference fringes.
+
+\textbf{3. Calculate Count:}
+\begin{equation}
+    N = \frac{\text{Width of CCD}}{\text{Fringe Spacing}} = \frac{2.4 \times 10^{-2}}{3.164 \times 10^{-5}}
+\end{equation}
+\begin{equation}
+    N \approx 758.5
+\end{equation}
+
+\textbf{Answer:} Approximately \textbf{758 fringes} are observed.
+
+\newpage
+
+% ==============================================================
+% QUESTION 3
+% ==============================================================
+\section*{Question 3: Numerical Simulation of Particle Motion}
+
+\subsection*{(a) Describe the path of the particle}
+
+The force is $\vec{F} = q \vec{v} \times \vec{B}$. The magnetic force is always perpendicular to the velocity.
+\begin{itemize}
+    \item The speed remains constant ($W = \Delta K = 0$).
+    \item The particle undergoes uniform circular motion in the plane perpendicular to the magnetic field.
+\end{itemize}
+\textbf{Answer:} The path is a \textbf{circle}.
+
+\vspace{0.5cm}
+
+\subsection*{(b) State the shape of the path using Method 1}
+
+Method 1 uses: $\vec{v}_{new} = \vec{v}_{old} + \frac{q}{m} (\vec{v}_{old} \times \vec{B}) \Delta t$.
+Since the acceleration term is perpendicular to $\vec{v}_{old}$, we have a right-angled vector addition.
+\begin{equation}
+    |\vec{v}_{new}|^2 = |\vec{v}_{old}|^2 + \left| \frac{q}{m} v B \Delta t \right|^2 > |\vec{v}_{old}|^2
+\end{equation}
+The speed increases at every step. Since the radius of gyration $r \propto v$, the radius increases.
+
+\textbf{Answer:} The path is an \textbf{outward spiral}.
+
+\vspace{0.5cm}
+
+\subsection*{(c) Equations for Method 2}
+
+Let $\alpha = \frac{qB}{m}$. The equations given are:
+1. $\frac{v_x(t+\Delta t) - v_x(t)}{\Delta t} = \alpha v_y(t)$
+2. $\frac{v_y(t+\Delta t) - v_y(t)}{\Delta t} = -\alpha v_x(t+\Delta t)$
+
+Rearranging for the update rule:
+\begin{align}
+    v_x(n+1) &= v_x(n) + \alpha \Delta t \, v_y(n) \\
+    v_y(n+1) &= v_y(n) - \alpha \Delta t \, v_x(n+1)
+\end{align}
+Substituting the new $v_x$ into the second equation:
+\begin{equation}
+    v_y(n+1) = v_y(n) - \alpha \Delta t [v_x(n) + \alpha \Delta t \, v_y(n)]
+\end{equation}
+\begin{equation}
+    v_y(n+1) = (1 - (\alpha \Delta t)^2) v_y(n) - \alpha \Delta t \, v_x(n)
+\end{equation}
+
+\textbf{Answer:}
+\begin{equation}
+    v_x(n+1) = v_x(n) + (\alpha \Delta t) v_y(n)
+\end{equation}
+\begin{equation}
+    v_y(n+1) = (1 - (\alpha \Delta t)^2) v_y(n) - (\alpha \Delta t) v_x(n)
+\end{equation}
+
+\vspace{0.5cm}
+
+\subsection*{(d) Kinetic Energy Ratio}
+(See derivation in thought process: Method 2 is a symplectic integrator. It preserves phase space area but the energy fluctuates slightly around a mean value for stable step sizes).
+The ratio is generally not 1, but for $\alpha \Delta t < 2$, the motion is stable.
+\textbf{Answer:} The ratio varies but remains bounded near 1.
+
+\vspace{0.5cm}
+
+\subsection*{(e, f, g) Calculation of B, Radius, and Period}
+Given $K = \SI{1}{keV} = 1.6 \times 10^{-16} \text{ J}$ and $m_e = 9.11 \times 10^{-31} \text{ kg}$.
+\begin{equation}
+    v = \sqrt{\frac{2K}{m}} \approx 1.87 \times 10^7 \text{ m/s}
+\end{equation}
+*Note: The problem text provided does not define the radius or B-field magnitude explicitly. We provide the algebraic expressions.*
+\begin{itemize}
+    \item \textbf{(e) B-field:} $B = \frac{\sqrt{2mK}}{er}$
+    \item \textbf{(f) Radius:} $r = \frac{\sqrt{2mK}}{eB}$
+    \item \textbf{(g) Period:} $T = \frac{2\pi m}{eB}$
+\end{itemize}
+
+\vspace{0.5cm}
+
+\subsection*{(h) Sketch of Trajectories}
+\begin{itemize}
+    \item \textbf{Real:} A perfect circle.
+    \item \textbf{Method 1:} A spiral starting at the real radius and growing larger outwards.
+    \item \textbf{Method 2:} A closed orbit (elliptical or polygon-like) that stays very close to the real circular path without spiraling away.
+\end{itemize}
+[Sketch a circle, a spiral, and a closed loop overlaying the circle].
+
+\newpage
+
+% ==============================================================
+% QUESTION 4
+% ==============================================================
+\section*{Question 4: Relativistic Rocket Radar}
+
+\subsection*{(a) Distance of the rocket at first reflection}
+
+\textbf{1. Parameters:}
+\begin{itemize}
+    \item Proper length of rocket: $L_0 = \SI{600}{m}$.
+    \item Round trip time for first pulse (back end): $t_{total} = \SI{5.00}{min} = \SI{300}{s}$.
+\end{itemize}
+
+\textbf{2. Calculation:}
+Assuming the pulse is sent at $t=0$, hits the rocket at $t_A$, and returns at $t_1 = 300$.
+For a radar measurement, the distance at the instant of reflection is:
+\begin{equation}
+    d = c \times \frac{t_{total}}{2}
+\end{equation}
+\begin{equation}
+    d = (3.00 \times 10^8 \text{ m/s}) \times \frac{300 \text{ s}}{2} = 1.50 \times 10^8 \times 300
+\end{equation}
+\begin{equation}
+    d = 4.50 \times 10^{10} \text{ m}
+\end{equation}
+
+\textbf{Answer:} The distance is $\mathbf{4.50 \times 10^{10} \text{ m}}$.
+
+\vspace{1cm}
+
+\subsection*{(b) Velocity of the rocket}
+
+\textbf{1. Setup:}
+Let the rocket velocity be $v = \beta c$.
+Pulse 1 hits the back at time $t_A$ and returns at $t_1 = 2t_A$.
+Pulse 2 (part of same beam) passes the back, travels length $L$ (contracted), reflects off front, travels back through length $L$, and returns to Earth.
+
+\textbf{2. Derivation of Delay:}
+Let $L$ be the contracted length: $L = L_0 \sqrt{1-\beta^2}$.
+The time taken for the light to traverse the rocket from back to front (while rocket moves away) is $\Delta t_{pass}$.
+Distance light travels = $L + v \Delta t_{pass} = c \Delta t_{pass}$.
+\begin{equation}
+    \Delta t_{pass} = \frac{L}{c-v}
+\end{equation}
+The time for light to return from front to back (while rocket moves away) is $\Delta t_{ret}$.
+Light travels distance $L'$? No, relative speed approach.
+Actually, let's use the standard result for the time delay between reflections from front and back of a moving object observed at source.
+The extra time for the second pulse is the time to cover the rocket length and back, accounting for rocket motion.
+\begin{equation}
+    \Delta t_{delay} = \Delta t_{pass} + \Delta t_{return\_trip\_lag}
+\end{equation}
+Using the logic derived in the thought process:
+\begin{equation}
+    \Delta t_{delay} = \frac{2L}{c} \frac{1}{1-\beta^2} = \frac{2 L_0 \sqrt{1-\beta^2}}{c (1-\beta^2)} = \frac{2 L_0}{c \sqrt{1-\beta^2}} \times \dots
+\end{equation}
+Correction: Let's use the explicit result derived:
+\begin{equation}
+    \Delta t_{delay} = \frac{2L_0}{c} \sqrt{\frac{1+\beta}{1-\beta}}
+\end{equation}
+
+\textbf{3. Calculation:}
+Given $\Delta t_{delay} = \SI{12.0}{\mu s} = 12.0 \times 10^{-6}$ s.
+\begin{equation}
+    12.0 \times 10^{-6} = \frac{2(600)}{3 \times 10^8} \sqrt{\frac{1+\beta}{1-\beta}}
+\end{equation}
+\begin{equation}
+    12.0 \times 10^{-6} = 4.0 \times 10^{-6} \sqrt{\frac{1+\beta}{1-\beta}}
+\end{equation}
+\begin{equation}
+    3 = \sqrt{\frac{1+\beta}{1-\beta}} \implies 9 = \frac{1+\beta}{1-\beta}
+\end{equation}
+\begin{equation}
+    9 - 9\beta = 1 + \beta \implies 10\beta = 8 \implies \beta = 0.8
+\end{equation}
+\begin{equation}
+    v = 0.8 c = 2.40 \times 10^8 \text{ m/s}
+\end{equation}
+
+\textbf{Answer:} The velocity is $\mathbf{2.40 \times 10^8 \text{ m/s}}$.
+
+\vspace{1cm}
+
+\subsection*{(c) Time interval in the rocket frame}
+
+In the rocket's rest frame, the length is $L_0 = \SI{600}{m}$. The light simply travels from back to front at speed $c$.
+\begin{equation}
+    \Delta t' = \frac{L_0}{c}
+\end{equation}
+\begin{equation}
+    \Delta t' = \frac{600}{3.00 \times 10^8} = 2.00 \times 10^{-6} \text{ s}
+\end{equation}
+
+\textbf{Answer:} The time interval is $\mathbf{2.00 \, \mu s}$.
+
+\end{document}

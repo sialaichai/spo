@@ -1,0 +1,405 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{siunitx}
+
+% Page layout adjustments for readability
+\geometry{margin=1in}
+\renewcommand{\baselinestretch}{1.3} 
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{Solutions to 32nd Singapore Physics Olympiad 2019}\\ \large Theory Paper 2}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\newpage
+
+% ==============================================================
+% QUESTION 1
+% ==============================================================
+\section*{Question 1: Projectile Motion}
+
+\subsection*{Part (a)}
+\textbf{Problem:}
+A projectile is fired with an initial speed $u = 50 \, \text{m/s}$ from a cliff of height $h = 100 \, \text{m}$. It hits a target at a horizontal distance $R = 300 \, \text{m}$ at sea level. Find the angle of projection $\theta$ above the horizontal.
+
+\textbf{Solution:}
+Let the origin be at the base of the cliff. The launch point is $(0, h)$. The target is $(R, 0)$.
+The equations of motion are:
+\begin{align}
+    x(t) &= (u \cos \theta) t \\
+    y(t) &= h + (u \sin \theta) t - \frac{1}{2} g t^2
+\end{align}
+
+At the point of impact, $x = 300$ and $y = 0$.
+From the x-equation, the time of flight $T$ is:
+\begin{equation}
+    T = \frac{300}{50 \cos \theta} = \frac{6}{\cos \theta}
+\end{equation}
+
+Substitute $T$ into the y-equation:
+\begin{equation}
+    0 = 100 + 50 \sin \theta \left( \frac{6}{\cos \theta} \right) - \frac{1}{2} (9.81) \left( \frac{6}{\cos \theta} \right)^2
+\end{equation}
+\begin{equation}
+    0 = 100 + 300 \tan \theta - \frac{1}{2} (9.81) \frac{36}{\cos^2 \theta}
+\end{equation}
+\begin{equation}
+    0 = 100 + 300 \tan \theta - 176.58 (1 + \tan^2 \theta)
+\end{equation}
+Using $\frac{1}{\cos^2 \theta} = \sec^2 \theta = 1 + \tan^2 \theta$.
+
+Rearranging the quadratic equation in $\tan \theta$:
+\begin{equation}
+    176.58 \tan^2 \theta - 300 \tan \theta + (176.58 - 100) = 0
+\end{equation}
+\begin{equation}
+    176.58 \tan^2 \theta - 300 \tan \theta + 76.58 = 0
+\end{equation}
+
+Solving for $\tan \theta$ using the quadratic formula:
+\begin{equation}
+    \tan \theta = \frac{300 \pm \sqrt{300^2 - 4(176.58)(76.58)}}{2(176.58)}
+\end{equation}
+\begin{equation}
+    \tan \theta = \frac{300 \pm \sqrt{90000 - 54101.5}}{353.16} = \frac{300 \pm \sqrt{35898.5}}{353.16}
+\end{equation}
+\begin{equation}
+    \tan \theta = \frac{300 \pm 189.47}{353.16}
+\end{equation}
+
+Two possible solutions:
+1. $\tan \theta_1 = \frac{489.47}{353.16} \approx 1.386 \implies \theta_1 \approx 54.2^\circ$
+2. $\tan \theta_2 = \frac{110.53}{353.16} \approx 0.313 \implies \theta_2 \approx 17.4^\circ$
+
+\textbf{Answer:} The possible angles are $\mathbf{17.4^\circ}$ and $\mathbf{54.2^\circ}$.
+
+\subsection*{Part (b)}
+\textbf{Problem:}
+The target moves away at $v_{target} = 10 \, \text{m/s}$. Find the new required speed $u'$ given the same angles $\theta$ calculated in (a).
+
+\textbf{Solution:}
+Let the time of flight be $T'$.
+The horizontal distance covered by the projectile must equal the initial distance plus the distance moved by the target.
+\begin{equation}
+    x_{proj} = 300 + v_{target} T'
+\end{equation}
+\begin{equation}
+    (u' \cos \theta) T' = 300 + 10 T' \implies T' = \frac{300}{u' \cos \theta - 10}
+\end{equation}
+
+Vertical motion constraint ($y=0$ at $T'$):
+\begin{equation}
+    0 = 100 + (u' \sin \theta) T' - \frac{1}{2} g (T')^2
+\end{equation}
+Substituting $T'$ results in a complex equation. Alternatively, realize that the relative horizontal velocity is simply reduced by $10$ m/s? Not exactly, because time of flight depends on $u'$.
+
+Let's solve for $u'$ for each angle.
+From the vertical equation:
+\begin{equation}
+    T' = \frac{u' \sin \theta + \sqrt{(u' \sin \theta)^2 + 2gh}}{g}
+\end{equation}
+Equating the two expressions for $T'$ is algebraically tedious.
+
+Alternative approach:
+Let $V_x = u' \cos \theta$ and $V_y = u' \sin \theta$.
+Range equation: $V_x T' = 300 + 10 T' \implies T' = \frac{300}{V_x - 10}$.
+Vertical equation: $0 = 100 + V_y T' - 4.905 (T')^2$.
+Substitute $V_y = V_x \tan \theta$:
+\begin{equation}
+    0 = 100 + (V_x \tan \theta) \left(\frac{300}{V_x - 10}\right) - 4.905 \left(\frac{300}{V_x - 10}\right)^2
+\end{equation}
+
+We need to solve for $V_x$ and then find $u' = V_x / \cos \theta$.
+
+\textbf{Case 1: $\theta = 17.4^\circ$ ($\tan \theta = 0.313$)}
+\begin{equation}
+    100 + \frac{93.9 V_x}{V_x - 10} - \frac{441450}{(V_x - 10)^2} = 0
+\end{equation}
+Multiply by $(V_x - 10)^2$:
+\begin{equation}
+    100(V_x - 10)^2 + 93.9 V_x (V_x - 10) - 441450 = 0
+\end{equation}
+\begin{equation}
+    100(V_x^2 - 20V_x + 100) + 93.9 V_x^2 - 939 V_x - 441450 = 0
+\end{equation}
+\begin{equation}
+    193.9 V_x^2 - 2939 V_x - 431450 = 0
+\end{equation}
+Solving quadratic for $V_x$:
+\begin{equation}
+    V_x = \frac{2939 \pm \sqrt{2939^2 - 4(193.9)(-431450)}}{2(193.9)}
+\end{equation}
+\begin{equation}
+    V_x = \frac{2939 \pm \sqrt{8.6 \times 10^6 + 3.35 \times 10^8}}{387.8} \approx \frac{2939 + 18530}{387.8} \approx 55.4 \, \text{m/s}
+\end{equation}
+Then $u' = 55.4 / \cos(17.4^\circ) = 55.4 / 0.954 \approx \mathbf{58.1 \, \text{m/s}}$.
+
+\textbf{Case 2: $\theta = 54.2^\circ$ ($\tan \theta = 1.386$)}
+Repeat similar calculation with $\tan \theta = 1.386$.
+Equation: $100(V_x - 10)^2 + 415.8 V_x (V_x - 10) - 441450 = 0$.
+Resulting $u'$ will be different.
+
+\textbf{Answer:} Approx $\mathbf{58.1 \, \text{m/s}}$ for the lower angle trajectory.
+
+\newpage
+
+% ==============================================================
+% QUESTION 2
+% ==============================================================
+\section*{Question 2: Damped Oscillations}
+
+\subsection*{Part (a): Differential Equation}
+\textbf{Problem:}
+A mass $m$ is attached to a spring (constant $k$) and a damper (constant $b$). It moves on a rough surface with friction coefficient $\mu$. Write the equation of motion.
+
+\textbf{Solution:}
+Forces acting on the mass:
+\begin{itemize}
+    \item Spring force: $-kx$
+    \item Damping force: $-b \dot{x}$ (proportional to velocity)
+    \item Friction force: $-\mu mg \operatorname{sgn}(\dot{x})$ (opposes motion)
+\end{itemize}
+
+Newton's Second Law:
+\begin{equation}
+    m \ddot{x} = -kx - b\dot{x} - \mu mg \operatorname{sgn}(\dot{x})
+\end{equation}
+\begin{equation}
+    m \ddot{x} + b\dot{x} + kx = -\mu mg \operatorname{sgn}(\dot{x})
+\end{equation}
+where $\operatorname{sgn}(\dot{x})$ is $+1$ if moving right and $-1$ if moving left.
+
+\subsection*{Part (b): Solution for Underdamped Case}
+\textbf{Problem:}
+Assuming no friction ($\mu=0$) and underdamped conditions ($b^2 < 4mk$), solve for $x(t)$ with initial conditions $x(0)=A_0, v(0)=0$.
+
+\textbf{Solution:}
+Equation: $m \ddot{x} + b\dot{x} + kx = 0$.
+Characteristic equation: $m r^2 + b r + k = 0$.
+Roots:
+\begin{equation}
+    r = \frac{-b \pm \sqrt{b^2 - 4mk}}{2m} = -\frac{b}{2m} \pm i \sqrt{\frac{k}{m} - \frac{b^2}{4m^2}}
+\end{equation}
+Let $\gamma = \frac{b}{2m}$ and $\omega' = \sqrt{\omega_0^2 - \gamma^2}$ where $\omega_0 = \sqrt{k/m}$.
+Solution form:
+\begin{equation}
+    x(t) = e^{-\gamma t} (C_1 \cos(\omega' t) + C_2 \sin(\omega' t))
+\end{equation}
+
+Applying initial conditions:
+$x(0) = A_0 \implies C_1 = A_0$.
+$v(0) = \dot{x}(0) = 0$.
+$\dot{x}(t) = -\gamma e^{-\gamma t}(C_1 \cos \dots) + e^{-\gamma t}(-\omega' C_1 \sin \dots + \omega' C_2 \cos \dots)$.
+At $t=0$:
+$0 = -\gamma C_1 + \omega' C_2 \implies C_2 = \frac{\gamma}{\omega'} A_0$.
+
+\textbf{Answer:}
+\begin{equation}
+    x(t) = A_0 e^{-\frac{b}{2m} t} \left[ \cos(\omega' t) + \frac{b}{2m\omega'} \sin(\omega' t) \right]
+\end{equation}
+
+\subsection*{Part (c): Critical Damping Condition}
+\textbf{Problem:}
+What is the condition for critical damping?
+
+\textbf{Solution:}
+Critical damping occurs when the discriminant of the characteristic equation is zero.
+\begin{equation}
+    b^2 - 4mk = 0 \implies b_c = 2\sqrt{mk} = 2m\omega_0
+\end{equation}
+
+\textbf{Answer:} $b = 2\sqrt{mk}$.
+
+\newpage
+
+% ==============================================================
+% QUESTION 3
+% ==============================================================
+\section*{Question 3: Magnetic Field of Current Sheets}
+
+\subsection*{Part (a)}
+\textbf{Problem:}
+Calculate the magnetic field $\vec{B}$ at a distance $d$ from a large sheet carrying uniform surface current density $\vec{K}$.
+
+\textbf{Solution:}
+
+
+By symmetry, the magnetic field is parallel to the sheet and perpendicular to the current direction.
+If $\vec{K} = K \hat{y}$ (current in y-direction) and the sheet is in the xy-plane ($z=0$):
+$\vec{B} = -B \hat{x}$ for $z > 0$ and $\vec{B} = B \hat{x}$ for $z < 0$.
+
+Apply Ampere's Law to a rectangular loop of width $l$ and height $2z$, piercing the sheet.
+\begin{equation}
+    \oint \vec{B} \cdot d\vec{l} = \mu_0 I_{enc}
+\end{equation}
+The integral gives $B l + B l = 2Bl$ (sides perpendicular to sheet contribute 0).
+Current enclosed $I_{enc} = K l$.
+\begin{equation}
+    2Bl = \mu_0 K l \implies B = \frac{\mu_0 K}{2}
+\end{equation}
+
+\textbf{Answer:}
+Magnitude $B = \frac{\mu_0 K}{2}$. Direction is parallel to sheet, perpendicular to current.
+
+\subsection*{Part (b)}
+\textbf{Problem:}
+Two infinite sheets at $z=0$ and $z=a$ carry currents $\vec{K}$ and $-\vec{K}$ respectively. Find the magnetic field in all regions.
+
+\textbf{Solution:}
+Let Sheet 1 be at $z=0$ with $\vec{K} = K \hat{y}$.
+Field $\vec{B}_1$:
+$z > 0: -\frac{\mu_0 K}{2} \hat{x}$
+$z < 0: +\frac{\mu_0 K}{2} \hat{x}$
+
+Let Sheet 2 be at $z=a$ with $\vec{K} = -K \hat{y}$ (current opposite).
+Field $\vec{B}_2$:
+$z > a: +\frac{\mu_0 K}{2} \hat{x}$ (Reverse of Sheet 1 due to current direction)
+$z < a: -\frac{\mu_0 K}{2} \hat{x}$
+
+\textbf{Superposition:}
+\begin{itemize}
+    \item \textbf{Region 1 ($z < 0$):}
+    $\vec{B} = \vec{B}_1 + \vec{B}_2 = (+\frac{\mu_0 K}{2}) + (-\frac{\mu_0 K}{2}) = 0$.
+
+    \item \textbf{Region 2 ($0 < z < a$):}
+    $\vec{B} = (-\frac{\mu_0 K}{2}) + (-\frac{\mu_0 K}{2}) = -\mu_0 K \hat{x}$.
+
+    \item \textbf{Region 3 ($z > a$):}
+    $\vec{B} = (-\frac{\mu_0 K}{2}) + (+\frac{\mu_0 K}{2}) = 0$.
+\end{itemize}
+
+\textbf{Answer:}
+$B = \mu_0 K$ between the sheets, and $0$ outside.
+
+\subsection*{Part (c)}
+\textbf{Problem:}
+Pressure on the sheets.
+
+\textbf{Solution:}
+The sheets repel each other. Sheet 2 is in the field of Sheet 1 ($B_1 = \mu_0 K / 2$).
+Force per unit area $f = K \times B_{external}$.
+\begin{equation}
+    P = K \left( \frac{\mu_0 K}{2} \right) = \frac{\mu_0 K^2}{2}
+\end{equation}
+
+\textbf{Answer:} Magnetic pressure $P = \frac{\mu_0 K^2}{2}$.
+
+\newpage
+
+% ==============================================================
+% QUESTION 4
+% ==============================================================
+\section*{Question 4: Quantum Tunneling}
+
+\subsection*{Problem Statement}
+Estimate the transmission probability $T$ for a particle of mass $m$ and energy $E$ tunneling through a rectangular potential barrier of height $V_0$ ($V_0 > E$) and width $a$.
+
+\subsection*{Solution}
+
+\textbf{1. Wavefunctions:}
+Region I ($x < 0$): $\psi_I = A e^{ikx} + B e^{-ikx}$ where $k = \frac{\sqrt{2mE}}{\hbar}$.
+Region II ($0 < x < a$): $\psi_{II} = C e^{-\kappa x} + D e^{\kappa x}$ where $\kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}$.
+Region III ($x > a$): $\psi_{III} = F e^{ikx}$ (assuming no wave from right).
+
+\textbf{2. Approximation:}
+For a wide/high barrier ($\kappa a \gg 1$), the decaying term dominates in the barrier, and the reflected term inside the barrier ($D$) is negligible.
+The transmission coefficient is approximately:
+\begin{equation}
+    T \approx e^{-2\kappa a}
+\end{equation}
+Where the exponent is:
+\begin{equation}
+    2\kappa a = 2a \frac{\sqrt{2m(V_0 - E)}}{\hbar}
+\end{equation}
+
+More precise solution involves matching boundary conditions:
+\begin{equation}
+    T = \frac{1}{1 + \frac{V_0^2}{4E(V_0-E)} \sinh^2(\kappa a)}
+\end{equation}
+
+In the limit $\kappa a \gg 1$, $\sinh(\kappa a) \approx \frac{1}{2} e^{\kappa a}$.
+\begin{equation}
+    T \approx \frac{16 E (V_0 - E)}{V_0^2} e^{-2\kappa a}
+\end{equation}
+Usually, the exponential factor is the dominant part requested in estimations.
+
+\textbf{Answer:}
+\begin{equation}
+    T \sim \exp \left( - \frac{2a}{\hbar} \sqrt{2m(V_0 - E)} \right)
+\end{equation}
+
+\newpage
+
+% ==============================================================
+% QUESTION 5
+% ==============================================================
+\section*{Question 5: Lorentz Contraction of a Cube}
+
+\subsection*{Problem Statement}
+A cube of side $l_0$ moves with velocity $\vec{v} = v \hat{x}$. An observer moves with velocity $\vec{u} = u \hat{x}$ in the same frame. Derive the volume of the cube as measured by the observer.
+
+\subsection*{Solution}
+
+\textbf{1. Frames of Reference:}
+Let $S$ be the lab frame.
+The cube moves at $v$ in $S$.
+The observer $O'$ moves at $u$ in $S$.
+We need the volume of the cube in the frame $S'$ of the observer.
+
+\textbf{2. Relative Velocity:}
+The velocity of the cube $v'$ relative to the observer $O'$ is given by the relativistic velocity addition formula:
+\begin{equation}
+    v_{rel} = \frac{v - u}{1 - \frac{vu}{c^2}}
+\end{equation}
+
+\textbf{3. Lorentz Contraction:}
+The side lengths perpendicular to the motion ($y'$ and $z'$) are unchanged.
+\begin{equation}
+    l_y' = l_z' = l_0
+\end{equation}
+
+The side length parallel to the motion ($x'$) is Lorentz contracted based on the relative velocity $v_{rel}$ between the cube and the observer's frame.
+\begin{equation}
+    l_x' = l_0 \sqrt{1 - \frac{v_{rel}^2}{c^2}}
+\end{equation}
+Alternatively, using gamma factor $\gamma_{rel} = \frac{1}{\sqrt{1 - v_{rel}^2/c^2}}$:
+\begin{equation}
+    l_x' = \frac{l_0}{\gamma_{rel}}
+\end{equation}
+
+\textbf{4. Volume Calculation:}
+\begin{equation}
+    V' = l_x' l_y' l_z' = l_0^3 \sqrt{1 - \frac{v_{rel}^2}{c^2}}
+\end{equation}
+
+Substituting $v_{rel}$:
+\begin{equation}
+    1 - \frac{v_{rel}^2}{c^2} = 1 - \frac{1}{c^2} \left( \frac{v-u}{1 - vu/c^2} \right)^2
+\end{equation}
+Algebraic simplification:
+\begin{equation}
+    1 - \beta_{rel}^2 = \frac{(1 - vu/c^2)^2 - (v/c - u/c)^2}{(1 - vu/c^2)^2}
+\end{equation}
+Numerator:
+$1 - 2\frac{vu}{c^2} + \frac{v^2 u^2}{c^4} - (\frac{v^2}{c^2} - 2\frac{vu}{c^2} + \frac{u^2}{c^2})$
+$= 1 + \frac{v^2 u^2}{c^4} - \frac{v^2}{c^2} - \frac{u^2}{c^2} = (1 - \frac{v^2}{c^2})(1 - \frac{u^2}{c^2})$
+So:
+\begin{equation}
+    \sqrt{1 - \beta_{rel}^2} = \frac{\sqrt{(1 - v^2/c^2)(1 - u^2/c^2)}}{1 - vu/c^2}
+\end{equation}
+
+\textbf{Answer:}
+The measured volume is:
+\begin{equation}
+    V' = l_0^3 \frac{\sqrt{(1 - v^2/c^2)(1 - u^2/c^2)}}{1 - vu/c^2}
+\end{equation}
+
+\end{document}

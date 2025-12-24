@@ -1,0 +1,407 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{physics}
+\usepackage{siunitx}
+
+% Page layout adjustments for readability
+\geometry{margin=1in}
+\renewcommand{\baselinestretch}{1.3} 
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{Solutions to 32nd Singapore Physics Olympiad 2019}\\ \large Theory Paper 1}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\newpage
+
+% ==============================================================
+% QUESTION 1
+% ==============================================================
+\section*{Question 1: Power Cable Sag}
+
+\subsection*{Problem Statement}
+A power cable with mass $M$ and length $L$ is stretched between two points at the same vertical height. The cable has a small sag $d$ at the midpoint ($d \ll L$). Determine the tension $T$ in the cable at the midpoint and at the ends.
+
+\subsection*{Solution}
+
+\textbf{1. Model the Cable:}
+Let the cable take the shape of a curve $y(x)$. Since the sag is small, we can approximate the shape as a parabola or analyse the forces on half of the cable.
+Let the two support points be at $x = -L/2$ and $x = L/2$, with $y=d$. The midpoint is at $x=0, y=0$.
+Alternatively, consider the forces on the right half of the cable (length $L/2$, mass $M/2$).
+
+\textbf{2. Forces on Half the Cable:}
+Consider the right half of the cable from the lowest point (midpoint) to the support.
+Forces acting on this segment:
+\begin{itemize}
+    \item Tension at the midpoint $T_0$ acting horizontally to the left.
+    \item Tension at the support $T_{end}$ acting at an angle $\theta$ upwards.
+    \item Weight of the half-cable $W = \frac{M}{2}g$ acting downwards.
+\end{itemize}
+
+\textbf{3. Equilibrium Conditions:}
+\begin{itemize}
+    \item \textbf{Horizontal Equilibrium:} The horizontal component of tension is constant.
+    \begin{equation}
+        T_{end} \cos \theta = T_0
+    \end{equation}
+    \item \textbf{Vertical Equilibrium:} The vertical component of tension at the support supports the weight.
+    \begin{equation}
+        T_{end} \sin \theta = \frac{Mg}{2}
+    \end{equation}
+\end{itemize}
+
+\textbf{4. Geometric Constraint (Small Sag):}
+For a small sag $d \ll L$, the angle $\theta$ is small.
+We can relate the geometry to the forces by taking moments about the support or using the slope approximation.
+Assuming a parabolic shape $y = kx^2$ for small sag:
+At $x = L/2$, $y = d$, so $d = k(L/2)^2 \implies k = \frac{4d}{L^2}$.
+The slope at the support is $\tan \theta = \frac{dy}{dx} \big|_{x=L/2} = 2kx = 2(\frac{4d}{L^2})(\frac{L}{2}) = \frac{4d}{L}$.
+
+Alternatively, using torque about the support point for the half-string is complex because the center of mass isn't exactly at $L/4$.
+A better approximation for small sag uses the force triangle:
+\begin{equation}
+    \tan \theta = \frac{\text{Vertical Force}}{\text{Horizontal Force}} = \frac{Mg/2}{T_0}
+\end{equation}
+Equating the geometric slope to the force ratio:
+\begin{equation}
+    \frac{4d}{L} \approx \frac{Mg}{2T_0}
+\end{equation}
+\begin{equation}
+    T_0 = \frac{Mg L}{8d}
+\end{equation}
+
+\textbf{5. Tension at the Ends:}
+Using the Pythagorean theorem for the force components:
+\begin{equation}
+    T_{end}^2 = T_0^2 + \left(\frac{Mg}{2}\right)^2
+\end{equation}
+\begin{equation}
+    T_{end} = \sqrt{\left(\frac{MgL}{8d}\right)^2 + \left(\frac{Mg}{2}\right)^2}
+\end{equation}
+Since $d \ll L$, the term $(\frac{MgL}{8d})^2$ is much larger than $(\frac{Mg}{2})^2$.
+\begin{equation}
+    T_{end} \approx T_0 = \frac{MgL}{8d}
+\end{equation}
+
+\textbf{Answer:}
+\begin{itemize}
+    \item Tension at the midpoint: $\displaystyle T_{mid} = \frac{MgL}{8d}$
+    \item Tension at the ends: $\displaystyle T_{end} \approx \frac{MgL}{8d}$
+\end{itemize}
+
+\newpage
+
+% ==============================================================
+% QUESTION 2
+% ==============================================================
+\section*{Question 2: Thermodynamic Cycle}
+
+\subsection*{Problem Statement}
+One mole of an ideal monatomic gas undergoes a cycle consisting of:
+1. Isothermal expansion at temperature $T_h$ from volume $V_1$ to $V_2$.
+2. Isochoric cooling to temperature $T_c$.
+3. Isothermal compression at temperature $T_c$ back to volume $V_1$.
+4. Isochoric heating to temperature $T_h$.
+Determine the efficiency of this cycle.
+
+\subsection*{Solution}
+
+\textbf{1. Heat Transfers in Each Step:}
+We use the First Law of Thermodynamics $Q = \Delta U + W$ and the ideal gas properties $U = \frac{3}{2}nRT$ (monatomic).
+
+\begin{itemize}
+    \item \textbf{Process $1 \to 2$ (Isothermal Expansion):}
+    Temperature constant at $T_h$.
+    $\Delta U = 0$.
+    Work done by gas $W_{12} = \int P dV = nRT_h \ln(V_2/V_1)$.
+    Heat absorbed:
+    \begin{equation}
+        Q_{in, 1} = W_{12} = nRT_h \ln\left(\frac{V_2}{V_1}\right)
+    \end{equation}
+
+    \item \textbf{Process $2 \to 3$ (Isochoric Cooling):}
+    Volume constant at $V_2$.
+    $W_{23} = 0$.
+    Heat released:
+    \begin{equation}
+        Q_{out, 1} = |\Delta U| = \frac{3}{2}nR(T_h - T_c)
+    \end{equation}
+
+    \item \textbf{Process $3 \to 4$ (Isothermal Compression):}
+    Temperature constant at $T_c$.
+    $\Delta U = 0$.
+    Work done on gas. Heat released:
+    \begin{equation}
+        Q_{out, 2} = |W_{34}| = nRT_c \ln\left(\frac{V_2}{V_1}\right)
+    \end{equation}
+
+    \item \textbf{Process $4 \to 1$ (Isochoric Heating):}
+    Volume constant at $V_1$.
+    $W_{41} = 0$.
+    Heat absorbed:
+    \begin{equation}
+        Q_{in, 2} = \Delta U = \frac{3}{2}nR(T_h - T_c)
+    \end{equation}
+\end{itemize}
+
+\textbf{2. Calculate Efficiency:}
+The efficiency $\eta$ is defined as the net work done divided by the total heat absorbed.
+\begin{equation}
+    \eta = \frac{W_{net}}{Q_{in, total}}
+\end{equation}
+
+Net Work:
+\begin{equation}
+    W_{net} = W_{12} - |W_{34}| = nR(T_h - T_c) \ln\left(\frac{V_2}{V_1}\right)
+\end{equation}
+
+Total Heat Absorbed:
+\begin{equation}
+    Q_{in, total} = Q_{in, 1} + Q_{in, 2} = nRT_h \ln\left(\frac{V_2}{V_1}\right) + \frac{3}{2}nR(T_h - T_c)
+\end{equation}
+
+Efficiency:
+\begin{equation}
+    \eta = \frac{nR(T_h - T_c) \ln(V_2/V_1)}{nRT_h \ln(V_2/V_1) + \frac{3}{2}nR(T_h - T_c)}
+\end{equation}
+
+Canceling $nR$:
+\begin{equation}
+    \eta = \frac{(T_h - T_c) \ln(V_2/V_1)}{T_h \ln(V_2/V_1) + \frac{3}{2}(T_h - T_c)}
+\end{equation}
+
+\textbf{Answer:}
+The efficiency is:
+\[ \eta = \frac{(T_h - T_c) \ln(V_2/V_1)}{T_h \ln(V_2/V_1) + \frac{3}{2}(T_h - T_c)} \]
+
+\newpage
+
+% ==============================================================
+% QUESTION 3
+% ==============================================================
+\section*{Question 3: Particle in a Box}
+
+\subsection*{Problem Statement}
+Consider a quantum mechanical particle of mass $m$ confined in a 1D infinite potential well of width $L$ ($0 < x < L$).
+(a) Write down the normalized wavefunctions and energy levels.
+(b) Calculate the probability of finding the particle in the middle third of the box ($L/3 < x < 2L/3$) for the ground state.
+
+\subsection*{Solution}
+
+\textbf{(a) Wavefunctions and Energies}
+Inside the well ($V=0$), the Schrödinger equation is $-\frac{\hbar^2}{2m} \psi'' = E \psi$.
+The solutions satisfying boundary conditions $\psi(0) = \psi(L) = 0$ are:
+\begin{equation}
+    \psi_n(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n\pi x}{L}\right), \quad n = 1, 2, 3, \dots
+\end{equation}
+The corresponding energy levels are:
+\begin{equation}
+    E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2}
+\end{equation}
+
+\textbf{(b) Probability for Ground State ($n=1$)}
+We need to calculate the probability $P$ for $L/3 \le x \le 2L/3$:
+\begin{equation}
+    P = \int_{L/3}^{2L/3} |\psi_1(x)|^2 dx = \int_{L/3}^{2L/3} \frac{2}{L} \sin^2\left(\frac{\pi x}{L}\right) dx
+\end{equation}
+
+Use the identity $\sin^2 \theta = \frac{1 - \cos(2\theta)}{2}$:
+\begin{equation}
+    P = \frac{2}{L} \int_{L/3}^{2L/3} \frac{1}{2} \left[ 1 - \cos\left(\frac{2\pi x}{L}\right) \right] dx
+\end{equation}
+\begin{equation}
+    P = \frac{1}{L} \left[ x - \frac{L}{2\pi} \sin\left(\frac{2\pi x}{L}\right) \right]_{L/3}^{2L/3}
+\end{equation}
+
+Evaluate at the limits:
+Upper limit ($2L/3$): $\frac{2L}{3} - \frac{L}{2\pi} \sin\left(\frac{4\pi}{3}\right)$
+Lower limit ($L/3$): $\frac{L}{3} - \frac{L}{2\pi} \sin\left(\frac{2\pi}{3}\right)$
+
+Difference:
+\begin{equation}
+    P = \frac{1}{L} \left[ \left(\frac{2L}{3} - \frac{L}{3}\right) - \frac{L}{2\pi} \left( \sin\frac{4\pi}{3} - \sin\frac{2\pi}{3} \right) \right]
+\end{equation}
+\begin{equation}
+    P = \frac{1}{L} \left[ \frac{L}{3} - \frac{L}{2\pi} \left( -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} \right) \right]
+\end{equation}
+\begin{equation}
+    P = \frac{1}{3} - \frac{1}{2\pi} (-\sqrt{3}) = \frac{1}{3} + \frac{\sqrt{3}}{2\pi}
+\end{equation}
+
+Numerical value:
+$P \approx 0.333 + \frac{1.732}{6.283} \approx 0.333 + 0.276 = 0.609$
+
+\textbf{Answer:}
+(a) $\psi_n(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n\pi x}{L}\right)$, $E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2}$
+(b) Probability $P = \frac{1}{3} + \frac{\sqrt{3}}{2\pi} \approx 0.61$
+
+\newpage
+
+% ==============================================================
+% QUESTION 4
+% ==============================================================
+\section*{Question 4: Electric Potential and Mass Spectrometer}
+
+\subsection*{(a) Combined Droplet Potential}
+
+\textbf{Problem:}
+Two spherical oil drops, each with radius $R$ and potential $V_0 = 1000$ V, merge into a single spherical drop. Find the new potential $V_{new}$. Assume charge and volume are conserved.
+
+\textbf{Solution:}
+Let the initial charge on each drop be $Q$.
+Potential of one drop:
+\begin{equation}
+    V_0 = \frac{kQ}{R} \implies Q = \frac{V_0 R}{k}
+\end{equation}
+
+When they merge:
+\begin{itemize}
+    \item \textbf{Total Charge:} $Q_{new} = 2Q$.
+    \item \textbf{Total Volume:} Volume is conserved.
+    \begin{equation}
+        V_{vol, new} = 2 V_{vol, old} \implies \frac{4}{3}\pi R_{new}^3 = 2 \left( \frac{4}{3}\pi R^3 \right)
+    \end{equation}
+    \begin{equation}
+        R_{new}^3 = 2R^3 \implies R_{new} = 2^{1/3} R
+    \end{equation}
+\end{itemize}
+
+New Potential:
+\begin{equation}
+    V_{new} = \frac{k Q_{new}}{R_{new}} = \frac{k (2Q)}{2^{1/3} R}
+\end{equation}
+Substitute $kQ/R = V_0$:
+\begin{equation}
+    V_{new} = \frac{2}{2^{1/3}} V_0 = 2^{2/3} V_0
+\end{equation}
+
+Calculation:
+$2^{2/3} \approx 1.587$.
+$V_{new} = 1.587 \times 1000 = 1587$ V.
+
+\textbf{Answer:} The new potential is approx \textbf{1590 V}.
+
+\vspace{1cm}
+
+\subsection*{(b) Bainbridge Mass Spectrometer}
+
+\textbf{Problem:}
+A velocity selector has $E = 100 \, \text{V/cm} = 10^4 \, \text{V/m}$ and $B = 0.2 \, \text{T}$.
+(i) Calculate the speed of the selected ion.
+(ii) Can it resolve ${}^3$He and ${}^4$He if the exit slit is 1 mm wide?
+
+
+
+\textbf{Solution (i): Velocity Selector Speed}
+The condition for passing through the velocity selector undeflected is $qE = qvB$.
+\begin{equation}
+    v = \frac{E}{B}
+\end{equation}
+\begin{equation}
+    v = \frac{10^4 \, \text{V/m}}{0.2 \, \text{T}} = 50,000 \, \text{m/s} = 5.0 \times 10^4 \, \text{m/s}
+\end{equation}
+
+\textbf{Solution (ii): Resolution}
+After the velocity selector, ions enter a region with magnetic field $B'$ (assume same $B=0.2$ T) and move in a semi-circle.
+Radius of path:
+\begin{equation}
+    qvB = \frac{mv^2}{r} \implies r = \frac{mv}{qB}
+\end{equation}
+Diameter of path (position on detector): $D = 2r = \frac{2mv}{qB}$.
+
+Calculate diameter for each isotope:
+Charge $q = +e = 1.60 \times 10^{-19}$ C.
+Mass of ${}^3$He $\approx 3 \times 1.67 \times 10^{-27}$ kg $= 5.01 \times 10^{-27}$ kg.
+Mass of ${}^4$He $\approx 4 \times 1.67 \times 10^{-27}$ kg $= 6.68 \times 10^{-27}$ kg.
+
+For ${}^3$He:
+\begin{equation}
+    D_3 = \frac{2(5.01 \times 10^{-27})(5.0 \times 10^4)}{(1.60 \times 10^{-19})(0.2)} = \frac{5.01 \times 10^{-22}}{3.2 \times 10^{-20}} \approx 1.56 \times 10^{-2} \text{ m} = 15.6 \text{ mm}
+\end{equation}
+
+For ${}^4$He:
+\begin{equation}
+    D_4 = \frac{2(6.68 \times 10^{-27})(5.0 \times 10^4)}{(1.60 \times 10^{-19})(0.2)} \approx 2.09 \times 10^{-2} \text{ m} = 20.9 \text{ mm}
+\end{equation}
+
+Separation:
+$\Delta D = D_4 - D_3 = 20.9 - 15.6 = 5.3$ mm.
+
+Since the separation ($5.3$ mm) is significantly larger than the slit width ($1$ mm), the two beams are spatially separated enough to be resolved.
+
+\textbf{Answer:}
+(i) $v = 5.0 \times 10^4$ m/s.
+(ii) Yes, the separation ($5.3$ mm) $>$ slit width ($1$ mm).
+
+\newpage
+
+% ==============================================================
+% QUESTION 5
+% ==============================================================
+\section*{Question 5: Radiation Pressure and Positronium}
+
+\subsection*{(a) Radiation Pressure}
+
+\textbf{Problem:}
+Light intensity $I = 50 \, \text{W/m}^2$ incident normally on a perfectly reflecting surface. Find the pressure $P$.
+
+\textbf{Solution:}
+When a photon is reflected, its momentum change is $\Delta p = 2p = 2E/c$.
+The force exerted is the rate of change of momentum.
+Total power $W = IA$.
+Total force $F = \frac{2W}{c} = \frac{2IA}{c}$.
+Pressure $P = F/A$:
+\begin{equation}
+    P = \frac{2I}{c}
+\end{equation}
+\begin{equation}
+    P = \frac{2(50)}{3.00 \times 10^8} = \frac{100}{3.00 \times 10^8} \approx 3.33 \times 10^{-7} \, \text{Pa}
+\end{equation}
+
+\textbf{Answer:} The pressure is $\mathbf{3.33 \times 10^{-7} \, \text{Pa}}$.
+
+\vspace{1cm}
+
+\subsection*{(b) Positronium}
+
+\textbf{Problem:}
+Positronium consists of an electron ($e^-$) and a positron ($e^+$). It is hydrogen-like.
+Determine the ground state energy and the radius compared to Hydrogen.
+
+\textbf{Solution:}
+This is a two-body problem. We must use the reduced mass $\mu$.
+Masses: $m_1 = m_e$, $m_2 = m_{positron} = m_e$.
+Reduced mass:
+\begin{equation}
+    \mu = \frac{m_1 m_2}{m_1 + m_2} = \frac{m_e m_e}{2m_e} = \frac{m_e}{2}
+\end{equation}
+
+\textbf{1. Energy Levels:}
+For Hydrogen, $E_n \propto m_e$ (strictly $\mu \approx m_e$ since proton is heavy).
+$E_{1,H} = -13.6$ eV.
+For Positronium, replace $m_e$ with $\mu = m_e/2$.
+\begin{equation}
+    E_{1,Pos} = \frac{\mu}{m_e} E_{1,H} = \frac{1}{2} (-13.6 \text{ eV}) = -6.8 \text{ eV}
+\end{equation}
+
+\textbf{2. Radius (Bohr Radius):}
+For Hydrogen, $a_0 \propto 1/m_e$.
+For Positronium, replace $m_e$ with $\mu = m_e/2$.
+\begin{equation}
+    a_{Pos} = \frac{m_e}{\mu} a_0 = 2 a_0
+\end{equation}
+$a_0 \approx 0.0529$ nm.
+$a_{Pos} \approx 0.106$ nm.
+
+\textbf{Answer:}
+Ground State Energy: \textbf{-6.8 eV}.
+Orbital Radius: \textbf{Double the Bohr radius} ($\approx 0.106$ nm).
+
+\end{document}

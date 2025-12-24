@@ -1,0 +1,322 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+
+\section*{Question 1}
+
+\subsection*{(a) Calculate the height of the building}
+
+Let the height of the building be $H$.
+Let the origin of the vertical axis be at the roof of the building, pointing downwards.
+Particle Y is dropped from rest, so its initial velocity $u_Y = 0$.
+The acceleration due to gravity is $g = 9.81 \, \text{m/s}^2$.
+
+Consider the motion of particle Y as it passes the window.
+Let $t_1$ be the time when Y reaches the top of the window.
+Let $t_2$ be the time when Y reaches the bottom of the window.
+We are given that the time taken to pass the window is $\Delta t = t_2 - t_1 = 0.17$ s.
+The height of the window is $h_w = 5.0$ m.
+
+Let $v_{top}$ be the velocity of particle Y at the top of the window. Using the equation of motion $s = ut + \frac{1}{2}gt^2$ for the interval of the window:
+$$h_w = v_{top} \Delta t + \frac{1}{2} g (\Delta t)^2$$
+Substituting the values:
+$$5.0 = v_{top}(0.17) + \frac{1}{2}(9.81)(0.17)^2$$
+$$5.0 = 0.17 v_{top} + 0.14175$$
+$$0.17 v_{top} = 4.85825$$
+$$v_{top} = \frac{4.85825}{0.17} \approx 28.578 \, \text{m/s}$$
+
+Now, consider the motion from the roof to the top of the window. Let the distance from the roof to the top of the window be $h_{drop}$.
+Using the equation $v^2 = u^2 + 2as$:
+$$v_{top}^2 = u_Y^2 + 2 g h_{drop}$$
+Since $u_Y = 0$:
+$$(28.578)^2 = 2(9.81) h_{drop}$$
+$$816.70 = 19.62 h_{drop}$$
+$$h_{drop} = \frac{816.70}{19.62} \approx 41.626 \, \text{m}$$
+
+The base of the window is given as 50.0 m above the ground.
+The top of the window is $5.0$ m above the base, so the height of the top of the window from the ground is $50.0 + 5.0 = 55.0$ m.
+
+The total height of the building $H$ is the sum of the distance dropped to the top of the window and the height of the top of the window from the ground:
+$$H = h_{drop} + 55.0$$
+$$H = 41.626 + 55.0 \approx 96.6 \, \text{m}$$
+
+\textbf{Answer: The height of the building is 96.6 m.}
+
+\newpage
+
+\subsection*{(b) Calculate the value of V}
+
+Particle X is projected with speed $V$ at an angle $\theta = 30^{\circ}$ from the horizontal.
+Let the flight of particle X start at $t=0$.
+The particle X reaches its highest point at time $t_{max}$.
+The vertical component of velocity is zero at the highest point.
+$$v_y = V \sin \theta - g t_{max} = 0$$
+$$t_{max} = \frac{V \sin 30^{\circ}}{g}$$
+
+We are told that at this instant (when X is at the highest point), particle Y is dropped.
+The two particles collide at the base of the building. Assuming the projection point and the base of the building are at the same ground level (implied by "projected... trajectory... collide at the base"), particle X completes its trajectory from the peak to the ground during the time Y falls.
+
+Let $T_Y$ be the time it takes for particle Y to fall from the roof to the ground (distance $H$).
+$$H = \frac{1}{2} g T_Y^2$$
+$$T_Y = \sqrt{\frac{2H}{g}}$$
+Using $H = 96.63$ m:
+$$T_Y = \sqrt{\frac{2(96.63)}{9.81}} = \sqrt{19.70} \approx 4.438 \, \text{s}$$
+
+The time taken for projectile X to travel from its maximum height to the ground is equal to the time taken to rise to the maximum height, $t_{down} = t_{max}$.
+Since the collision happens at the base (ground) and Y starts dropping when X is at the peak, the time of fall for Y ($T_Y$) must be equal to the time of descent for X ($t_{down}$).
+$$t_{down} = T_Y$$
+$$\frac{V \sin 30^{\circ}}{g} = 4.438$$
+$$V (0.5) = 9.81 \times 4.438$$
+$$V = 2 \times 9.81 \times 4.438$$
+$$V \approx 87.1 \, \text{m/s}$$
+
+\textbf{Answer: The value of V is 87.1 m/s.}
+
+\subsection*{(c) Calculate the distance of the point of projection of X from the foot of the building}
+
+The distance required is the horizontal range of the projectile X.
+The total time of flight for X is $T_{flight} = 2 \times t_{max} = 2 \times T_Y = 2 \times 4.438 = 8.876$ s.
+The horizontal velocity is $V_x = V \cos 30^{\circ}$.
+The range $R$ is given by:
+$$R = V_x \times T_{flight}$$
+$$R = (87.1 \cos 30^{\circ}) \times 8.876$$
+$$R = 87.1 \times \frac{\sqrt{3}}{2} \times 8.876$$
+$$R \approx 75.43 \times 8.876 \approx 669.5 \, \text{m}$$
+
+Alternatively, using the exact expression:
+$$R = \frac{V^2 \sin(2\theta)}{g} = \frac{(87.07)^2 \sin(60^{\circ})}{9.81} \approx \frac{7581 \times 0.866}{9.81} \approx 669 \, \text{m}$$
+
+\textbf{Answer: The distance is 669 m.}
+
+\newpage
+
+\section*{Question 2}
+
+\subsection*{(a) Calculate the coefficient of static friction}
+
+The platform undergoes simple harmonic motion (SHM) horizontally.
+Period $T = 2.0$ s.
+Angular frequency $\omega = \frac{2\pi}{T} = \frac{2\pi}{2.0} = \pi \, \text{rad/s}$.
+The object slides when the amplitude $A = 0.4$ m.
+
+In SHM, the maximum acceleration occurs at the extremes of the motion (at amplitude $A$).
+$$a_{max} = \omega^2 A$$
+The force providing this acceleration is the static friction between the object and the platform.
+$$f_s = m a$$
+The maximum static friction available is $f_{s,max} = \mu_s N = \mu_s m g$, where $\mu_s$ is the coefficient of static friction and $m$ is the mass of the object.
+Sliding starts when the required force exceeds the maximum static friction.
+$$m a_{max} = \mu_s m g$$
+$$\omega^2 A = \mu_s g$$
+$$\mu_s = \frac{\omega^2 A}{g}$$
+
+Substitute the values ($\omega = \pi$, $A = 0.4$, $g = 9.81$):
+$$\mu_s = \frac{\pi^2 (0.4)}{9.81}$$
+$$\mu_s \approx \frac{9.8696 \times 0.4}{9.81}$$
+$$\mu_s \approx 0.402$$
+
+\textbf{Answer: The coefficient of static friction is 0.40.}
+
+\subsection*{(b) Calculate the maximum amplitude for vertical motion}
+
+The platform now moves vertically with SHM.
+Period $T' = 1.5$ s.
+Angular frequency $\omega' = \frac{2\pi}{T'} = \frac{2\pi}{1.5} = \frac{4\pi}{3} \, \text{rad/s}$.
+
+Let the vertical displacement be $y(t) = A' \sin(\omega' t)$.
+The acceleration is $a(t) = -\omega'^2 y(t)$.
+The forces acting on the object are gravity ($mg$ downwards) and the normal force ($N$ upwards).
+Using Newton's second law (upward positive):
+$$N - mg = ma$$
+$$N = m(g + a)$$
+
+The object loses contact with the platform when the normal force $N$ becomes zero. This is most likely to happen at the top of the oscillation where the acceleration is maximum downwards ($a = -\omega'^2 A'$).
+$$N = m(g - \omega'^2 A')$$
+To remain in contact, we need $N \ge 0$.
+$$g - \omega'^2 A' \ge 0$$
+$$A' \le \frac{g}{\omega'^2}$$
+
+The maximum amplitude $A'_{max}$ is:
+$$A'_{max} = \frac{g}{\omega'^2}$$
+Substitute the values ($g = 9.81$, $\omega' = 4.1888$):
+$$A'_{max} = \frac{9.81}{(4.1888)^2}$$
+$$A'_{max} = \frac{9.81}{17.546}$$
+$$A'_{max} \approx 0.559 \, \text{m}$$
+
+\textbf{Answer: The maximum amplitude is 0.56 m.}
+
+\newpage
+
+\section*{Question 3}
+
+\subsection*{(a) Equation relating change in pressure $\Delta P$ and height $\Delta z$}
+
+Consider a thin slab of gas of area $A$ and thickness $\Delta z$ at height $z$.
+The mass of the gas in this slab is $\Delta m = \rho A \Delta z$, where $\rho$ is the density of the gas.
+The forces acting on this slab in the vertical direction are:
+1. Pressure force from below pushing up: $P(z) A$
+2. Pressure force from above pushing down: $-(P(z) + \Delta P) A$
+3. Weight of the gas acting down: $-\Delta m g = -(\rho A \Delta z) g$
+
+For the gas to be in equilibrium:
+$$P(z) A - (P(z) + \Delta P) A - \rho A g \Delta z = 0$$
+$$- \Delta P A - \rho g A \Delta z = 0$$
+Dividing by $A$:
+$$\Delta P = - \rho g \Delta z$$
+
+\textbf{Answer: $\Delta P = - \rho g \Delta z$}
+
+\subsection*{(b) Show the expression for pressure $P(z)$}
+
+We have the differential equation from part (a):
+$$\frac{dP}{dz} = -\rho g$$
+
+We treat the gas as an ideal gas. The ideal gas law states:
+$$PV = N kT$$
+where $N$ is the number of molecules.
+The density $\rho$ is the total mass per unit volume. Let $m$ be the mass of one molecule.
+$$\rho = \frac{\text{Total Mass}}{V} = \frac{N m}{V}$$
+From the ideal gas law, $\frac{N}{V} = \frac{P}{kT}$.
+Substituting this into the density equation:
+$$\rho = \frac{P m}{kT}$$
+
+Now substitute $\rho$ back into the pressure differential equation:
+$$\frac{dP}{dz} = - \left( \frac{P m}{kT} \right) g$$
+$$\frac{dP}{P} = - \frac{mg}{kT} dz$$
+
+Integrate both sides from height $0$ to $z$:
+$$\int_{P(0)}^{P(z)} \frac{dP}{P} = \int_{0}^{z} - \frac{mg}{kT} dz$$
+$$\ln P \Big|_{P(0)}^{P(z)} = - \frac{mg}{kT} z$$
+$$\ln P(z) - \ln P(0) = - \frac{mgz}{kT}$$
+$$\ln \left( \frac{P(z)}{P(0)} \right) = - \frac{mgz}{kT}$$
+
+Taking the exponential of both sides:
+$$\frac{P(z)}{P(0)} = e^{-\frac{mgz}{kT}}$$
+$$P(z) = P(0) e^{-\frac{mgz}{kT}}$$
+
+\textbf{Derivation shown.}
+
+\newpage
+
+\section*{Question 4}
+
+\subsection*{(a) Equation for the speed of the wave}
+
+The speed $v$ of a transverse wave on a stretched string is given by:
+$$v = \sqrt{\frac{F_T}{\mu}}$$
+where $F_T$ is the tension and $\mu$ is the mass per unit length (linear density).
+Given the mass of the wire is $m$ and the length is $l$, the linear density is $\mu = \frac{m}{l}$.
+Substituting this into the speed equation:
+$$v = \sqrt{\frac{F_T}{m/l}} = \sqrt{\frac{F_T l}{m}}$$
+
+\textbf{Answer: $v = \sqrt{\frac{F_T l}{m}}$}
+
+\subsection*{(b) Percentage by mass of zinc in the brass wire}
+
+Let subscripts $c$ and $b$ denote copper and brass respectively.
+The fundamental frequency of a stretched wire is given by $f = \frac{v}{2l} = \frac{1}{2l}\sqrt{\frac{F_T l}{m}}$.
+Or in terms of density $\rho$ and cross-sectional area $A$: $m = \rho A l$.
+$$f = \frac{1}{2l}\sqrt{\frac{F_T l}{\rho A l}} = \frac{1}{2l}\sqrt{\frac{F_T}{\rho A}}$$
+
+Given:
+Tuning fork frequency $f_{fork} = 256$ Hz.
+Beat frequency with copper wire is 5 Hz. So $f_c = 256 \pm 5$ Hz.
+Brass wire resonates with tuning fork. So $f_b = 256$ Hz.
+Since $l$, $A$, and $F_T$ are the same for both wires:
+$$f \propto \frac{1}{\sqrt{\rho}}$$
+Densities are $\rho_c = 8940 \, \text{kg/m}^3$ and $\rho_{Zn} = 7140 \, \text{kg/m}^3$.
+Since brass is an alloy of Cu and Zn, its density $\rho_b$ will be less than $\rho_c$.
+Since $f \propto \rho^{-1/2}$, lower density means higher frequency.
+Therefore, $f_b > f_c$.
+Since $f_b = 256$ Hz, we must have $f_c = 256 - 5 = 251$ Hz.
+
+Now we can find the density of the brass wire.
+$$\frac{f_b}{f_c} = \sqrt{\frac{\rho_c}{\rho_b}}$$
+$$\frac{256}{251} = \sqrt{\frac{8940}{\rho_b}}$$
+Squaring both sides:
+$$\left( \frac{256}{251} \right)^2 = \frac{8940}{\rho_b}$$
+$$1.04023 = \frac{8940}{\rho_b}$$
+$$\rho_b = \frac{8940}{1.04023} \approx 8594.2 \, \text{kg/m}^3$$
+
+Let $x$ be the percentage by mass of zinc in the brass.
+Consider a total mass $M$ of brass. Mass of Zn is $x M$ and mass of Cu is $(1-x) M$.
+The volume of the brass $V_b$ is the sum of the volumes of the constituents (Assumption: volumes are additive).
+$$V_b = V_{Zn} + V_{Cu}$$
+$$\frac{M}{\rho_b} = \frac{x M}{\rho_{Zn}} + \frac{(1-x) M}{\rho_{Cu}}$$
+Dividing by $M$:
+$$\frac{1}{\rho_b} = \frac{x}{\rho_{Zn}} + \frac{1-x}{\rho_{Cu}}$$
+Substituting the values:
+$$\frac{1}{8594.2} = \frac{x}{7140} + \frac{1-x}{8940}$$
+$$1.1636 \times 10^{-4} = 1.4006 \times 10^{-4} x + 1.1186 \times 10^{-4} (1-x)$$
+Multiply by $10^4$:
+$$1.1636 = 1.4006 x + 1.1186 - 1.1186 x$$
+$$1.1636 - 1.1186 = (1.4006 - 1.1186) x$$
+$$0.0450 = 0.2820 x$$
+$$x = \frac{0.0450}{0.2820} \approx 0.1596$$
+
+\textbf{Assumption:} The volume of the alloy is equal to the sum of the volumes of the copper and zinc components.
+
+\textbf{Answer: The percentage by mass of zinc is approximately 16.0\%.}
+
+\newpage
+
+\section*{Question 5}
+
+\subsection*{(a) Calculate the decay constant}
+
+The half-life $T_{1/2} = 8.025$ days.
+Convert to seconds:
+$$T_{1/2} = 8.025 \times 24 \times 3600 = 693360 \, \text{s}$$
+The decay constant $\lambda$ is:
+$$\lambda = \frac{\ln 2}{T_{1/2}}$$
+$$\lambda = \frac{0.69315}{693360}$$
+$$\lambda \approx 9.997 \times 10^{-7} \, \text{s}^{-1}$$
+Approximating to 3 significant figures:
+$$\lambda \approx 1.00 \times 10^{-6} \, \text{s}^{-1}$$
+
+\textbf{Answer: $\lambda = 1.00 \times 10^{-6} \, \text{s}^{-1}$}
+
+\subsection*{(b) Calculate the total volume of blood}
+
+1.  **Calculate initial number of nuclei injected ($N_0$):**
+    Volume injected $V_{inj} = 5.00 \, \text{ml} = 5.00 \times 10^{-6} \, \text{m}^3$.
+    Concentration $C = 1.00 \times 10^{-10} \, \text{kg/m}^3$.
+    Mass injected $M_{inj} = C V_{inj} = (1.00 \times 10^{-10})(5.00 \times 10^{-6}) = 5.00 \times 10^{-16} \, \text{kg}$.
+    The molar mass of ${}^{131}I$ is approx $131 \, \text{g/mol} = 0.131 \, \text{kg/mol}$.
+    Number of moles $n = \frac{5.00 \times 10^{-16}}{0.131}$.
+    Number of nuclei $N_0 = n N_A = \frac{5.00 \times 10^{-16}}{0.131} \times 6.022 \times 10^{23} \approx 2.30 \times 10^9$ nuclei.
+
+2.  **Calculate number of nuclei remaining in the body after 24 hours ($N(t)$):**
+    Time $t = 24 \, \text{hours} = 86400 \, \text{s}$.
+    $$N(t) = N_0 e^{-\lambda t}$$
+    $$\lambda t = (1.00 \times 10^{-6})(86400) = 0.0864$$
+    $$N(t) = 2.30 \times 10^9 \times e^{-0.0864}$$
+    $$N(t) = 2.30 \times 10^9 \times 0.9172 \approx 2.11 \times 10^9 \, \text{nuclei}$$
+
+3.  **Calculate concentration in blood from sample activity:**
+    The sample activity is 3171 counts in 30 minutes.
+    Assuming the counter detects all decays (100\% efficiency) and "counts" refers to decays:
+    Rate $R_{sample} = \frac{3171}{30 \times 60} = \frac{3171}{1800} \approx 1.7617 \, \text{decays/s (Bq)}$.
+    Activity $A = \lambda N$.
+    Number of nuclei in 5.00 ml sample, $N_{sample} = \frac{R_{sample}}{\lambda}$.
+    $$N_{sample} = \frac{1.7617}{1.00 \times 10^{-6}} = 1.7617 \times 10^6 \, \text{nuclei}$$
+
+4.  **Calculate total blood volume ($V_{blood}$):**
+    Assuming the iodine is uniformly distributed in the blood and not excreted or absorbed by tissues (other than decay).
+    $$\frac{N_{sample}}{V_{sample}} = \frac{N(t)}{V_{blood}}$$
+    $$V_{blood} = V_{sample} \times \frac{N(t)}{N_{sample}}$$
+    $$V_{blood} = 5.00 \, \text{ml} \times \frac{2.11 \times 10^9}{1.76 \times 10^6}$$
+    $$V_{blood} = 5.00 \times 1199 \approx 6000 \, \text{ml}$$
+
+\textbf{Assumptions:}
+1. The radioactive iodine is uniformly distributed throughout the patient's blood volume.
+2. There is no biological loss of iodine (excretion, thyroid uptake) within the 24 hours, only radioactive decay.
+3. The radiation detector has 100\% efficiency (counts = disintegrations).
+4. The concentration given refers to the mass of the isotope ${}^{131}I$.
+
+\textbf{Answer: The total volume of blood is approximately 6.00 L (or 6000 ml).}
+
+\end{document}
