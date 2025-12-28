@@ -1,0 +1,395 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{siunitx}
+
+% Page Setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SPhO 2024 Theory Solutions}
+\rhead{\thepage}
+
+\title{\textbf{37\textsuperscript{th} Singapore Physics Olympiad (SPhO) 2024} \\ \Large Theory Paper Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\section*{Question 1: Oscillations}
+
+\subsection*{(a) Phase Space Motion}
+\subsubsection*{(i) Determine the period of the motion}
+From the graph provided in Figure 1.1, the motion describes an ellipse in the velocity-displacement ($v-x$) plane, which indicates Simple Harmonic Motion (SHM). The standard relation for velocity in SHM is:
+\[ v = \pm \omega \sqrt{x_0^2 - x^2} \implies \frac{v^2}{(\omega x_0)^2} + \frac{x^2}{x_0^2} = 1 \]
+From the intercepts on the graph:
+\begin{itemize}
+    \item Maximum displacement (Amplitude), $x_0 = \SI{3}{m}$.
+    \item Maximum velocity, $v_{\text{max}} = \SI{2}{m.s^{-1}}$.
+\end{itemize}
+Using the relationship $v_{\text{max}} = \omega x_0$:
+\[ 2 = \omega (3) \implies \omega = \frac{2}{3} \, \text{rad s}^{-1} \]
+The period $T$ is given by:
+\[ T = \frac{2\pi}{\omega} = \frac{2\pi}{2/3} = 3\pi \, \text{s} \approx \SI{9.42}{s} \]
+
+\subsubsection*{(ii) Calculate the time taken to move from State A to State B}
+We assume the motion follows $x(t) = x_0 \sin(\omega t + \phi)$ and $v(t) = \omega x_0 \cos(\omega t + \phi)$.
+\begin{itemize}
+    \item \textbf{State B:} Located at $(x=0, v=-2)$. This is the equilibrium position moving in the negative direction.
+    \[ v_B = v_{\text{max}} \cos(\phi_B) \implies -2 = 2 \cos(\phi_B) \implies \phi_B = \pi \]
+    
+    \item \textbf{State A:} Located where $v_A = \SI{1}{m.s^{-1}}$ and $x_A > 0$.
+    \[ 1 = 2 \cos(\phi_A) \implies \cos(\phi_A) = 0.5 \]
+    Possible angles are $\pi/3$ or $5\pi/3$. Since $x_A > 0$, we check the sine component: $\sin(\pi/3) > 0$. Thus, $\phi_A = \frac{\pi}{3}$.
+\end{itemize}
+The change in phase is $\Delta \phi = \phi_B - \phi_A = \pi - \frac{\pi}{3} = \frac{2\pi}{3}$. The time taken is:
+\[ \Delta t = \frac{\Delta \phi}{\omega} = \frac{2\pi/3}{2/3} = \pi \, \text{s} \approx \SI{3.14}{s} \]
+
+\subsection*{(b) Potential Energy derivations}
+\subsubsection*{(i) Potential energy in SHM}
+Total energy is conserved and equals the maximum kinetic energy: $E_{\text{total}} = \frac{1}{2} m v_{\text{max}}^2 = \frac{1}{2} m \omega^2 x_0^2$.
+Potential energy $E$ at position $x$ is:
+\[ E = E_{\text{total}} - K = \frac{1}{2}m \omega^2 x_0^2 - \frac{1}{2}m v^2 \]
+Substituting $v^2 = \omega^2(x_0^2 - x^2)$:
+\[ E = \frac{1}{2}m \omega^2 x_0^2 - \frac{1}{2}m \omega^2 (x_0^2 - x^2) = \frac{1}{2}m \omega^2 x^2 \]
+
+\subsubsection*{(ii) Potential energy of the pendulum}
+Let $L$ be the string length. The bob's vertical position $y$ relative to the pivot is $y = -\sqrt{L^2 - x^2}$.
+The height $h$ above the lowest point ($y=-L$) is:
+\[ h = (L - \sqrt{L^2 - x^2}) \]
+Gravitational potential energy:
+\[ E = mgh = mg(L - \sqrt{L^2 - x^2}) = mgL - mg\sqrt{L^2 - x^2} \]
+
+\subsubsection*{(iii) Period for small angles}
+For small $x \ll L$, use binomial approximation $(1-u)^n \approx 1-nu$:
+\[ \sqrt{L^2 - x^2} = L\left(1 - \frac{x^2}{L^2}\right)^{1/2} \approx L\left(1 - \frac{x^2}{2L^2}\right) = L - \frac{x^2}{2L} \]
+Substitute into the energy equation from (ii):
+\[ E \approx mgL - mg\left(L - \frac{x^2}{2L}\right) = \frac{mg}{2L}x^2 \]
+Comparing to $E = \frac{1}{2}m\omega^2 x^2$:
+\[ \frac{1}{2} \frac{mg}{L} x^2 = \frac{1}{2} m \omega^2 x^2 \implies \omega = \sqrt{\frac{g}{L}} \]
+Period $T = 2\pi\sqrt{\frac{L}{g}}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\section*{Question 2: Circular Motion and Friction}
+
+\textbf{Given:} $m = \SI{2.5}{kg}$, $\mu_s = 0.4$, $g = \SI{9.81}{m.s^{-2}}$.
+
+\subsection*{(a) Maximum static frictional force}
+The normal force on the horizontal disk is $N = mg$. The maximum static friction is:
+\[ f_{s,\text{max}} = \mu_s N = \mu_s m g \]
+\[ f_{s,\text{max}} = 0.4 \times 2.5 \times 9.81 = \SI{9.81}{N} \]
+
+\subsection*{(b) Will the block slide?}
+Current conditions: radius $r = \SI{0.3}{m}$, angular velocity $\omega = \SI{3}{rad.s^{-1}}$.
+The required centripetal force is:
+\[ F_c = m r \omega^2 = 2.5 \times 0.3 \times 3^2 = 0.75 \times 9 = \SI{6.75}{N} \]
+Comparing forces:
+\[ F_c (\SI{6.75}{N}) < f_{s,\text{max}} (\SI{9.81}{N}) \]
+Since the required force is less than the maximum friction, the block \textbf{stays in place}.
+
+\subsection*{(c) Minimum coefficient of friction at the edge}
+At the edge, $r' = \SI{0.5}{m}$. The angular velocity is still $\omega = \SI{3}{rad.s^{-1}}$.
+Condition for no slipping:
+\[ f_{s,\text{max}} \ge F_c \implies \mu_{\text{min}} m g = m r' \omega^2 \]
+\[ \mu_{\text{min}} = \frac{r' \omega^2}{g} = \frac{0.5 \times 3^2}{9.81} = \frac{4.5}{9.81} \approx 0.459 \]
+\textbf{Answer:} $\mu \approx 0.46$
+
+\subsection*{(d) Speed when slipping begins at the edge}
+We use the given coefficient $\mu_s = 0.4$ and radius $r = \SI{0.5}{m}$.
+The block slips when the centripetal force equals the maximum friction:
+\[ \frac{m v^2}{r} = \mu_s m g \]
+\[ v = \sqrt{\mu_s r g} = \sqrt{0.4 \times 0.5 \times 9.81} = \sqrt{1.962} \]
+\[ v \approx \SI{1.40}{m.s^{-1}} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\section*{Question 3: Two-Body Spring System}
+
+\subsection*{(a) Speed of sphere (Block fixed)}
+Let $k$ be the spring constant, $m$ be the mass of the sphere, and $d$ be the compression.
+Initial potential energy stored in spring: $U = \frac{1}{2}kd^2$.
+When the spring returns to natural length, all energy is kinetic:
+\[ \frac{1}{2}kd^2 = \frac{1}{2}mv^2 \]
+\[ v = d\sqrt{\frac{k}{m}} \]
+
+\subsection*{(b) Speed of sphere (Block free)}
+Let $M$ be the mass of the block and $m$ be the mass of the sphere. Let $V$ be the velocity of the block and $v$ be the velocity of the sphere relative to the ground.
+\begin{enumerate}
+    \item \textbf{Conservation of Momentum:} Initial momentum is zero.
+    \[ mv + MV = 0 \implies V = -\frac{m}{M}v \]
+    \item \textbf{Conservation of Energy:}
+    \[ \frac{1}{2}kd^2 = \frac{1}{2}mv^2 + \frac{1}{2}MV^2 \]
+\end{enumerate}
+Substituting $V$:
+\[ kd^2 = mv^2 + M\left(-\frac{m}{M}v\right)^2 = mv^2 + \frac{m^2}{M}v^2 = mv^2 \left(1 + \frac{m}{M}\right) \]
+\[ kd^2 = mv^2 \left(\frac{M+m}{M}\right) \]
+Solving for $v$:
+\[ v = d \sqrt{\frac{Mk}{m(M+m)}} \]
+
+\subsection*{(c) Distance the block has travelled}
+Since there are no external horizontal forces, the Center of Mass (CM) of the system remains stationary.
+Let $\Delta x_M$ and $\Delta x_m$ be the displacements of the block and sphere respectively.
+\[ M \Delta x_M + m \Delta x_m = 0 \implies \Delta x_m = -\frac{M}{m}\Delta x_M \]
+The relative separation increases by the compression distance $d$:
+\[ \Delta x_{\text{rel}} = \Delta x_m - \Delta x_M = d \]
+Substituting $\Delta x_m$:
+\[ -\frac{M}{m}\Delta x_M - \Delta x_M = d \implies -\Delta x_M \left( \frac{M+m}{m} \right) = d \]
+Magnitude of distance travelled by block:
+\[ |\Delta x_M| = \frac{md}{M+m} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\section*{Question 4: Electromagnetic Rail Braking}
+
+Let the rod be at position $x$ from the vertex A.
+The length of the rod between the rails is $l = 2x \tan(\alpha/2)$.
+The rod moves with velocity $v$.
+
+\begin{enumerate}
+    \item \textbf{Induced EMF ($\mathcal{E}$):}
+    \[ \mathcal{E} = B l v = 2 B v x \tan(\alpha/2) \]
+    \item \textbf{Resistance ($R_{\text{rod}}$):}
+    Given $R$ is resistance per unit length:
+    \[ R_{\text{rod}} = R \cdot l = 2 R x \tan(\alpha/2) \]
+    \item \textbf{Induced Current ($I$):}
+    \[ I = \frac{\mathcal{E}}{R_{\text{rod}}} = \frac{2 B v x \tan(\alpha/2)}{2 R x \tan(\alpha/2)} = \frac{B v}{R} \]
+    \item \textbf{Magnetic Force ($F$):}
+    Acting against motion:
+    \[ F = I l B = \left(\frac{Bv}{R}\right) (2x \tan(\alpha/2)) B = \frac{2 B^2 \tan(\alpha/2)}{R} x v \]
+\end{enumerate}
+
+Applying Newton's Second Law ($F = ma = m v \frac{dv}{dx}$):
+\[ m v \frac{dv}{dx} = - \frac{2 B^2 \tan(\alpha/2)}{R} x v \]
+Canceling $v$ (assuming $v \neq 0$):
+\[ m \, dv = - \frac{2 B^2 \tan(\alpha/2)}{R} x \, dx \]
+Integrate from $(v_0, x_0)$ to $(0, x_f)$:
+\[ \int_{v_0}^{0} m \, dv = - \frac{2 B^2 \tan(\alpha/2)}{R} \int_{x_0}^{x_f} x \, dx \]
+\[ -m v_0 = - \frac{B^2 \tan(\alpha/2)}{R} (x_f^2 - x_0^2) \]
+\[ \frac{m v_0 R}{B^2 \tan(\alpha/2)} = x_f^2 - x_0^2 \]
+\[ x_f = \sqrt{x_0^2 + \frac{m v_0 R}{B^2 \tan(\alpha/2)}} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 5
+% ==========================================
+\section*{Question 5: Orbital Mechanics}
+
+\subsection*{(a) Hohmann Transfer}
+\subsubsection*{(i) Minimum speed to enter transfer orbit}
+The transfer orbit is an ellipse with periapsis $R_1$ and apoapsis $R_2$.
+Semi-major axis $a = \frac{R_1 + R_2}{2}$.
+Using the Vis-Viva equation $v^2 = GM(\frac{2}{r} - \frac{1}{a})$ at periapsis $r=R_1$:
+\[ v^2 = GM \left( \frac{2}{R_1} - \frac{2}{R_1+R_2} \right) = \frac{2GM R_2}{R_1(R_1+R_2)} \]
+\[ v = \sqrt{\frac{2GM R_2}{R_1(R_1+R_2)}} \]
+
+\subsubsection*{(ii) Increase in total energy}
+Initial energy (circular orbit $R_1$): $E_i = -\frac{GMm}{2R_1}$.
+Final energy (transfer orbit $a$): $E_f = -\frac{GMm}{2a} = -\frac{GMm}{R_1+R_2}$.
+\[ \Delta E = E_f - E_i = -\frac{GMm}{R_1+R_2} + \frac{GMm}{2R_1} \]
+\[ \Delta E = GMm \left( \frac{R_1 + R_2 - 2R_1}{2R_1(R_1+R_2)} \right) = \frac{GMm(R_2 - R_1)}{2R_1(R_1+R_2)} \]
+
+\subsubsection*{(iii) Time of flight}
+The time is half the orbital period $T$. Using Kepler's Third Law $T^2 = \frac{4\pi^2}{GM}a^3$:
+\[ t = \frac{T}{2} = \pi \sqrt{\frac{a^3}{GM}} = \pi \sqrt{\frac{(R_1+R_2)^3}{8GM}} \]
+
+\subsection*{(b) Decrease in Rotational Kinetic Energy}
+Conservation of Angular Momentum ($L$):
+\[ I_1 \omega_1 = I_2 \omega_2 \implies \omega_2 = \frac{I_1}{I_2}\omega_1 \]
+Kinetic Energy $K = \frac{L^2}{2I}$.
+Decrease in Energy $\Delta K$:
+\[ \Delta K = K_1 - K_2 = \frac{1}{2}I_1\omega_1^2 - \frac{1}{2}I_2\left(\frac{I_1}{I_2}\omega_1\right)^2 \]
+\[ \Delta K = \frac{1}{2}I_1\omega_1^2 \left( 1 - \frac{I_1}{I_2} \right) \]
+Using values $I_1 = 110$, $\omega_1 = 5.2$, $I_2 = 230$:
+\[ \Delta K = \frac{1}{2}(110)(5.2)^2 \left( 1 - \frac{110}{230} \right) \approx \SI{776}{J} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 6
+% ==========================================
+\section*{Question 6: Magnetic Dipole}
+
+\subsection*{(a) Magnetic Moment and Torque}
+\subsubsection*{(i) Magnetic dipole moment}
+\[ \mu = N I A = 10 \times 5.0 \times (0.50 \times 0.80) \]
+\[ \mu = \SI{20}{A.m^2} \]
+
+\subsubsection*{(ii) Initial magnetic torque}
+Plane is horizontal $\implies \vec{A} \perp \vec{B} \implies \theta = 90^\circ$.
+\[ \tau_{\text{mag}} = \mu B \sin(90^\circ) = 20 \times 0.50 = \SI{10}{N.m} \]
+
+\subsection*{(b) Net torque on pulley}
+Torque from mass $m=5.0$ kg at radius $r=0.10$ m opposes magnetic torque.
+\[ \tau_{\text{grav}} = mgr = 5.0 \times 9.81 \times 0.10 = \SI{4.905}{N.m} \]
+\[ \tau_{\text{net}} = \tau_{\text{mag}} - \tau_{\text{grav}} = 10 - 4.905 \approx \SI{5.10}{N.m} \]
+
+\subsection*{(c) Energy and Speed}
+\subsubsection*{(i) Change in potential energy of dipole}
+Rotates from $90^\circ$ (horizontal) to $0^\circ$ (vertical/aligned).
+\[ U = -\vec{\mu}\cdot\vec{B} \]
+\[ \Delta U_{\text{mag}} = U_f - U_i = (-\mu B) - 0 = -20(0.5) = \SI{-10}{J} \]
+
+\subsubsection*{(ii) Speed of mass}
+Conservation of Energy. System: Loop + Mass.
+Change in Gravitational PE (Mass moves up by arc length $h = r\theta = 0.1 \times \frac{\pi}{2}$):
+\[ \Delta U_{\text{grav}} = mgh = 5.0(9.81)(0.05\pi) \approx \SI{7.705}{J} \]
+Total Energy Balance:
+\[ \Delta K + \Delta U_{\text{grav}} + \Delta U_{\text{mag}} = 0 \]
+\[ \frac{1}{2}mv^2 + 7.705 - 10 = 0 \]
+\[ \frac{1}{2}(5.0)v^2 = 2.295 \implies v = \sqrt{\frac{4.59}{5}} \approx \SI{0.96}{m.s^{-1}} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 7
+% ==========================================
+\section*{Question 7: RLC Circuit}
+
+\subsection*{(a) Derivation of $\omega$}
+ODE: $\frac{d^2V}{dt^2} + \frac{R}{L}\frac{dV}{dt} + \frac{1}{LC}V = 0$.
+Trial solution: $V(t) = Ae^{-\alpha t}\cos(\omega t)$.
+Substituting derivatives into the ODE leads to the conditions:
+\begin{enumerate}
+    \item From $\sin(\omega t)$ terms: $2\alpha = \frac{R}{L} \implies \alpha = \frac{R}{2L}$.
+    \item From $\cos(\omega t)$ terms: $\alpha^2 - \omega^2 - \frac{R}{L}\alpha + \frac{1}{LC} = 0$.
+\end{enumerate}
+Substituting $\alpha$:
+\[ \omega^2 = \frac{1}{LC} - \alpha^2 = \frac{1}{LC} - \frac{R^2}{4L^2} \]
+\[ \omega = \sqrt{\frac{1}{LC} - \frac{R^2}{4L^2}} \]
+
+\subsection*{(b) Calculation}
+\subsubsection*{(i) Frequency and Decay Time}
+Given $C=\SI{15}{nF}$, $L=\SI{0.22}{mH}$, $R=\SI{75}{\Omega}$.
+\[ \alpha = \frac{75}{2 \times 0.22 \times 10^{-3}} \approx 1.70 \times 10^5 \, \text{s}^{-1} \]
+\[ \omega_0^2 = \frac{1}{LC} \approx 3.03 \times 10^{11} \]
+\[ \omega = \sqrt{3.03 \times 10^{11} - (1.70 \times 10^5)^2} \approx 5.23 \times 10^5 \, \text{rad s}^{-1} \]
+Frequency $f = \frac{\omega}{2\pi} \approx \SI{83.3}{kHz}$.
+
+Decay time to 10\% ($e^{-\alpha t} = 0.1$):
+\[ t = \frac{\ln(10)}{\alpha} \approx \frac{2.3026}{1.70 \times 10^5} \approx \SI{13.5}{\mu s} \]
+
+\subsubsection*{(ii) Critical Damping}
+Critical damping requires $\omega = 0$:
+\[ \frac{1}{LC} = \frac{R^2}{4L^2} \implies R = 2\sqrt{\frac{L}{C}} \]
+\[ R = 2\sqrt{\frac{0.22 \times 10^{-3}}{15 \times 10^{-9}}} \approx \SI{242}{\Omega} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 8
+% ==========================================
+\section*{Question 8: Special Relativity}
+
+Given: Distance $d = 10$ ly, Speed $v = 0.8c$.
+Lorentz factor: $\gamma = \frac{1}{\sqrt{1-0.8^2}} = \frac{1}{0.6} = \frac{5}{3}$.
+
+\subsection*{(a) Time in Earth frame}
+\[ \Delta t = \frac{d}{v} = \frac{10}{0.8} = \SI{12.5}{years} \]
+
+\subsection*{(b) Time in Spacecraft frame (Proper time)}
+\[ \Delta t' = \frac{\Delta t}{\gamma} = 12.5 \times \frac{3}{5} = \SI{7.5}{years} \]
+
+\subsection*{(c) Light signal time}
+\begin{itemize}
+    \item \textbf{i. Earth Observer:} Light travels 10 ly at $c$.
+    \[ t = \frac{10}{c} = \SI{10}{years} \]
+    \item \textbf{ii. Astronaut:} 
+    Length contraction: $d' = d/\gamma = 6$ ly.
+    The destination moves towards the ship at $v=0.8c$. Light moves at $c$.
+    Closure rate is $c + 0.8c$? No, in the ship frame, light moves at $c$ towards the target which is approaching at $v$.
+    Equation of motion for light: $x_L = ct'$.
+    Equation of motion for target B: $x_B = d' - vt'$.
+    Intersection: $ct' = d' - vt' \implies t'(c+v) = d'$.
+    However, the prompt implies the signal is sent from A towards B.
+    Using the standard derivation where $t' = \gamma(t - vx/c^2)$:
+    Consider event (Light reaches B). In Earth frame: $x=10, t=10$.
+    $t' = \frac{5}{3} (10 - 0.8(10)) = \frac{5}{3}(2) = \SI{3.33}{years}$.
+\end{itemize}
+
+\subsection*{(d) Simultaneity}
+Events:
+1. Spacecraft reaches B: $t = 12.5$ years.
+2. Signal from B reaches A:
+   Spacecraft reaches B at $t=12.5$. Signal sent immediately. Travels 10 ly at $c$. Arrives A at $t = 12.5 + 10 = 22.5$ years.
+   
+The events are \textbf{not simultaneous}.
+
+\newpage
+
+% ==========================================
+% QUESTION 9
+% ==========================================
+\section*{Question 9: Thermodynamics}
+
+State A: $P_A$, $V_A$, $T_A$. ($P_A = 101.3$ kPa, $T_A = 278.15$ K).
+
+\subsection*{(a) Work done (Isochoric + Isobaric)}
+\begin{enumerate}
+    \item \textbf{Process A $\to$ B (Isochoric):} Volume constant, Pressure halves ($P_B = 0.5 P_A$).
+    Work $W_{AB} = 0$.
+    \item \textbf{Process B $\to$ C (Isobaric):} Pressure constant at $P_B$. Volume doubles ($V_C = 2V_A$).
+    \[ W_{BC} = P_B \Delta V = (0.5 P_A) (2V_A - V_A) = 0.5 P_A V_A \]
+\end{enumerate}
+Using Ideal Gas Law $P_A V_A = n R T_A$ (with $n=1$):
+\[ W_{\text{total}} = 0.5 n R T_A = 0.5 \times 1 \times 8.31 \times 278.15 \]
+\[ W_{\text{total}} \approx \SI{1156}{J} \]
+
+\subsection*{(b) Work done (Isothermal)}
+Process A $\to$ C at constant $T_A$.
+Volume changes from $V_A$ to $V_C = 2V_A$.
+\[ W = \int_{V_A}^{2V_A} \frac{nRT_A}{V} dV = n R T_A \ln\left(\frac{2V_A}{V_A}\right) \]
+\[ W = n R T_A \ln(2) = 1 \times 8.31 \times 278.15 \times 0.693 \]
+\[ W \approx \SI{1602}{J} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 10
+% ==========================================
+\section*{Question 10: Wave Optics}
+
+\subsection*{(a) Path Difference and Maxima Condition}
+Two parallel slits separated by $d$.
+Incident angle $\alpha$, emerging angle $\beta$.
+Path difference arises from the path length difference before the slits and after the slits.
+\[ \Delta L = d \sin \alpha - d \sin \beta \]
+(Assuming the sign convention where positive angles are on the same side of the normal).
+Condition for maximum intensity (constructive interference):
+\[ d(\sin \alpha - \sin \beta) = m \lambda \]
+where $m \in \mathbb{Z}$.
+
+\subsection*{(b) Angular Separation}
+For two adjacent maxima of order $m$ and $m+1$ at angles $\beta_m$ and $\beta_{m+1}$:
+\[ d(\sin \alpha - \sin \beta_m) = m \lambda \]
+\[ d(\sin \alpha - \sin \beta_{m+1}) = (m+1) \lambda \]
+Subtracting the equations:
+\[ -d(\sin \beta_{m+1} - \sin \beta_m) = \lambda \]
+For small angles, $\sin \beta \approx \beta$:
+\[ \beta_{m+1} - \beta_m \approx -\frac{\lambda}{d} \]
+The magnitude of the angular separation is $\Delta \beta = \frac{\lambda}{d}$.
+This expression is independent of the incident angle $\alpha$.
+
+\end{document}
