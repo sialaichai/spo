@@ -1,0 +1,309 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+
+% Page Setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SPhO 2019 Theory Paper 2 Solutions}
+\rhead{\thepage}
+
+\title{\textbf{32\textsuperscript{nd} Singapore Physics Olympiad (SPhO) 2019} \\ \Large Theory Paper 2 Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\section*{Question 1: Projectile Motion}
+
+\subsection*{(a) Angle of Projection}
+A projectile is fired with initial speed $v_0 = \SI{50}{m.s^{-1}}$ from a height $h = \SI{100}{m}$. The target is at horizontal distance $R = \SI{300}{m}$. We need to find the angle of inclination $\theta$.
+
+Let the origin be at the bottom of the cliff. The launch point is $(0, h)$ and the target is at $(R, 0)$.
+The equations of motion are:
+\[ x(t) = (v_0 \cos\theta) t \]
+\[ y(t) = h + (v_0 \sin\theta) t - \frac{1}{2} g t^2 \]
+
+At the point of impact, $x = R$ and $y = 0$:
+1. $t = \frac{R}{v_0 \cos\theta}$
+2. $0 = h + v_0 \sin\theta \left( \frac{R}{v_0 \cos\theta} \right) - \frac{1}{2} g \left( \frac{R}{v_0 \cos\theta} \right)^2$
+
+Substituting $R=300$, $h=100$, $v_0=50$, $g=9.81$:
+\[ 0 = 100 + 300 \tan\theta - \frac{9.81 (300)^2}{2 (50)^2 \cos^2\theta} \]
+\[ 0 = 100 + 300 \tan\theta - \frac{9.81 \times 90000}{5000} \sec^2\theta \]
+\[ 0 = 100 + 300 \tan\theta - 176.58 (1 + \tan^2\theta) \]
+
+Let $u = \tan\theta$. The equation becomes a quadratic in $u$:
+\[ 176.58 u^2 - 300 u + (176.58 - 100) = 0 \]
+\[ 176.58 u^2 - 300 u + 76.58 = 0 \]
+
+Solving for $u$:
+\[ u = \frac{300 \pm \sqrt{300^2 - 4(176.58)(76.58)}}{2(176.58)} \]
+\[ u = \frac{300 \pm \sqrt{90000 - 54089}}{353.16} = \frac{300 \pm \sqrt{35911}}{353.16} \]
+\[ u = \frac{300 \pm 189.5}{353.16} \]
+
+Two solutions:
+1. $u_1 = \frac{489.5}{353.16} \approx 1.386 \implies \theta_1 \approx 54.2^\circ$
+2. $u_2 = \frac{110.5}{353.16} \approx 0.313 \implies \theta_2 \approx 17.4^\circ$
+
+Usually, the lower angle (direct shot) is preferred unless specified, but both are valid mathematical solutions for hitting a stationary target.
+
+\textbf{Answer:} $\theta \approx 17.4^\circ$ or $54.2^\circ$.
+
+\subsection*{(b) Moving Target}
+The target moves away at $v_T = \SI{10}{m.s^{-1}}$. The angle $\theta$ remains the same (assume $\theta \approx 17.4^\circ$, i.e., $\tan\theta = 0.313$). Find the new launch speed $v'$.
+
+Let $t$ be the time of flight.
+Target position: $x_T(t) = 300 + 10 t$.
+Projectile position: $x_p(t) = (v' \cos\theta) t$.
+Impact condition $x_p(t) = x_T(t)$:
+\[ (v' \cos\theta) t = 300 + 10 t \implies t = \frac{300}{v' \cos\theta - 10} \]
+
+Vertical motion constraint ($y=0$ at impact):
+\[ 0 = 100 + (v' \sin\theta) t - 4.905 t^2 \]
+Substitute $v' \sin\theta = (v' \cos\theta) \tan\theta$:
+\[ 0 = 100 + (v' \cos\theta \cdot t) \tan\theta - 4.905 t^2 \]
+Substitute $v' \cos\theta \cdot t = 300 + 10t$:
+\[ 0 = 100 + (300 + 10t) \tan\theta - 4.905 t^2 \]
+
+Using $\tan\theta = 0.313$:
+\[ 0 = 100 + (300)(0.313) + 3.13 t - 4.905 t^2 \]
+\[ 0 = 100 + 93.9 + 3.13 t - 4.905 t^2 \]
+\[ 4.905 t^2 - 3.13 t - 193.9 = 0 \]
+
+Solving for $t$:
+\[ t = \frac{3.13 \pm \sqrt{3.13^2 - 4(4.905)(-193.9)}}{9.81} \]
+\[ t = \frac{3.13 \pm \sqrt{9.8 + 3804}}{9.81} \approx \frac{3.13 + 61.76}{9.81} \approx 6.61 \text{ s} \]
+
+Now find $v'$:
+\[ v' \cos\theta - 10 = \frac{300}{6.61} = 45.39 \]
+\[ v' \cos(17.4^\circ) = 55.39 \]
+\[ v' = \frac{55.39}{0.954} \approx 58.0 \text{ m/s} \]
+
+(If the higher angle $54.2^\circ$ was used, the calculation would yield a different speed).
+
+\textbf{Answer:} Approximately \textbf{58.0 m/s}.
+
+\newpage
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\section*{Question 2: Waves}
+
+\subsection*{(a) Sound Interference}
+Source $S$, Detector $D$, distance $L = \SI{120}{m}$. Wavelength $\lambda = \SI{1.33}{m}$.
+Reflector at perpendicular distance $y$ from the line $SD$.
+The path of the reflected ray (Ray 2) corresponds to the distance from the image source $S'$ to $D$.
+$S'$ is at distance $2y$ from $S$ perpendicular to $SD$.
+Path length of reflected ray: $L_2 = \sqrt{L^2 + (2y)^2}$.
+Path length of direct ray: $L_1 = L = \SI{120}{m}$.
+Path difference: $\Delta x = \sqrt{120^2 + 4y^2} - 120$.
+
+\textbf{Position 1 ($y_1 = \SI{90}{m}$):}
+Given constructive interference (in phase).
+$\Delta x_1 = \sqrt{120^2 + 4(90)^2} - 120 = \sqrt{14400 + 32400} - 120 = \sqrt{46800} - 120$
+$\Delta x_1 \approx 216.33 - 120 = 96.33 \text{ m}$.
+
+\textbf{Position 2 ($y_2 = 90 + h$):}
+The intensity decreases to zero and becomes maximum again. This corresponds to the path difference changing by one wavelength $\lambda$.
+\[ \Delta x_2 - \Delta x_1 = \lambda \]
+\[ (\sqrt{120^2 + 4(90+h)^2} - 120) - 96.33 = 1.33 \]
+\[ \sqrt{14400 + 4(90+h)^2} = 120 + 96.33 + 1.33 = 217.66 \]
+Squaring both sides:
+\[ 14400 + 4(90+h)^2 = (217.66)^2 \approx 47376 \]
+\[ 4(90+h)^2 = 47376 - 14400 = 32976 \]
+\[ (90+h)^2 = 8244 \]
+\[ 90+h = \sqrt{8244} \approx 90.8 \]
+\[ h \approx 0.8 \text{ m} \]
+
+\textbf{Answer:} $h \approx \mathbf{0.80 \text{ m}}$.
+
+\subsection*{(b) Sonometer Wire}
+Given:
+Wire density $\rho_w = 8.885 \times 10^3 \text{ kg m}^{-3}$, diameter $d_w = 0.51 \text{ mm}$.
+Length $l = 0.60 \text{ m}$.
+Cylinder diameter $D = 5.0 \text{ cm}$, height $H = 10.0 \text{ cm}$. Volume $V_c = \pi (\frac{D}{2})^2 H$.
+Frequency formula for 2nd harmonic ($n=2$):
+\[ f = \frac{2}{2l} \sqrt{\frac{T}{\mu}} = \frac{1}{l} \sqrt{\frac{T}{\mu}} \]
+Mass per unit length of wire: $\mu = \rho_w A_w = \rho_w \pi (\frac{d_w}{2})^2$.
+$\mu = 8885 \times \pi \times (0.255 \times 10^{-3})^2 \approx 8885 \times \pi \times 6.5 \times 10^{-8} \approx 1.815 \times 10^{-3} \text{ kg/m}$.
+
+Let $T_1$ be tension when half immersed, $T_2$ when fully immersed.
+$f_1 = 118.4 \text{ Hz}$, $f_2 = 114.7 \text{ Hz}$.
+From frequency formula: $T = \mu (f l)^2$.
+$T_1 = 1.815 \times 10^{-3} \times (118.4 \times 0.6)^2 = 1.815 \times 10^{-3} \times (71.04)^2 \approx 9.16 \text{ N}$.
+$T_2 = 1.815 \times 10^{-3} \times (114.7 \times 0.6)^2 = 1.815 \times 10^{-3} \times (68.82)^2 \approx 8.60 \text{ N}$.
+
+Forces on cylinder: Weight $W = \rho_c V_c g$, Buoyancy $U$.
+$T_1 = W - \frac{1}{2} \rho_L V_c g$
+$T_2 = W - \rho_L V_c g$
+Subtracting equations:
+$T_1 - T_2 = \frac{1}{2} \rho_L V_c g$.
+$\rho_L = \frac{2(T_1 - T_2)}{V_c g}$.
+
+Calculate $V_c$:
+$V_c = \pi (0.025)^2 (0.1) = \pi (6.25 \times 10^{-4}) (0.1) \approx 1.963 \times 10^{-4} \text{ m}^3$.
+Difference in Tension: $T_1 - T_2 = 9.16 - 8.60 = 0.56 \text{ N}$.
+$\rho_L = \frac{2(0.56)}{(1.963 \times 10^{-4})(9.81)} = \frac{1.12}{1.926 \times 10^{-3}} \approx 581 \text{ kg m}^{-3}$.
+
+Calculate $\rho_c$:
+From $T_2 = \rho_c V_c g - \rho_L V_c g = (\rho_c - \rho_L) V_c g$.
+$\rho_c - \rho_L = \frac{T_2}{V_c g} = \frac{8.60}{(1.963 \times 10^{-4})(9.81)} = \frac{8.60}{1.926 \times 10^{-3}} \approx 4465 \text{ kg m}^{-3}$.
+$\rho_c = 4465 + 581 = 5046 \text{ kg m}^{-3}$.
+
+\textbf{Answer:}
+Density of cylinder $\approx \mathbf{5050 \text{ kg m}^{-3}}$.
+Density of liquid $\approx \mathbf{580 \text{ kg m}^{-3}}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\section*{Question 3: Gravitation and Thermodynamics}
+
+\subsection*{(a) Gravitational Potential of Hollow Sphere}
+Consider a uniform shell with inner radius $r$ and outer radius $R$. Density $\rho = \frac{M}{\frac{4}{3}\pi(R^3-r^3)}$.
+Potential at distance $x$ from center ($V(\infty)=0$):
+1. **Outer Surface ($x=R$):** Behaves as point mass $M$.
+   \[ V_{out} = -\frac{GM}{R} \]
+2. **Inner Surface ($x=r$):**
+   Potential inside a cavity of a thick shell is constant and equal to the potential at the inner surface due to the entire mass distribution.
+   Consider building the shell from thin shells of radius $s$ and thickness $ds$.
+   Potential at center (and everywhere in cavity $r' < r$) is sum of potentials $dV = - \frac{G dm}{s}$.
+   $dm = 4\pi s^2 \rho ds$.
+   \[ V_{in} = \int_{r}^{R} -\frac{G (4\pi s^2 \rho ds)}{s} = -4\pi G \rho \int_{r}^{R} s ds \]
+   \[ V_{in} = -4\pi G \rho \left[ \frac{s^2}{2} \right]_r^R = -2\pi G \rho (R^2 - r^2) \]
+   Substitute $\rho = \frac{M}{\frac{4}{3}\pi(R^3-r^3)}$:
+   \[ V_{in} = -2\pi G \left( \frac{3M}{4\pi(R^3-r^3)} \right) (R^2 - r^2) = -\frac{3GM}{2} \frac{(R-r)(R+r)}{(R-r)(R^2+Rr+r^2)} \]
+   \[ V_{in} = -\frac{3GM}{2} \frac{R+r}{R^2+Rr+r^2} \]
+
+   \textbf{Ratio:}
+   \[ \frac{V_{out}}{V_{in}} = \frac{-GM/R}{-\frac{3GM}{2} \frac{R+r}{R^2+Rr+r^2}} = \frac{2}{3R} \frac{R^2+Rr+r^2}{R+r} \]
+
+\subsection*{(b) Thermodynamics and Modern Physics}
+
+\subsubsection*{(i) Entropy Change}
+Copper rod: $L=0.30$ m, $d=0.02$ m. Area $A = \pi (0.01)^2 = 3.14 \times 10^{-4} \text{ m}^2$.
+$T_H = 200^\circ\text{C} = 473 \text{ K}$, $T_C = 0^\circ\text{C} = 273 \text{ K}$.
+Conductivity $k = 400 \text{ W m}^{-1} \text{K}^{-1}$.
+Heat flow rate $\dot{Q}$:
+\[ \dot{Q} = kA \frac{T_H - T_C}{L} = 400 (3.14 \times 10^{-4}) \frac{200}{0.30} \]
+\[ \dot{Q} = \frac{25.12}{0.3} \approx 83.73 \text{ W} \]
+Rate of entropy change of the universe (system):
+\[ \dot{S}_{gen} = \frac{\dot{Q}}{T_C} - \frac{\dot{Q}}{T_H} = 83.73 \left( \frac{1}{273} - \frac{1}{473} \right) \]
+\[ \dot{S}_{gen} = 83.73 (0.00366 - 0.00211) = 83.73 (0.00155) \approx \mathbf{0.130 \text{ J K}^{-1} \text{s}^{-1}} \]
+
+\subsubsection*{(ii) Hydrogen Collision}
+Electron speed $v = 2.08 \times 10^6 \text{ m/s}$.
+Kinetic Energy:
+\[ K = \frac{1}{2} m_e v^2 = 0.5 (9.11 \times 10^{-31}) (2.08 \times 10^6)^2 \approx 1.97 \times 10^{-18} \text{ J} \]
+In eV: $K = \frac{1.97 \times 10^{-18}}{1.60 \times 10^{-19}} \approx 12.3 \text{ eV}$.
+Hydrogen energy levels: $E_1 = -13.6$, $E_2 = -3.4$, $E_3 = -1.51$ eV.
+Excitation energies from ground state:
+$\Delta E_{1 \to 2} = 10.2$ eV.
+$\Delta E_{1 \to 3} = 12.09$ eV.
+$\Delta E_{1 \to 4} = 12.75$ eV.
+The electron ($12.3$ eV) can excite the atom to $n=2$ or $n=3$.
+Possible de-excitation photons:
+1. From $n=3 \to n=1$: $\lambda = \frac{1240}{12.09} \approx \mathbf{102.6 \text{ nm}}$.
+2. From $n=3 \to n=2$: $\lambda = \frac{1240}{1.89} \approx \mathbf{656 \text{ nm}}$.
+3. From $n=2 \to n=1$: $\lambda = \frac{1240}{10.2} \approx \mathbf{121.6 \text{ nm}}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\section*{Question 4: Electromagnetism}
+
+\subsection*{(a) Oscillating Particle in Charged Ring}
+Ring radius $a$, total charge $Q$. Field on axis at distance $x$:
+\[ E_x = \frac{Qx}{4\pi\epsilon_0 (a^2+x^2)^{3/2}} \]
+For $x \ll a$, $(a^2+x^2)^{3/2} \approx a^3$.
+\[ E_x \approx \frac{Q}{4\pi\epsilon_0 a^3} x \]
+Force on charge $-q$:
+\[ F = -q E_x = - \left( \frac{qQ}{4\pi\epsilon_0 a^3} \right) x \]
+This is a restoring force of the form $F = -kx$ with $k = \frac{qQ}{4\pi\epsilon_0 a^3}$.
+Thus, the motion is Simple Harmonic Motion (SHM).
+Frequency $f = \frac{1}{2\pi} \sqrt{\frac{k}{m}}$:
+\[ f = \frac{1}{2\pi} \sqrt{\frac{qQ}{4\pi\epsilon_0 m a^3}} \]
+Given linear charge density $\lambda$, $Q = 2\pi a \lambda$.
+\[ f = \frac{1}{2\pi} \sqrt{\frac{q(2\pi a \lambda)}{4\pi\epsilon_0 m a^3}} = \frac{1}{2\pi} \sqrt{\frac{q\lambda}{2\epsilon_0 m a^2}} \]
+
+\subsection*{(b) Magnetic Fields}
+\subsubsection*{(i) Bohr Atom}
+Electron orbit radius $r = 5.3 \times 10^{-10}$ m, speed $v = 6.91 \times 10^5$ m/s.
+Equivalent current $I = \frac{q}{T} = \frac{e}{2\pi r / v} = \frac{ev}{2\pi r}$.
+Magnetic field at center (proton):
+\[ B = \frac{\mu_0 I}{2r} = \frac{\mu_0 e v}{4\pi r^2} \]
+\[ B = \frac{(4\pi \times 10^{-7})(1.60 \times 10^{-19})(6.91 \times 10^5)}{4\pi (5.3 \times 10^{-10})^2} \]
+\[ B = \frac{1.60 \times 6.91 \times 10^{-21}}{28.09 \times 10^{-20}} = \frac{11.056 \times 10^{-21}}{2.809 \times 10^{-19}} \approx 0.039 \text{ T} \]
+\textbf{Answer:} $B \approx \mathbf{0.039 \text{ T}}$.
+
+\subsubsection*{(ii) Spinning Disc}
+Surface charge density $\sigma$, rotation speed $n$ rev/s ($\omega = 2\pi n$).
+Consider a ring of radius $r$, width $dr$.
+Charge $dq = \sigma (2\pi r dr)$.
+Current $dI = dq \cdot n = \sigma 2\pi r n dr$.
+Field at center due to ring: $dB = \frac{\mu_0 dI}{2r} = \frac{\mu_0 (\sigma 2\pi r n dr)}{2r} = \mu_0 \sigma \pi n dr$.
+Total field:
+\[ B = \int_0^R \mu_0 \sigma \pi n dr = \mu_0 \sigma \pi n R \]
+
+\newpage
+
+% ==========================================
+% QUESTION 5
+% ==========================================
+\section*{Question 5: Relativity}
+
+\subsection*{(a) Relative Velocity of Frame}
+Event 1: $(x_1, t_1) = (0, 0)$.
+Event 2: $(x_2, t_2) = (4c, 5)$. (Note: $4c$ denotes a distance of $4 \times 3 \times 10^8$ m).
+In Frame $S'$, events are at the same spatial point $\implies \Delta x' = 0$.
+Lorentz transform: $\Delta x' = \gamma (\Delta x - v \Delta t)$.
+\[ 0 = \gamma (\Delta x - v \Delta t) \implies v = \frac{\Delta x}{\Delta t} \]
+\[ v = \frac{4c}{5} = 0.8c \]
+(i) Velocity of $S'$ relative to $S$ is $\mathbf{0.8c}$.
+
+(ii) Time interval in $S'$:
+\[ \Delta t' = \gamma (\Delta t - \frac{v \Delta x}{c^2}) \]
+$\gamma = \frac{1}{\sqrt{1 - 0.8^2}} = \frac{1}{0.6} = \frac{5}{3}$.
+\[ \Delta t' = \frac{5}{3} \left( 5 - \frac{(0.8c)(4c)}{c^2} \right) = \frac{5}{3} (5 - 3.2) = \frac{5}{3} (1.8) = 3 \text{ s} \]
+\textbf{Answer:} $\mathbf{3 \text{ s}}$.
+
+\subsection*{(b) Volume of Moving Cube}
+Let $l$ be the rest length of the cube's sides.
+Frame S: Cube moves with velocity $u$.
+Observer moves with velocity $v$ in S.
+The observer is in a frame $S'$ moving at $v$.
+We need the velocity of the cube relative to the observer, $w$:
+\[ w = \frac{u - v}{1 - \frac{uv}{c^2}} \]
+The length of the cube in the direction of motion as measured by the observer is contracted by the Lorentz factor $\gamma_w = \frac{1}{\sqrt{1 - w^2/c^2}}$.
+\[ l' = \frac{l}{\gamma_w} = l \sqrt{1 - \frac{w^2}{c^2}} \]
+The transverse dimensions remain $l$.
+Volume measured by observer:
+\[ V' = l \cdot l \cdot l' = l^3 \sqrt{1 - \frac{w^2}{c^2}} \]
+Substitute $w$:
+\[ 1 - \frac{w^2}{c^2} = 1 - \frac{1}{c^2} \left( \frac{u-v}{1-uv/c^2} \right)^2 = \frac{(1-uv/c^2)^2 - (u/c - v/c)^2}{(1-uv/c^2)^2} \]
+Let $\beta_u = u/c, \beta_v = v/c$.
+Numerator: $(1 - \beta_u \beta_v)^2 - (\beta_u - \beta_v)^2 = (1 - \beta_u^2)(1 - \beta_v^2)$.
+Therefore:
+\[ V' = l^3 \frac{\sqrt{(1 - u^2/c^2)(1 - v^2/c^2)}}{1 - uv/c^2} \]
+
+\end{document}

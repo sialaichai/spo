@@ -1,0 +1,284 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+
+% Page Setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SPhO 2018 Theory Paper 1 Solutions}
+\rhead{\thepage}
+
+\title{\textbf{31\textsuperscript{st} Singapore Physics Olympiad (SPhO) 2018} \\ \Large Theory Paper 1 Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\section*{Question 1: Projectile Motion}
+
+\subsection*{Problem Statement Summary}
+Particle X is projected with speed $V$ at $30^\circ$ from horizontal. At X's highest point, particle Y is dropped from a tall building. They collide at the base. Y takes $0.17$ s to pass a $5.0$ m window whose base is $50.0$ m above ground.
+Find:
+(a) Height of the building.
+(b) Value of $V$.
+(c) Horizontal distance of X's projection point from the building.
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Height of the Building}
+Let the height of the building be $H$.
+Let the window height be $h_w = 5.0$ m.
+The base of the window is at $h_{base} = 50.0$ m.
+Top of the window is at $h_{top} = 50.0 + 5.0 = 55.0$ m.
+Let $t_1$ be the time taken for Y to fall from the roof (height $H$) to the top of the window ($H - 55.0$ m fallen).
+Let $t_2$ be the time taken for Y to fall from the roof to the bottom of the window ($H - 50.0$ m fallen).
+We are given $\Delta t = t_2 - t_1 = 0.17$ s.
+
+Using $s = \frac{1}{2}gt^2$:
+\[ H - 55 = \frac{1}{2} g t_1^2 \implies t_1 = \sqrt{\frac{2(H-55)}{g}} \]
+\[ H - 50 = \frac{1}{2} g t_2^2 \implies t_2 = \sqrt{\frac{2(H-50)}{g}} \]
+
+Substitute into $t_2 - t_1 = 0.17$:
+\[ \sqrt{\frac{2(H-50)}{9.81}} - \sqrt{\frac{2(H-55)}{9.81}} = 0.17 \]
+Let $k = \sqrt{\frac{2}{9.81}} \approx 0.4515$.
+\[ k (\sqrt{H-50} - \sqrt{H-55}) = 0.17 \]
+\[ \sqrt{H-50} - \sqrt{H-55} = \frac{0.17}{0.4515} \approx 0.3765 \]
+
+Let $A = \sqrt{H-50}$ and $B = \sqrt{H-55}$. Then $A - B = 0.3765$.
+Also $A^2 - B^2 = (H-50) - (H-55) = 5$.
+$(A-B)(A+B) = 5 \implies 0.3765 (A+B) = 5 \implies A+B = \frac{5}{0.3765} \approx 13.28$.
+
+Adding the two equations:
+\[ 2A = 13.28 + 0.3765 = 13.6565 \implies A \approx 6.828 \]
+\[ A^2 = H - 50 = (6.828)^2 \approx 46.62 \]
+\[ H = 50 + 46.62 = 96.62 \text{ m} \]
+
+\textbf{Answer:} The height of the building is approximately \textbf{96.6 m}.
+
+\subsubsection*{(b) Value of $V$}
+Particle Y is dropped when X is at its highest point. They collide at the ground.
+Let $t_{fall}$ be the time for Y to fall from $H$ to ground.
+\[ H = \frac{1}{2} g t_{fall}^2 \implies t_{fall} = \sqrt{\frac{2 \times 96.62}{9.81}} \approx 4.438 \text{ s} \]
+This $t_{fall}$ is also the time it takes for X to travel from its highest point to the ground.
+For a projectile projected from ground level to ground level, the time from max height to ground is half the total time of flight. Thus, the time to reach max height is also $t_{fall}$.
+However, X is projected from ground and lands on ground (assumed, as collision is at base).
+Time to reach max height $t_{up} = \frac{V \sin \theta}{g}$.
+We equate $t_{up} = t_{fall} = 4.438$ s.
+Given $\theta = 30^\circ$:
+\[ \frac{V \sin 30^\circ}{9.81} = 4.438 \]
+\[ V (0.5) = 4.438 \times 9.81 = 43.54 \]
+\[ V = 2 \times 43.54 = 87.08 \text{ m/s} \]
+
+\textbf{Answer:} $V \approx \textbf{87.1 m/s}$.
+
+\subsubsection*{(c) Distance of Point of Projection}
+The horizontal distance $R$ is the range of the projectile.
+Since the collision occurs at the base, X travels its full horizontal range.
+Since $t_{fall}$ is half the flight time, total flight time $T = 2 t_{fall} = 8.876$ s.
+Horizontal velocity $V_x = V \cos 30^\circ = 87.08 \times \frac{\sqrt{3}}{2} \approx 75.41$ m/s.
+Distance $d = V_x \times T = 75.41 \times 8.876 \approx 669$ m.
+
+Alternatively, Y falls vertically. X must reach Y's horizontal position. Since Y drops from a building, and X hits Y at the base, the impact point is at the base of the building.
+Distance = Range of projectile.
+
+\textbf{Answer:} Distance $\approx \textbf{669 m}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\section*{Question 2: Simple Harmonic Motion and Friction}
+
+\subsection*{(a) Horizontal SHM and Friction}
+\textbf{Problem:} Period $T = 2.0$ s. Object slides when amplitude $A = 0.4$ m. Find coefficient of static friction $\mu_s$.
+
+\textbf{Solution:}
+Angular frequency $\omega = \frac{2\pi}{T} = \frac{2\pi}{2.0} = \pi$ rad/s.
+Maximum acceleration in SHM is $a_{max} = \omega^2 A$.
+The force providing this acceleration is static friction $f_s \le \mu_s N = \mu_s mg$.
+Sliding starts when required force equals maximum static friction:
+\[ m a_{max} = \mu_s m g \]
+\[ \omega^2 A = \mu_s g \]
+\[ \mu_s = \frac{\omega^2 A}{g} = \frac{\pi^2 (0.4)}{9.81} \]
+\[ \mu_s = \frac{9.8696 \times 0.4}{9.81} \approx \frac{3.948}{9.81} \approx 0.402 \]
+
+\textbf{Answer:} $\mu_s \approx \textbf{0.40}$.
+
+\subsection*{(b) Vertical SHM and Contact}
+\textbf{Problem:} Period $T' = 1.5$ s. Find maximum amplitude $A'$ for object to remain in contact.
+
+\textbf{Solution:}
+Vertical SHM: Acceleration $a(t) = -\omega'^2 y(t)$.
+Forces on object: Gravity $mg$ (down), Normal force $N$ (up).
+Newton's 2nd Law (upward positive): $N - mg = m a$.
+$N = m(g + a)$.
+Contact is lost when $N=0$. This is most critical at the top of the oscillation where acceleration is maximum downwards ($a = -a_{max} = -\omega'^2 A'$).
+Condition for contact: $g - \omega'^2 A' \ge 0 \implies A' \le \frac{g}{\omega'^2}$.
+
+Calculate $\omega'$:
+\[ \omega' = \frac{2\pi}{1.5} = \frac{4\pi}{3} \text{ rad/s} \]
+Calculate $A'_{max}$:
+\[ A'_{max} = \frac{9.81}{(4\pi/3)^2} = \frac{9.81}{16\pi^2 / 9} = \frac{9.81 \times 9}{16 \times 9.87} \]
+\[ A'_{max} \approx \frac{88.29}{157.9} \approx 0.559 \text{ m} \]
+
+\textbf{Answer:} Max Amplitude $\approx \textbf{0.56 m}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\section*{Question 3: Atmospheric Physics}
+
+\subsection*{(a) Pressure-Height Differential Equation}
+Consider a slice of gas of height $\Delta z$ and area $A$.
+Mass of slice $\Delta m = \rho A \Delta z$.
+Weight $W = \rho g A \Delta z$.
+Force balance: $P(z) A - P(z+\Delta z) A - W = 0$.
+$P(z) - P(z+\Delta z) = \rho g \Delta z$.
+$\Delta P = -\rho g \Delta z$.
+Equation:
+\[ \frac{dP}{dz} = -\rho g \]
+
+\subsection*{(b) Isothermal Atmosphere Pressure Law}
+Assume Ideal Gas Law: $PV = NkT \implies P = \frac{N}{V} k T = n k T$, where $n$ is number density.
+Density $\rho = n m$ ($m$ is mass of one molecule).
+$\rho = \frac{P m}{k T}$.
+Substitute into differential equation:
+\[ \frac{dP}{dz} = - \frac{P m g}{k T} \]
+\[ \frac{dP}{P} = - \frac{mg}{kT} dz \]
+Integrate from $z=0$ ($P(0)$) to $z$:
+\[ \ln \frac{P(z)}{P(0)} = - \frac{mg}{kT} z \]
+\[ P(z) = P(0) e^{-\frac{mgz}{kT}} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\section*{Question 4: Waves on Strings}
+
+\subsection*{(a) Wave Speed Equation}
+The speed $v$ of a wave on a string depends on tension $F_T$ and linear mass density $\mu = m/l$.
+\[ v = \sqrt{\frac{F_T}{\mu}} = \sqrt{\frac{F_T}{m/l}} = \sqrt{\frac{F_T l}{m}} \]
+
+\subsection*{(b) Composition of Brass Wire}
+\textbf{Given:}
+\begin{itemize}
+    \item Copper wire: $f_{Cu} = 256 + 5 = 261$ Hz or $256 - 5 = 251$ Hz.
+    \item Brass wire: $f_{Brass} = 256$ Hz (Resonance).
+    \item Dimensions and Tension are same for both.
+    \item Densities: $\rho_{Cu} = 8940 \text{ kg/m}^3$, $\rho_{Zn} = 7140 \text{ kg/m}^3$.
+\end{itemize}
+Frequency of fundamental mode: $f = \frac{v}{2l} = \frac{1}{2l} \sqrt{\frac{F_T}{\rho A}}$.
+Since $l, F_T, A$ are constant: $f \propto \frac{1}{\sqrt{\rho}}$.
+\[ \frac{f_{Cu}}{f_{Brass}} = \sqrt{\frac{\rho_{Brass}}{\rho_{Cu}}} \]
+Squared:
+\[ \rho_{Brass} = \rho_{Cu} \left( \frac{f_{Cu}}{f_{Brass}} \right)^2 \]
+
+We need to decide if $f_{Cu}$ is 251 or 261 Hz.
+Since $\rho_{Zn} < \rho_{Cu}$, adding Zinc to Copper to make Brass decreases the density ($\rho_{Brass} < \rho_{Cu}$).
+Since $f \propto 1/\sqrt{\rho}$, lower density means higher frequency.
+Thus, $f_{Brass} > f_{Cu}$.
+Since $f_{Brass} = 256$ Hz, we must have $f_{Cu} = 251$ Hz.
+(Check: Beat freq = 5 Hz. $256 - 251 = 5$. Correct).
+
+Calculate $\rho_{Brass}$:
+\[ \rho_{Brass} = 8940 \left( \frac{251}{256} \right)^2 = 8940 (0.9612) \approx 8593 \text{ kg/m}^3 \]
+
+\textbf{Composition Calculation:}
+Let $x$ be the percentage by mass of Zinc.
+Consider a unit volume $V=1$ of Brass.
+$\rho_{Brass} = \frac{M_{total}}{V_{total}} = \frac{M_{Cu} + M_{Zn}}{V_{Cu} + V_{Zn}}$ (assuming volumes are additive).
+Assumption: Volume is additive. $V_{total} = V_{Cu} + V_{Zn}$.
+Let $M_{total}$ be the mass. $M_{Zn} = x M_{total}$, $M_{Cu} = (1-x) M_{total}$.
+$V_{Zn} = \frac{x M_{total}}{\rho_{Zn}}$, $V_{Cu} = \frac{(1-x) M_{total}}{\rho_{Cu}}$.
+$\frac{1}{\rho_{Brass}} = \frac{V_{total}}{M_{total}} = \frac{x}{\rho_{Zn}} + \frac{1-x}{\rho_{Cu}}$.
+
+Substitute values:
+\[ \frac{1}{8593} = \frac{x}{7140} + \frac{1-x}{8940} \]
+Multiply by $10^8$ for easier handling:
+\[ \frac{10^8}{8593} = 11637 \]
+\[ \frac{10^8}{7140} x + \frac{10^8}{8940} (1-x) = 14006 x + 11186 (1-x) \]
+\[ 11637 = 14006 x + 11186 - 11186 x \]
+\[ 11637 - 11186 = 2820 x \]
+\[ 451 = 2820 x \]
+\[ x = \frac{451}{2820} \approx 0.160 \]
+
+\textbf{Answer:} Zinc percentage by mass is approximately \textbf{16\%}.
+Assumption: The volume of the alloy is the sum of the volumes of the constituents.
+
+\newpage
+
+% ==========================================
+% QUESTION 5
+% ==========================================
+\section*{Question 5: Radioactive Decay and Blood Volume}
+
+\subsection*{(a) Decay Constant}
+Half-life $T_{1/2} = 8.025$ days.
+Convert to seconds or keep in days? Activity counts are in 30 mins.
+Let's work in days first.
+$\lambda = \frac{\ln 2}{T_{1/2}} = \frac{0.6931}{8.025} \approx 0.08637 \text{ day}^{-1}$.
+
+\subsection*{(b) Total Blood Volume}
+\textbf{Given:}
+\begin{itemize}
+    \item Injected volume $V_{inj} = \SI{5.00}{ml}$.
+    \item Concentration of ${}^{131}I$: $C_0 = 1.00 \times 10^{-10} \text{ kg/m}^3$.
+    \item Sample volume $V_{sample} = \SI{5.00}{ml}$.
+    \item Time elapsed $t = 24$ hours = 1 day.
+    \item Sample Activity: $N_{counts} = 3171$ in 30 mins. Rate $R = \frac{3171}{30 \times 60}$ cps (Bq) if count efficiency is 100\%. Or usually just use count rate proportional to activity.
+\end{itemize}
+
+\textbf{Solution:}
+1. \textbf{Calculate Initial Amount of Iodine:}
+$m_0 = C_0 V_{inj} = (1.00 \times 10^{-10} \text{ kg/m}^3) (5.00 \times 10^{-6} \text{ m}^3)$.
+$m_0 = 5.00 \times 10^{-16}$ kg.
+Number of atoms $N_0 = \frac{m_0}{M_{atomic}} N_A$.
+Molar mass of ${}^{131}I \approx 131$ g/mol $= 0.131$ kg/mol.
+$N_0 = \frac{5.00 \times 10^{-16}}{0.131} \times 6.02 \times 10^{23} \approx 2.30 \times 10^9$ atoms.
+
+2. \textbf{Amount Remaining after 1 day:}
+$N(t) = N_0 e^{-\lambda t}$.
+$\lambda = 0.08637$ day$^{-1}$, $t = 1$ day.
+$N(1) = 2.30 \times 10^9 \times e^{-0.08637} = 2.30 \times 10^9 \times 0.917 = 2.11 \times 10^9$ atoms.
+This total number of atoms is distributed in the total blood volume $V_{total}$.
+
+3. \textbf{Activity of Sample:}
+Activity $A_{sample} = \lambda N_{sample}$.
+Measured Rate $R_{sample} = \frac{3171}{1800 \text{ s}} \approx 1.76$ Bq.
+Assume 100\% counting efficiency (Assumption).
+$N_{sample} = \frac{R_{sample}}{\lambda_{sec}}$.
+$\lambda_{sec} = \frac{0.08637}{24 \times 3600} \approx 1.00 \times 10^{-6} \text{ s}^{-1}$.
+$N_{sample} = \frac{1.76}{1.00 \times 10^{-6}} \approx 1.76 \times 10^6$ atoms.
+
+4. \textbf{Volume Calculation:}
+Concentration is uniform. Ratio of atoms equals ratio of volumes.
+$\frac{N_{sample}}{V_{sample}} = \frac{N(1)}{V_{total}}$.
+$V_{total} = V_{sample} \frac{N(1)}{N_{sample}}$.
+$V_{total} = 5.00 \text{ ml} \times \frac{2.11 \times 10^9}{1.76 \times 10^6}$.
+$V_{total} = 5.00 \times 1200 = 6000 \text{ ml} = 6.00$ Liters.
+
+\textbf{Answer:} Total blood volume $\approx \textbf{6.00 L}$.
+Assumptions:
+1. Iodine distributes uniformly in blood.
+2. No iodine is excreted or lost from the blood in 24 hours (biological half-life is infinite or ignored).
+3. Detector efficiency is 100\%.
+
+\end{document}

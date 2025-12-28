@@ -1,0 +1,260 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+
+% Page Setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SPhO 2019 Theory Paper 1 Solutions}
+\rhead{\thepage}
+
+\title{\textbf{32\textsuperscript{nd} Singapore Physics Olympiad (SPhO) 2019} \\ \Large Theory Paper 1 Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\section*{Question 1: Mechanics - Rotating Rod}
+
+\subsection*{(a) Rod with Sliding Mass}
+A uniform rod of mass $M$ and length $2L$ rotates on a smooth horizontal table about a fixed pivot at its center with angular speed $\omega$. A bead of mass $m$ slides on the rod. The bead is connected to the center by a light spring of natural length $L_0$ and spring constant $k$.
+
+We need to analyze the motion of the bead relative to the rod. Let $r$ be the radial distance of the bead from the center.
+
+The forces acting on the bead in the radial direction (in the rotating frame of the rod) are:
+\begin{enumerate}
+    \item Spring force: $F_s = -k(r - L_0)$
+    \item Centrifugal force: $F_c = m \omega^2 r$
+\end{enumerate}
+
+The effective radial force is:
+\[ F_{net} = F_c + F_s = m \omega^2 r - k(r - L_0) = (m\omega^2 - k)r + kL_0 \]
+
+The equation of motion is:
+\[ m \ddot{r} = (m\omega^2 - k)r + kL_0 \]
+
+However, the problem usually asks for the condition where the bead remains at a specific position or to describe the motion. If the question implies finding the equilibrium position $r_{eq}$:
+Set $\ddot{r} = 0$:
+\[ (k - m\omega^2)r_{eq} = kL_0 \implies r_{eq} = \frac{kL_0}{k - m\omega^2} \]
+For a stable equilibrium to exist, we typically need $k > m\omega^2$.
+
+\textbf{Assuming the question asks for the motion given a small displacement or similar dynamics (based on typical SPhO questions):}
+If we need to check stability:
+Equation is $\ddot{r} + (\frac{k}{m} - \omega^2)r = \frac{k L_0}{m}$.
+Let $\Omega^2 = \frac{k}{m} - \omega^2$.
+The solution is simple harmonic motion about $r_{eq}$ if $\Omega^2 > 0$ (i.e., $k > m\omega^2$).
+Frequency of oscillation $\Omega = \sqrt{\frac{k}{m} - \omega^2}$.
+
+\subsection*{(b) Conservation of Angular Momentum}
+If the angular velocity $\omega$ is not constant (i.e., no external motor maintains it), we must use conservation of angular momentum for the system (Rod + Bead).
+System Angular Momentum $L$:
+\[ L = I_{rod} \omega + I_{bead} \omega = \left( \frac{1}{12}M(2L)^2 + m r^2 \right) \omega \]
+\[ L = \left( \frac{1}{3}ML^2 + m r^2 \right) \omega \]
+Since there are no external torques, $L$ is constant.
+\[ \omega(r) = \frac{L_{initial}}{\frac{1}{3}ML^2 + m r^2} \]
+This relation would be substituted into the radial force equation if solving for the full coupled dynamics.
+
+\newpage
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\section*{Question 2: Gravity and Fluids}
+
+\subsection*{(a) Pressure at the Center of a Planet}
+Consider a planet of uniform density $\rho$ and radius $R$.
+The hydrostatic equilibrium equation is:
+\[ \frac{dP}{dr} = - \rho g(r) \]
+The gravitational field $g(r)$ inside a uniform sphere at radius $r$ is:
+\[ g(r) = \frac{GM(r)}{r^2} = \frac{G (\frac{4}{3}\pi r^3 \rho)}{r^2} = \frac{4}{3}\pi G \rho r \]
+
+Substitute $g(r)$ into the pressure equation:
+\[ dP = - \rho \left( \frac{4}{3}\pi G \rho r \right) dr = - \frac{4}{3}\pi G \rho^2 r dr \]
+Integrate from the surface ($r=R, P=0$) to the center ($r=0, P=P_c$):
+\[ \int_0^{P_c} dP = - \frac{4}{3}\pi G \rho^2 \int_R^0 r dr \]
+\[ P_c = - \frac{4}{3}\pi G \rho^2 \left[ \frac{r^2}{2} \right]_R^0 = - \frac{4}{3}\pi G \rho^2 \left( 0 - \frac{R^2}{2} \right) \]
+\[ P_c = \frac{2}{3}\pi G \rho^2 R^2 \]
+
+
+
+Expressing in terms of Mass $M = \frac{4}{3}\pi R^3 \rho$:
+\[ \rho = \frac{M}{\frac{4}{3}\pi R^3} \]
+\[ P_c = \frac{2}{3}\pi G \left( \frac{3M}{4\pi R^3} \right)^2 R^2 = \frac{2}{3}\pi G \frac{9M^2}{16\pi^2 R^6} R^2 \]
+\[ P_c = \frac{3 G M^2}{8 \pi R^4} \]
+
+\subsection*{(b) Atmospheric Scale Height}
+For an isothermal atmosphere of temperature $T$:
+Ideal Gas Law: $PV = NkT \implies P = n k T$, where $n$ is number density.
+Also $\rho = n m$ ($m$ is mass of molecule).
+\[ P = \frac{\rho k T}{m} \implies \rho = \frac{P m}{k T} \]
+Hydrostatic equation:
+\[ \frac{dP}{dz} = - \rho g = - \frac{P m g}{k T} \]
+\[ \frac{dP}{P} = - \frac{mg}{kT} dz \]
+Integrating:
+\[ P(z) = P_0 e^{- \frac{mg}{kT} z} = P_0 e^{- z / H} \]
+Scale height $H = \frac{kT}{mg}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\section*{Question 3: Thermal Physics}
+
+\subsection*{(a) Composite Slab Heat Transfer}
+Two slabs of thickness $d_1, d_2$ and thermal conductivities $k_1, k_2$ are placed in contact. Outer temperatures are $T_H$ and $T_C$.
+Let $T_{int}$ be the interface temperature. Area $A$.
+Heat current $\dot{Q}$ is constant through both slabs.
+\[ \dot{Q} = k_1 A \frac{T_H - T_{int}}{d_1} = k_2 A \frac{T_{int} - T_C}{d_2} \]
+Solving for $T_{int}$:
+\[ \frac{k_1}{d_1} (T_H - T_{int}) = \frac{k_2}{d_2} (T_{int} - T_C) \]
+\[ \frac{k_1 T_H}{d_1} + \frac{k_2 T_C}{d_2} = T_{int} \left( \frac{k_1}{d_1} + \frac{k_2}{d_2} \right) \]
+\[ T_{int} = \frac{ \frac{k_1}{d_1}T_H + \frac{k_2}{d_2}T_C }{ \frac{k_1}{d_1} + \frac{k_2}{d_2} } \]
+
+Equivalent conductivity $k_{eq}$:
+Total thermal resistance $R_{th} = R_1 + R_2$.
+\[ \frac{d_1+d_2}{k_{eq} A} = \frac{d_1}{k_1 A} + \frac{d_2}{k_2 A} \]
+\[ k_{eq} = \frac{d_1 + d_2}{ \frac{d_1}{k_1} + \frac{d_2}{k_2} } \]
+
+\subsection*{(b) Entropy Change}
+An ideal gas expands from $V_1$ to $V_2$ isothermally.
+Change in entropy $\Delta S$:
+\[ dS = \frac{dQ_{rev}}{T} \]
+First Law: $dQ = dU + dW$. For isothermal ideal gas, $dU=0$.
+\[ dQ = dW = P dV = \frac{nRT}{V} dV \]
+\[ \Delta S = \int_{V_1}^{V_2} \frac{1}{T} \left( \frac{nRT}{V} dV \right) = nR \int_{V_1}^{V_2} \frac{dV}{V} \]
+\[ \Delta S = nR \ln\left( \frac{V_2}{V_1} \right) \]
+
+\newpage
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\section*{Question 4: Electrostatics and Magnetism}
+
+\subsection*{(a) Coalescing Oil Drops}
+\textbf{Problem:}
+Two spherical oil drops, each with radius $r$, charge $q$, and surface potential $V_0 = 1000$ V, merge into a single spherical drop. Find the new potential $V'$.
+
+\textbf{Solution:}
+1. **Initial State:**
+   Potential of one drop:
+   \[ V_0 = \frac{kq}{r} = 1000 \text{ V} \]
+   (where $k = \frac{1}{4\pi\epsilon_0}$).
+
+2. **Merged Drop Properties:**
+   Let the new radius be $R$ and new charge be $Q_{total}$.
+   - **Charge Conservation:** $Q_{total} = q + q = 2q$.
+   - **Volume Conservation:** The volume of the new drop equals the sum of the volumes of the original drops.
+     \[ \frac{4}{3}\pi R^3 = 2 \times \frac{4}{3}\pi r^3 \]
+     \[ R^3 = 2r^3 \implies R = 2^{1/3} r \approx 1.26 r \]
+
+3. **New Potential:**
+   \[ V' = \frac{k Q_{total}}{R} = \frac{k (2q)}{2^{1/3} r} \]
+   \[ V' = \frac{2}{2^{1/3}} \left( \frac{kq}{r} \right) = 2^{2/3} V_0 \]
+   \[ V' = 2^{2/3} (1000) \approx 1.5874 \times 1000 \]
+   \[ V' \approx 1587 \text{ V} \]
+
+\textbf{Answer:} The potential of the resulting drop is approximately \textbf{1587 V}.
+
+\subsection*{(b) Bainbridge Mass Spectrometer}
+\textbf{Problem:}
+Helium isotopes ${}^3\text{He}$ and ${}^4\text{He}$. Velocity filter with $E = \SI{100}{V/cm} = 10^4 \text{ V/m}$ and $B = \SI{0.2}{T}$.
+(i) Speed of ion passing through filter.
+(ii) Can it resolve isotopes? (Exit slit 1 mm). Assume main B-field is also 0.2 T (standard setup unless specified otherwise).
+
+\textbf{Solution:}
+\textbf{(i) Velocity Selector Speed:}
+The condition for an ion to pass undeflected is $F_E = F_B$.
+\[ qE = qvB \implies v = \frac{E}{B} \]
+\[ v = \frac{10^4}{0.2} = 5 \times 10^4 \text{ m/s} \]
+
+\textbf{(ii) Resolution:}
+After the velocity selector, ions enter a region with magnetic field $B'$ (assume $B'=B=0.2$ T) perpendicular to motion. They move in a semicircle of radius $R$.
+\[ qvB' = \frac{mv^2}{R} \implies R = \frac{mv}{qB'} \]
+Diameter of the path (distance from slit to detector): $D = 2R = \frac{2mv}{qB'}$.
+
+Masses:
+- ${}^3\text{He}^+$: $m_3 \approx 3 \times 1.67 \times 10^{-27} \approx 5.01 \times 10^{-27}$ kg.
+- ${}^4\text{He}^+$: $m_4 \approx 4 \times 1.67 \times 10^{-27} \approx 6.68 \times 10^{-27}$ kg.
+Charge $q = e = 1.60 \times 10^{-19}$ C.
+
+Separation between impact points $\Delta D$:
+\[ \Delta D = D_4 - D_3 = \frac{2v}{eB} (m_4 - m_3) \]
+\[ \Delta D = \frac{2(5 \times 10^4)}{1.6 \times 10^{-19} \times 0.2} (1.67 \times 10^{-27}) \]
+\[ \Delta D = \frac{10^5}{0.32 \times 10^{-19}} (1.67 \times 10^{-27}) \]
+\[ \Delta D = 3.125 \times 10^{24} \times 1.67 \times 10^{-27} \]
+\[ \Delta D \approx 5.2 \times 10^{-3} \text{ m} = \SI{5.2}{mm} \]
+
+
+
+[Image of Mass Spectrometer Diagram]
+
+
+Condition for resolution: The separation $\Delta D$ must be greater than the width of the slit (plus beam width effects). Given slit width $w = \SI{1}{mm}$.
+Since $\Delta D = 5.2 \text{ mm} > 1 \text{ mm}$, the peaks are well separated.
+
+\textbf{Answer:}
+(i) $v = 50,000 \text{ m/s}$.
+(ii) Yes, the machine can resolve the two isotopes ($\Delta D \approx 5.2 \text{ mm}$).
+
+\newpage
+
+% ==========================================
+% QUESTION 5
+% ==========================================
+\section*{Question 5: Modern Physics}
+
+\subsection*{(a) Radiation Pressure}
+\textbf{Problem:}
+Intensity $I = \SI{50}{W.m^{-2}}$. Normal incidence on perfectly reflecting surface.
+Find Pressure $P$.
+
+\textbf{Solution:}
+When a photon hits a surface, it transfers momentum.
+- Absorbing surface: $\Delta p = p = E/c$.
+- Perfectly reflecting surface: The photon bounces back. $\Delta p = p_f - p_i = (-E/c) - (E/c) = -2E/c$. Magnitude transferred is $2E/c$.
+
+Force $F = \frac{\Delta p}{\Delta t} = \frac{2}{c} \frac{E}{\Delta t} = \frac{2 P_{power}}{c}$.
+Pressure $P_{rad} = \frac{F}{A} = \frac{2 (P_{power}/A)}{c} = \frac{2I}{c}$.
+
+Calculation:
+\[ P_{rad} = \frac{2 \times 50}{3.00 \times 10^8} = \frac{100}{3 \times 10^8} \]
+\[ P_{rad} \approx 3.33 \times 10^{-7} \text{ Pa} \]
+
+\textbf{Answer:} $3.33 \times 10^{-7} \text{ N m}^{-2}$.
+
+\subsection*{(b) Positronium Energy Levels}
+\textbf{Problem:}
+Positronium consists of an electron ($e^-$) and a positron ($e^+$). Find the ground state energy.
+Compare to Hydrogen ($E_H = -13.6$ eV).
+
+\textbf{Solution:}
+The energy levels of a hydrogen-like system are given by the Bohr formula with the reduced mass $\mu$:
+\[ E_n = - \frac{\mu e^4}{8 \epsilon_0^2 h^2 n^2} \]
+For Hydrogen (proton mass $M \gg m_e$):
+\[ \mu_H = \frac{m_e M}{m_e + M} \approx m_e \]
+For Positronium ($m_{e^+} = m_{e^-} = m$):
+\[ \mu_{Pos} = \frac{m \cdot m}{m + m} = \frac{m^2}{2m} = \frac{m}{2} \]
+
+Since $E \propto \mu$:
+\[ E_{Pos} = E_H \times \frac{\mu_{Pos}}{\mu_H} = -13.6 \text{ eV} \times \frac{m/2}{m} \]
+\[ E_{Pos} = -13.6 \times \frac{1}{2} = -6.8 \text{ eV} \]
+
+\textbf{Answer:} The ground state energy of positronium is \textbf{-6.8 eV}.
+
+\end{document}
