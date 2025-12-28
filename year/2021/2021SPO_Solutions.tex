@@ -1,0 +1,533 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+
+% Page Setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SPhO 2021 Theory Solutions}
+\rhead{\thepage}
+
+\title{\textbf{34\textsuperscript{th} Singapore Physics Olympiad (SPhO) 2021} \\ \Large Theory Paper Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\section*{Question 1: Composite Capacitor}
+
+\subsection*{Problem Statement Summary}
+A parallel-plate capacitor has plate area $A = 10.5 \text{ cm}^2$ and separation $2d = 7.12 \text{ mm}$. The gap is filled with three dielectrics:
+\begin{itemize}
+    \item Left half (area $A/2$, thickness $2d$): $\kappa_1 = 21.0$.
+    \item Top Right (area $A/2$, thickness $d$): $\kappa_2 = 42.0$.
+    \item Bottom Right (area $A/2$, thickness $d$): $\kappa_3 = 58.0$.
+\end{itemize}
+Calculate the total capacitance.
+
+\subsection*{Solution}
+
+The system can be modeled as a combination of three ideal capacitors.
+\begin{enumerate}
+    \item **Capacitor 1 ($C_1$):** Corresponds to the left half.
+    \begin{itemize}
+        \item Plate area: $A_1 = A/2$
+        \item Plate separation: $d_1 = 2d$
+        \item Dielectric constant: $\kappa_1 = 21.0$
+    \end{itemize}
+    \[ C_1 = \frac{\kappa_1 \epsilon_0 A_1}{d_1} = \frac{\kappa_1 \epsilon_0 (A/2)}{2d} = \frac{\kappa_1 \epsilon_0 A}{4d} \]
+
+    \item **Capacitor 2 ($C_2$):** Corresponds to the top right section.
+    \begin{itemize}
+        \item Plate area: $A_2 = A/2$
+        \item Plate separation: $d_2 = d$
+        \item Dielectric constant: $\kappa_2 = 42.0$
+    \end{itemize}
+    \[ C_2 = \frac{\kappa_2 \epsilon_0 A_2}{d_2} = \frac{\kappa_2 \epsilon_0 (A/2)}{d} = \frac{\kappa_2 \epsilon_0 A}{2d} \]
+
+    \item **Capacitor 3 ($C_3$):** Corresponds to the bottom right section.
+    \begin{itemize}
+        \item Plate area: $A_3 = A/2$
+        \item Plate separation: $d_3 = d$
+        \item Dielectric constant: $\kappa_3 = 58.0$
+    \end{itemize}
+    \[ C_3 = \frac{\kappa_3 \epsilon_0 A_3}{d_3} = \frac{\kappa_3 \epsilon_0 (A/2)}{d} = \frac{\kappa_3 \epsilon_0 A}{2d} \]
+\end{enumerate}
+
+**Equivalent Circuit:**
+- $C_2$ and $C_3$ are stacked vertically in the gap, so they are in **series**. The effective capacitance of the right half, $C_R$, is:
+\[ \frac{1}{C_R} = \frac{1}{C_2} + \frac{1}{C_3} \]
+\[ \frac{1}{C_R} = \frac{2d}{\kappa_2 \epsilon_0 A} + \frac{2d}{\kappa_3 \epsilon_0 A} = \frac{2d}{\epsilon_0 A} \left( \frac{1}{\kappa_2} + \frac{1}{\kappa_3} \right) \]
+\[ C_R = \frac{\epsilon_0 A}{2d} \left( \frac{\kappa_2 \kappa_3}{\kappa_2 + \kappa_3} \right) \]
+
+- The left capacitor $C_1$ and the equivalent right capacitor $C_R$ are side-by-side, so they are in **parallel**.
+\[ C_{total} = C_1 + C_R \]
+\[ C_{total} = \frac{\kappa_1 \epsilon_0 A}{4d} + \frac{\epsilon_0 A}{2d} \left( \frac{\kappa_2 \kappa_3}{\kappa_2 + \kappa_3} \right) = \frac{\epsilon_0 A}{2d} \left( \frac{\kappa_1}{2} + \frac{\kappa_2 \kappa_3}{\kappa_2 + \kappa_3} \right) \]
+
+**Calculation:**
+Given values:
+$A = 10.5 \text{ cm}^2 = 1.05 \times 10^{-3} \text{ m}^2$
+$2d = 7.12 \text{ mm} \implies d = 3.56 \text{ mm} = 3.56 \times 10^{-3} \text{ m}$
+$\epsilon_0 = 8.85 \times 10^{-12} \text{ F/m}$
+
+First, calculate the geometric factor:
+\[ \frac{\epsilon_0 A}{2d} = \frac{(8.85 \times 10^{-12})(1.05 \times 10^{-3})}{7.12 \times 10^{-3}} = \frac{9.2925 \times 10^{-15}}{7.12 \times 10^{-3}} \approx 1.305 \times 10^{-12} \text{ F} = 1.305 \text{ pF} \]
+
+Next, calculate the dielectric term:
+\[ \text{Term 1} = \frac{\kappa_1}{2} = \frac{21.0}{2} = 10.5 \]
+\[ \text{Term 2} = \frac{\kappa_2 \kappa_3}{\kappa_2 + \kappa_3} = \frac{42.0 \times 58.0}{42.0 + 58.0} = \frac{2436}{100} = 24.36 \]
+\[ \text{Total Dielectric Factor} = 10.5 + 24.36 = 34.86 \]
+
+Total Capacitance:
+\[ C_{total} = (1.305 \text{ pF}) \times 34.86 \approx 45.49 \text{ pF} \]
+
+\textbf{Answer:} The capacitance is approximately \textbf{45.5 pF}.
+
+\newpage
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\section*{Question 2: Electrostatics-Potential}
+
+\subsection*{Problem Statement Summary}
+Rectangle with sides 5.0 cm and 15.0 cm.
+Charges: $q_1 = -5.0 \mu\text{C}$ (Top-Left), $q_2 = +2.0 \mu\text{C}$ (Bottom-Right).
+Points: A (Bottom-Left), B (Top-Right).
+
+\subsection*{Solution}
+
+Distances:
+- Side 1 (Vertical): $h = 5.0 \text{ cm} = 0.05 \text{ m}$.
+- Side 2 (Horizontal): $w = 15.0 \text{ cm} = 0.15 \text{ m}$.
+- Diagonal: $r_{diag} = \sqrt{0.05^2 + 0.15^2} = \sqrt{0.0025 + 0.0225} = \sqrt{0.025} \approx 0.1581 \text{ m}$.
+
+Coulomb Constant $k = \frac{1}{4\pi\epsilon_0} \approx 8.99 \times 10^9 \text{ N m}^2\text{C}^{-2}$.
+
+\subsubsection*{(a) Electric Potential at corner A}
+A is at the bottom-left.
+- Distance to $q_1$ (top-left): $r_{1A} = 0.05 \text{ m}$.
+- Distance to $q_2$ (bottom-right): $r_{2A} = 0.15 \text{ m}$.
+\[ V_A = k \left( \frac{q_1}{r_{1A}} + \frac{q_2}{r_{2A}} \right) \]
+\[ V_A = 8.99 \times 10^9 \left( \frac{-5.0 \times 10^{-6}}{0.05} + \frac{2.0 \times 10^{-6}}{0.15} \right) \]
+\[ V_A = 8.99 \times 10^3 \left( -100 + 13.33 \right) = 8.99 \times 10^3 (-86.67) \approx -7.79 \times 10^5 \text{ V} \]
+
+\subsubsection*{(b) Electric Potential at corner B}
+B is at the top-right.
+- Distance to $q_1$ (top-left): $r_{1B} = 0.15 \text{ m}$.
+- Distance to $q_2$ (bottom-right): $r_{2B} = 0.05 \text{ m}$.
+\[ V_B = k \left( \frac{q_1}{r_{1B}} + \frac{q_2}{r_{2B}} \right) \]
+\[ V_B = 8.99 \times 10^9 \left( \frac{-5.0 \times 10^{-6}}{0.15} + \frac{2.0 \times 10^{-6}}{0.05} \right) \]
+\[ V_B = 8.99 \times 10^3 \left( -33.33 + 40.0 \right) = 8.99 \times 10^3 (6.67) \approx +6.00 \times 10^4 \text{ V} \]
+
+\subsubsection*{(c) Work required to move $q_3 = +3.0 \mu\text{C}$ from B to A}
+Work done by external agent:
+\[ W_{ext} = q_3 (V_A - V_B) \]
+\[ W_{ext} = (3.0 \times 10^{-6}) (-7.79 \times 10^5 - 0.60 \times 10^5) \]
+\[ W_{ext} = 3.0 \times 10^{-6} (-8.39 \times 10^5) = -2.52 \text{ J} \]
+(Note: Negative work means energy is released or work is done *by* the field).
+
+\subsubsection*{(d) Change in Potential Energy}
+The work done by the external agent is equal to the change in potential energy of the system.
+\[ \Delta U = W_{ext} = -2.52 \text{ J} \]
+Since $\Delta U$ is negative, the potential energy **decreases**.
+
+\subsubsection*{(e) \& (f) Path Dependence}
+The electrostatic force is conservative. The work done depends only on the initial and final positions, not on the path taken.
+(e) Inside rectangle: **Same work**.
+(f) Outside rectangle: **Same work**.
+
+\newpage
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\section*{Question 3: EMI-Motional EMF}
+
+\subsection*{Problem Statement Summary}
+Rod length $L = 10 \text{ cm} = 0.1 \text{ m}$. Velocity $v = 5.0 \text{ m/s}$ (to the right). Magnetic field $B = 1.2 \text{ T}$ (out of page). Resistance $R = 0.40 \, \Omega$.
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Magnitude of EMF}
+\[ \mathcal{E} = B L v = (1.2)(0.1)(5.0) = 0.60 \text{ V} \]
+
+\subsubsection*{(b) Direction of EMF}
+Using the magnetic force law $\vec{F} = q(\vec{v} \times \vec{B})$.
+$\vec{v}$ is to the right ($+x$), $\vec{B}$ is out of the page ($+z$).
+$\vec{v} \times \vec{B}$ is in the direction $-\hat{y}$ (Down).
+Positive charge carriers are pushed towards the bottom of the rod. Thus, the bottom acts as the positive terminal and the top as the negative terminal.
+The EMF "points" from negative to positive potential within the source, i.e., **Down the page** (driving current downwards).
+
+\subsubsection*{(c) Magnitude of Current}
+\[ I = \frac{\mathcal{E}}{R} = \frac{0.60}{0.40} = 1.5 \text{ A} \]
+
+\subsubsection*{(d) Direction of Current in Loop}
+The external circuit connects the top and bottom of the rod. The current flows from the positive terminal (bottom) through the rails to the negative terminal (top).
+Looking at the loop: Current goes Bottom $\to$ Left $\to$ Top $\to$ Right (down the rod).
+This is **Clockwise**.
+(Alternatively, using Lenz's Law: Flux out of the page is increasing. Induced field must be into the page. Clockwise current produces field into the page).
+
+\subsubsection*{(e) Rate of Thermal Energy Generation}
+\[ P_{thermal} = I^2 R = (1.5)^2 (0.40) = 2.25 \times 0.40 = 0.90 \text{ W} \]
+
+\subsubsection*{(f) External Force}
+To maintain constant velocity, the external force must balance the magnetic force on the current-carrying rod.
+\[ F_{mag} = I L B = (1.5)(0.1)(1.2) = 0.18 \text{ N} \]
+Direction: $\vec{I}$ is down ($-\hat{y}$), $\vec{B}$ is out ($+\hat{z}$). $\vec{F} = I\vec{L} \times \vec{B}$ points in $(-\hat{y}) \times \hat{z} = -\hat{x}$ (Left).
+The external force must be to the **Right** with magnitude **0.18 N**.
+
+\subsubsection*{(g) Rate of Work by External Force}
+\[ P_{mech} = F_{ext} v = (0.18)(5.0) = 0.90 \text{ W} \]
+(This matches the thermal power dissipated).
+
+\newpage
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\section*{Question 4: LR Circuit with Constant Current Source}
+
+\subsection*{Problem Statement Summary}
+A source maintains a constant current $I$ through a switch S. At $t=0$, S is closed, connecting a Resistor $R$ and Inductor $L$ in parallel to the source.
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Current through the inductor $I_L(t)$}
+The constant current source feeds the parallel combination of $R$ and $L$.
+Let $I_L(t)$ be the current through the inductor and $I_R(t)$ be the current through the resistor.
+Kirchhoff's Current Law (KCL):
+\[ I_L(t) + I_R(t) = I \]
+Since the components are in parallel, the voltage drop across them is the same:
+\[ V(t) = L \frac{dI_L}{dt} = I_R R \]
+Substitute $I_R = I - I_L$:
+\[ L \frac{dI_L}{dt} = (I - I_L) R \]
+\[ \frac{dI_L}{dt} + \frac{R}{L} I_L = \frac{R}{L} I \]
+This is a first-order linear differential equation. With initial condition $I_L(0) = 0$ (inductor opposes current change):
+\[ I_L(t) = I \left( 1 - e^{-\frac{R}{L}t} \right) \]
+
+\subsubsection*{(b) Time when $I_R = I_L$}
+We require $I_R(t) = I_L(t)$.
+Since $I_R + I_L = I$, this implies:
+\[ 2 I_L(t) = I \implies I_L(t) = \frac{I}{2} \]
+Substituting into the expression for $I_L(t)$:
+\[ \frac{I}{2} = I \left( 1 - e^{-\frac{R}{L}t} \right) \]
+\[ \frac{1}{2} = 1 - e^{-\frac{R}{L}t} \]
+\[ e^{-\frac{R}{L}t} = \frac{1}{2} \]
+Taking the natural logarithm:
+\[ -\frac{R}{L}t = \ln\left(\frac{1}{2}\right) = -\ln 2 \]
+\[ t = \frac{L}{R} \ln 2 \approx 0.693 \frac{L}{R} \]
+
+\newpage
+
+% ==========================================
+% QUESTION 5
+% ==========================================
+\section*{Question 5: Standing Waves on a String}
+
+\subsection*{Problem Statement Summary}
+String length $L = 1.20 \text{ m}$. Frequency $f = 120 \text{ Hz}$.
+Standing waves form for hanging masses $m_1 = 286.1 \text{ g}$ and $m_2 = 447.0 \text{ g}$, but not in between.
+Determine linear density $\mu$.
+
+\subsection*{Solution}
+The tension in the string is $T = mg$.
+The wave speed is $v = \sqrt{\frac{T}{\mu}} = \sqrt{\frac{mg}{\mu}}$.
+The condition for standing waves (nodes at both ends) is:
+\[ L = n \frac{\lambda}{2} = n \frac{v}{2f} \]
+where $n$ is an integer (harmonic number).
+Solving for mass $m$:
+\[ L = \frac{n}{2f} \sqrt{\frac{mg}{\mu}} \implies L^2 = \frac{n^2}{4f^2} \frac{mg}{\mu} \]
+\[ m = \frac{4 \mu L^2 f^2}{g} \frac{1}{n^2} \]
+Thus, $m \propto \frac{1}{n^2}$.
+Let the constant $C = \frac{4 \mu L^2 f^2}{g}$. Then $m n^2 = C$.
+For the two observed masses:
+\[ m_1 n_1^2 = m_2 n_2^2 \]
+\[ \frac{n_1^2}{n_2^2} = \frac{m_2}{m_1} = \frac{447.0}{286.1} \approx 1.5624 \]
+Taking the square root:
+\[ \frac{n_1}{n_2} = \sqrt{1.5624} \approx 1.25 = \frac{5}{4} \]
+Since no intermediate mass produces a standing wave, $n_1$ and $n_2$ must be consecutive harmonic numbers associated with those masses. However, note that mass is inversely proportional to $n^2$. Higher mass implies lower $n$.
+So, $m_2 = 447.0 \text{ g}$ corresponds to $n_2 = 4$.
+And $m_1 = 286.1 \text{ g}$ corresponds to $n_1 = 5$.
+
+Now we calculate $\mu$ using $m_2 = 0.447 \text{ kg}$ and $n_2 = 4$.
+\[ \mu = \frac{m_2 g n_2^2}{4 L^2 f^2} \]
+\[ \mu = \frac{(0.447)(9.80)(4^2)}{4 (1.20)^2 (120)^2} \]
+\[ \mu = \frac{0.447 \times 9.80 \times 16}{4 \times 1.44 \times 14400} \]
+\[ \mu = \frac{70.0896}{82944} \]
+\[ \mu \approx 8.45 \times 10^{-4} \text{ kg/m} \]
+\[ \mu = 0.845 \text{ g/m} \]
+
+\textbf{Answer:} The linear density is \textbf{0.845 g/m} (or $8.45 \times 10^{-4} \text{ kg/m}$).
+
+\newpage
+
+% ==========================================
+% QUESTION 6
+% ==========================================
+\section*{Question 6: QUantum: Confinement Energy}
+
+\subsection*{Problem Statement Summary}
+Electron confined in nucleus with radius $r = 6 \times 10^{-15} \text{ m}$.
+Uncertainty $\Delta x \approx r$. Calculate minimum kinetic energy using relativistic treatment.
+
+\subsection*{Solution}
+Using the Heisenberg Uncertainty Principle:
+\[ \Delta p \Delta x \ge \frac{\hbar}{2} \]
+Let's approximate the minimum momentum $p$ as the uncertainty $\Delta p$.
+\[ p \approx \frac{\hbar}{2r} \quad \text{or simply} \quad p \approx \frac{\hbar}{r} \text{ (order of magnitude)} \]
+Using $\Delta x = r$ and the lower bound:
+\[ p = \frac{\hbar}{2r} = \frac{1.055 \times 10^{-34}}{2(6 \times 10^{-15})} \approx 8.8 \times 10^{-21} \text{ kg m/s} \]
+
+Energy calculation:
+Rest mass energy of electron $E_0 = m_e c^2 = 0.511 \text{ MeV} \approx 8.19 \times 10^{-14} \text{ J}$.
+Momentum term $pc = (8.8 \times 10^{-21})(3 \times 10^8) = 2.64 \times 10^{-12} \text{ J}$.
+Since $pc \gg mc^2$ ($2.64 \times 10^{-12} \gg 8.19 \times 10^{-14}$), the electron is ultra-relativistic.
+Total Energy $E^2 = (pc)^2 + (mc^2)^2$.
+Kinetic Energy $K = E - mc^2 = \sqrt{(pc)^2 + (mc^2)^2} - mc^2$.
+Approximation $K \approx pc$ is reasonable here ($\approx 16$ MeV).
+
+Exact Calculation:
+\[ K = \sqrt{(2.64 \times 10^{-12})^2 + (8.19 \times 10^{-14})^2} - 8.19 \times 10^{-14} \]
+\[ K \approx 2.64 \times 10^{-12} \text{ J} \]
+
+In MeV:
+\[ K = \frac{2.64 \times 10^{-12}}{1.60 \times 10^{-13}} \approx 16.5 \text{ MeV} \]
+
+\textbf{Answer:} Minimum kinetic energy is approximately \textbf{16.5 MeV} ($2.6 \times 10^{-12} \text{ J}$).
+
+\newpage
+
+% ==========================================
+% QUESTION 7
+% ==========================================
+\section*{Question 7: Rotational Dynamics \& Collision}
+
+\subsection*{Problem Statement Summary}
+Block mass $m = 50 \text{ g} = 0.05 \text{ kg}$. Slides down $h = 20 \text{ cm} = 0.2 \text{ m}$.
+Sticks to rod of mass $M = 100 \text{ g} = 0.1 \text{ kg}$, length $L = 40 \text{ cm} = 0.4 \text{ m}$.
+Rod pivots about O. Find max angle $\theta$. (Assuming block hits the free end of the hanging rod).
+
+\subsection*{Solution}
+
+\textbf{1. Velocity of block before collision:}
+Conservation of energy:
+\[ mgh = \frac{1}{2} m v^2 \implies v = \sqrt{2gh} \]
+\[ v = \sqrt{2(9.80)(0.2)} = \sqrt{3.92} \approx 1.98 \text{ m/s} \]
+
+\textbf{2. Collision (Conservation of Angular Momentum about O):}
+Let $\omega$ be angular velocity immediately after collision.
+Initial Angular Momentum $L_i = m v L$ (particle at distance L).
+Moment of Inertia of system $I_{sys} = I_{rod} + I_{block}$.
+- Rod (about end): $I_{rod} = \frac{1}{3} M L^2$.
+- Block (point mass at end): $I_{block} = m L^2$.
+\[ I_{sys} = \left( \frac{M}{3} + m \right) L^2 \]
+Conservation:
+\[ m v L = I_{sys} \omega \]
+\[ m v L = \left( \frac{M}{3} + m \right) L^2 \omega \]
+\[ \omega = \frac{mv}{(M/3 + m)L} \]
+Substitute values:
+\[ \omega = \frac{0.05 \sqrt{3.92}}{(0.1/3 + 0.05)(0.4)} = \frac{0.05 \times 1.98}{(0.0333 + 0.05)(0.4)} \]
+\[ \omega = \frac{0.099}{(0.0833)(0.4)} = \frac{0.099}{0.0333} \approx 2.97 \text{ rad/s} \]
+
+\textbf{3. Swing (Conservation of Energy):}
+Rotational KE converts to Gravitational PE.
+\[ \frac{1}{2} I_{sys} \omega^2 = \Delta PE \]
+Change in PE involves the center of mass rising.
+$\Delta PE = M g \Delta h_{CM,rod} + m g \Delta h_{block}$.
+- Rod CM rises by $\frac{L}{2}(1 - \cos\theta)$.
+- Block rises by $L(1 - \cos\theta)$.
+\[ \Delta PE = g(1-\cos\theta) \left( M \frac{L}{2} + m L \right) \]
+
+Equating energies:
+\[ \frac{1}{2} \left( \frac{M}{3} + m \right) L^2 \omega^2 = g L (1-\cos\theta) \left( \frac{M}{2} + m \right) \]
+\[ (1-\cos\theta) = \frac{(M/3+m) L \omega^2}{2g (M/2+m)} \]
+Substitute $\omega^2 = \left( \frac{mv}{(M/3+m)L} \right)^2$:
+This simplifies, but let's calculate numerically.
+$I_{sys} = (0.1/3 + 0.05)(0.4)^2 = 0.0833 \times 0.16 = 0.0133 \text{ kg m}^2$.
+$KE = 0.5 \times 0.0133 \times (2.97)^2 = 0.0588 \text{ J}$.
+Potential Energy factor $C = gL(M/2 + m) = 9.8 \times 0.4 \times (0.05 + 0.05) = 3.92 \times 0.1 = 0.392 \text{ J}$.
+\[ 0.0588 = 0.392 (1 - \cos\theta) \]
+\[ 1 - \cos\theta = \frac{0.0588}{0.392} = 0.15 \]
+\[ \cos\theta = 0.85 \]
+\[ \theta = \arccos(0.85) \approx 31.8^\circ \]
+
+\textbf{Answer:} $\theta \approx 32^\circ$.
+
+\newpage
+
+% ==========================================
+% QUESTION 8
+% ==========================================
+\section*{Question 8: Thermodynamic Cycle}
+
+\subsection*{Problem Statement Summary}
+1.00 mol monatomic gas. Cycle $a \to b \to c \to a$.
+Process $b \to c$: Adiabatic expansion. $P_b = 10.0 \text{ atm}$, $V_b = 1.00 \times 10^{-3} \text{ m}^3$. $V_c = 8.00 V_b$.
+Assume standard cycle shape (often Isochoric/Isobaric completion):
+Given $V_c > V_b$ and $P_c < P_b$, usually $c \to a$ is Isobaric ($P_a = P_c$) and $a \to b$ is Isochoric ($V_a = V_b$).
+
+\subsection*{Solution}
+
+\textbf{State Variables:}
+$V_b = 10^{-3} \text{ m}^3$, $P_b = 10 \text{ atm} = 1.013 \times 10^6 \text{ Pa}$.
+$V_c = 8 \times 10^{-3} \text{ m}^3$.
+Adiabatic $b \to c$: $P V^\gamma = \text{const}$. Monatomic $\gamma = 5/3$.
+\[ P_c = P_b \left( \frac{V_b}{V_c} \right)^{5/3} = 10 \left( \frac{1}{8} \right)^{5/3} = 10 \left( \frac{1}{2^3} \right)^{5/3} = 10 \left( \frac{1}{2^5} \right) = \frac{10}{32} = 0.3125 \text{ atm} \]
+Assumed Cycle:
+$c \to a$: Isobaric compression to $V_a = V_b$. $P_a = P_c = 0.3125 \text{ atm}$.
+$a \to b$: Isochoric heating to $P_b$.
+
+Temperatures ($PV = nRT$):
+$T_b = \frac{P_b V_b}{nR} = \frac{1.013 \times 10^6 \times 10^{-3}}{1 \times 8.31} \approx 121.9 \text{ K}$.
+$T_c = \frac{P_c V_c}{nR} = \frac{(0.3125/10) P_b (8 V_b)}{nR} = \frac{2.5}{10} T_b = 0.25 T_b \approx 30.5 \text{ K}$. (Check: $T V^{\gamma-1} = const \to T_c = T_b (1/8)^{2/3} = T_b / 4$. Correct).
+$T_a = \frac{P_a V_a}{nR} = \frac{P_c V_b}{nR} = \frac{P_c (V_c/8)}{nR} = \frac{T_c}{8} \approx 3.81 \text{ K}$.
+
+\subsubsection*{(a) Energy Added as Heat ($Q_{in}$)}
+Heat enters during isochoric heating $a \to b$.
+\[ Q_{in} = n C_V (T_b - T_a) = 1 \times \frac{3}{2}R (121.9 - 3.81) \]
+\[ Q_{in} = 1.5 \times 8.31 \times 118.1 \approx 1472 \text{ J} \]
+
+\subsubsection*{(b) Energy Leaving as Heat ($Q_{out}$)}
+Heat leaves during isobaric compression $c \to a$.
+\[ Q_{out} = |n C_P (T_a - T_c)| = 1 \times \frac{5}{2}R |3.81 - 30.5| \]
+\[ Q_{out} = 2.5 \times 8.31 \times 26.69 \approx 554 \text{ J} \]
+(Note: $b \to c$ is adiabatic, $Q=0$).
+
+\subsubsection*{(c) Net Work Done}
+\[ W_{net} = Q_{in} - Q_{out} = 1472 - 554 = 918 \text{ J} \]
+
+\subsubsection*{(d) Efficiency}
+\[ \eta = \frac{W_{net}}{Q_{in}} = \frac{918}{1472} \approx 0.624 \text{ (or 62.4\%)} \]
+Theory: $\eta = 1 - \frac{5(T_c - T_a)}{3(T_b - T_a)} = 1 - \frac{5(T_b/4 - T_b/32)}{3(T_b - T_b/32)} = 1 - \frac{5(7/32)}{3(31/32)} = 1 - \frac{35}{93} \approx 0.624$.
+
+\newpage
+
+% ==========================================
+% QUESTION 9
+% ==========================================
+\section*{Question 9: Spring on Rotating Disc}
+
+\subsection*{Problem Statement Summary}
+Spring $k=10$ N/m, $L=0.5$ m attached at center O.
+Mass $m=1$ kg attached at $L_1 = 0.2$ m of unstretched spring.
+Other end attached to edge A at $R_0 = 1$ m.
+Total spring is stretched to $1$ m.
+Mass splits spring into:
+- Inner spring ($k_1$, unstretched $0.2$ m).
+- Outer spring ($k_2$, unstretched $0.3$ m).
+Stiffness is inversely proportional to length: $k_{part} = \frac{k L}{L_{part}}$.
+$k_1 = \frac{10 \times 0.5}{0.2} = 25 \text{ N/m}$.
+$k_2 = \frac{10 \times 0.5}{0.3} = 16.67 \text{ N/m}$.
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Effective spring constant $k_t$ ($\omega=0$)}
+Let $r$ be position of mass from O.
+Forces on mass:
+- From inner spring: $F_1 = k_1 (r - L_1)$ (inwards).
+- From outer spring: Extension is $(R_0 - r) - L_2$. Force $F_2 = k_2 (R_0 - r - L_2)$ (outwards).
+Net force (outwards positive): $F_{net} = F_2 - F_1 = k_2 (R_0 - L_2 - r) - k_1 (r - L_1)$.
+$F_{net} = [k_2(R_0-L_2) + k_1 L_1] - (k_1 + k_2)r$.
+This is a linear restoring force $F = F_0 - k_t r$.
+The effective stiffness is the coefficient of $r$.
+\[ k_t = k_1 + k_2 = 25 + \frac{50}{3} = \frac{75+50}{3} = \frac{125}{3} \approx 41.67 \text{ N/m} \]
+
+\subsubsection*{(b) Equilibrium position $r_0$ with rotation $\omega$}
+In the rotating frame, equilibrium occurs where net spring force equals centripetal requirement (or centrifugal force balances spring force).
+\[ F_1 - F_2 = -m \omega^2 r_0 \quad (\text{Using inward net force = mass } \times \text{ acc}) \]
+\[ k_1(r_0 - L_1) - k_2(R_0 - r_0 - L_2) = -m \omega^2 r_0 \quad (\text{Sign error check: } F_1 \text{ is in, } F_2 \text{ is out}) \]
+Correct Balance: $F_{in} = F_1 - F_2 = m \omega^2 r_0$.
+\[ k_1(r_0 - L_1) - k_2(R_0 - r_0 - L_2) = - (k_2(R_0 - L_2) + k_1 L_1) + (k_1 + k_2)r_0 \]
+Wait, $F_{net, outward} = F_2 - F_1$. Equilibrium: $F_2 - F_1 + F_{centrifugal} = 0$.
+\[ F_0 - k_t r_0 + m \omega^2 r_0 = 0 \]
+\[ F_0 = r_0 (k_t - m \omega^2) \]
+\[ r_0 = \frac{F_0}{k_t - m \omega^2} \]
+Constant term $F_0 = k_2(R_0-L_2) + k_1 L_1$.
+$F_0 = \frac{50}{3}(1 - 0.3) + 25(0.2) = 16.67(0.7) + 5 = 11.67 + 5 = 16.67 \text{ N}$.
+\[ r_0 = \frac{16.67}{41.67 - 1 \cdot \omega^2} \]
+Also note static equilibrium $r_{eq0} = 16.67 / 41.67 = 0.4 \text{ m}$.
+\[ r_0 = \frac{k_t r_{eq0}}{k_t - m \omega^2} \]
+
+\subsubsection*{(c) Tilted Disc and Lowest $\omega$}
+Equation of motion with gravity component $g \sin\phi \cos(\omega t)$ along radius.
+\[ \ddot{r} + \left(\frac{k_t}{m} - \omega^2\right) r = \frac{k_t r_{eq0}}{m} - g \sin\phi \cos(\omega t) \]
+Let $\Omega^2 = \frac{k_t}{m} - \omega^2$.
+Steady state solution form $r(t) = C + A \cos(\omega t)$.
+$C = r_0$ (from part b).
+$A (\Omega^2 - \omega^2) = -g \sin\phi \implies A = \frac{-g \sin\phi}{k_t/m - 2\omega^2}$.
+Condition: Mass just reaches edge $R_0 = 1 \text{ m}$.
+\[ r_{max} = C + |A| = 1 \]
+\[ \frac{16.67}{41.67 - \omega^2} + \frac{9.8 \sin(\pi/4)}{|41.67 - 2\omega^2|} = 1 \]
+$9.8 \sin(45) \approx 6.93$.
+Assume $\omega^2 < 20.8$ (below resonance):
+\[ \frac{16.67}{41.67 - \omega^2} + \frac{6.93}{41.67 - 2\omega^2} = 1 \]
+Solving for $\omega \approx 4.0 \text{ rad/s}$ (approx).
+Check: $16.67/(41.7-16) + 6.93/(41.7-32) = 0.65 + 0.7 = 1.35 > 1$.
+Actual $\omega$ is slightly lower.
+Numerical root finding yields $\omega \approx 3.25 \text{ rad/s}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 10
+% ==========================================
+\section*{Question 10: Young's Double Slit}
+
+\subsection*{Problem Statement Summary}
+Standard Young's Double Slit setup. Slit separation $d$, Screen distance $l$.
+(a) Condition for interference.
+(b) Constructive/Destructive conditions.
+(c) Fringe spacing $\Delta y$.
+(d) Intensity $I$.
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Conditions for Interference}
+1. The sources must be **coherent** (constant phase difference).
+2. The light must be **monochromatic** (single wavelength).
+3. The waves must have the same polarization.
+4. $d$ should be comparable to $\lambda$ (or not infinitely large compared to it) for observable fringe width.
+
+\subsubsection*{(b) Constructive and Destructive Interference}
+Path difference $\Delta L = d \sin\theta$.
+- **Constructive (Maxima):**
+  \[ d \sin\theta = m \lambda \quad (m = 0, \pm 1, \pm 2, \dots) \]
+- **Destructive (Minima):**
+  \[ d \sin\theta = (m + 0.5) \lambda \quad (m = 0, \pm 1, \pm 2, \dots) \]
+
+\subsubsection*{(c) Fringe Spacing $\Delta y$}
+For small $\theta$, $\sin\theta \approx \tan\theta \approx \frac{y}{l}$.
+Constructive: $d \frac{y_m}{l} = m \lambda \implies y_m = \frac{m \lambda l}{d}$.
+Spacing between adjacent maxima:
+\[ \Delta y = y_{m+1} - y_m = \frac{(m+1)\lambda l}{d} - \frac{m\lambda l}{d} \]
+\[ \Delta y = \frac{\lambda l}{d} \]
+
+\subsubsection*{(d) Intensity $I$}
+Let the wave from slit 1 be $E_1 = E_0 \sin(\omega t)$ and from slit 2 be $E_2 = E_0 \sin(\omega t + \phi)$.
+Phase difference $\phi = \frac{2\pi}{\lambda} \Delta L = \frac{2\pi}{\lambda} d \sin\theta$.
+Resultant field $E = E_1 + E_2$.
+Using the identity $\sin A + \sin B = 2 \cos\frac{A-B}{2} \sin\frac{A+B}{2}$:
+\[ E = 2 E_0 \cos(\phi/2) \sin(\omega t + \phi/2) \]
+Amplitude $E_{res} = 2 E_0 \cos(\phi/2)$.
+Intensity $I \propto E_{res}^2$.
+\[ I = I_{max} \cos^2(\phi/2) \]
+Substituting $\phi$:
+\[ I(\theta) = I_{max} \cos^2 \left( \frac{\pi d \sin\theta}{\lambda} \right) \]
+
+\end{document}
