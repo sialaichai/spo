@@ -1,0 +1,336 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+
+% Page Setup
+\geometry{margin=1in}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{SPhO 2023 Theory Paper 2 Solutions}
+\rhead{\thepage}
+
+\title{\textbf{36\textsuperscript{th} Singapore Physics Olympiad (SPhO) 2023} \\ \Large Theory Paper 2 Solutions}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+% ==========================================
+% QUESTION 1
+% ==========================================
+\section*{Question 1: Projectile Motion}
+
+\subsection*{(a) Angle of Elevation for Stationary Target}
+
+\textbf{Problem:}
+A cannon on a cliff $h = \SI{200}{m}$ high fires a shell with muzzle velocity $v_0 = \SI{180}{m.s^{-1}}$. The target is at sea level, at a horizontal distance $x = \SI{2500}{m}$. Determine the angle of elevation $\theta$.
+
+\textbf{Solution:}
+Let the origin $(0,0)$ be at the muzzle of the cannon.
+The coordinates of the target are $(x, y) = (2500, -200)$ meters.
+The equation of trajectory for a projectile is:
+\[ y = x \tan\theta - \frac{g x^2}{2 v_0^2 \cos^2\theta} \]
+Using the identity $\frac{1}{\cos^2\theta} = \sec^2\theta = 1 + \tan^2\theta$, we can rewrite the equation in terms of $\tan\theta$:
+\[ y = x \tan\theta - \frac{g x^2}{2 v_0^2} (1 + \tan^2\theta) \]
+Substituting the given values ($g = \SI{9.81}{m.s^{-2}}$):
+\[ -200 = 2500 \tan\theta - \frac{9.81 \times (2500)^2}{2 \times (180)^2} (1 + \tan^2\theta) \]
+Calculate the constant term $C = \frac{9.81 \times 6.25 \times 10^6}{2 \times 32400}$:
+\[ C = \frac{6.13125 \times 10^7}{64800} \approx 946.18 \]
+The equation becomes:
+\[ -200 = 2500 \tan\theta - 946.18 (1 + \tan^2\theta) \]
+Rearranging into a quadratic form $A \tan^2\theta + B \tan\theta + C' = 0$:
+\[ 946.18 \tan^2\theta - 2500 \tan\theta + (946.18 - 200) = 0 \]
+\[ 946.18 \tan^2\theta - 2500 \tan\theta + 746.18 = 0 \]
+Using the quadratic formula $\tan\theta = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$:
+\[ \tan\theta = \frac{2500 \pm \sqrt{(-2500)^2 - 4(946.18)(746.18)}}{2(946.18)} \]
+\[ \tan\theta = \frac{2500 \pm \sqrt{6.25 \times 10^6 - 2.824 \times 10^6}}{1892.36} \]
+\[ \tan\theta = \frac{2500 \pm \sqrt{3.426 \times 10^6}}{1892.36} = \frac{2500 \pm 1850.9}{1892.36} \]
+Two possible solutions:
+1. $\tan\theta_1 = \frac{4350.9}{1892.36} \approx 2.30 \implies \theta_1 \approx 66.5^\circ$
+2. $\tan\theta_2 = \frac{649.1}{1892.36} \approx 0.343 \implies \theta_2 \approx 18.9^\circ$
+
+Typically, the lower angle (low trajectory) is preferred for hitting targets unless there are obstacles. Both are mathematically valid.
+
+\textbf{Answer:} The angle of elevation should be approximately $\mathbf{18.9^\circ}$ (or $\mathbf{66.5^\circ}$).
+
+\subsection*{(b) Hitting a Moving Target}
+
+\textbf{Problem:}
+The target moves away at $u = \SI{10}{m.s^{-1}}$ starting from $x=2500$ m at $t=0$. The angle $\theta$ is fixed (assume $\theta \approx 18.9^\circ$). Find the new muzzle velocity $v'_0$.
+
+\textbf{Solution:}
+Let $t$ be the time of flight.
+The position of the target at time $t$ is $x_T(t) = 2500 + 10t$.
+The position of the shell at time $t$ is:
+\[ x_S(t) = (v'_0 \cos\theta) t \]
+\[ y_S(t) = (v'_0 \sin\theta) t - \frac{1}{2} g t^2 \]
+For a hit, $x_S(t) = x_T(t)$ and $y_S(t) = -200$.
+From the x-motion:
+\[ v'_0 \cos\theta \, t = 2500 + 10t \implies v'_0 \cos\theta = \frac{2500}{t} + 10 \]
+Substitute $v'_0 \sin\theta = v'_0 \cos\theta \tan\theta$ into the y-equation:
+\[ (v'_0 \cos\theta \tan\theta) t - 4.905 t^2 = -200 \]
+\[ \left( \frac{2500}{t} + 10 \right) t \tan\theta - 4.905 t^2 = -200 \]
+\[ (2500 + 10t) \tan\theta - 4.905 t^2 = -200 \]
+Using $\theta = 18.9^\circ$, $\tan\theta \approx 0.343$:
+\[ 2500(0.343) + 3.43 t - 4.905 t^2 = -200 \]
+\[ 857.5 + 3.43 t - 4.905 t^2 = -200 \]
+\[ 4.905 t^2 - 3.43 t - 1057.5 = 0 \]
+Solving for $t$:
+\[ t = \frac{3.43 \pm \sqrt{3.43^2 - 4(4.905)(-1057.5)}}{2(4.905)} \]
+\[ t \approx \frac{3.43 + \sqrt{11.76 + 20748}}{9.81} \approx \frac{3.43 + 144.1}{9.81} \approx \SI{15.0}{s} \]
+Now find $v'_0$:
+\[ v'_0 \cos(18.9^\circ) = \frac{2500}{15.0} + 10 = 166.7 + 10 = 176.7 \]
+\[ v'_0 = \frac{176.7}{\cos(18.9^\circ)} = \frac{176.7}{0.946} \approx \SI{186.8}{m.s^{-1}} \]
+The question asks for the \textit{alteration} to the speed.
+Change $\Delta v = 186.8 - 180 = \SI{6.8}{m.s^{-1}}$.
+
+(Note: If the higher angle $66.5^\circ$ was used, the calculation would yield a different $t$ and $v'_0$). Assuming the standard low trajectory solution:
+\textbf{Answer:} The muzzle speed must be increased by approximately $\mathbf{6.8 \text{ to } 7 \, m.s^{-1}}$ (to approx $\SI{187}{m.s^{-1}}$).
+
+\newpage
+
+% ==========================================
+% QUESTION 2
+% ==========================================
+\section*{Question 2: Orbital and Wave Motion}
+
+\subsection*{(a) Satellite Alignment}
+
+\textbf{Problem:}
+Satellites X ($h_X = 500$ km) and Y ($h_Y = 1000$ km). Earth radius $R_E = 6360$ km. They align vertically. Find time $t$ until next alignment.
+
+\textbf{Solution:}
+Orbital radii:
+$r_X = 6360 + 500 = \SI{6860}{km} = 6.86 \times 10^6$ m.
+$r_Y = 6360 + 1000 = \SI{7360}{km} = 7.36 \times 10^6$ m.
+
+Orbital period $T$ is given by Kepler's Third Law $T = 2\pi \sqrt{\frac{r^3}{GM}}$.
+Using $GM = g R_E^2$:
+\[ T = 2\pi \sqrt{\frac{r^3}{g R_E^2}} = \frac{2\pi}{\sqrt{g} R_E} r^{3/2} = \frac{2\pi}{\sqrt{9.81} (6.36 \times 10^6)} r^{3/2} \]
+Let's compute the constant $K = \frac{2\pi}{\sqrt{GM}}$. Alternatively, assume $T_0$ at surface:
+$T_{\text{surf}} = 2\pi \sqrt{\frac{R_E}{g}} \approx \SI{5060}{s}$.
+$T_X = 5060 \left(\frac{6860}{6360}\right)^{1.5} \approx 5060 (1.1205) \approx \SI{5670}{s}$.
+$T_Y = 5060 \left(\frac{7360}{6360}\right)^{1.5} \approx 5060 (1.246) \approx \SI{6305}{s}$.
+
+Angular velocities:
+$\omega_X = \frac{2\pi}{T_X} \approx 1.108 \times 10^{-3}$ rad/s.
+$\omega_Y = \frac{2\pi}{T_Y} \approx 0.996 \times 10^{-3}$ rad/s.
+
+The condition for realignment is that the faster satellite laps the slower one by $2\pi$ radians (or they align with the Earth center again).
+$(\omega_X - \omega_Y) t = 2\pi$.
+This is the synodic period $t_{\text{syn}}$:
+\[ \frac{1}{t} = \frac{1}{T_X} - \frac{1}{T_Y} \]
+\[ t = \frac{T_X T_Y}{T_Y - T_X} = \frac{5670 \times 6305}{6305 - 5670} = \frac{3.575 \times 10^7}{635} \approx \SI{56300}{s} \]
+Convert to minutes:
+\[ t \approx \frac{56300}{60} \approx \mathbf{938 \text{ min}} \]
+
+\textbf{Answer:} Approximately \textbf{940 minutes}.
+
+\subsection*{(b) Sound Interference with Reflector}
+
+\textbf{Problem:}
+Source S, Detector D, separated by $L = \SI{120}{m}$. Wavelength $\lambda = \SI{1.33}{m}$. Reflector parallel to SD.
+Position 1: Reflector distance $d_1 = \SI{90}{m}$ (from diagram). Constructive interference.
+Position 2: Reflector distance $d_2 = 90 + h$. Destructive interference (Zero intensity) for the first time.
+Find $h$.
+
+\textbf{Solution:}
+The path difference between the reflected ray and direct ray is:
+\[ \delta(d) = \sqrt{L^2 + (2d)^2} - L \]
+(Note: The reflected path is equivalent to the distance from the image source $S'$ to $D$. $S'$ is at distance $2d$ perpendicular to SD. $S'D = \sqrt{L^2 + (2d)^2}$).
+
+At Position 1 ($d_1 = 90$ m):
+\[ \delta_1 = \sqrt{120^2 + (2 \times 90)^2} - 120 = \sqrt{120^2 + 180^2} - 120 \]
+\[ \delta_1 = \sqrt{14400 + 32400} - 120 = \sqrt{46800} - 120 \approx 216.33 - 120 = 96.33 \, \text{m} \]
+Check phase condition: $96.33 / 1.33 \approx 72.4$. The waves are in phase. This implies the reflection phase shift $\phi$ plus path phase $k\delta_1$ equals $2n\pi$.
+
+At Position 2 ($d_2 = 90+h$): Intensity is zero (destructive) for the \textit{first time}.
+This means the condition has shifted from a maximum to the adjacent minimum. The change in path difference required is $\lambda/2$.
+Since increasing $d$ increases the path length, we have:
+\[ \delta_2 - \delta_1 = \frac{\lambda}{2} \]
+\[ \delta_2 = 96.33 + \frac{1.33}{2} = 96.33 + 0.665 = 96.995 \, \text{m} \]
+Now solve for $h$:
+\[ \sqrt{120^2 + (2(90+h))^2} - 120 = 96.995 \]
+\[ \sqrt{14400 + 4(90+h)^2} = 216.995 \]
+Square both sides:
+\[ 14400 + 4(90+h)^2 = (216.995)^2 \approx 47087 \]
+\[ 4(90+h)^2 = 47087 - 14400 = 32687 \]
+\[ (90+h)^2 = 8171.75 \]
+\[ 90+h = \sqrt{8171.75} \approx 90.40 \]
+\[ h \approx 0.40 \, \text{m} \]
+
+\textbf{Answer:} $h \approx \mathbf{0.40 \text{ m}}$.
+
+\newpage
+
+% ==========================================
+% QUESTION 3
+% ==========================================
+\section*{Question 3: Circuits and Electrodynamics}
+
+\subsection*{(a) Maximum Power Dissipation}
+
+\textbf{Problem:}
+Resistors $R = 3 \, \Omega$. Max power per resistor $P_{\text{limit}} = \SI{108}{W}$.
+Max Current: $I_{\text{max}} = \sqrt{P/R} = \sqrt{108/3} = \SI{6}{A}$.
+Max Voltage: $V_{\text{max}} = \sqrt{PR} = \sqrt{324} = \SI{18}{V}$.
+
+\textbf{Case 2(a):} Two branches in parallel.
+Branch 1: Two resistors in series ($2R = 6\Omega$).
+Branch 2: One resistor ($R = 3\Omega$).
+Let total voltage be $V$.
+Current in Branch 2: $I_2 = V/3$. Limit $I_2 \le 6 \text{A} \implies V \le 18 \text{V}$.
+Current in Branch 1: $I_1 = V/6$. If $V=18$, $I_1 = 3 \text{A}$ (Safe, $<6$A).
+Total Power: $P_A = P_{\text{branch2}} + P_{\text{branch1}} = \frac{V^2}{3} + \frac{V^2}{6}$.
+At $V=18$: $P_A = 108 + 54 = \SI{162}{W}$.
+
+\textbf{Case 2(b):} Series-Parallel combination.
+Parallel block ($R || R = 1.5\Omega$) in series with single resistor ($R = 3\Omega$).
+Total Resistance $R_{\text{tot}} = 4.5\Omega$.
+Let total current be $I$. This flows through the single resistor.
+Limit: $I \le 6 \text{A}$.
+Current splits equally in parallel block: $I/2$. If $I=6$, $I/2 = 3$ A (Safe).
+Total Power: $P_B = I^2 R_{\text{tot}} = 6^2 \times 4.5 = 36 \times 4.5 = 162 \text{W}$.
+(Or sum of components: Series resistor $6^2 \times 3 = 108$W. Parallel resistors $2 \times (3^2 \times 3) = 54$W. Total 162W).
+
+\textbf{Answer:}
+(a) \textbf{162 W} \\
+(b) \textbf{162 W}
+
+\subsection*{(b) Particle in Charged Sphere Tunnel}
+
+\textbf{Problem:}
+Sphere diameter $\SI{1.0}{m}$ ($R=0.5$ m). Charge density $\rho = \SI{5}{nC.m^{-3}}$.
+Particle $m = \SI{1.0}{\mu g}$, $q = \SI{-0.05}{nC}$.
+
+\textbf{(i) Time taken to move to the other end}
+Inside a uniformly charged sphere, electric field $E(r) = \frac{\rho r}{3\epsilon_0}$.
+Force on particle: $F = qE = - \left( \frac{|q|\rho}{3\epsilon_0} \right) r$.
+This is a restoring force $F = -kr$ with effective spring constant $k = \frac{|q|\rho}{3\epsilon_0}$.
+The motion is Simple Harmonic Motion (SHM).
+Calculate $k$:
+\[ k = \frac{(0.05 \times 10^{-9}) (5 \times 10^{-9})}{3 (8.85 \times 10^{-12})} = \frac{0.25 \times 10^{-18}}{26.55 \times 10^{-12}} \approx 9.416 \times 10^{-9} \, \text{N/m} \]
+Angular frequency $\omega = \sqrt{\frac{k}{m}}$:
+\[ m = 1.0 \times 10^{-9} \, \text{kg} \]
+\[ \omega = \sqrt{\frac{9.416 \times 10^{-9}}{1.0 \times 10^{-9}}} = \sqrt{9.416} \approx 3.068 \, \text{rad/s} \]
+Time to travel from one end to the other is half a period:
+\[ t = \frac{T}{2} = \frac{\pi}{\omega} = \frac{3.1416}{3.068} \approx \SI{1.02}{s} \]
+
+\textbf{(ii) Speed at the centre}
+In SHM, $v_{\text{max}} = \omega A$.
+The amplitude $A$ is the radius of the sphere $R = \SI{0.5}{m}$.
+\[ v_{\text{max}} = 3.068 \times 0.5 \approx \SI{1.53}{m.s^{-1}} \]
+
+\textbf{Answer:}
+(i) Time $\approx \mathbf{1.02 \text{ s}}$ \\
+(ii) Speed $\approx \mathbf{1.53 \text{ m.s}^{-1}}$
+
+\newpage
+
+% ==========================================
+% QUESTION 4
+% ==========================================
+\section*{Question 4: Thermodynamics and Statistical Mechanics}
+
+\subsection*{(a) Change in Entropy}
+
+\textbf{Problem:}
+1 mole diatomic ideal gas. $P = 10^5$ Pa (constant). Volume doubles from $V_1 = 25$ L to $V_2 = 50$ L.
+Find $\Delta S$.
+
+\textbf{Solution:}
+For a diatomic gas at moderate temperatures, $C_p = \frac{7}{2}R$.
+The process is isobaric (constant pressure).
+\[ \Delta S = \int_{T_1}^{T_2} \frac{n C_p}{T} dT = n C_p \ln\left(\frac{T_2}{T_1}\right) \]
+From Ideal Gas Law $PV = nRT$, at constant $P$, $T \propto V$.
+Since volume doubles, temperature doubles: $T_2 = 2T_1$.
+\[ \Delta S = (1) \left(\frac{7}{2} R\right) \ln(2) \]
+\[ \Delta S = 3.5 \times 8.31 \times 0.6931 \]
+\[ \Delta S \approx 20.15 \, \text{J.K}^{-1} \]
+
+\textbf{Answer:} $\Delta S \approx \mathbf{20.2 \, \text{J.K}^{-1}}$
+
+\subsection*{(b) Boltzmann Distribution}
+
+\textbf{Problem:}
+Energy states $E_1 = 0.0043$ eV, $E_2 = 0.0129$ eV, $E_3 = 0.0215$ eV, ...
+Probabilities $p(E_1) = 0.63$, $p(E_2) = 0.23$.
+Estimate number of particles in $E_3$ for 1 mole of gas ($N_{\text{total}} = N_A = 6.02 \times 10^{23}$).
+
+\textbf{Solution:}
+The energies are in an arithmetic progression with difference $\Delta E = 0.0086$ eV.
+Boltzmann distribution: $p(E) \propto e^{-E/kT}$.
+The ratio of probabilities for adjacent levels is constant:
+\[ \frac{p(E_{n+1})}{p(E_n)} = \frac{e^{-E_{n+1}/kT}}{e^{-E_n/kT}} = e^{-\Delta E/kT} = r \]
+Given:
+\[ r = \frac{p(E_2)}{p(E_1)} = \frac{0.23}{0.63} \approx 0.365 \]
+Then the probability for the third state is:
+\[ p(E_3) = p(E_2) \times r = 0.23 \times \frac{0.23}{0.63} \approx 0.084 \]
+The number of particles in state $E_3$ is:
+\[ N_3 = N_{\text{total}} \times p(E_3) \]
+\[ N_3 = 6.02 \times 10^{23} \times 0.084 \approx 5.06 \times 10^{22} \]
+
+\textbf{Answer:} Approximately $\mathbf{5.1 \times 10^{22}}$ particles.
+
+\newpage
+
+% ==========================================
+% QUESTION 5
+% ==========================================
+\section*{Question 5: Modern Physics}
+
+\subsection*{(a) Hydrogen Recoil}
+
+\textbf{Problem:}
+Transition from $n=3$ to $n=1$. Find recoil speed and energy of the H atom ($M \approx 1.67 \times 10^{-27}$ kg).
+
+\textbf{Solution:}
+Energy of photon emitted:
+\[ \Delta E = 13.6 \left( \frac{1}{1^2} - \frac{1}{3^2} \right) = 13.6 \left( 1 - \frac{1}{9} \right) = 13.6 \times \frac{8}{9} \approx 12.09 \, \text{eV} \]
+Convert to Joules:
+\[ E_{\gamma} = 12.09 \times 1.60 \times 10^{-19} \approx 1.934 \times 10^{-18} \, \text{J} \]
+Momentum of photon:
+\[ p_{\gamma} = \frac{E_{\gamma}}{c} = \frac{1.934 \times 10^{-18}}{3.00 \times 10^8} \approx 6.447 \times 10^{-27} \, \text{kg.m.s}^{-1} \]
+By conservation of momentum, atom recoil momentum $p_{\text{atom}} = p_{\gamma}$.
+Recoil speed:
+\[ v = \frac{p_{\text{atom}}}{M} = \frac{6.447 \times 10^{-27}}{1.67 \times 10^{-27}} \approx \SI{3.86}{m.s^{-1}} \]
+Recoil Kinetic Energy:
+\[ K = \frac{p^2}{2M} = \frac{(6.447 \times 10^{-27})^2}{2(1.67 \times 10^{-27})} \approx 1.24 \times 10^{-26} \, \text{J} \]
+
+\textbf{Answer:} Recoil speed $\approx \mathbf{3.86 \, \text{m.s}^{-1}}$; Recoil energy $\approx \mathbf{1.24 \times 10^{-26} \, \text{J}}$.
+
+\subsection*{(b) Special Relativity Order of Events}
+
+\textbf{Problem:}
+Frame S: Red flash at $x_R=0, t_R=0$. Blue flash at $x_B, t_B = \SI{9.50}{\mu s}$.
+Frame S': Moves at $v=0.6c$ along +x. Origins coincide at $t=t'=0$.
+Condition: Observer B (in S') sees Blue before Red.
+Note: "Sees" in relativity problems usually refers to the time coordinate of the event in that frame.
+Event Red in S': $x'_R = 0, t'_R = 0$.
+Event Blue in S': Needs $t'_B < t'_R = 0$.
+
+\textbf{Solution:}
+Lorentz transformation for time:
+\[ t' = \gamma \left( t - \frac{vx}{c^2} \right) \]
+We require $t'_B < 0$. Since $\gamma > 0$:
+\[ t_B - \frac{v x_B}{c^2} < 0 \]
+\[ t_B < \frac{v x_B}{c^2} \implies x_B > \frac{c^2 t_B}{v} \]
+Given $v = 0.6c$ and $t_B = 9.50 \times 10^{-6}$ s.
+\[ x_B > \frac{c^2 t_B}{0.6c} = \frac{c t_B}{0.6} \]
+\[ x_B > \frac{3.00 \times 10^8 \times 9.50 \times 10^{-6}}{0.6} \]
+\[ x_B > \frac{2850}{0.6} \]
+\[ x_B > 4750 \, \text{m} \]
+
+\textbf{Answer:} $x_B > \mathbf{4.75 \, \text{km}}$.
+
+\end{document}
