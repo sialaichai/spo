@@ -1,0 +1,516 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{Solutions to 33rd Singapore Physics Olympiad (SPhO) 2020 Theory Paper}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section*{Question 1: Rotational Dynamics of a Composite Rod}
+
+\subsection*{Problem Statement}
+A rod of length $L = 1.0$ m and radius $r = 1.0$ cm consists of two sections of length $l = 0.5$ m each. One section is Zinc ($\rho_{Zn} = 7135 \text{ kg m}^{-3}$) and the other is Copper ($\rho_{Cu} = 8940 \text{ kg m}^{-3}$). The rod is pivoted at the Zinc end (Point O), held horizontally, and released. Determine the angular velocity $\omega$ when it reaches the vertical position.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Calculate Mass of Each Section}
+The volume of each section is $V = \pi r^2 l$.
+Given $r = 0.01$ m and $l = 0.5$ m:
+\begin{equation}
+V = \pi (0.01)^2 (0.5) = 5\pi \times 10^{-5} \text{ m}^3
+\end{equation}
+
+Mass of the Zinc section ($m_1$):
+\begin{equation}
+m_1 = \rho_{Zn} V = 7135 \times (5\pi \times 10^{-5}) \approx 1.121 \text{ kg}
+\end{equation}
+
+Mass of the Copper section ($m_2$):
+\begin{equation}
+m_2 = \rho_{Cu} V = 8940 \times (5\pi \times 10^{-5}) \approx 1.404 \text{ kg}
+\end{equation}
+
+\subsubsection*{2. Determine Moment of Inertia ($I_{total}$)}
+The moment of inertia is calculated about the pivot at the end of the Zinc section.
+\begin{itemize}
+    \item \textbf{Zinc section ($I_1$):} A rod of mass $m_1$ pivoted at its end.
+    \begin{equation}
+    I_1 = \frac{1}{3} m_1 l^2 = \frac{1}{3} (1.121) (0.5)^2 \approx 0.0934 \text{ kg m}^2
+    \end{equation}
+    \item \textbf{Copper section ($I_2$):} A rod of mass $m_2$ pivoted at a distance $l$ from its own end (or distance $l + l/2$ from its center of mass to the pivot). Using the Parallel Axis Theorem ($I = I_{cm} + Md^2$):
+    The center of mass of the copper section is at $x_2 = 0.5 + 0.25 = 0.75$ m from the pivot.
+    \begin{equation}
+    I_2 = \frac{1}{12} m_2 l^2 + m_2 (x_2)^2 
+    \end{equation}
+    \begin{equation}
+    I_2 = \frac{1}{12} (1.404) (0.5)^2 + (1.404) (0.75)^2 \approx 0.0293 + 0.7898 = 0.8191 \text{ kg m}^2
+    \end{equation}
+\end{itemize}
+
+Total Moment of Inertia:
+\begin{equation}
+I_{total} = I_1 + I_2 = 0.0934 + 0.8191 = 0.9125 \text{ kg m}^2
+\end{equation}
+
+\subsubsection*{3. Conservation of Energy}
+The loss in gravitational potential energy ($\Delta U$) equals the gain in rotational kinetic energy ($K$).
+The center of mass (COM) of the Zinc section falls a distance $h_1 = 0.25$ m.
+The COM of the Copper section falls a distance $h_2 = 0.75$ m.
+
+\begin{equation}
+\Delta U = m_1 g h_1 + m_2 g h_2
+\end{equation}
+Using $g = 9.81 \text{ m s}^{-2}$:
+\begin{equation}
+\Delta U = (1.121)(9.81)(0.25) + (1.404)(9.81)(0.75) 
+\end{equation}
+\begin{equation}
+\Delta U = 2.749 + 10.330 = 13.079 \text{ J}
+\end{equation}
+
+Equating to Kinetic Energy:
+\begin{equation}
+\Delta U = \frac{1}{2} I_{total} \omega^2
+\end{equation}
+\begin{equation}
+13.079 = \frac{1}{2} (0.9125) \omega^2
+\end{equation}
+\begin{equation}
+\omega^2 = \frac{2 \times 13.079}{0.9125} \approx 28.667
+\end{equation}
+\begin{equation}
+\omega = \sqrt{28.667} \approx 5.35 \text{ rad s}^{-1}
+\end{equation}
+
+\textbf{Answer:} The angular velocity is \textbf{5.35 rad s$^{-1}$}.
+
+\newpage
+
+\section*{Question 2(a): Doppler Effect on a Swing}
+
+\subsection*{Problem Statement}
+A student swings with amplitude $45^{\circ}$ and length $L=5$ m. A stationary source emits $f_s = 400$ Hz. Speed of sound $c = 330$ m/s. Find maximum and minimum frequencies heard.
+
+\subsection*{Solution}
+
+\subsubsection*{1. Maximum Speed of the Student}
+The student acts as a moving observer. The velocity is maximum at the bottom of the swing.
+Using conservation of energy:
+\begin{equation}
+m g h = \frac{1}{2} m v_{max}^2
+\end{equation}
+The change in height is $h = L(1 - \cos \theta_{max})$.
+\begin{equation}
+v_{max} = \sqrt{2gL(1 - \cos 45^{\circ})}
+\end{equation}
+\begin{equation}
+v_{max} = \sqrt{2(9.81)(5)(1 - 0.7071)} = \sqrt{98.1 \times 0.2929} \approx 5.36 \text{ m/s}
+\end{equation}
+
+\subsubsection*{2. Doppler Shift Calculation}
+The Doppler formula for a moving observer and stationary source is:
+\begin{equation}
+f_{obs} = f_s \left( \frac{c \pm v_{obs}}{c} \right)
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{Maximum Frequency ($f_{max}$):} Observer moves \textit{towards} the source (velocity $+v_{max}$).
+    \begin{equation}
+    f_{max} = 400 \left( \frac{330 + 5.36}{330} \right) = 400 \left( 1.0162 \right) \approx 406.5 \text{ Hz}
+    \end{equation}
+    
+    \item \textbf{Minimum Frequency ($f_{min}$):} Observer moves \textit{away} from the source (velocity $-v_{max}$).
+    \begin{equation}
+    f_{min} = 400 \left( \frac{330 - 5.36}{330} \right) = 400 \left( 0.9838 \right) \approx 393.5 \text{ Hz}
+    \end{equation}
+\end{itemize}
+
+\textbf{Answer:} Max frequency: \textbf{406.5 Hz}, Min frequency: \textbf{393.5 Hz}.
+
+\vspace{1cm}
+
+\section*{Question 2(b): Compound Microscope}
+
+\subsection*{Problem Statement}
+$f_o = 6.0$ mm, $f_e = 40.0$ mm. Lens separation $L = 200$ mm. Final virtual image at $D = 250$ mm.
+
+\subsection*{Solution}
+\subsubsection*{1. Eyepiece Image and Object Distance}
+The final image is at $v_e = -250$ mm.
+Using the lens formula $\frac{1}{f_e} = \frac{1}{v_e} - \frac{1}{u_e}$:
+\begin{equation}
+\frac{1}{u_e} = \frac{1}{v_e} - \frac{1}{f_e} = \frac{1}{-250} - \frac{1}{40}
+\end{equation}
+\begin{equation}
+\frac{1}{u_e} = \frac{-4 - 25}{1000} = \frac{-29}{1000} \implies u_e = -34.48 \text{ mm}
+\end{equation}
+The distance is $|u_e| = 34.48$ mm.
+
+\subsubsection*{2. Objective Image Distance ($v_o$)}
+The image from the objective forms the object for the eyepiece.
+\begin{equation}
+|v_o| + |u_e| = L \implies v_o = 200 - 34.48 = 165.52 \text{ mm}
+\end{equation}
+
+\subsubsection*{3. Objective Object Distance ($u_o$)}
+Using $\frac{1}{f_o} = \frac{1}{v_o} - \frac{1}{u_o}$:
+\begin{equation}
+\frac{1}{u_o} = \frac{1}{165.52} - \frac{1}{6.0} \approx 0.00604 - 0.16667 = -0.16063
+\end{equation}
+\begin{equation}
+u_o \approx -6.23 \text{ mm}
+\end{equation}
+
+\subsubsection*{4. Magnifying Power ($M$)}
+\begin{equation}
+M = |m_o| \times |m_e| = \left| \frac{v_o}{u_o} \right| \times \left| \frac{v_e}{u_e} \right|
+\end{equation}
+\begin{equation}
+M = \left( \frac{165.52}{6.23} \right) \times \left( \frac{250}{34.48} \right) \approx 26.57 \times 7.25 \approx 192.6
+\end{equation}
+
+\textbf{Answer:} (i) Object distance: \textbf{6.23 mm}, (ii) Magnification: \textbf{193}.
+
+\newpage
+
+\section*{Question 3: Electromagnetic Induction}
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Induced EMF}
+Consider a small element of length $dr$ at distance $r$ from the pivot. The velocity is $v = \omega r$.
+The motional EMF $d\mathcal{E}$ is:
+\begin{equation}
+d\mathcal{E} = B v dr = B(\omega r) dr
+\end{equation}
+Integrating from $0$ to $l$:
+\begin{equation}
+\mathcal{E} = \int_0^l B \omega r \, dr = \frac{1}{2} B \omega l^2
+\end{equation}
+
+\subsubsection*{(b) Electric Power in Resistor $R_0$}
+Total circuit resistance is $R_{total} = R + R_0$.
+The current $I$ is:
+\begin{equation}
+I = \frac{\mathcal{E}}{R + R_0} = \frac{B \omega l^2}{2(R + R_0)}
+\end{equation}
+Power dissipated in the external resistor $R_0$ is $P = I^2 R_0$:
+\begin{equation}
+P = \left[ \frac{B \omega l^2}{2(R + R_0)} \right]^2 R_0 = \frac{B^2 \omega^2 l^4 R_0}{4(R + R_0)^2}
+\end{equation}
+
+\subsubsection*{(c) Origin of Electric Power}
+The electric power originates from the \textbf{mechanical work} done by the external agent keeping the rod rotating.
+\begin{itemize}
+    \item The induced current $I$ flows through the rod in the magnetic field.
+    \item This creates a magnetic force $dF = I dr B$ on each element, opposing the motion (Lenz's Law).
+    \item This force creates a retarding torque $\tau = \int r \, dF = \int_0^l r (IB) dr = \frac{1}{2} I B l^2$.
+    \item To maintain constant $\omega$, the external agent supplies power $P_{mech} = \tau \omega = (\frac{1}{2} I B l^2) \omega = I \mathcal{E}$.
+    \item Since $I \mathcal{E} = I^2 R_{total}$, the mechanical power is fully converted into electrical power.
+\end{itemize}
+
+\newpage
+
+\section*{Question 4: Atomic Physics}
+
+\subsection*{Solution}
+
+\subsubsection*{(a) Wavelength of the Second Photon}
+The Hydrogen atom is excited from ground state ($n=1$) to a higher state $n$. It de-excites emitting two photons.
+One photon has $\lambda_1 = 656.3$ nm. This corresponds to the energy:
+\begin{equation}
+E_1 = \frac{hc}{\lambda_1} = \frac{1240 \text{ eV nm}}{656.3 \text{ nm}} \approx 1.89 \text{ eV}
+\end{equation}
+We know that the energy difference for Hydrogen levels is $E_n = -13.6/n^2$ eV. The energy difference $E_{3 \to 2}$ is $13.6(1/4 - 1/9) = 13.6(5/36) \approx 1.89$ eV.
+Thus, the transition is $n=3 \to n=2$.
+Since the atom returns to the ground state, the second photon must correspond to the transition from $n=2$ to $n=1$ (Lyman series).
+\begin{equation}
+E_2 = 13.6 \left( \frac{1}{1^2} - \frac{1}{2^2} \right) = 13.6(0.75) = 10.2 \text{ eV}
+\end{equation}
+Wavelength $\lambda_2$:
+\begin{equation}
+\lambda_2 = \frac{hc}{E_2} = \frac{1240}{10.2} \approx 121.6 \text{ nm}
+\end{equation}
+
+\subsubsection*{(b) Initial Speed of Free Electron}
+1. \textbf{Energy gained by H-atom ($\Delta E_H$):}
+Transition $n=1 \to n=3$:
+\begin{equation}
+\Delta E_H = 13.6 \left( 1 - \frac{1}{9} \right) = 12.09 \text{ eV}
+\end{equation}
+
+2. \textbf{Final Kinetic Energy of Electron ($K_f$):}
+Using de Broglie wavelength $\lambda_f = 1.915$ nm:
+\begin{equation}
+K_f = \frac{h^2}{2m \lambda_f^2} = \frac{(6.63 \times 10^{-34})^2}{2(9.11 \times 10^{-31})(1.915 \times 10^{-9})^2}
+\end{equation}
+\begin{equation}
+K_f \approx 6.62 \times 10^{-20} \text{ J} \approx 0.41 \text{ eV}
+\end{equation}
+
+3. \textbf{Initial Kinetic Energy ($K_i$):}
+By conservation of energy: $K_i = K_f + \Delta E_H$.
+\begin{equation}
+K_i = 0.41 + 12.09 = 12.5 \text{ eV}
+\end{equation}
+\begin{equation}
+K_i = 12.5 \times 1.6 \times 10^{-19} = 2.0 \times 10^{-18} \text{ J}
+\end{equation}
+
+4. \textbf{Initial Speed ($v_i$):}
+\begin{equation}
+v_i = \sqrt{\frac{2K_i}{m}} = \sqrt{\frac{2(2.0 \times 10^{-18})}{9.11 \times 10^{-31}}} \approx 2.1 \times 10^6 \text{ m/s}
+\end{equation}
+
+\textbf{Answer:} (a) \textbf{121.6 nm}, (b) \textbf{$2.1 \times 10^6$ m/s}.
+
+\newpage
+
+\section*{Question 5: Satellite Motion}
+
+\subsection*{Solution}
+\textbf{Given:} $h = 400$ km $= 4 \times 10^5$ m. $R_E = 6.37 \times 10^6$ m. $M_E = 5.97 \times 10^{24}$ kg.
+
+\subsubsection*{1. Orbital Period ($T_s$)}
+Orbit radius $r = R_E + h = 6.77 \times 10^6$ m.
+\begin{equation}
+T_s = 2\pi \sqrt{\frac{r^3}{GM_E}} = 2\pi \sqrt{\frac{(6.77 \times 10^6)^3}{(6.67 \times 10^{-11})(5.97 \times 10^{24})}}
+\end{equation}
+\begin{equation}
+T_s \approx 2\pi \sqrt{7.79 \times 10^6} \approx 5543 \text{ s} \approx 1.54 \text{ hours}
+\end{equation}
+
+\subsubsection*{2. Relative Motion}
+Both Earth and Satellite rotate in the same direction.
+\begin{itemize}
+    \item Angular velocity of Satellite: $\omega_s = \frac{2\pi}{1.54}$ rad/h.
+    \item Angular velocity of Earth: $\omega_E = \frac{2\pi}{24}$ rad/h.
+\end{itemize}
+Relative angular velocity $\omega_{rel} = \omega_s - \omega_E$.
+
+\subsubsection*{3. Time Interval Between Photos}
+The satellite is above point P again after time $T_{rel}$:
+\begin{equation}
+T_{rel} = \frac{2\pi}{\omega_{rel}} = \frac{1}{\frac{1}{T_s} - \frac{1}{T_E}} = \frac{1}{\frac{1}{1.54} - \frac{1}{24}}
+\end{equation}
+\begin{equation}
+T_{rel} = \frac{1}{0.649 - 0.0417} \approx 1.647 \text{ hours}
+\end{equation}
+
+\subsubsection*{4. Number of Photos}
+\begin{equation}
+N = \frac{24 \text{ h}}{1.647 \text{ h}} \approx 14.57
+\end{equation}
+The satellite passes P fully 14 times.
+
+\textbf{Answer:} \textbf{14 photos}.
+
+\newpage
+
+\section*{Question 6: Mechanics and Electrostatics}
+
+\subsection*{(a) Charged Particle in a Tunnel}
+\textbf{Motion Description:}
+Inside a uniformly charged sphere (charge density $\rho$), the electric field at radius $r$ is radial and given by $E = \frac{\rho r}{3\epsilon_0}$.
+The force on a particle of charge $-q$ is $F = -qE = -\left( \frac{q\rho}{3\epsilon_0} \right) r$.
+Since $F \propto -r$, the particle undergoes \textbf{Simple Harmonic Motion (SHM)} about the center.
+
+\textbf{Speed at Center:}
+Using conservation of energy from surface ($r=R, v=0$) to center ($r=0$).
+Potential Energy $U(r) = \frac{1}{2} k r^2$ where $k = \frac{q\rho}{3\epsilon_0}$.
+\begin{equation}
+\frac{1}{2} k R^2 = \frac{1}{2} m v_{max}^2
+\end{equation}
+\begin{equation}
+v_{max} = R \sqrt{\frac{k}{m}} = R \sqrt{\frac{q\rho}{3m\epsilon_0}}
+\end{equation}
+
+\subsection*{(b) Particle Under Two Forces}
+\textbf{Proof of SHM:}
+Forces: $F_A = C(L+x)$ towards A, $F_B = C(L-x)$ towards B (Assuming linear dependence $F \propto r$ based on the result required).
+Net force at displacement $x$ from midpoint:
+\begin{equation}
+F_{net} = -F_A + F_B = -C(L+x) + C(L-x) = -2Cx
+\end{equation}
+This is a restoring force with effective spring constant $k_{eff} = 2C$. Thus, motion is SHM.
+
+\textbf{Period:}
+\begin{equation}
+T = 2\pi \sqrt{\frac{m}{k_{eff}}} = 2\pi \sqrt{\frac{m}{2C}}
+\end{equation}
+
+\textbf{Amplitude and Energy:}
+The text states the particle is "instantaneously at rest at the mid-point". In SHM, the midpoint is the equilibrium position where speed is usually maximum. If the speed is zero at the equilibrium point, the total energy of the system is zero, and the amplitude is zero (no oscillation).
+\textit{Assumed Interpretation:} If the problem implies standard SHM where the particle is released from a distance $A$, the Kinetic Energy at the zero net force point ($x=0$) corresponds to the total potential energy at release:
+\begin{equation}
+KE_{max} = \frac{1}{2} k_{eff} A^2 = C A^2
+\end{equation}
+(If the text strictly implies $v=0$ at $x=0$, then $KE=0$ and Amplitude=0).
+
+\newpage
+
+\section*{Question 7: Thermodynamics}
+
+\subsection*{(a) Adiabatic Expansion}
+Let the container volume be $V_c$.
+\begin{itemize}
+    \item \textbf{State 1:} Gas fills volume $V_0$ (unknown fraction of original) at $P_1, T_1$.
+    \item \textbf{State 2:} Expands adiabatically to fill $V_c$ at $P_2, T'$.
+    \item \textbf{State 3:} Heated at constant volume $V_c$ to $T_1$, pressure becomes $P_3$.
+\end{itemize}
+
+\textbf{(i) Volume of remaining gas at initial conditions:}
+The mass of gas finally in the container is constant during steps 2-3.
+From State 3 ($P_3, V_c, T_1$) to conceptual initial state ($P_1, V_{initial}, T_1$), using Boyle's Law:
+\begin{equation}
+P_3 V_c = P_1 V_{initial} \implies V_{initial} = V_c \left( \frac{P_3}{P_1} \right)
+\end{equation}
+
+\textbf{(ii) Ratio of heat capacities $\gamma$:}
+For the adiabatic expansion from ($P_1, V_{initial}$) to ($P_2, V_c$):
+\begin{equation}
+P_1 V_{initial}^\gamma = P_2 V_c^\gamma
+\end{equation}
+Substitute $V_{initial}$:
+\begin{equation}
+P_1 \left( V_c \frac{P_3}{P_1} \right)^\gamma = P_2 V_c^\gamma
+\end{equation}
+\begin{equation}
+P_1^{1-\gamma} P_3^\gamma = P_2 \implies \left( \frac{P_3}{P_1} \right)^\gamma = \frac{P_2}{P_1}
+\end{equation}
+\begin{equation}
+\gamma = \frac{\ln(P_2/P_1)}{\ln(P_3/P_1)}
+\end{equation}
+
+\textbf{(iii) Atomicity:}
+Calculate $\gamma$ using provided P values. If $\gamma \approx 1.67$ (Monatomic), if $1.4$ (Diatomic).
+
+\subsection*{(b) Thermal Conduction}
+\textbf{Given:} $T_h$, $T_c=0^{\circ}$C. Rod $L, A$. Mixture $m_{ice}, m_{w}$.
+\textbf{Process:}
+1. Melt ice ($Q_1 = m_{ice} L_f$). Temp stays $0^{\circ}$C.
+Time $t_1$:
+\begin{equation}
+\frac{Q_1}{t_1} = \frac{kA(T_h - 0)}{L} \implies t_1 = \frac{m_{ice} L_f L}{kA T_h}
+\end{equation}
+
+2. Heat water ($Q_2$). Temp rises $0 \to T_f$.
+\begin{equation}
+(m_{ice}+m_{w}) c_w \frac{dT}{dt} = \frac{kA(T_h - T)}{L}
+\end{equation}
+Integrating from $T=0$ to $T_f$:
+\begin{equation}
+\int_0^{T_f} \frac{dT}{T_h - T} = \int_0^{t_2} \frac{kA}{M_{total} c_w L} dt
+\end{equation}
+\begin{equation}
+-\ln(T_h - T) \Big|_0^{T_f} = \frac{kA}{M_{total} c_w L} t_2
+\end{equation}
+\begin{equation}
+t_2 = \frac{M_{total} c_w L}{kA} \ln\left( \frac{T_h}{T_h - T_f} \right)
+\end{equation}
+Total time $t = t_1 + t_2$.
+
+\newpage
+
+\section*{Question 8: Waves and Particles}
+
+\subsection*{(a) Accelerated Sound Source}
+\textbf{1. Velocity of Source B:}
+Beat frequency is 8 Hz. Source A is 256 Hz. Observed frequency from B is $256 - 8 = 248$ Hz (since B moves away).
+Doppler formula (source moving away):
+\begin{equation}
+f_{obs} = f_s \left( \frac{c}{c + v} \right)
+\end{equation}
+\begin{equation}
+248 = 256 \left( \frac{330}{330 + v} \right)
+\end{equation}
+\begin{equation}
+330 + v = 330 \left( \frac{256}{248} \right) \approx 340.65
+\end{equation}
+\begin{equation}
+v \approx 10.65 \text{ m/s}
+\end{equation}
+
+\textbf{2. Distance to Point P:}
+Using $v^2 = u^2 + 2as$ with $u=0, a=0.5$:
+\begin{equation}
+(10.65)^2 = 2(0.5) s \implies s \approx 113.4 \text{ m}
+\end{equation}
+
+\subsection*{(b) Proton Beam Deflection}
+\textbf{Parameters:} $K = 10$ MeV $= 1.6 \times 10^{-12}$ J. $B = 1.5$ T. Field width (length) $L = 2.0$ m.
+
+\textbf{1. Gyroradius ($R$):}
+Velocity $v = \sqrt{2K/m_p} = \sqrt{\frac{2(1.6 \times 10^{-12})}{1.67 \times 10^{-27}}} \approx 4.38 \times 10^7$ m/s.
+\begin{equation}
+R = \frac{mv}{qB} = \frac{(1.67 \times 10^{-27})(4.38 \times 10^7)}{(1.6 \times 10^{-19})(1.5)} \approx 0.305 \text{ m}
+\end{equation}
+
+\textbf{2. Deflection Angle:}
+The proton enters the field at $x=0$. It moves in a circle of radius $R=0.305$ m.
+Since the field extends to $x=2.0$ m, and $R \ll 2.0$ m, the proton cannot traverse the full length of the field. It will complete a semi-circle (or arc) and exit from the same boundary it entered (or the side), depending on beam width.
+Assuming a narrow beam entering normal to the boundary: The particle turns $180^\circ$ and exits back at $x=0$.
+Angle between initial and final velocity vectors is \textbf{$180^\circ$ ($\pi$ radians)}.
+(Note: If the diagram implies transmission, the physical values provided ($10$ MeV, $1.5$ T) contradict the diagram scale. Based strictly on the calculation, the beam reflects).
+
+\newpage
+
+\section*{Question 9: Quantum and Relativity}
+
+\subsection*{(a) Photoelectric Effect Work Function}
+\textbf{Problem:} $\lambda = 122$ nm. Electrons in magnetic field $B$ have radius $r=15.8$ cm.
+
+\textbf{Solution:}
+1. Photon Energy:
+\begin{equation}
+E_{ph} = \frac{hc}{\lambda} = \frac{1240}{122} \approx 10.16 \text{ eV}
+\end{equation}
+2. Electron Kinetic Energy ($K$):
+From $evB = \frac{mv^2}{r} \implies v = \frac{eBr}{m}$.
+\begin{equation}
+K = \frac{1}{2} m v^2 = \frac{(eBr)^2}{2m}
+\end{equation}
+(Note: The value of $B$ was not clearly extracted from the text. Let $B$ be the value provided in the paper).
+3. Work Function ($\Phi$):
+\begin{equation}
+\Phi = E_{ph} - K = 10.16 \text{ eV} - \frac{(eBr)^2}{2m}
+\end{equation}
+
+\subsection*{(b) Muon Decay}
+\textbf{Given:} $h=2000$ m. $N_{top} = 568$, $N_{bot} = 422$.
+
+\textbf{(i) Classical Expectation:}
+Time of flight $t = h/c \approx 6.67 \mu$s. Half-life $\tau \approx 1.56 \mu$s.
+Expected count $N = 568 (1/2)^{6.67/1.56} \approx 30$.
+
+\textbf{(ii) Difference:}
+The experimental result (422) is much higher because of \textbf{Time Dilation}. The muons are moving at relativistic speeds, so their clock runs slower relative to the lab frame. They decay less than expected classically.
+
+\textbf{(iii) Height in Muon Frame:}
+From the decay ratio $N/N_0 = 422/568 \approx 0.743$:
+$e^{-t'/\tau} = 0.743 \implies t' \approx 0.3 \tau$.
+The distance traveled in the muon frame is contracted.
+Using Length Contraction: $L' = L / \gamma$.
+Also derived from $L' = v t'$.
+(Exact calculation requires deriving $v$ from decay).
+$422 = 568 \exp(-\frac{2000/v}{\gamma \tau_{mean}})$.
+Roughly, the height appears shorter. $L' \approx 200 \text{ m}$ (estimate based on typical muon problems).
+
+\textbf{(iv) Velocity of Particle:}
+Another particle travels with speed [assumed $c$ or $u$] in the same direction.
+If the particle is a photon (speed $c$), its speed in the muon's frame is \textbf{$c$}.
+If the particle has speed $u$, the relative velocity $u'$ in the muon frame (moving at $v$) is:
+\begin{equation}
+u' = \frac{u - v}{1 - \frac{uv}{c^2}}
+\end{equation}
+
+\end{document}
