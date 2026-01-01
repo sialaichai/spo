@@ -98,6 +98,7 @@ def push_to_github(local_path, content, commit_message):
 def pull_from_github():
     """
     Loops through BASE_DIRS, wipes them locally, and re-downloads from GitHub.
+    Robustly handles file encodings.
     """
     try:
         auth_token = Auth.Token(get_secret("github_token"))
@@ -117,8 +118,9 @@ def pull_from_github():
             # 2. Get Contents from GitHub
             try:
                 contents = repo.get_contents(folder_name, ref=get_secret("github_branch"))
-            except:
-                print(f"Warning: {folder_name} not found in GitHub repo.")
+            except Exception as e:
+                # If folder doesn't exist on GitHub, just skip it
+                print(f"Warning: {folder_name} not found. {e}")
                 continue
 
             # 3. Recursive Download
@@ -130,14 +132,32 @@ def pull_from_github():
                     local_path = file_content.path 
                     os.makedirs(os.path.dirname(local_path), exist_ok=True)
                     
-                    # Get raw bytes directly
-                    raw_data = file_content.decoded_content
-                    
+                    # --- ROBUST CONTENT DECODING ---
+                    try:
+                        # Case A: Standard Base64 encoded file
+                        if file_content.encoding == "base64":
+                            raw_data = file_content.decoded_content
+                        
+                        # Case B: 'none' encoding (often empty files or raw text)
+                        elif file_content.encoding == "none" or file_content.encoding is None:
+                            # Treat content as string, encode to bytes. If None, use empty bytes.
+                            raw_data = (file_content.content or "").encode('utf-8')
+                        
+                        # Case C: Fallback for anything else
+                        else:
+                            raw_data = file_content.decoded_content
+                            
+                    except Exception as decode_error:
+                        # Log error to console but don't crash the app
+                        print(f"⚠️ Error downloading {local_path}: {decode_error}")
+                        continue
+
+                    # Write bytes to disk
                     with open(local_path, "wb") as f:
                         f.write(raw_data)
                     total_files += 1
                     
-        return True, f"Sync complete! Processed {total_files} files across all folders."
+        return True, f"Sync complete! Processed {total_files} files."
     except Exception as e:
         return False, str(e)
 
